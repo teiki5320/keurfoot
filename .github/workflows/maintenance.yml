@@ -1,0 +1,76 @@
+# Bouton « Maintenance » : onglet Actions → Maintenance → Run workflow.
+# Met le site en pause (ou le rouvre) en modifiant content/maintenance.json, puis republie le site.
+name: Maintenance
+
+on:
+  workflow_dispatch:
+    inputs:
+      etat:
+        description: "Mettre le site en maintenance ?"
+        type: choice
+        options:
+          - "Oui, mettre en pause"
+          - "Non, rouvrir le site"
+        required: true
+      message:
+        description: "Message affiché aux visiteurs (laisser vide pour garder le message actuel)"
+        type: string
+        required: false
+
+permissions:
+  contents: read
+
+# Pas de groupe de concurrence ici : la publication appelée plus bas a déjà le sien.
+
+jobs:
+  basculer:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          ref: main
+
+      - name: Modifier content/maintenance.json
+        env:
+          ETAT: ${{ inputs.etat }}
+          MESSAGE: ${{ inputs.message }}
+        run: |
+          node -e '
+            const fs = require("node:fs");
+            const file = "content/maintenance.json";
+            const current = JSON.parse(fs.readFileSync(file, "utf8"));
+            const next = {
+              enabled: process.env.ETAT.startsWith("Oui"),
+              message: process.env.MESSAGE.trim() || current.message,
+            };
+            fs.writeFileSync(file, JSON.stringify(next, null, 2) + "\n");
+            console.log(next);
+          '
+
+      - name: Enregistrer le changement sur main
+        env:
+          ETAT: ${{ inputs.etat }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/maintenance.json
+          if git diff --cached --quiet; then
+            echo "Aucun changement : le site est déjà dans cet état."
+          else
+            git commit -m "Maintenance : $ETAT"
+            git push
+          fi
+
+  # Les commits faits par le bot ne relancent pas les autres workflows : on republie ici.
+  publier:
+    needs: basculer
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    # Version provisoire : republie sur GitHub Pages (deploy.yml prendra le relais avec keurfoot.com).
+    uses: ./.github/workflows/pages.yml
+    secrets: inherit

@@ -1,0 +1,4 @@
+# Redirections servies par Cloudflare Pages.
+/selection /selections 301
+/joueur /joueurs 301
+/favicon.ico /icon.png 301

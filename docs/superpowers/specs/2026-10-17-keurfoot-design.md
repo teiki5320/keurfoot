@@ -13,7 +13,9 @@ Modèle technique : le site Keurbook (`~/Dev/apps/Keurbook`, dépôt `teiki5320/
 3. Pas encore de domaine : publication provisoire sur GitHub Pages (`https://teiki5320.github.io/keurfoot/`), **non indexée** jusqu'à l'arrivée de keurfoot.com, puis Cloudflare Pages comme Keurbook.
 4. Logo fourni par l'utilisateur le 2026-10-17 : ballon noir, or et vert dans un anneau doré, « KEURFOOT .COM » argent et or. Fichiers dans `docs/brand/` (transparent, fond noir, fond blanc).
 5. Travail uniquement sur la branche `main` du dépôt `teiki5320/keurfoot`, sans branche ni pull request. Seule exception hors de ce dossier : la carte Keur Foot dans la section « Sites » de toakeur.com (`~/Dev/apps/toakeur`).
-6. Réponses à l'utilisateur : en points numérotés, avec des choix numérotés.
+6. Thème sombre : fond noir, or et vert comme le logo sur fond noir.
+7. Carte Keur Foot sur toakeur.com ajoutée dès la mise en ligne, avec le lien GitHub Pages, remplacé par keurfoot.com plus tard.
+8. Réponses à l'utilisateur : en points numérotés, avec des choix numérotés.
 
 ## Arborescence
 

@@ -1,0 +1,74 @@
+# Version provisoire du site sur GitHub Pages (https://teiki5320.github.io/keurfoot/),
+# en attendant keurfoot.com sur Cloudflare Pages. Pages non indexées par les moteurs de recherche, sans publicité.
+# Se lance à chaque push sur main, à la main (onglet Actions) et après le bouton « Maintenance ».
+# Pour l'arrêter : Settings → Pages → désactiver, puis supprimer ce fichier (voir README).
+name: Publier la version provisoire (GitHub Pages)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Une seule publication à la fois ; on ne coupe pas une publication en cours.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  construire:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code (dernière version de main)
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          ref: main
+          persist-credentials: false
+
+      - name: Installer Node.js
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      - name: Vérifier le code (lint, types, tests)
+        run: |
+          npm run lint
+          npm run typecheck
+          npm test
+
+      - name: Construire le site (sous-dossier /keurfoot, non indexé, sans publicité)
+        run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: /keurfoot
+          NEXT_PUBLIC_SITE_URL: https://teiki5320.github.io/keurfoot
+          NEXT_PUBLIC_NOINDEX: "1"
+          NEXT_PUBLIC_ADSENSE_CLIENT: ""
+          NEXT_PUBLIC_LEGAL_HOST: "GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis — github.com"
+          NEXT_PUBLIC_LEGAL_HOST_NAME: GitHub
+          NEXT_TELEMETRY_DISABLED: 1
+
+      - name: Préparer le dossier publié
+        run: touch out/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  publier:
+    needs: construire
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploiement.outputs.page_url }}
+    steps:
+      - id: deploiement
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,169 @@
+@import "tailwindcss";
+
+/*
+ * Charte Keur Foot, tirée du logo : fond nuit, or, vert émeraude, rouge en accent.
+ * Titres en capitales condensées (Anton), texte en Geist. Mobile d'abord.
+ */
+@theme {
+  --color-night: #0b0d0c;
+  --color-surface: #151917;
+  --color-surface-2: #1d2320;
+  --color-chalk: #f7f5ee;
+  --color-muted: #a7aea9;
+  --color-faint: #808983;
+  --color-line: #2a312d;
+  --color-line-strong: #3f4842;
+  --color-gold: #f2b705;
+  --color-gold-soft: #2b2510;
+  --color-pitch: #0f8a43;
+  --color-pitch-soft: #10261a;
+  --color-flame: #e8321e;
+  --font-sans: var(--font-geist), system-ui, sans-serif;
+  --font-display: var(--font-anton), Impact, "Arial Narrow", sans-serif;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-night);
+  color: var(--color-chalk);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-night);
+}
+
+/* Anton n'existe qu'en une graisse : pas de faux gras. */
+.font-display {
+  font-weight: 400;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@utility container-page {
+  @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+}
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold tracking-wide uppercase transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold;
+}
+@utility btn-primary {
+  @apply btn bg-gold text-night hover:bg-chalk;
+}
+@utility btn-secondary {
+  @apply btn border border-line-strong bg-transparent text-chalk hover:border-gold hover:text-gold;
+}
+@utility tag {
+  @apply inline-flex items-center rounded-full border border-line-strong px-3.5 py-1.5 text-[13px] text-chalk/85 hover:border-gold hover:text-gold;
+}
+@utility section-title {
+  @apply font-display text-[32px] leading-none tracking-wide uppercase sm:text-5xl;
+}
+@utility eyebrow {
+  @apply text-[11px] font-bold tracking-[0.16em] text-gold uppercase;
+}
+
+@utility prose-text {
+  @apply max-w-3xl text-[16px] leading-[1.7] text-chalk/85;
+  & h2 {
+    @apply mt-10 mb-3 scroll-mt-28 font-display text-[28px] leading-tight tracking-wide text-chalk uppercase;
+  }
+  & h3 {
+    @apply mt-8 mb-2 text-xl leading-tight font-bold text-chalk;
+  }
+  & p,
+  & ul,
+  & ol {
+    @apply mb-4;
+  }
+  & ul {
+    @apply list-disc pl-6;
+  }
+  & ol {
+    @apply list-decimal pl-6;
+  }
+  & a {
+    @apply text-gold underline underline-offset-2 hover:text-chalk;
+  }
+  & strong {
+    @apply font-semibold text-chalk;
+  }
+  & table {
+    @apply my-6 w-full border-collapse text-sm;
+  }
+  & th,
+  & td {
+    @apply border border-line px-3 py-2 text-left;
+  }
+  & th {
+    @apply bg-surface font-semibold text-chalk;
+  }
+}
+
+/* Animations douces (seulement si le visiteur n'a pas demandé moins d'animations). */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Visiteurs qui ont demandé moins d'animations : transitions et animations coupées. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Emplacements d'annonces AdSense (composant AdSlot) : cadre neutre, mention « Publicité » toujours visible,
+   affiché seulement quand Google a placé une annonce.
+   Pas d'overflow: hidden : sur téléphone, Google élargit l'annonce à toute la largeur de l'écran (sans débordement).
+   Volontairement sobre et différent des boutons Amazon. */
+.ad-slot {
+  margin-block: 3rem;
+  border-block: 1px solid var(--color-line);
+  padding-block: 0.75rem;
+}
+.ad-slot-label {
+  margin-bottom: 0.5rem;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-faint);
+}
+/* Replié tant que Google n'a pas placé d'annonce : jamais de case vide.
+   Pas de display: none, sinon Google ne peut pas mesurer la largeur disponible et ne place rien. */
+.ad-slot:not(:has(ins.adsbygoogle[data-ad-status="filled"])) {
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+}
