@@ -91,8 +91,7 @@ describe("CAN", () => {
   });
 });
 
-/** Joueurs annoncés mais pas encore écrits (liste vidée quand leurs fiches existent). */
-const PLAYERS_TO_COME = new Set<string>(["didier-drogba", "samuel-eto-o", "sadio-mane", "achraf-hakimi"]);
+const PLAYERS_TO_COME = new Set<string>();
 const playerSlugs = new Set(PLAYERS.map((p) => p.slug));
 
 describe("Sélections", () => {
@@ -129,6 +128,28 @@ describe("Sélections", () => {
       if (s.jersey.asin) assert.match(s.jersey.asin, /^[0-9A-Z]{10}$/);
       assertSources(s.sources, s.slug);
       assert.match(s.updatedAt, DATE);
+    });
+  }
+});
+
+describe("Joueurs", () => {
+  it("les quatre premières fiches du cahier des charges", () => {
+    assert.deepEqual(PLAYERS.map((p) => p.slug).sort(), ["achraf-hakimi", "didier-drogba", "sadio-mane", "samuel-eto-o"]);
+  });
+  for (const p of PLAYERS) {
+    it(`${p.slug} : fiche complète, statistiques datées si en activité`, () => {
+      assert.match(p.slug, SLUG);
+      assert.ok(getCountry(p.selection), p.selection);
+      assert.match(p.birthDate, DATE);
+      if (p.active) assert.match(p.statsAsOf ?? "", DATE, "date des statistiques obligatoire pour un joueur en activité");
+      if (p.caps !== null && p.goals !== null) assert.ok(p.caps >= p.goals);
+      if (p.shirtNumber !== null) assert.ok(p.shirtNumber >= 1 && p.shirtNumber <= 99);
+      assert.ok(p.intro.length >= 60 && p.intro.length <= 260, `intro de ${p.intro.length} caractères`);
+      assert.ok(p.bio.length >= 3 && p.bio.length <= 6, "3 à 6 paragraphes");
+      for (const b of p.bio) assert.ok(b.length >= 200 && b.length <= 900, `paragraphe de ${b.length} caractères`);
+      assert.ok(p.clubs.length >= 2 && p.honours.length >= 3);
+      assertSources(p.sources, p.slug);
+      assert.match(p.updatedAt, DATE);
     });
   }
 });
