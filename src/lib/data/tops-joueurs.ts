@@ -30,6 +30,7 @@ export const TOPS_JOUEURS: TopList[] = [
       { rank: 9, name: "Khalilou Fadiga", playerSlug: null, country: "senegal", stat: "41 sélections", text: "Milieu de terrain de la génération 2002, finaliste de la CAN et quart de finaliste de la Coupe du monde, il figure dans l'équipe type de la CAN 2000." },
       { rank: 10, name: "Tony Sylva", playerSlug: null, country: "senegal", stat: "84 sélections", text: "Gardien de l'épopée de 2002, dans l'équipe type de la CAN cette année-là, il atteint aussi la finale de la Ligue des champions 2004 avec Monaco." },
     ],
+    statsAsOf: "2026-10-04",
     sources: [
       { label: "RSSSF — Records des internationaux sénégalais (mis à jour le 4 octobre 2026)", url: "https://rsssf.org/miscellaneous/sene-recintlp.html" },
       { label: "RSSSF — El Hadji Diouf en sélection", url: "https://rsssf.org/miscellaneous/hadjidiouf-intlg.html" },
@@ -65,6 +66,7 @@ export const TOPS_JOUEURS: TopList[] = [
       { rank: 9, name: "Franck Kessié", playerSlug: null, country: "cote-d-ivoire", stat: "108 sélections", text: "Capitaine des Éléphants, buteur en finale de la CAN 2023 gagnée à domicile contre le Nigeria, champion d'Italie avec Milan en 2022 et d'Espagne avec Barcelone en 2023." },
       { rank: 10, name: "Joël Tiéhi", playerSlug: null, country: "cote-d-ivoire", stat: "50 sélections, 28 buts", text: "Troisième meilleur buteur de l'histoire des Éléphants, titulaire lors de la finale victorieuse de la CAN 1992." },
     ],
+    statsAsOf: "2026-10-01",
     sources: [
       { label: "RSSSF — Records des internationaux ivoiriens (mis à jour le 1er octobre 2026)", url: "https://rsssf.org/miscellaneous/ivo-recintlp.html" },
       { label: "Connectionivoirienne — Notre top 13 des légendes du football ivoirien (2025)", url: "https://connectionivoirienne.net/2025/05/13/qui-est-le-meilleur-joueur-de-la-cote-divoire-notre-top-13-des-legendes-du-football/" },

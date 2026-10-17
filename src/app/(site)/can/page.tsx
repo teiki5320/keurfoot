@@ -67,7 +67,7 @@ export default function CanPage() {
                 <div className="mt-1 sm:mt-0">
                   <p className="text-[15px] font-semibold">
                     🏆 <CountryName slug={e.winner} as={e.winnerAs} />
-                    {e.note?.startsWith("Titre contesté") && (
+                    {e.disputed && (
                       <span className="ml-2 rounded-full bg-flame/15 px-2 py-0.5 align-middle text-[11px] font-bold tracking-wide text-flame uppercase">Contesté</span>
                     )}
                   </p>

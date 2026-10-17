@@ -15,6 +15,7 @@ import { illustration } from "@/lib/illustrations";
 import { jsonLd } from "@/lib/json-ld";
 import { pageMetadata } from "@/lib/metadata";
 import { pinPath } from "@/lib/pinterest";
+import { formatDate } from "@/lib/format";
 
 export function generateStaticParams() {
   return TOPS.map((t) => ({ slug: t.slug }));
@@ -71,6 +72,7 @@ export default async function TopPage({ params }: PageProps<"/top-10/[slug]">) {
           <p className="mt-2 rounded-xl border border-line bg-surface p-4 text-sm text-chalk/80">
             <strong className="text-gold">{top.kind === "classement" ? "Méthode : " : "Nos critères : "}</strong>
             {top.criteria}
+            {top.statsAsOf && ` Sélections et buts en équipe nationale au ${formatDate(top.statsAsOf)}.`}
           </p>
 
           <ol className="mt-8 space-y-3">

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/metadata";
 import { LegalPage } from "@/components/layout/LegalPage";
 import { AMAZON_DISCLOSURE } from "@/lib/amazon";
-import { legalConfig, siteConfig } from "@/lib/config";
+import { ADSENSE_CLIENT, legalConfig, siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = pageMetadata({
   title: "Mentions légales",
@@ -42,13 +42,13 @@ export default function LegalNoticePage() {
       <h2>Données personnelles et cookies</h2>
       <ul>
         <li>
-          Aucun compte n&apos;est nécessaire. Le site ne dépose lui-même aucun cookie ; seuls les cookies de la publicité
-          Google sont déposés, et uniquement si vous les acceptez dans le bandeau de consentement (lien « Gérer mes cookies »
-          en bas de chaque page pour changer d&apos;avis).
+          {ADSENSE_CLIENT
+            ? "Aucun compte n'est nécessaire. Le site ne dépose lui-même aucun cookie ; seuls les cookies de la publicité Google sont déposés, et uniquement si vous les acceptez dans le bandeau de consentement (lien « Gérer mes cookies » en bas de chaque page pour changer d'avis)."
+            : "Aucun compte n'est nécessaire et le site ne dépose aucun cookie."}
         </li>
         <li>
           Les polices, les images et le code du site sont servis par le site lui-même, sans mesure d&apos;audience par
-          cookie. Seuls les annonces et le bandeau de consentement viennent de Google.
+          cookie.{ADSENSE_CLIENT && " Seuls les annonces et le bandeau de consentement viennent de Google."}
         </li>
         <li>L&apos;hébergeur peut enregistrer des journaux techniques (adresse IP, date, page demandée) pour la sécurité du service.</li>
         <li>
@@ -59,6 +59,12 @@ export default function LegalNoticePage() {
       </ul>
 
       <h2>Publicité</h2>
+      {!ADSENSE_CLIENT ? (
+        <p>
+          Le site n&apos;affiche pour l&apos;instant aucune publicité. Si des annonces Google AdSense sont ajoutées, ces mentions
+          et la <Link href="/confidentialite">politique de confidentialité</Link> seront mises à jour avant leur mise en place.
+        </p>
+      ) : (
       <p>
         Pour financer le site, certaines pages affichent des annonces fournies par Google AdSense. Elles sont toujours
         signalées par la mention « Publicité » et séparées des contenus et des liens Amazon. L&apos;éditeur ne choisit pas les
@@ -67,6 +73,7 @@ export default function LegalNoticePage() {
         bloquées. Le détail des données utilisées figure dans la{" "}
         <Link href="/confidentialite#publicite">politique de confidentialité</Link>.
       </p>
+      )}
 
       <h2>Liens sponsorisés (Amazon)</h2>
       <p>

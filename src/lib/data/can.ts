@@ -12,8 +12,8 @@ const e = (
   runnerUp: string,
   final: string,
   teams: number,
-  extra: Partial<Pick<CanEdition, "winnerAs" | "runnerUpAs" | "note">> = {},
-): CanEdition => ({ year, hosts, winner, runnerUp, final, teams, winnerAs: null, runnerUpAs: null, note: null, ...extra });
+  extra: Partial<Pick<CanEdition, "winnerAs" | "runnerUpAs" | "note" | "disputed">> = {},
+): CanEdition => ({ year, hosts, winner, runnerUp, final, teams, winnerAs: null, runnerUpAs: null, note: null, disputed: false, ...extra });
 
 export const CAN_EDITIONS: CanEdition[] = [
   e(1957, ["soudan"], "egypte", "ethiopie", "4-0", 3, {
@@ -63,6 +63,7 @@ export const CAN_EDITIONS: CanEdition[] = [
     note: "L'édition 2023 s'est jouée en janvier et février 2024.",
   }),
   e(2025, ["maroc"], "maroc", "senegal", "3-0 sur tapis vert (1-0 a.p. pour le Sénégal sur le terrain)", 24, {
+    disputed: true,
     note:
       "Titre contesté. Sur le terrain, le Sénégal a battu le Maroc 1-0 après prolongation, le 18 janvier 2026 à Rabat. Le 17 mars 2026, le jury d'appel de la CAF a déclaré le Sénégal forfait et attribué le titre au Maroc (3-0). Le Sénégal a fait appel devant le Tribunal arbitral du sport (TAS) : au 17 octobre 2026, la décision n'a pas encore été rendue.",
   }),
@@ -73,7 +74,7 @@ export const CAN_UPDATED = "2026-10-17";
 export const CAN_INTRO: string[] = [
   "Née en 1957 avec seulement trois équipes, la Coupe d'Afrique des nations est devenue le grand rendez-vous du football africain : 24 sélections, des stades pleins et toute la diaspora devant l'écran.",
   "L'Égypte détient le record avec sept titres, devant le Cameroun (cinq) et le Ghana (quatre). Le tournoi est passé à 16 équipes en 1998, puis à 24 en 2019.",
-  "Le meilleur buteur de l'histoire de la compétition est le Camerounais Samuel Eto'o, avec 18 buts. Voici toutes les éditions, de la première à la plus récente, dont la CAN 2025, dont le titre attribué au Maroc est contesté devant le Tribunal arbitral du sport.",
+  "Le meilleur buteur de l'histoire de la compétition est le Camerounais Samuel Eto'o, avec 18 buts. Voici toutes les éditions, de la première à la CAN 2025, dont le titre attribué au Maroc est contesté devant le Tribunal arbitral du sport.",
 ];
 
 export const CAN_SOURCES: Source[] = [
@@ -85,6 +86,13 @@ export const CAN_SOURCES: Source[] = [
   { label: "TAS — Communiqué sur l'appel de la Fédération sénégalaise (25 mars 2026)", url: "https://www.tas-cas.org/generated/assets/lists/dceab111-07bc-435f-b5f9-de88eff9db72/CAS%20Media%20Release_12295_appel_FR.pdf" },
   { label: "ESPN — Sénégal-Maroc : le verdict du TAS attendu (8 octobre 2026)", url: "https://www.espn.com/soccer/story/_/id/50131828/senegal-vs-morocco-afcon-verdict-days-cas" },
 ];
+
+/** Années en liste lisible, avec la mention « titre contesté » si l'une d'elles l'est (« 1976 et 2025 (titre contesté) »). */
+export function canYearsLabel(years: number[]): string {
+  const text = years.length > 1 ? `${years.slice(0, -1).join(", ")} et ${years.at(-1)}` : `${years[0] ?? ""}`;
+  const disputed = years.some((y) => CAN_EDITIONS.some((ed) => ed.year === y && ed.disputed));
+  return disputed ? `${text} (titre contesté)` : text;
+}
 
 /** Années des titres de chaque pays (slug → années croissantes). */
 export function canTitlesByCountry(): Map<string, number[]> {

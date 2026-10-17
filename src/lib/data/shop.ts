@@ -91,7 +91,7 @@ export const SHOP: ShopCategory[] = [
     intro:
       "Pour prolonger le match : biographies de légendes, histoire de la CAN, récits de supporters. De quoi faire découvrir le foot africain aux plus jeunes comme aux passionnés.",
     products: [
-      { name: "Livres sur l'histoire de la CAN", amazonQuery: "livre histoire Coupe d'Afrique des nations football", asin: null, note: "Les grandes heures du tournoi raconté en livres." },
+      { name: "Livres sur l'histoire de la CAN", amazonQuery: "livre histoire Coupe d'Afrique des nations football", asin: null, note: "Les grandes heures du tournoi racontées en livres." },
       { name: "Livres sur le football africain", amazonQuery: "livre football africain", asin: null, note: "Essais et récits sur le foot du continent." },
       { name: "Livres sur Didier Drogba", amazonQuery: "livre Didier Drogba", asin: null, note: "Les ouvrages consacrés à l'attaquant ivoirien." },
       { name: "Livres sur Samuel Eto'o", amazonQuery: "livre Samuel Eto'o", asin: null, note: "Les ouvrages consacrés au buteur camerounais." },

@@ -77,6 +77,8 @@ export interface CanEdition {
   teams: number;
   /** Précision importante (titre contesté, forfait…), affichée avec l'édition. */
   note: string | null;
+  /** Titre contesté (recours en cours) : signalé partout où l'année apparaît. */
+  disputed: boolean;
 }
 
 export interface NextCan {
@@ -113,6 +115,8 @@ export interface TopList {
   /** Pays concerné (Top 10 d'une sélection), sinon null. */
   country: string | null;
   items: TopItem[];
+  /** Date du relevé des sélections et buts cités (obligatoire pour un classement de joueurs), sinon null. */
+  statsAsOf: string | null;
   sources: Source[];
   updatedAt: string;
 }

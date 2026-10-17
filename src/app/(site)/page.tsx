@@ -148,7 +148,7 @@ export default function HomePage() {
           </ol>
           <p className="mt-3 text-xs text-muted">
             {CAN_EDITIONS.length} éditions de 1957 à {last.year}.
-            {last.note?.startsWith("Titre contesté") && ` Le titre ${last.year}, attribué par la CAF, est contesté devant le Tribunal arbitral du sport.`}
+            {last.disputed && ` Le titre ${last.year}, attribué par la CAF, est contesté devant le Tribunal arbitral du sport.`}
           </p>
           <Link href="/can" className="tag mt-4">Toutes les éditions →</Link>
         </div>

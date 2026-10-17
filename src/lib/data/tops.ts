@@ -62,13 +62,14 @@ export const TOPS: TopList[] = [
       { rank: 5, name: "Mohamed Salah", playerSlug: null, country: "egypte", stat: "11 buts", text: "La star égyptienne a disputé deux finales de CAN, en 2017 et en 2021, toutes deux perdues." },
       {
         rank: 10,
-        name: "Pierre Ndaye Mulamba, Francileudo Santos, Joël Tiéhi, Mengistu Worku, Kalusha Bwalya et André Ayew",
+        name: "André Ayew, Kalusha Bwalya, Pierre Ndaye Mulamba, Francileudo Santos, Joël Tiéhi et Mengistu Worku",
         playerSlug: null,
         country: null,
         stat: "10 buts",
         text: "Six joueurs se partagent la 10e place. Parmi eux, Pierre Ndaye Mulamba a marqué 9 buts lors de la seule CAN 1974, remportée par le Zaïre (aujourd'hui RD Congo).",
       },
     ],
+    statsAsOf: null,
     sources: [
       { label: "Wikipédia (anglais) — Records et statistiques de la CAN", url: "https://en.wikipedia.org/wiki/Africa_Cup_of_Nations_records_and_statistics" },
       { label: "Wikipédia — Coupe d'Afrique des nations de football", url: "https://fr.wikipedia.org/wiki/Coupe_d%27Afrique_des_nations_de_football" },
@@ -90,6 +91,7 @@ export const TOPS: TopList[] = [
     criteria: "Nombre de titres (palmarès officiel de la CAF), puis nombre de finales perdues, puis titre le plus récent pour départager les égalités.",
     country: null,
     items: titledCountries(),
+    statsAsOf: null,
     sources: CAN_SOURCES,
     updatedAt: "2026-10-17",
   },

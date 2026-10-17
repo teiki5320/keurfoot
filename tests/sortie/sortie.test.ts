@@ -66,6 +66,13 @@ describe("Site construit", () => {
     }
     assert.deepEqual(bad.slice(0, 10), []);
   });
+  it("sans AdSense, les pages légales ne décrivent ni bandeau ni annonces", () => {
+    for (const page of ["confidentialite", "mentions-legales"]) {
+      const html = readFileSync(join(out, `${page}.html`), "utf8");
+      assert.doesNotMatch(html, /Gérer mes cookies|bandeau de Google|annonces fournies par Google/, page);
+      assert.match(html, /aucune publicité/, page);
+    }
+  });
   it("une épingle Pinterest par Top 10", () => {
     for (const p of PAGES.filter((x) => x.startsWith("top-10/"))) {
       assert.ok(existsSync(join(out, "epingles", `${p.split("/")[1]}.png`)), p);

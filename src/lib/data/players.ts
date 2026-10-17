@@ -122,7 +122,7 @@ export const PLAYERS: Player[] = [
       "Né le 10 avril 1992 à Bambali, en Casamance, Sadio Mané rejoint le FC Metz en 2011, puis brille au Red Bull Salzbourg, champion d'Autriche en 2014. À Southampton, il signe en 2015 le triplé le plus rapide de l'histoire de la Premier League, en 2 minutes 56 secondes contre Aston Villa.",
       "À Liverpool, de 2016 à 2022, il remporte la Ligue des champions 2019 et le championnat d'Angleterre 2020, et partage le titre de meilleur buteur de Premier League en 2019. Il passe ensuite une saison au Bayern Munich, champion d'Allemagne en 2023, avant de rejoindre Al-Nassr, en Arabie saoudite.",
       "Le 6 février 2022, à Yaoundé, il manque un penalty en début de finale de la CAN 2021 contre l'Égypte, puis transforme le tir au but décisif : le Sénégal est champion d'Afrique pour la première fois. Élu joueur africain de l'année par la CAF en 2019 et 2022, il termine deuxième du Ballon d'Or 2022, mais une blessure le prive de la Coupe du monde au Qatar.",
-      "En janvier 2026, il est élu meilleur joueur de la CAN 2025, dont le Sénégal gagne la finale sur le terrain avant que la CAF n'attribue le titre au Maroc, une décision contestée devant le Tribunal arbitral du sport. Avec 11 buts et 9 passes décisives en phase finale, il est le meilleur passeur de l'histoire de la CAN.",
+      "En janvier 2026, il est élu meilleur joueur de la CAN 2025, dont le Sénégal gagne la finale sur le terrain avant que la CAF n'attribue le titre au Maroc, une décision contestée devant le Tribunal arbitral du sport. Il compte 11 buts en phase finale de CAN, à égalité au 5e rang des meilleurs buteurs de l'histoire de la compétition.",
     ],
     clubs: [
       "FC Metz (2011-2012)",
@@ -185,6 +185,7 @@ export const PLAYERS: Player[] = [
       { label: "RSSSF — Records des internationaux marocains (mis à jour le 6 octobre 2026)", url: "https://rsssf.org/miscellaneous/maro-recintlp.html" },
       { label: "Morocco World News — Hakimi élu joueur africain de l'année (novembre 2025)", url: "https://www.moroccoworldnews.com/2025/11/268615/achraf-hakimi-wins-african-player-of-the-year/" },
       { label: "AP — La panenka d'Hakimi qualifie le Maroc contre l'Espagne (2022)", url: "https://ksat.com/sports/2022/12/06/hakimis-panenka-penalty-advances-morocco-at-world-cup" },
+      { label: "NBC Boston (AP) — France 2-0 Maroc, quart de finale de la Coupe du monde 2026", url: "https://www.nbcboston.com/world-cup/france-morocco-score-mbappe-dembele/" },
       { label: "DH — Le PSG remporte la Ligue des champions 2026", url: "https://www.dhnet.be/dernieres-depeches/2026/05/30/ligue-des-champions-le-psg-decroche-une-deuxieme-etoile-au-bout-du-suspense-U3HKVNAKXRGZBFFT5MUD7WZEME/" },
       { label: "Wikipédia (anglais) — Achraf Hakimi", url: "https://en.wikipedia.org/wiki/Achraf_Hakimi" },
     ],

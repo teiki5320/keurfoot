@@ -10,6 +10,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { SourcesList } from "@/components/ui/SourcesList";
 import { amazonUrl } from "@/lib/amazon";
 import { getCountry } from "@/lib/countries";
+import { canYearsLabel } from "@/lib/data/can";
 import { getPlayer } from "@/lib/data/players";
 import { SELECTIONS, getSelection } from "@/lib/data/selections";
 import { TOPS } from "@/lib/data/tops";
@@ -33,16 +34,14 @@ export async function generateMetadata({ params }: PageProps<"/selection/[slug]"
   });
 }
 
-const years = (list: number[]) => (list.length > 1 ? `${list.slice(0, -1).join(", ")} et ${list.at(-1)}` : `${list[0]}`);
-
 export default async function SelectionPage({ params }: PageProps<"/selection/[slug]">) {
   const s = getSelection((await params).slug);
   if (!s) notFound();
   const country = getCountry(s.country)!;
   const tops = TOPS.filter((t) => t.country === s.country || t.items.some((i) => i.country === s.country)).slice(0, 4);
   const stats = [
-    { label: "CAN gagnées", value: s.canTitles.length, detail: s.canTitles.length ? years(s.canTitles) : "Pas encore de titre" },
-    { label: "Finales perdues", value: s.canFinals.length, detail: s.canFinals.length ? years(s.canFinals) : "—" },
+    { label: "CAN gagnées", value: s.canTitles.length, detail: s.canTitles.length ? canYearsLabel(s.canTitles) : "Pas encore de titre" },
+    { label: "Finales perdues", value: s.canFinals.length, detail: s.canFinals.length ? canYearsLabel(s.canFinals) : "—" },
     { label: "Coupes du monde", value: s.worldCups.length, detail: s.bestWorldCup ? `Meilleur résultat : ${s.bestWorldCup}` : "Jamais qualifié" },
   ];
 

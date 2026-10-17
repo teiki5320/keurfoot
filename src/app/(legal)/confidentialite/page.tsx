@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/metadata";
 import { LegalPage } from "@/components/layout/LegalPage";
-import { legalConfig, siteConfig } from "@/lib/config";
+import { ADSENSE_CLIENT, legalConfig, siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = pageMetadata({
   title: "Politique de confidentialité",
@@ -38,10 +38,12 @@ export default function PrivacyPage() {
           traite l&apos;adresse IP et les informations techniques de connexion pour délivrer les pages et protéger le site
           contre les attaques. Base légale : intérêt légitime (sécurité du site).
         </li>
-        <li>
-          <strong>Publicité (Google AdSense)</strong> : certaines pages affichent des annonces fournies par Google. Le détail
-          figure plus bas, dans la partie « Publicité ».
-        </li>
+        {ADSENSE_CLIENT && (
+          <li>
+            <strong>Publicité (Google AdSense)</strong> : certaines pages affichent des annonces fournies par Google. Le détail
+            figure plus bas, dans la partie « Publicité ».
+          </li>
+        )}
       </ul>
       <p>Nous ne revendons jamais vos données.</p>
 
@@ -54,12 +56,13 @@ export default function PrivacyPage() {
       <h2>Destinataires et sous-traitants</h2>
       <p>
         Vos données sont destinées à nos services internes et à nos sous-traitants techniques : hébergement du site (
-        {legalConfig.hostName}) et messagerie. Pour la publicité, Google et ses partenaires publicitaires reçoivent
-        directement les données décrites dans la partie « Publicité ». Lorsque des données sont transférées hors de
-        l&apos;Union européenne (hébergeur et Google, États-Unis), ce transfert est encadré par le cadre de protection des
+        {legalConfig.hostName}) et messagerie. {ADSENSE_CLIENT && "Pour la publicité, Google et ses partenaires publicitaires reçoivent directement les données décrites dans la partie « Publicité ». "}Lorsque des données sont transférées hors de
+        l&apos;Union européenne (hébergeur{ADSENSE_CLIENT && " et Google"}, États-Unis), ce transfert est encadré par le cadre de protection des
         données UE–États-Unis (Data Privacy Framework) et par des clauses contractuelles types de la Commission européenne.
       </p>
 
+      {ADSENSE_CLIENT ? (
+        <>
       <h2 id="publicite">Publicité (Google AdSense)</h2>
       <p>
         Pour financer le site, les fiches sélections et joueurs, la page de la CAN, les classements Top 10 et les articles
@@ -97,6 +100,18 @@ export default function PrivacyPage() {
         </li>
       </ul>
 
+        </>
+      ) : (
+        <>
+          <h2 id="publicite">Publicité</h2>
+          <p>
+            Le site n&apos;affiche pour l&apos;instant aucune publicité : aucun service publicitaire n&apos;est chargé et
+            aucun cookie publicitaire n&apos;est déposé. Si des annonces Google AdSense sont ajoutées, cette politique sera mise
+            à jour avant leur mise en place, et un bandeau vous demandera votre accord.
+          </p>
+        </>
+      )}
+
       <h2>Liens vers Amazon</h2>
       <p>
         Les boutons « Voir sur Amazon » ouvrent Amazon.fr avec notre identifiant de partenaire, qui permet à Amazon de nous
@@ -119,6 +134,8 @@ export default function PrivacyPage() {
         pouvez introduire une réclamation auprès de la CNIL (www.cnil.fr).
       </p>
 
+      {ADSENSE_CLIENT ? (
+        <>
       <h2 id="cookies">Cookies</h2>
       <p>
         Le site lui-même ne dépose aucun cookie de mesure d&apos;audience ni de réseau social. Les seuls cookies sont
@@ -130,6 +147,16 @@ export default function PrivacyPage() {
         <li><strong>Cookies publicitaires de Google et de ses partenaires</strong> : seulement avec votre accord ; liste et durées dans le bandeau.</li>
       </ul>
       <p>Amazon.fr et Pinterest, une fois ouverts depuis un bouton du site, déposent leurs propres cookies, selon leur politique.</p>
+        </>
+      ) : (
+        <>
+          <h2 id="cookies">Cookies</h2>
+          <p>
+            Le site ne dépose aucun cookie : ni mesure d&apos;audience, ni réseau social, ni publicité. Amazon.fr et Pinterest,
+            une fois ouverts depuis un bouton du site, déposent leurs propres cookies, selon leur politique.
+          </p>
+        </>
+      )}
     </LegalPage>
   );
 }
