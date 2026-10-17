@@ -10,7 +10,8 @@ de Keurbook (Next.js 16 statique, Tailwind 4, données dans le code).
 |---|---|
 | `npm run dev` | Site en local sur http://localhost:3000 |
 | `npm run lint`, `npm run typecheck`, `npm test` | Vérifications |
-| `npm run build` | Site statique dans `out/` |
+| `npm run build` | Site statique dans `out/` (génère d'abord les épingles Pinterest) |
+| `npm run test:sortie` | Construit la version GitHub Pages et contrôle les 20 pages, les liens sous /keurfoot et les épingles |
 | `node scripts/logos.mjs` | Régénère icônes, logo et image de partage depuis `docs/brand/` |
 
 ## Publication
