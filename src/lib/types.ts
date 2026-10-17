@@ -72,9 +72,11 @@ export interface CanEdition {
   winnerAs: string | null;
   runnerUp: string;
   runnerUpAs: string | null;
-  /** Score de la finale (« 2-1 », « 0-0 (4-2 t.a.b.) ») ou mode de désignation s'il n'y en a pas eu. */
+  /** Score de la finale (« 2-1 », « 0-0 (4-2 t.a.b.) »), du point de vue du vainqueur, ou mode de désignation s'il n'y en a pas eu. */
   final: string;
   teams: number;
+  /** Précision importante (titre contesté, forfait…), affichée avec l'édition. */
+  note: string | null;
 }
 
 export interface NextCan {
