@@ -93,8 +93,8 @@ export interface TopItem {
   rank: number;
   name: string;
   playerSlug: string | null;
-  /** Slug du pays (COUNTRIES). */
-  country: string;
+  /** Slug du pays (COUNTRIES) ; null seulement pour une place partagée par des joueurs de plusieurs pays. */
+  country: string | null;
   /** Chiffre clé sourcé (« 18 buts »), sinon null. */
   stat: string | null;
   text: string;
