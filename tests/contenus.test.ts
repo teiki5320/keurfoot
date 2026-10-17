@@ -6,8 +6,11 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { COUNTRIES, getCountry } from "../src/lib/countries";
-import { CAN_EDITIONS, CAN_INTRO, CAN_SOURCES, CAN_UPDATED, NEXT_CAN, canRanking, canTitlesByCountry } from "../src/lib/data/can";
-import { DATE, SLUG, assertSources, dupes } from "./helpers";
+import { amazonUrl } from "../src/lib/amazon";
+import { CAN_EDITIONS, CAN_INTRO, CAN_SOURCES, CAN_UPDATED, NEXT_CAN, canFinalsByCountry, canRanking, canTitlesByCountry } from "../src/lib/data/can";
+import { PLAYERS } from "../src/lib/data/players";
+import { SELECTIONS } from "../src/lib/data/selections";
+import { DATE, HEX, SLUG, assertAmazon, assertSources, dupes } from "./helpers";
 
 describe("Pays africains", () => {
   it("les 54 États africains membres de l'ONU", () => assert.equal(COUNTRIES.length, 54));
@@ -86,4 +89,46 @@ describe("CAN", () => {
     assert.match(NEXT_CAN.checkedOn, DATE);
     assert.ok(NEXT_CAN.text.length >= 2);
   });
+});
+
+/** Joueurs annoncés mais pas encore écrits (liste vidée quand leurs fiches existent). */
+const PLAYERS_TO_COME = new Set<string>(["didier-drogba", "samuel-eto-o", "sadio-mane", "achraf-hakimi"]);
+const playerSlugs = new Set(PLAYERS.map((p) => p.slug));
+
+describe("Sélections", () => {
+  it("les six premières fiches du cahier des charges", () => {
+    assert.deepEqual(
+      SELECTIONS.map((s) => s.slug).sort(),
+      ["algerie", "cameroun", "cote-d-ivoire", "mali", "maroc", "senegal"],
+    );
+  });
+  it("slugs uniques, identiques au pays", () => {
+    assert.deepEqual(dupes(SELECTIONS.map((s) => s.slug)), []);
+    for (const s of SELECTIONS) assert.equal(s.slug, s.country);
+  });
+  for (const s of SELECTIONS) {
+    it(`${s.slug} : palmarès identique à la page CAN`, () => {
+      assert.ok(getCountry(s.country), s.country);
+      assert.deepEqual(s.canTitles, canTitlesByCountry().get(s.country) ?? []);
+      assert.deepEqual(s.canFinals, canFinalsByCountry().get(s.country) ?? []);
+    });
+    it(`${s.slug} : fiche complète et sourcée`, () => {
+      for (let i = 1; i < s.worldCups.length; i++) assert.ok(s.worldCups[i] > s.worldCups[i - 1], "Coupes du monde en ordre croissant");
+      assert.equal(s.worldCups.length === 0, s.bestWorldCup === null, "meilleur résultat seulement avec une participation");
+      assert.ok(s.colors.length >= 2 && s.colors.length <= 3);
+      for (const c of s.colors) assert.match(c, HEX);
+      assert.ok(s.intro.length >= 60 && s.intro.length <= 260, `intro de ${s.intro.length} caractères`);
+      assert.ok(s.history.length >= 3 && s.history.length <= 5, "3 à 5 paragraphes");
+      for (const p of s.history) assert.ok(p.length >= 200 && p.length <= 900, `paragraphe de ${p.length} caractères`);
+      assert.ok(s.legends.length >= 4 && s.legends.length <= 8, "4 à 8 joueurs emblématiques");
+      for (const l of s.legends) {
+        if (l.playerSlug) assert.ok(playerSlugs.has(l.playerSlug) || PLAYERS_TO_COME.has(l.playerSlug), `fiche joueur inconnue : ${l.playerSlug}`);
+        assert.ok(l.why.length >= 20 && l.why.length <= 220, `${l.name} : ${l.why.length} caractères`);
+      }
+      assertAmazon(amazonUrl(s.jersey), s.slug);
+      if (s.jersey.asin) assert.match(s.jersey.asin, /^[0-9A-Z]{10}$/);
+      assertSources(s.sources, s.slug);
+      assert.match(s.updatedAt, DATE);
+    });
+  }
 });

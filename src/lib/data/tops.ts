@@ -52,7 +52,7 @@ export const TOPS: TopList[] = [
     country: null,
     items: [
       { rank: 1, name: "Samuel Eto'o", playerSlug: "samuel-eto-o", country: "cameroun", stat: "18 buts", text: "Le record absolu de la compétition. L'attaquant camerounais a remporté deux CAN avec les Lions indomptables, en 2000 et 2002." },
-      { rank: 2, name: "Laurent Pokou", playerSlug: null, country: "cote-d-ivoire", stat: "14 buts", text: "L'attaquant ivoirien des années 1960 et 1970 a longtemps détenu le record de buts de la compétition, avant d'être dépassé par Samuel Eto'o." },
+      { rank: 2, name: "Laurent Pokou", playerSlug: null, country: "cote-d-ivoire", stat: "14 buts", text: "Meilleur buteur des CAN 1968 et 1970, il détient le record de buts dans un même match de la compétition : cinq, contre l'Éthiopie en 1970." },
       { rank: 3, name: "Rashidi Yekini", playerSlug: null, country: "nigeria", stat: "13 buts", text: "Le grand buteur nigérian a été champion d'Afrique en 1994 avec les Super Eagles." },
       { rank: 4, name: "Hassan El-Shazly", playerSlug: null, country: "egypte", stat: "12 buts", text: "Attaquant égyptien des années 1960, il occupe toujours le 4e rang des buteurs de l'histoire du tournoi." },
       { rank: 5, name: "Didier Drogba", playerSlug: "didier-drogba", country: "cote-d-ivoire", stat: "11 buts", text: "Le capitaine des Éléphants a disputé et perdu deux finales, en 2006 et en 2012." },
