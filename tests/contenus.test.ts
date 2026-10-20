@@ -110,9 +110,10 @@ describe("Sélections", () => {
     assert.deepEqual(
       SELECTIONS.map((s) => s.slug).sort(),
       [
-        "afrique-du-sud", "algerie", "benin", "burkina-faso", "burundi", "cameroun", "cap-vert", "cote-d-ivoire", "djibouti", "egypte", "erythree", "ethiopie",
-        "gambie", "ghana", "guinee", "guinee-bissau", "kenya", "liberia", "mali", "maroc", "mauritanie", "niger", "nigeria", "ouganda", "rd-congo", "rwanda",
-        "senegal", "sierra-leone", "somalie", "soudan-du-sud", "tanzanie", "togo", "tunisie",
+        "afrique-du-sud", "algerie", "benin", "burkina-faso", "burundi", "cameroun", "cap-vert", "centrafrique", "congo", "cote-d-ivoire", "djibouti", "egypte",
+        "erythree", "ethiopie", "gabon", "gambie", "ghana", "guinee", "guinee-bissau", "guinee-equatoriale", "kenya", "liberia", "libye", "mali", "maroc",
+        "mauritanie", "niger", "nigeria", "ouganda", "rd-congo", "rwanda", "sao-tome-et-principe", "senegal", "sierra-leone", "somalie", "soudan",
+        "soudan-du-sud", "tanzanie", "tchad", "togo", "tunisie",
       ],
     );
   });

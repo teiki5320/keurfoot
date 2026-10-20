@@ -14,6 +14,8 @@ const BASE = "/keurfoot";
 const PAGES = [
   "selection/senegal",
   "selection/cap-vert",
+  "selection/congo",
+  "selection/soudan",
   "selection/ethiopie",
   "selection/erythree",
   "selection/togo",
