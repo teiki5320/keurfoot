@@ -104,3 +104,18 @@ const BY_SLUG = new Map(TOPS.map((t) => [t.slug, t]));
 export function getTop(slug: string): TopList | undefined {
   return BY_SLUG.get(slug);
 }
+
+/**
+ * Liens « Voir aussi » en bas d'un Top 10 : les classements les plus proches d'abord
+ * (même famille : Top 10 d'un pays ou Top 10 africain, puis même type), dans l'ordre du site.
+ */
+export function relatedTops(slug: string, n = 3): TopList[] {
+  const top = BY_SLUG.get(slug);
+  if (!top) return [];
+  const score = (t: TopList) => (Boolean(t.country) === Boolean(top.country) ? 2 : 0) + (t.kind === top.kind ? 1 : 0);
+  return TOPS.filter((t) => t.slug !== slug)
+    .map((t, i) => ({ t, s: score(t), i }))
+    .sort((a, b) => b.s - a.s || a.i - b.i)
+    .slice(0, n)
+    .map((x) => x.t);
+}

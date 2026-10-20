@@ -72,3 +72,23 @@ describe("Top 10 du lot du 20 octobre 2026", () => {
     assert.equal(top.items.find((i) => i.name === "George Weah")?.rank, 4);
   });
 });
+
+describe("Top 10 : liens « Voir aussi »", () => {
+  it("trois autres classements, jamais la page elle-même ni un doublon", async () => {
+    const { relatedTops } = await import("../src/lib/data/tops");
+    for (const t of TOPS) {
+      const rel = relatedTops(t.slug);
+      assert.equal(rel.length, 3, t.slug);
+      assert.ok(!rel.some((r) => r.slug === t.slug), t.slug);
+      assert.deepEqual(dupes(rel.map((r) => r.slug)), []);
+    }
+  });
+  it("un Top 10 d'un pays renvoie d'abord vers les Top 10 des autres pays", async () => {
+    const { relatedTops } = await import("../src/lib/data/tops");
+    for (const r of relatedTops("meilleurs-joueurs-senegalais")) assert.ok(r.country, r.slug);
+  });
+  it("le Top 10 des buteurs de la CAN renvoie vers les pays les plus titrés", async () => {
+    const { relatedTops } = await import("../src/lib/data/tops");
+    assert.ok(relatedTops("meilleurs-buteurs-can").some((r) => r.slug === "pays-les-plus-titres-can"));
+  });
+});

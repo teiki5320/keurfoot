@@ -6,11 +6,11 @@ import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { PageHero } from "@/components/ui/PageHero";
 import { PinButton, PinPreview } from "@/components/ui/PinButton";
 import { SourcesList } from "@/components/ui/SourcesList";
-import { siteConfig } from "@/lib/config";
+import { siteConfig, withBase } from "@/lib/config";
 import { getCountry } from "@/lib/countries";
 import { countryLink } from "@/lib/data/links";
 import { getPlayer } from "@/lib/data/players";
-import { TOPS, getTop } from "@/lib/data/tops";
+import { TOPS, getTop, relatedTops } from "@/lib/data/tops";
 import { illustration } from "@/lib/illustrations";
 import { jsonLd } from "@/lib/json-ld";
 import { pageMetadata } from "@/lib/metadata";
@@ -117,6 +117,27 @@ export default async function TopPage({ params }: PageProps<"/top-10/[slug]">) {
           <Link href="/top-10" className="tag mt-6">Tous les Top 10 →</Link>
         </aside>
       </div>
+
+      <section aria-labelledby="voir-aussi" className="container-page mt-14">
+        <h2 id="voir-aussi" className="section-title text-[28px] sm:text-4xl">Voir aussi</h2>
+        <div className="mt-5 grid gap-3.5 sm:grid-cols-3">
+          {relatedTops(top.slug).map((t) => {
+            const img = illustration(`top-${t.slug}`);
+            return (
+              <Link key={t.slug} href={`/top-10/${t.slug}`} className="panel overflow-hidden transition-colors hover:border-gold">
+                {img && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={withBase(img)} alt="" loading="lazy" className="block aspect-[4/3] w-full object-cover" />
+                )}
+                <span className="block px-4 py-4">
+                  <span className="eyebrow block text-[11px]">{t.kind === "classement" ? "Classement chiffré" : "Notre sélection"}</span>
+                  <span className="mt-1.5 block font-display text-2xl leading-[1.05] uppercase">{t.title}</span>
+                </span>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
 
       <div className="container-page">
         <AdSlot placement="top" />

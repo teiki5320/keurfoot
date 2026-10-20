@@ -10,7 +10,7 @@ Anniversaire, fête de fin d'année ou veille de CAN : un cadeau aux couleurs de
 
 ## Pour le supporter de sa sélection
 
-Le **maillot** reste le cadeau numéro un. Avant de commander, vérifiez la taille (voir [comment choisir sa taille de maillot](/conseils/comment-choisir-sa-taille-de-maillot-de-foot)) et conservez le ticket : un maillot floqué n'est pas toujours échangé. Retrouvez ceux du Sénégal, de la Côte d'Ivoire, du Cameroun, du Maroc, de l'Algérie et du Mali sur notre page [maillots des sélections](/boutique/maillots).
+Le **maillot** reste le cadeau numéro un. Avant de commander, vérifiez la taille (voir [comment choisir sa taille de maillot](/conseils/comment-choisir-sa-taille-de-maillot-de-foot)) et conservez le ticket : un maillot floqué n'est pas toujours échangé. Retrouvez ceux des 54 sélections africaines sur notre page [maillots des sélections](/boutique/maillots).
 
 L'**écharpe** et le **drapeau** sont des valeurs sûres, plus simples à offrir sans connaître la taille. Le drapeau de voiture fait aussi son effet les soirs de victoire.
 
