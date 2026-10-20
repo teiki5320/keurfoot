@@ -1,7 +1,7 @@
 import type { ShopCategory } from "@/lib/types";
 
 /**
- * Boutique supporter : sélection d'articles vers Amazon.fr (programme Partenaires, tag keurfoot-21).
+ * Boutique supporter : sélection d'articles vers Amazon.fr (programme Partenaires, tag keurfootfr-21).
  * Chaque article est une recherche Amazon précise : aucun prix, aucune marque ni aucun ASIN inventés.
  * Un ASIN ne s'ajoute qu'après vérification à la main de la fiche Amazon (docs/REDACTION.md, règle 7).
  */

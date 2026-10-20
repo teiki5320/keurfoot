@@ -21,5 +21,5 @@ export function assertSources(sources: Source[], where: string) {
 /** Lien Amazon avec notre identifiant de partenaire. */
 export function assertAmazon(url: string, where: string) {
   assert.match(url, /^https:\/\/www\.amazon\.fr\//, `${where} : lien Amazon.fr attendu`);
-  assert.ok(url.includes("tag=keurfoot-21"), `${where} : tag keurfoot-21 manquant`);
+  assert.ok(url.includes("tag=keurfootfr-21"), `${where} : tag keurfootfr-21 manquant`);
 }

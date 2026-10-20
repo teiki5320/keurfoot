@@ -1,5 +1,5 @@
 /** Programme Partenaires Amazon : identifiant ajouté à tous les liens vers Amazon.fr. */
-export const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "keurfoot-21";
+export const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "keurfootfr-21";
 
 /** Recherche Amazon.fr (utilisée tant que la fiche exacte du produit n'a pas été vérifiée à la main). */
 export function amazonSearchUrl(query: string): string {

@@ -1,5 +1,5 @@
 /**
- * Tests du socle : liens Amazon Partenaires (tag keurfoot-21) et chemins du site.
+ * Tests du socle : liens Amazon Partenaires (tag keurfootfr-21) et chemins du site.
  * Lancement : npm test
  */
 import assert from "node:assert/strict";
@@ -8,15 +8,15 @@ import { AMAZON_DISCLOSURE, amazonProductUrl, amazonSearchUrl, amazonUrl } from 
 import { withBase } from "../src/lib/config";
 
 describe("Liens Amazon", () => {
-  it("une recherche Amazon.fr porte le tag keurfoot-21 et la requête encodée", () => {
+  it("une recherche Amazon.fr porte le tag keurfootfr-21 et la requête encodée", () => {
     const url = amazonSearchUrl("maillot Sénégal");
     assert.ok(url.startsWith("https://www.amazon.fr/s?k="), url);
     assert.ok(url.includes("maillot%20S%C3%A9n%C3%A9gal"), url);
-    assert.ok(url.includes("tag=keurfoot-21"), url);
+    assert.ok(url.includes("tag=keurfootfr-21"), url);
   });
 
-  it("une fiche produit Amazon.fr porte le tag keurfoot-21", () => {
-    assert.equal(amazonProductUrl("B0ABCDEFGH"), "https://www.amazon.fr/dp/B0ABCDEFGH?tag=keurfoot-21");
+  it("une fiche produit Amazon.fr porte le tag keurfootfr-21", () => {
+    assert.equal(amazonProductUrl("B0ABCDEFGH"), "https://www.amazon.fr/dp/B0ABCDEFGH?tag=keurfootfr-21");
   });
 
   it("sans ASIN vérifié, le lien mène à la recherche", () => {
