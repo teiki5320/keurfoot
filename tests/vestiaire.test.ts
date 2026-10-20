@@ -50,3 +50,21 @@ describe("Couleurs du maillot d'un joueur", () => {
     assert.deepEqual(playerColors({ ...base, selection: "liberia" }), ["#1d2320", "#f2b705"]);
   });
 });
+
+describe("Sélections par région et penderie", () => {
+  it("la penderie montre les sélections les plus titrées, la plus titrée d'abord", async () => {
+    const { mostTitled } = await import("../src/lib/data/selections");
+    const top = mostTitled(6);
+    assert.equal(top.length, 6);
+    assert.equal(top[0].slug, "egypte");
+    for (let i = 1; i < top.length; i++) assert.ok(top[i].canTitles.length <= top[i - 1].canTitles.length);
+  });
+  it("chaque sélection est rangée dans sa région, par ordre alphabétique", async () => {
+    const { SELECTIONS, selectionsByRegion } = await import("../src/lib/data/selections");
+    const groups = selectionsByRegion();
+    assert.equal(groups.reduce((n, g) => n + g.selections.length, 0), SELECTIONS.length);
+    const ouest = groups.find((g) => g.region === "ouest")!;
+    assert.ok(ouest.selections.some((s) => s.slug === "senegal"));
+    for (const g of groups) assert.ok(g.selections.length > 0, `région vide : ${g.region}`);
+  });
+});

@@ -5,7 +5,7 @@
  */
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { COUNTRIES, getCountry } from "../src/lib/countries";
+import { COUNTRIES, REGIONS, getCountry } from "../src/lib/countries";
 import { amazonUrl } from "../src/lib/amazon";
 import { CAN_EDITIONS, CAN_INTRO, CAN_SOURCES, CAN_UPDATED, NEXT_CAN, canFinalsByCountry, canRanking, canTitlesByCountry } from "../src/lib/data/can";
 import { PLAYERS } from "../src/lib/data/players";
@@ -27,6 +27,17 @@ describe("Pays africains", () => {
       assert.match(c.of, /^(du |de la |de l'|des |d'|de )/, c.slug);
       assert.ok(c.demonym.length > 2, c.slug);
     }
+  });
+  it("chaque pays appartient à l'une des cinq régions du site", () => {
+    const count = (r: string) => COUNTRIES.filter((c) => c.region === r).length;
+    assert.deepEqual(Object.keys(REGIONS), ["ouest", "nord", "centre", "est", "australe"]);
+    assert.equal(count("ouest"), 16);
+    assert.equal(count("nord"), 6);
+    assert.equal(count("centre"), 8);
+    assert.equal(count("est"), 10);
+    assert.equal(count("australe"), 14);
+    assert.equal(getCountry("mauritanie")?.region, "ouest");
+    assert.equal(getCountry("cameroun")?.region, "centre");
   });
   it("getCountry retrouve un pays par son slug", () => {
     assert.equal(getCountry("senegal")?.demonym, "sénégalais");
@@ -117,9 +128,10 @@ describe("Sélections", () => {
       assert.ok(s.colors.length >= 2 && s.colors.length <= 3);
       for (const c of s.colors) assert.match(c, HEX);
       assert.ok(s.intro.length >= 60 && s.intro.length <= 260, `intro de ${s.intro.length} caractères`);
-      assert.ok(s.history.length >= 3 && s.history.length <= 5, "3 à 5 paragraphes");
+      // Fiche courte permise pour les sélections peu documentées (décision du 20 octobre 2026).
+      assert.ok(s.history.length >= 2 && s.history.length <= 5, "2 à 5 paragraphes");
       for (const p of s.history) assert.ok(p.length >= 200 && p.length <= 900, `paragraphe de ${p.length} caractères`);
-      assert.ok(s.legends.length >= 4 && s.legends.length <= 8, "4 à 8 joueurs emblématiques");
+      assert.ok(s.legends.length >= 2 && s.legends.length <= 8, "2 à 8 joueurs emblématiques");
       for (const l of s.legends) {
         if (l.playerSlug) assert.ok(playerSlugs.has(l.playerSlug) || PLAYERS_TO_COME.has(l.playerSlug), `fiche joueur inconnue : ${l.playerSlug}`);
         assert.ok(l.why.length >= 20 && l.why.length <= 220, `${l.name} : ${l.why.length} caractères`);

@@ -4,7 +4,7 @@ import { AmazonButton } from "@/components/ui/AmazonButton";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { PageHero } from "@/components/ui/PageHero";
 import { AMAZON_DISCLOSURE, amazonUrl } from "@/lib/amazon";
-import { SELECTIONS } from "@/lib/data/selections";
+import { mostTitled } from "@/lib/data/selections";
 import { SHOP } from "@/lib/data/shop";
 import { Rail, RailSelection } from "@/components/ui/Vestiaire";
 import { illustration } from "@/lib/illustrations";
@@ -51,7 +51,7 @@ export default function ShopPage() {
 
         <div className="mt-10">
           <Rail label="Penderie des maillots">
-            {SELECTIONS.map((sel, i) => (
+            {mostTitled(12).map((sel, i) => (
               <div key={sel.slug} className="flex flex-col items-center">
                 <RailSelection s={sel} i={i} caption={sel.jersey.label} />
                 <AmazonButton href={amazonUrl(sel.jersey)} label="Amazon" className="-mt-1 mb-3 px-4 text-sm" />

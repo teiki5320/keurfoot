@@ -8,7 +8,7 @@ import { siteConfig, withBase } from "@/lib/config";
 import { getCountry } from "@/lib/countries";
 import { CAN_EDITIONS, NEXT_CAN } from "@/lib/data/can";
 import { getConseils } from "@/lib/data/conseils";
-import { SELECTIONS } from "@/lib/data/selections";
+import { SELECTIONS, mostTitled } from "@/lib/data/selections";
 import { SHOP } from "@/lib/data/shop";
 import { illustration } from "@/lib/illustrations";
 import { jsonLd } from "@/lib/json-ld";
@@ -53,10 +53,11 @@ export default function HomePage() {
       {/* Penderie : un maillot par sélection, nombre de CAN gagnées sur la poitrine. */}
       <div className="mt-11">
         <Rail label="Penderie des sélections">
-          {SELECTIONS.map((s, i) => (
+          {mostTitled(12).map((s, i) => (
             <RailSelection key={s.slug} s={s} i={i} />
           ))}
         </Rail>
+        <Link href="/selections" className="tag mt-4">Les {SELECTIONS.length} sélections →</Link>
         {last.disputed && <p className="mt-3 text-xs text-muted">* Le titre de la CAN {last.year}, attribué au Maroc par la CAF, est contesté devant le Tribunal arbitral du sport.</p>}
       </div>
 
