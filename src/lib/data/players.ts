@@ -1,4 +1,6 @@
 import type { Player, Position } from "@/lib/types";
+import { PLAYERS_LOT2 } from "./players-lot2";
+import { getSelection } from "./selections";
 
 /** Libellés des postes. */
 export const POSITIONS: Record<Position, string> = {
@@ -13,7 +15,7 @@ export const POSITIONS: Record<Position, string> = {
  * Aucune photo : chaque joueur est représenté par un maillot dessiné aux couleurs de son pays.
  * Sélections et buts : RSSSF en priorité ; pour un joueur en activité, chiffres datés par statsAsOf.
  */
-export const PLAYERS: Player[] = [
+const PLAYERS_LOT1: Player[] = [
   {
     slug: "didier-drogba",
     name: "Didier Drogba",
@@ -193,7 +195,14 @@ export const PLAYERS: Player[] = [
   },
 ];
 
+export const PLAYERS: Player[] = [...PLAYERS_LOT1, ...PLAYERS_LOT2];
+
 const BY_SLUG = new Map(PLAYERS.map((p) => [p.slug, p]));
+
+/** Couleurs du maillot dessiné d'un joueur : celles de sa sélection, sinon les siennes, sinon celles du site. */
+export function playerColors(p: Pick<Player, "selection" | "colors">): string[] {
+  return getSelection(p.selection)?.colors ?? p.colors ?? ["#1d2320", "#f2b705"];
+}
 
 export function getPlayer(slug: string): Player | undefined {
   return BY_SLUG.get(slug);

@@ -59,7 +59,7 @@ export const TOPS: TopList[] = [
       { rank: 5, name: "Hossam Hassan", playerSlug: null, country: "egypte", stat: "11 buts", text: "L'attaquant égyptien a été champion d'Afrique à trois reprises : en 1986, 1998 et 2006." },
       { rank: 5, name: "Sadio Mané", playerSlug: "sadio-mane", country: "senegal", stat: "11 buts", text: "Champion d'Afrique 2021, il a transformé le tir au but décisif de la finale contre l'Égypte. Il a atteint 11 buts lors de la CAN 2025." },
       { rank: 5, name: "Patrick Mboma", playerSlug: null, country: "cameroun", stat: "11 buts", text: "L'attaquant camerounais a remporté les CAN 2000 et 2002 aux côtés de Samuel Eto'o." },
-      { rank: 5, name: "Mohamed Salah", playerSlug: null, country: "egypte", stat: "11 buts", text: "La star égyptienne a disputé deux finales de CAN, en 2017 et en 2021, toutes deux perdues." },
+      { rank: 5, name: "Mohamed Salah", playerSlug: "mohamed-salah", country: "egypte", stat: "11 buts", text: "La star égyptienne a disputé deux finales de CAN, en 2017 et en 2021, toutes deux perdues." },
       {
         rank: 10,
         name: "André Ayew, Kalusha Bwalya, Pierre Ndaye Mulamba, Francileudo Santos, Joël Tiéhi et Mengistu Worku",

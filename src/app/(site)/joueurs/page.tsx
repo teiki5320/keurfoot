@@ -4,8 +4,7 @@ import Link from "next/link";
 import { Jersey } from "@/components/ui/Jersey";
 import { siteConfig } from "@/lib/config";
 import { getCountry } from "@/lib/countries";
-import { PLAYERS, POSITIONS } from "@/lib/data/players";
-import { getSelection } from "@/lib/data/selections";
+import { PLAYERS, POSITIONS, playerColors } from "@/lib/data/players";
 import { itemListLd, jsonLd } from "@/lib/json-ld";
 import { pageMetadata } from "@/lib/metadata";
 import type { Player } from "@/lib/types";
@@ -19,7 +18,7 @@ export const metadata: Metadata = pageMetadata({
 /** Carte joueur : maillot de dos avec son numéro, nom, sélection, poste et chiffres en sélection. */
 function PlayerCard({ p, i }: { p: Player; i: number }) {
   const country = getCountry(p.selection)!;
-  const colors = getSelection(p.selection)?.colors ?? ["#1d2320", "#f2b705"];
+  const colors = playerColors(p);
   return (
     <Link
       href={`/joueur/${p.slug}`}

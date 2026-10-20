@@ -49,6 +49,8 @@ export interface Player {
   active: boolean;
   /** Numéro porté en sélection, s'il est vérifié. */
   shirtNumber: number | null;
+  /** Couleurs du drapeau, seulement si sa sélection n'a pas (encore) de fiche sur le site. */
+  colors?: string[];
   intro: string;
   /** 3 à 6 paragraphes écrits par nous. */
   bio: string[];

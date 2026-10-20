@@ -62,7 +62,7 @@ export const SELECTIONS_MAROC_ALGERIE_MALI: Selection[] = [
     legends: [
       { name: "Lakhdar Belloumi", playerSlug: null, why: "Ballon d'or africain 1981, buteur décisif contre la RFA au Mondial 1982 (100 sélections, 28 buts)." },
       { name: "Rabah Madjer", playerSlug: null, why: "Ballon d'or africain 1987, auteur du premier but contre la RFA en 1982." },
-      { name: "Riyad Mahrez", playerSlug: null, why: "Élu joueur africain de l'année par la CAF en 2016, champion d'Afrique 2019 et capitaine au Mondial 2026." },
+      { name: "Riyad Mahrez", playerSlug: "riyad-mahrez", why: "Élu joueur africain de l'année par la CAF en 2016, champion d'Afrique 2019 et capitaine au Mondial 2026." },
       { name: "Islam Slimani", playerSlug: null, why: "Meilleur buteur de l'histoire des Fennecs, avec 46 buts au 4 octobre 2026." },
       { name: "Aïssa Mandi", playerSlug: null, why: "Recordman des sélections, avec 123 matchs au 4 octobre 2026." },
       { name: "Baghdad Bounedjah", playerSlug: null, why: "Buteur dès les premières minutes de la finale de la CAN 2019 gagnée contre le Sénégal." },

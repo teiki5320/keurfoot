@@ -7,7 +7,7 @@ import { Jersey } from "@/components/ui/Jersey";
 import { SourcesList } from "@/components/ui/SourcesList";
 import { siteConfig } from "@/lib/config";
 import { getCountry } from "@/lib/countries";
-import { PLAYERS, POSITIONS, getPlayer } from "@/lib/data/players";
+import { PLAYERS, POSITIONS, getPlayer, playerColors } from "@/lib/data/players";
 import { getSelection } from "@/lib/data/selections";
 import { TOPS } from "@/lib/data/tops";
 import { formatDate } from "@/lib/format";
@@ -34,7 +34,7 @@ export default async function PlayerPage({ params }: PageProps<"/joueur/[slug]">
   if (!p) notFound();
   const country = getCountry(p.selection)!;
   const selection = getSelection(p.selection);
-  const colors = selection?.colors ?? ["#1d2320", "#f2b705"];
+  const colors = playerColors(p);
   const tops = TOPS.filter((t) => t.items.some((i) => i.playerSlug === p.slug));
   const person = {
     "@context": "https://schema.org",

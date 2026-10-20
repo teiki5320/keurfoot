@@ -95,10 +95,10 @@ const PLAYERS_TO_COME = new Set<string>();
 const playerSlugs = new Set(PLAYERS.map((p) => p.slug));
 
 describe("Sélections", () => {
-  it("les six premières fiches du cahier des charges", () => {
+  it("les douze fiches prévues (lots du 17 et du 20 octobre 2026)", () => {
     assert.deepEqual(
       SELECTIONS.map((s) => s.slug).sort(),
-      ["algerie", "cameroun", "cote-d-ivoire", "mali", "maroc", "senegal"],
+      ["afrique-du-sud", "algerie", "cameroun", "cote-d-ivoire", "egypte", "ghana", "mali", "maroc", "nigeria", "rd-congo", "senegal", "tunisie"],
     );
   });
   it("slugs uniques, identiques au pays", () => {
@@ -133,8 +133,11 @@ describe("Sélections", () => {
 });
 
 describe("Joueurs", () => {
-  it("les quatre premières fiches du cahier des charges", () => {
-    assert.deepEqual(PLAYERS.map((p) => p.slug).sort(), ["achraf-hakimi", "didier-drogba", "sadio-mane", "samuel-eto-o"]);
+  it("les dix fiches prévues (lots du 17 et du 20 octobre 2026)", () => {
+    assert.deepEqual(PLAYERS.map((p) => p.slug).sort(), [
+      "achraf-hakimi", "didier-drogba", "el-hadji-diouf", "george-weah", "mohamed-salah",
+      "riyad-mahrez", "roger-milla", "sadio-mane", "samuel-eto-o", "yaya-toure",
+    ]);
   });
   for (const p of PLAYERS) {
     it(`${p.slug} : fiche complète, statistiques datées si en activité`, () => {

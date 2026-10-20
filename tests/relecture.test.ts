@@ -11,7 +11,7 @@ import { TOPS, getTop } from "../src/lib/data/tops";
 import { DATE } from "./helpers";
 
 /** Joueurs encore en activité cités avec des chiffres dans les fiches sélections. */
-const ACTIFS = ["Idrissa Gana Gueye", "Kalidou Koulibaly", "Aïssa Mandi", "Islam Slimani", "Riyad Mahrez", "Yassine Bounou", "Youssef En-Nesyri", "Achraf Hakimi", "Sadio Mané"];
+const ACTIFS = ["Idrissa Gana Gueye", "Kalidou Koulibaly", "Aïssa Mandi", "Islam Slimani", "Riyad Mahrez", "Yassine Bounou", "Youssef En-Nesyri", "Achraf Hakimi", "Sadio Mané", "Chancel Mbemba", "Cédric Bakambu", "Yoane Wissa", "Ronwen Williams", "Mohamed Salah", "Victor Osimhen", "Ahmed Musa", "Jordan Ayew"];
 
 describe("Relecture : statistiques datées", () => {
   it("chaque Top 10 « meilleurs joueurs » date ses chiffres en sélection", () => {

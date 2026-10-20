@@ -1,9 +1,10 @@
 import type { Selection } from "@/lib/types";
 import { SELECTIONS_MAROC_ALGERIE_MALI } from "./selections-nord-ouest";
+import { SELECTIONS_LOT2 } from "./selections-lot2";
 import { SELECTIONS_SENEGAL_CIV_CAMEROUN } from "./selections-ouest-centre";
 
 /** Fiches des sélections nationales (règles : docs/REDACTION.md). */
-export const SELECTIONS: Selection[] = [...SELECTIONS_SENEGAL_CIV_CAMEROUN, ...SELECTIONS_MAROC_ALGERIE_MALI];
+export const SELECTIONS: Selection[] = [...SELECTIONS_SENEGAL_CIV_CAMEROUN, ...SELECTIONS_MAROC_ALGERIE_MALI, ...SELECTIONS_LOT2];
 
 const BY_SLUG = new Map(SELECTIONS.map((s) => [s.slug, s]));
 

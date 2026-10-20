@@ -21,7 +21,7 @@ export const SELECTIONS_SENEGAL_CIV_CAMEROUN: Selection[] = [
     bestWorldCup: "Quart de finale (2002)",
     legends: [
       { name: "Sadio Mané", playerSlug: "sadio-mane", why: "Meilleur buteur de l'histoire du Sénégal (56 buts au 4 octobre 2026), auteur du tir au but du titre 2021 et élu joueur africain de l'année par la CAF en 2019 et 2022." },
-      { name: "El Hadji Diouf", playerSlug: null, why: "Élu joueur africain de l'année par la CAF en 2001 et 2002, star de l'épopée du Mondial 2002." },
+      { name: "El Hadji Diouf", playerSlug: "el-hadji-diouf", why: "Élu joueur africain de l'année par la CAF en 2001 et 2002, star de l'épopée du Mondial 2002." },
       { name: "Idrissa Gana Gueye", playerSlug: null, why: "Milieu infatigable et recordman des sélections du Sénégal, avec 141 matchs au 4 octobre 2026." },
       { name: "Kalidou Koulibaly", playerSlug: null, why: "Défenseur et capitaine, champion d'Afrique 2021, plus de 100 sélections au 4 octobre 2026." },
       { name: "Henri Camara", playerSlug: null, why: "Auteur des deux buts contre la Suède en huitièmes de finale du Mondial 2002, dont le but en or." },
@@ -61,7 +61,7 @@ export const SELECTIONS_SENEGAL_CIV_CAMEROUN: Selection[] = [
     bestWorldCup: "Seizièmes de finale (2026)",
     legends: [
       { name: "Didier Drogba", playerSlug: "didier-drogba", why: "Meilleur buteur de l'histoire des Éléphants (65 buts), élu joueur africain de l'année par la CAF en 2006 et 2009." },
-      { name: "Yaya Touré", playerSlug: null, why: "Élu joueur africain de l'année par la CAF quatre fois de suite, de 2011 à 2014, champion d'Afrique 2015." },
+      { name: "Yaya Touré", playerSlug: "yaya-toure", why: "Élu joueur africain de l'année par la CAF quatre fois de suite, de 2011 à 2014, champion d'Afrique 2015." },
       { name: "Didier Zokora", playerSlug: null, why: "Recordman des sélections ivoiriennes, avec 123 matchs entre 2000 et 2014." },
       { name: "Kolo Touré", playerSlug: null, why: "Défenseur, deuxième joueur le plus capé avec 120 sélections, champion d'Afrique 2015." },
       { name: "Laurent Pokou", playerSlug: null, why: "Meilleur buteur des CAN 1968 et 1970, 14 buts au total dans la compétition." },
@@ -98,7 +98,7 @@ export const SELECTIONS_SENEGAL_CIV_CAMEROUN: Selection[] = [
     worldCups: [1982, 1990, 1994, 1998, 2002, 2010, 2014, 2022],
     bestWorldCup: "Quart de finale (1990)",
     legends: [
-      { name: "Roger Milla", playerSlug: null, why: "Ballon d'or africain 1976 et 1990, quatre buts au Mondial 1990 et plus vieux buteur de l'histoire de la Coupe du monde." },
+      { name: "Roger Milla", playerSlug: "roger-milla", why: "Ballon d'or africain 1976 et 1990, quatre buts au Mondial 1990 et plus vieux buteur de l'histoire de la Coupe du monde." },
       { name: "Samuel Eto'o", playerSlug: "samuel-eto-o", why: "Meilleur buteur de l'histoire du Cameroun et de la CAN (18 buts), quatre fois joueur africain de l'année pour la CAF." },
       { name: "Rigobert Song", playerSlug: null, why: "Recordman des sélections camerounaises, avec 137 matchs entre 1993 et 2010." },
       { name: "Thomas N'Kono", playerSlug: null, why: "Gardien légendaire, Ballon d'or africain en 1979 et 1982." },

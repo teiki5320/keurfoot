@@ -40,3 +40,13 @@ describe("Chiffre sur le devant des maillots", () => {
     assert.equal(titlesBadge([]), "0");
   });
 });
+
+describe("Couleurs du maillot d'un joueur", () => {
+  it("celles de sa sélection si elle a une fiche, sinon les siennes, sinon les couleurs du site", async () => {
+    const { playerColors } = await import("../src/lib/data/players");
+    const base = { colors: undefined } as const;
+    assert.deepEqual(playerColors({ ...base, selection: "senegal" }), ["#00853f", "#fdef42", "#e31b23"]);
+    assert.deepEqual(playerColors({ selection: "liberia", colors: ["#bf0a30", "#ffffff", "#002868"] }), ["#bf0a30", "#ffffff", "#002868"]);
+    assert.deepEqual(playerColors({ ...base, selection: "liberia" }), ["#1d2320", "#f2b705"]);
+  });
+});
