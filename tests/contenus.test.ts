@@ -106,16 +106,8 @@ const PLAYERS_TO_COME = new Set<string>();
 const playerSlugs = new Set(PLAYERS.map((p) => p.slug));
 
 describe("Sélections", () => {
-  it("les fiches prévues (lots du 17 et du 20 octobre 2026)", () => {
-    assert.deepEqual(
-      SELECTIONS.map((s) => s.slug).sort(),
-      [
-        "afrique-du-sud", "algerie", "benin", "burkina-faso", "burundi", "cameroun", "cap-vert", "centrafrique", "congo", "cote-d-ivoire", "djibouti", "egypte",
-        "erythree", "ethiopie", "gabon", "gambie", "ghana", "guinee", "guinee-bissau", "guinee-equatoriale", "kenya", "liberia", "libye", "mali", "maroc",
-        "mauritanie", "niger", "nigeria", "ouganda", "rd-congo", "rwanda", "sao-tome-et-principe", "senegal", "sierra-leone", "somalie", "soudan",
-        "soudan-du-sud", "tanzanie", "tchad", "togo", "tunisie",
-      ],
-    );
+  it("une fiche pour chacun des 54 pays africains", () => {
+    assert.deepEqual(SELECTIONS.map((s) => s.slug).sort(), COUNTRIES.map((c) => c.slug).sort());
   });
   it("slugs uniques, identiques au pays", () => {
     assert.deepEqual(dupes(SELECTIONS.map((s) => s.slug)), []);

@@ -5,10 +5,11 @@ import { SELECTIONS_LOT2 } from "./selections-lot2";
 import { SELECTIONS_LOT3 } from "./selections-lot3";
 import { SELECTIONS_LOT4 } from "./selections-lot4";
 import { SELECTIONS_LOT5 } from "./selections-lot5";
+import { SELECTIONS_LOT6 } from "./selections-lot6";
 import { SELECTIONS_SENEGAL_CIV_CAMEROUN } from "./selections-ouest-centre";
 
 /** Fiches des sélections nationales (règles : docs/REDACTION.md). */
-export const SELECTIONS: Selection[] = [...SELECTIONS_SENEGAL_CIV_CAMEROUN, ...SELECTIONS_MAROC_ALGERIE_MALI, ...SELECTIONS_LOT2, ...SELECTIONS_LOT3, ...SELECTIONS_LOT4, ...SELECTIONS_LOT5];
+export const SELECTIONS: Selection[] = [...SELECTIONS_SENEGAL_CIV_CAMEROUN, ...SELECTIONS_MAROC_ALGERIE_MALI, ...SELECTIONS_LOT2, ...SELECTIONS_LOT3, ...SELECTIONS_LOT4, ...SELECTIONS_LOT5, ...SELECTIONS_LOT6];
 
 const BY_SLUG = new Map(SELECTIONS.map((s) => [s.slug, s]));
 
