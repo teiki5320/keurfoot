@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 /**
  * Site 100 % statique (dossier out/).
- * Publié sur Cloudflare Pages (keurfoot.com) par .github/workflows/deploy.yml ;
+ * Publié sur Cloudflare (keurfoot.com, voir wrangler.jsonc) par .github/workflows/deploy.yml ;
  * en-têtes et redirections dans public/_headers et public/_redirects.
  */
 const nextConfig: NextConfig = {

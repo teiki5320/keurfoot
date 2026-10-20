@@ -11,23 +11,19 @@ de Keurbook (Next.js 16 statique, Tailwind 4, données dans le code).
 | `npm run dev` | Site en local sur http://localhost:3000 |
 | `npm run lint`, `npm run typecheck`, `npm test` | Vérifications |
 | `npm run build` | Site statique dans `out/` (génère d'abord les épingles Pinterest) |
-| `npm run test:sortie` | Construit la version GitHub Pages et contrôle les 20 pages, les liens sous /keurfoot et les épingles |
+| `npm run test:sortie` | Construit le site sous /keurfoot et contrôle les pages, les liens et les épingles |
 | `node scripts/logos.mjs` | Régénère icônes, logo et image de partage depuis `docs/brand/` |
 
 ## Publication
 
-- **Aujourd'hui** : version provisoire sur GitHub Pages, https://teiki5320.github.io/keurfoot/ (workflow
-  `.github/workflows/pages.yml`, à chaque push sur `main`). Non indexée par Google, sans publicité.
-- Pendant cette phase, le `robots.txt` du site n'est pas lu (les robots ne lisent que celui de la racine de
-  `teiki5320.github.io`) : la protection repose sur la balise `noindex` de chaque page. Les images (épingles, illustrations)
-  peuvent apparaître dans Google Images.
-- **Avec keurfoot.com** (Cloudflare Pages, comme Keurbook) :
-  1. Ajouter les secrets `CLOUDFLARE_API_TOKEN` et `CLOUDFLARE_ACCOUNT_ID` dans GitHub (Settings → Secrets → Actions).
-  2. Dans `deploy.yml`, remettre les déclencheurs `push` (main) ; dans `maintenance.yml`, appeler `deploy.yml`.
-  3. Lancer `deploy.yml`, ajouter keurfoot.com et www au projet Cloudflare `keurfoot`.
-  4. Désactiver GitHub Pages (Settings → Pages) et supprimer `pages.yml`.
-  5. Créer les blocs AdSense et renseigner `ADSENSE_SLOTS` (`src/lib/config.ts`).
-  6. Mettre à jour le lien de la carte Keur Foot sur toakeur.com.
+- **keurfoot.com** (depuis le 20 octobre 2026) : Worker de fichiers statiques Cloudflare « keurfoot » (`wrangler.jsonc`),
+  publié par `.github/workflows/deploy.yml` à chaque push sur `main`, les lundis, mercredis et vendredis (conseils programmés)
+  et après le bouton « Maintenance ». Secrets GitHub nécessaires : `CLOUDFLARE_API_TOKEN` et `CLOUDFLARE_ACCOUNT_ID`.
+  Publication à la main depuis un Mac connecté à Cloudflare : `NEXT_PUBLIC_SITE_URL=https://keurfoot.com npm run build`, puis `npx wrangler deploy`.
+  Ne pas utiliser `wrangler pages …` : la commande convertit le projet en application OpenNext et modifie les fichiers.
+- **Ancienne adresse** https://teiki5320.github.io/keurfoot/ : `.github/workflows/pages.yml` y publie seulement une page
+  qui redirige vers la même page sur keurfoot.com.
+- Reste à faire : créer les blocs AdSense et renseigner `ADSENSE_SLOTS` (`src/lib/config.ts`).
 
 ## Règles
 

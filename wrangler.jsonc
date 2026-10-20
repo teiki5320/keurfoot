@@ -1,0 +1,20 @@
+// Publication de keurfoot.com sur Cloudflare (Worker de fichiers statiques, sans code serveur).
+// Le site est construit dans out/ par `npm run build`, puis publié par `npx wrangler deploy`
+// (à la main ou par .github/workflows/deploy.yml). En-têtes et redirections : public/_headers et public/_redirects.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "keurfoot",
+  "compatibility_date": "2026-09-26",
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  },
+  // Seul keurfoot.com sert le site : pas d'adresse technique workers.dev ni d'aperçus publics.
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [
+    { "pattern": "keurfoot.com", "custom_domain": true },
+    { "pattern": "www.keurfoot.com", "custom_domain": true }
+  ]
+}

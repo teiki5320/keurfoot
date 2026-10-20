@@ -1,4 +1,4 @@
-# En-têtes de sécurité servis par Cloudflare Pages sur toutes les pages.
+# En-têtes de sécurité servis par Cloudflare (keurfoot.com) sur toutes les pages.
 # CSP : scripts, styles et images du site (Next.js a besoin de scripts en ligne),
 # plus le strict nécessaire pour Google AdSense et son bandeau de consentement (domaines Google seulement) ;
 /*
@@ -20,9 +20,3 @@
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 /brand/*
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
-
-# Adresses techniques de Cloudflare Pages : pas d'indexation (seul keurfoot.com compte).
-https://:project.pages.dev/*
-  X-Robots-Tag: noindex
-https://:version.:project.pages.dev/*
-  X-Robots-Tag: noindex

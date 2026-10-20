@@ -69,8 +69,6 @@ jobs:
     needs: basculer
     permissions:
       contents: read
-      pages: write
-      id-token: write
-    # Version provisoire : republie sur GitHub Pages (deploy.yml prendra le relais avec keurfoot.com).
-    uses: ./.github/workflows/pages.yml
+      actions: write
+    uses: ./.github/workflows/deploy.yml
     secrets: inherit

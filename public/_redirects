@@ -1,4 +1,4 @@
-# Redirections servies par Cloudflare Pages.
+# Redirections servies par Cloudflare (keurfoot.com).
 /selection /selections 301
 /joueur /joueurs 301
 /favicon.ico /icon.png 301

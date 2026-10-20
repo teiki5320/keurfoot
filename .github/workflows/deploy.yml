@@ -1,12 +1,16 @@
-# Vérifie, construit et publie le site statique sur Cloudflare Pages (projet « keurfoot »).
-# EN ATTENTE du domaine keurfoot.com : pour l'instant, lancement à la main seulement (onglet Actions).
-# Le jour où keurfoot.com est acheté : remettre les déclencheurs push et schedule ci-dessous,
-# faire appeler ce fichier par maintenance.yml, puis supprimer pages.yml (voir README).
+# Vérifie, construit et publie le site statique sur Cloudflare (Worker « keurfoot », domaine keurfoot.com, voir wrangler.jsonc).
+# Se lance à chaque push sur main, chaque lundi, mercredi et vendredi (articles « Conseils » programmés),
+# à la main (onglet Actions) et après le bouton « Maintenance ».
 name: Publier le site
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
   workflow_call:
+  # Chaque lundi, mercredi et vendredi à 0 h 15 (heure de Paris en hiver, 1 h 15 en été) : publie les articles programmés.
+  schedule:
+    - cron: "15 23 * * 0,2,4"
 
 permissions:
   contents: read
@@ -65,17 +69,15 @@ jobs:
             echo "::warning::Ajoutez les secrets CLOUDFLARE_API_TOKEN et CLOUDFLARE_ACCOUNT_ID pour publier le site."
           fi
 
-      - name: Publier sur Cloudflare Pages
+      - name: Publier sur Cloudflare (keurfoot.com)
         if: steps.secrets.outputs.ok == 'true'
         env:
           # Réglés par le propriétaire dans Settings → Secrets and variables → Actions.
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          # wrangler est figé dans package-lock.json (installé par npm ci).
-          # Crée le projet « keurfoot » à la première publication (sans effet s'il existe déjà).
-          npx wrangler pages project create keurfoot --production-branch=main || true
-          npx wrangler pages deploy out --project-name=keurfoot --branch=main --commit-dirty=true
+          # wrangler est figé dans package-lock.json (installé par npm ci) ; configuration dans wrangler.jsonc.
+          npx wrangler deploy
 
       # GitHub coupe les tâches programmées d'un dépôt public après 60 jours sans activité :
       # chaque publication programmée réactive la tâche, pour que les articles continuent de paraître.

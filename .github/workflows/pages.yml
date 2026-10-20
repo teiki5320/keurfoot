@@ -1,21 +1,19 @@
-# Version provisoire du site sur GitHub Pages (https://teiki5320.github.io/keurfoot/),
-# en attendant keurfoot.com sur Cloudflare Pages. Pages non indexées par les moteurs de recherche, sans publicité.
-# Se lance à chaque push sur main, à la main (onglet Actions) et après le bouton « Maintenance ».
-# Pour l'arrêter : Settings → Pages → désactiver, puis supprimer ce fichier (voir README).
-name: Publier la version provisoire (GitHub Pages)
+# Ancienne adresse du site (https://teiki5320.github.io/keurfoot/) : depuis le passage à keurfoot.com,
+# on n'y publie plus qu'une page qui renvoie chaque visiteur vers la même page sur keurfoot.com.
+# Se relance seulement quand ce fichier change, ou à la main (onglet Actions).
+name: Rediriger l'ancienne adresse vers keurfoot.com
 
 on:
   push:
     branches: [main]
+    paths: [.github/workflows/pages.yml]
   workflow_dispatch:
-  workflow_call:
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Une seule publication à la fois ; on ne coupe pas une publication en cours.
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -24,44 +22,34 @@ jobs:
   construire:
     runs-on: ubuntu-latest
     steps:
-      - name: Récupérer le code (dernière version de main)
-        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
-        with:
-          ref: main
-          persist-credentials: false
-
-      - name: Installer Node.js
-        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Installer les dépendances
-        run: npm ci
-
-      - name: Vérifier le code (lint, types, tests)
+      - name: Écrire la page de redirection (accueil et toutes les autres adresses)
         run: |
-          npm run lint
-          npm run typecheck
-          npm test
-
-      - name: Construire le site (sous-dossier /keurfoot, non indexé, sans publicité)
-        run: npm run build
-        env:
-          NEXT_PUBLIC_BASE_PATH: /keurfoot
-          NEXT_PUBLIC_SITE_URL: https://teiki5320.github.io/keurfoot
-          NEXT_PUBLIC_NOINDEX: "1"
-          NEXT_PUBLIC_ADSENSE_CLIENT: ""
-          NEXT_PUBLIC_LEGAL_HOST: "GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis — github.com"
-          NEXT_PUBLIC_LEGAL_HOST_NAME: GitHub
-          NEXT_TELEMETRY_DISABLED: 1
-
-      - name: Préparer le dossier publié
-        run: touch out/.nojekyll
+          mkdir -p redirection
+          cat > redirection/index.html <<'HTML'
+          <!doctype html>
+          <html lang="fr">
+          <head>
+          <meta charset="utf-8">
+          <meta name="robots" content="noindex">
+          <meta http-equiv="refresh" content="0; url=https://keurfoot.com/">
+          <link rel="canonical" href="https://keurfoot.com/">
+          <title>Keur Foot a déménagé sur keurfoot.com</title>
+          <script>
+            var chemin = location.pathname.replace(/^\/keurfoot/, "").replace(/\.html$/, "") || "/";
+            location.replace("https://keurfoot.com" + chemin + location.search + location.hash);
+          </script>
+          </head>
+          <body>
+          <p>Keur Foot a déménagé : <a href="https://keurfoot.com/">keurfoot.com</a>.</p>
+          </body>
+          </html>
+          HTML
+          cp redirection/index.html redirection/404.html
+          touch redirection/.nojekyll
 
       - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
         with:
-          path: out
+          path: redirection
 
   publier:
     needs: construire
