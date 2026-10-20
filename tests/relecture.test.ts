@@ -15,7 +15,8 @@ const ACTIFS = ["Idrissa Gana Gueye", "Kalidou Koulibaly", "Aïssa Mandi", "Isla
 
 describe("Relecture : statistiques datées", () => {
   it("chaque Top 10 « meilleurs joueurs » date ses chiffres en sélection", () => {
-    for (const t of TOPS.filter((x) => x.kind === "selection")) assert.match(t.statsAsOf ?? "", DATE, t.slug);
+    // Classements de joueurs d'un pays (le Top 10 des exploits ne cite pas de statistiques de joueurs).
+    for (const t of TOPS.filter((x) => x.kind === "selection" && x.country)) assert.match(t.statsAsOf ?? "", DATE, t.slug);
   });
   it("les chiffres des joueurs en activité dans les fiches sélections sont datés", () => {
     for (const s of SELECTIONS)

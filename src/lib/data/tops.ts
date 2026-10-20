@@ -2,6 +2,7 @@ import { getCountry } from "@/lib/countries";
 import type { TopItem, TopList } from "@/lib/types";
 import { CAN_EDITIONS, CAN_SOURCES, canRanking } from "./can";
 import { TOPS_JOUEURS } from "./tops-joueurs";
+import { TOPS_LOT2 } from "./tops-lot2";
 
 /** Années en liste lisible : « 1990 et 2019 », « 2000, 2002 et 2017 ». */
 const years = (list: number[]) => (list.length > 1 ? `${list.slice(0, -1).join(", ")} et ${list.at(-1)}` : `${list[0]}`);
@@ -38,6 +39,7 @@ const last = CAN_EDITIONS.at(-1)!.year;
 
 export const TOPS: TopList[] = [
   ...TOPS_JOUEURS,
+  ...TOPS_LOT2,
   {
     slug: "meilleurs-buteurs-can",
     title: "Les 10 meilleurs buteurs de l'histoire de la CAN",

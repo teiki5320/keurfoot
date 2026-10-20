@@ -32,6 +32,27 @@ const PAGES = [
   "top-10/pays-les-plus-titres-can",
   "conseils/comment-choisir-sa-taille-de-maillot-de-foot",
   "conseils/quel-but-de-foot-pliable-choisir-pour-un-enfant",
+  // Lot du 20 octobre 2026
+  "selection/egypte",
+  "selection/nigeria",
+  "selection/ghana",
+  "selection/tunisie",
+  "selection/rd-congo",
+  "selection/afrique-du-sud",
+  "joueur/mohamed-salah",
+  "joueur/yaya-toure",
+  "joueur/roger-milla",
+  "joueur/george-weah",
+  "joueur/riyad-mahrez",
+  "joueur/el-hadji-diouf",
+  "top-10/meilleurs-joueurs-camerounais",
+  "top-10/meilleurs-joueurs-marocains",
+  "top-10/meilleurs-joueurs-algeriens",
+  "top-10/joueurs-africains-de-l-annee",
+  "top-10/exploits-africains-coupe-du-monde",
+  "conseils/quel-ballon-de-foot-choisir-selon-l-age",
+  "conseils/comment-choisir-ses-crampons-selon-le-terrain",
+  "conseils/quel-cadeau-offrir-a-un-fan-de-football-africain",
 ];
 const ENTRIES = ["index", "selections", "joueurs", "top-10", "conseils", "mentions-legales", "confidentialite", "conditions"];
 
