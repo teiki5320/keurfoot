@@ -106,10 +106,13 @@ const PLAYERS_TO_COME = new Set<string>();
 const playerSlugs = new Set(PLAYERS.map((p) => p.slug));
 
 describe("Sélections", () => {
-  it("les douze fiches prévues (lots du 17 et du 20 octobre 2026)", () => {
+  it("les fiches prévues (lots du 17 et du 20 octobre 2026)", () => {
     assert.deepEqual(
       SELECTIONS.map((s) => s.slug).sort(),
-      ["afrique-du-sud", "algerie", "cameroun", "cote-d-ivoire", "egypte", "ghana", "mali", "maroc", "nigeria", "rd-congo", "senegal", "tunisie"],
+      [
+        "afrique-du-sud", "algerie", "benin", "burkina-faso", "cameroun", "cap-vert", "cote-d-ivoire", "egypte", "gambie", "ghana", "guinee", "guinee-bissau",
+        "liberia", "mali", "maroc", "mauritanie", "niger", "nigeria", "rd-congo", "senegal", "sierra-leone", "togo", "tunisie",
+      ],
     );
   });
   it("slugs uniques, identiques au pays", () => {

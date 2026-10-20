@@ -46,8 +46,9 @@ describe("Couleurs du maillot d'un joueur", () => {
     const { playerColors } = await import("../src/lib/data/players");
     const base = { colors: undefined } as const;
     assert.deepEqual(playerColors({ ...base, selection: "senegal" }), ["#00853f", "#fdef42", "#e31b23"]);
-    assert.deepEqual(playerColors({ selection: "liberia", colors: ["#bf0a30", "#ffffff", "#002868"] }), ["#bf0a30", "#ffffff", "#002868"]);
-    assert.deepEqual(playerColors({ ...base, selection: "liberia" }), ["#1d2320", "#f2b705"]);
+    // Toutes les sélections ont désormais une fiche : les cas de repli se testent avec un pays sans fiche.
+    assert.deepEqual(playerColors({ selection: "pays-sans-fiche", colors: ["#bf0a30", "#ffffff", "#002868"] }), ["#bf0a30", "#ffffff", "#002868"]);
+    assert.deepEqual(playerColors({ ...base, selection: "pays-sans-fiche" }), ["#1d2320", "#f2b705"]);
   });
 });
 

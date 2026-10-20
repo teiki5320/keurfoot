@@ -13,6 +13,9 @@ const BASE = "/keurfoot";
 /** Les 20 premières pages du cahier des charges, plus les pages d'entrée. */
 const PAGES = [
   "selection/senegal",
+  "selection/cap-vert",
+  "selection/togo",
+  "selection/guinee-bissau",
   "selection/cote-d-ivoire",
   "selection/cameroun",
   "selection/maroc",

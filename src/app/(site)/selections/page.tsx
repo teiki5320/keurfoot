@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Jersey } from "@/components/ui/Jersey";
+import { PageHero } from "@/components/ui/PageHero";
 import { siteConfig } from "@/lib/config";
 import { getCountry } from "@/lib/countries";
 import { CAN_EDITIONS, titlesBadge } from "@/lib/data/can";
 import { SELECTIONS, selectionsByRegion } from "@/lib/data/selections";
+import { illustration } from "@/lib/illustrations";
 import { itemListLd, jsonLd } from "@/lib/json-ld";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -27,19 +29,21 @@ export default function SelectionsPage() {
         }}
       />
       <Breadcrumb items={[{ name: "Sélections", href: "/selections" }]} />
-      <div className="container-page kf-rise pt-6">
-        <h1 className="font-display text-[56px] leading-[0.9] uppercase sm:text-7xl">Les sélections</h1>
-        <p className="mt-3 max-w-2xl text-soft">
-          {SELECTIONS.length} sélections africaines, région par région : leur histoire, leur palmarès et leurs légendes, chiffres
-          vérifiés et sources à l&apos;appui.
-        </p>
+      <PageHero
+        eyebrow="Toute l'Afrique"
+        title="Les sélections"
+        intro={`${SELECTIONS.length} sélections africaines, région par région : leur histoire, leur palmarès et leurs légendes, chiffres vérifiés et sources à l'appui.`}
+        image={illustration("selections")}
+      >
         <nav aria-label="Régions" className="no-scrollbar -mx-4 mt-6 flex gap-2 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:px-0">
           {groups.map((g) => (
-            <a key={g.region} href={`#${g.region}`} className="tag shrink-0">
+            <a key={g.region} href={`#${g.region}`} className="tag shrink-0 bg-night/60">
               {g.label} <span className="ml-1.5 text-muted">{g.selections.length}</span>
             </a>
           ))}
         </nav>
+      </PageHero>
+      <div className="container-page">
         {groups.map((g) => (
           <section key={g.region} id={g.region} aria-labelledby={`titre-${g.region}`} className="mt-10 scroll-mt-28">
             <h2 id={`titre-${g.region}`} className="section-title text-[28px] sm:text-4xl">{g.label}</h2>
