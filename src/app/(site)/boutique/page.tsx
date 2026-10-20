@@ -21,6 +21,8 @@ export const metadata: Metadata = pageMetadata({
 const GUIDES: Record<string, { href: string; label: string }> = {
   maillots: { href: "/conseils/comment-choisir-sa-taille-de-maillot-de-foot", label: "Comment choisir sa taille de maillot ?" },
   "buts-pliables": { href: "/conseils/quel-but-de-foot-pliable-choisir-pour-un-enfant", label: "Quel but pliable choisir pour un enfant ?" },
+  ballons: { href: "/conseils/quel-ballon-de-foot-choisir-selon-l-age", label: "Quel ballon choisir selon l'âge ?" },
+  crampons: { href: "/conseils/comment-choisir-ses-crampons-selon-le-terrain", label: "Comment choisir ses crampons ?" },
 };
 
 export default function ShopPage() {
