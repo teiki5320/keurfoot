@@ -1,5 +1,6 @@
 import type { Player, Position } from "@/lib/types";
 import { PLAYERS_LOT2 } from "./players-lot2";
+import { PLAYERS_LOT3 } from "./players-lot3";
 import { getSelection } from "./selections";
 
 /** Libellés des postes. */
@@ -195,7 +196,7 @@ const PLAYERS_LOT1: Player[] = [
   },
 ];
 
-export const PLAYERS: Player[] = [...PLAYERS_LOT1, ...PLAYERS_LOT2];
+export const PLAYERS: Player[] = [...PLAYERS_LOT1, ...PLAYERS_LOT2, ...PLAYERS_LOT3];
 
 const BY_SLUG = new Map(PLAYERS.map((p) => [p.slug, p]));
 

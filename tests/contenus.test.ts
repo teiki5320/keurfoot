@@ -142,10 +142,10 @@ describe("Sélections", () => {
 });
 
 describe("Joueurs", () => {
-  it("les dix fiches prévues (lots du 17 et du 20 octobre 2026)", () => {
+  it("les quinze fiches prévues (lots du 17 et du 20 octobre 2026)", () => {
     assert.deepEqual(PLAYERS.map((p) => p.slug).sort(), [
-      "achraf-hakimi", "didier-drogba", "el-hadji-diouf", "george-weah", "mohamed-salah",
-      "riyad-mahrez", "roger-milla", "sadio-mane", "samuel-eto-o", "yaya-toure",
+      "achraf-hakimi", "akwa", "didier-drogba", "el-hadji-diouf", "emmanuel-adebayor", "george-weah", "godfrey-chitalu", "kalusha-bwalya",
+      "mohamed-salah", "pierre-emerick-aubameyang", "riyad-mahrez", "roger-milla", "sadio-mane", "samuel-eto-o", "yaya-toure",
     ]);
   });
   for (const p of PLAYERS) {

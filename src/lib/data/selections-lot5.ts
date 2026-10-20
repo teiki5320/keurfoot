@@ -19,7 +19,7 @@ export const SELECTIONS_LOT5: Selection[] = [
     worldCups: [],
     bestWorldCup: null,
     legends: [
-      { name: "Pierre-Emerick Aubameyang", playerSlug: null, why: "Meilleur buteur de l'histoire : 40 buts en 86 sélections selon RSSSF ; joueur africain de l'année CAF 2015." },
+      { name: "Pierre-Emerick Aubameyang", playerSlug: "pierre-emerick-aubameyang", why: "Meilleur buteur de l'histoire : 40 buts en 86 sélections selon RSSSF ; joueur africain de l'année CAF 2015." },
       { name: "Bruno Ecuélé Manga", playerSlug: null, why: "Recordman des sélections : 118 matchs entre 2007 et 2025, selon RSSSF." },
       { name: "Didier Ovono", playerSlug: null, why: "Gardien, 114 sélections entre 2003 et 2019, deuxième total de l'histoire selon RSSSF." },
       { name: "François Amégasse", playerSlug: null, why: "110 sélections et 9 buts entre 1984 et 2000, selon RSSSF." },

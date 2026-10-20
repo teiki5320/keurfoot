@@ -353,7 +353,7 @@ export const SELECTIONS_LOT3: Selection[] = [
     worldCups: [2006],
     bestWorldCup: "Premier tour (2006)",
     legends: [
-      { name: "Emmanuel Adebayor", playerSlug: null, why: "Meilleur buteur de l'histoire : 32 buts en 88 sélections entre 2000 et 2019 selon RSSSF ; joueur africain de l'année CAF 2008." },
+      { name: "Emmanuel Adebayor", playerSlug: "emmanuel-adebayor", why: "Meilleur buteur de l'histoire : 32 buts en 88 sélections entre 2000 et 2019 selon RSSSF ; joueur africain de l'année CAF 2008." },
       { name: "Jacques-Alaixys Romao", playerSlug: null, why: "Recordman des sélections : 97 matchs au 2 octobre 2026, selon RSSSF." },
       { name: "Mohamed Kader", playerSlug: null, why: "Seul buteur togolais en Coupe du monde, contre la Corée du Sud le 13 juin 2006 ; 13 buts en 61 sélections selon RSSSF." },
       { name: "Kossi Agassa", playerSlug: null, why: "Gardien, 84 sélections entre 1998 et 2017 selon RSSSF, titulaire lors des trois matchs de la Coupe du monde 2006." },

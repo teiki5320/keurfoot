@@ -19,8 +19,8 @@ export const SELECTIONS_LOT6: Selection[] = [
     worldCups: [],
     bestWorldCup: null,
     legends: [
-      { name: "Godfrey Chitalu", playerSlug: null, why: "Meilleur buteur de l'histoire : 79 buts en 111 sélections entre 1968 et 1980 selon RSSSF ; mort dans le crash de 1993, alors entraîneur." },
-      { name: "Kalusha Bwalya", playerSlug: null, why: "Ballon d'or africain 1988 ; 39 buts en 87 sélections entre 1983 et 2004, selon RSSSF." },
+      { name: "Godfrey Chitalu", playerSlug: "godfrey-chitalu", why: "Meilleur buteur de l'histoire : 79 buts en 111 sélections entre 1968 et 1980 selon RSSSF ; mort dans le crash de 1993, alors entraîneur." },
+      { name: "Kalusha Bwalya", playerSlug: "kalusha-bwalya", why: "Ballon d'or africain 1988 ; 39 buts en 87 sélections entre 1983 et 2004, selon RSSSF." },
       { name: "Alex Chola", playerSlug: null, why: "43 buts en 102 sélections entre 1975 et 1985 selon RSSSF ; mort dans le crash de 1993, alors membre de l'encadrement." },
       { name: "Kennedy Mweene", playerSlug: null, why: "Gardien, recordman des sélections : 126 matchs entre 2004 et 2021, selon RSSSF." },
       { name: "Christopher Katongo", playerSlug: null, why: "Capitaine des champions d'Afrique 2012, élu footballeur africain de l'année par la BBC la même année." },
@@ -56,7 +56,7 @@ export const SELECTIONS_LOT6: Selection[] = [
     worldCups: [2006],
     bestWorldCup: "Premier tour (2006)",
     legends: [
-      { name: "Akwá", playerSlug: null, why: "Meilleur buteur de l'histoire : 39 buts en 78 sélections selon RSSSF, auteur du but de la qualification pour la Coupe du monde 2006." },
+      { name: "Akwá", playerSlug: "akwa", why: "Meilleur buteur de l'histoire : 39 buts en 78 sélections selon RSSSF, auteur du but de la qualification pour la Coupe du monde 2006." },
       { name: "Flávio Amado", playerSlug: null, why: "Recordman des sélections (91) et auteur du seul but de l'Angola en Coupe du monde, contre l'Iran en 2006." },
       { name: "Gilberto", playerSlug: null, why: "89 sélections entre 1999 et 2015, deuxième total de l'histoire selon RSSSF." },
       { name: "Manucho", playerSlug: null, why: "Troisième buteur de l'histoire : 22 buts en 53 sélections, selon RSSSF." },
