@@ -18,6 +18,9 @@ de Keurbook (Next.js 16 statique, Tailwind 4, données dans le code).
 
 - **Aujourd'hui** : version provisoire sur GitHub Pages, https://teiki5320.github.io/keurfoot/ (workflow
   `.github/workflows/pages.yml`, à chaque push sur `main`). Non indexée par Google, sans publicité.
+- Pendant cette phase, le `robots.txt` du site n'est pas lu (les robots ne lisent que celui de la racine de
+  `teiki5320.github.io`) : la protection repose sur la balise `noindex` de chaque page. Les images (épingles, illustrations)
+  peuvent apparaître dans Google Images.
 - **Avec keurfoot.com** (Cloudflare Pages, comme Keurbook) :
   1. Ajouter les secrets `CLOUDFLARE_API_TOKEN` et `CLOUDFLARE_ACCOUNT_ID` dans GitHub (Settings → Secrets → Actions).
   2. Dans `deploy.yml`, remettre les déclencheurs `push` (main) ; dans `maintenance.yml`, appeler `deploy.yml`.

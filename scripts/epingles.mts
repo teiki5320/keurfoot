@@ -13,6 +13,8 @@ import { TOPS } from "../src/lib/data/tops";
 import { PIN_HEIGHT, PIN_WIDTH } from "../src/lib/pinterest";
 
 const root = join(import.meta.dirname, "..");
+/** Signature des épingles : le domaine une fois le site sur keurfoot.com, sinon le nom du site. */
+const SIGNATURE = (process.env.NEXT_PUBLIC_SITE_URL ?? "").includes("keurfoot.com") ? "KEURFOOT.COM" : "KEUR FOOT";
 const out = join(root, "public", "epingles");
 const anton = readFileSync(join(root, "node_modules/@fontsource/anton/files/anton-latin-400-normal.woff"));
 const antonExt = readFileSync(join(root, "node_modules/@fontsource/anton/files/anton-latin-ext-400-normal.woff"));
@@ -83,7 +85,7 @@ for (const top of TOPS) {
                   style: { display: "flex", alignItems: "center", marginTop: 50, fontSize: 40, color: "#f2b705" },
                   children: [
                     { type: "img", props: { src: logo, width: 72, height: 72, style: { marginRight: 18 } } },
-                    "KEURFOOT.COM",
+                    SIGNATURE,
                   ],
                 },
               },

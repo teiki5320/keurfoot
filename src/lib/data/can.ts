@@ -65,11 +65,11 @@ export const CAN_EDITIONS: CanEdition[] = [
   e(2025, ["maroc"], "maroc", "senegal", "3-0 sur tapis vert (1-0 a.p. pour le Sénégal sur le terrain)", 24, {
     disputed: true,
     note:
-      "Titre contesté. Sur le terrain, le Sénégal a battu le Maroc 1-0 après prolongation, le 18 janvier 2026 à Rabat. Le 17 mars 2026, le jury d'appel de la CAF a déclaré le Sénégal forfait et attribué le titre au Maroc (3-0). Le Sénégal a fait appel devant le Tribunal arbitral du sport (TAS) : au 17 octobre 2026, la décision n'a pas encore été rendue.",
+      "Titre contesté. Sur le terrain, le Sénégal a battu le Maroc 1-0 après prolongation, le 18 janvier 2026 à Rabat. Le 17 mars 2026, le jury d'appel de la CAF a déclaré le Sénégal forfait et attribué le titre au Maroc (3-0). Le Sénégal a fait appel devant le Tribunal arbitral du sport (TAS) : après l'audience du 8 octobre 2026, le TAS a annoncé sa décision pour fin novembre 2026.",
   }),
 ];
 
-export const CAN_UPDATED = "2026-10-17";
+export const CAN_UPDATED = "2026-10-20";
 
 export const CAN_INTRO: string[] = [
   "Née en 1957 avec seulement trois équipes, la Coupe d'Afrique des nations est devenue le grand rendez-vous du football africain : 24 sélections, des stades pleins et des millions de supporters devant l'écran.",
@@ -85,6 +85,8 @@ export const CAN_SOURCES: Source[] = [
   { label: "AllAfrica — Le jury d'appel de la CAF déclare le Sénégal forfait (18 mars 2026)", url: "https://fr.allafrica.com/stories/202603180472.html" },
   { label: "TAS — Communiqué sur l'appel de la Fédération sénégalaise (25 mars 2026)", url: "https://www.tas-cas.org/generated/assets/lists/dceab111-07bc-435f-b5f9-de88eff9db72/CAS%20Media%20Release_12295_appel_FR.pdf" },
   { label: "ESPN — Sénégal-Maroc : le verdict du TAS attendu (8 octobre 2026)", url: "https://www.espn.com/soccer/story/_/id/50131828/senegal-vs-morocco-afcon-verdict-days-cas" },
+  { label: "France 24 — Le TAS ne rendra sa décision que fin novembre (19 octobre 2026)", url: "https://www.france24.com/fr/sports/20261019-finale-maroc-s%C3%A9n%C3%A9gal-de-la-can-2025-le-tas-ne-rendra-sa-d%C3%A9cision-que-fin-novembre" },
+  { label: "Africanews — Verdict du TAS attendu fin novembre (19 octobre 2026)", url: "https://www.africanews.com/2026/10/19/cas-verdict-on-senegal-afcon-title-appeal-expected-end-november/" },
 ];
 
 /** Années en liste lisible, avec la mention « titre contesté » si l'une d'elles l'est (« 1976 et 2025 (titre contesté) »). */
@@ -106,10 +108,13 @@ export function canTitlesByCountry(): Map<string, number[]> {
   return m;
 }
 
-/** Années des finales perdues de chaque pays. */
+/** Édition jouée avec une vraie finale (1959 et 1976 se sont jouées en poule finale). */
+export const hasFinal = (ed: CanEdition) => !ed.final.startsWith("Pas de finale");
+
+/** Années des finales perdues de chaque pays (les deuxièmes d'une poule finale ne comptent pas). */
 export function canFinalsByCountry(): Map<string, number[]> {
   const m = new Map<string, number[]>();
-  for (const ed of CAN_EDITIONS) m.set(ed.runnerUp, [...(m.get(ed.runnerUp) ?? []), ed.year]);
+  for (const ed of CAN_EDITIONS.filter(hasFinal)) m.set(ed.runnerUp, [...(m.get(ed.runnerUp) ?? []), ed.year]);
   return m;
 }
 

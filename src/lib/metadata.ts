@@ -46,7 +46,11 @@ export function pageMetadata({ title, description, path, image, imageAlt, type =
     },
     twitter: { card: "summary_large_image", title: fullTitle, description, images: images.map((i) => i.url) },
     // Grande image autorisée dans Google Discover et les résultats (« max-image-preview:large »).
-    robots: noindex || NOINDEX ? { index: false, follow: true, "max-image-preview": "large" } : { "max-image-preview": "large" },
+    robots: NOINDEX
+      ? { index: false, follow: false }
+      : noindex
+        ? { index: false, follow: true, "max-image-preview": "large" }
+        : { "max-image-preview": "large" },
   };
 }
 

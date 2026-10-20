@@ -84,7 +84,8 @@ export default async function TopPage({ params }: PageProps<"/top-10/[slug]">) {
                 <li key={it.name}>
                   {i === 5 && <AdSlot placement="top" />}
                   <article className="flex gap-4 rounded border border-line bg-surface p-4 sm:p-5">
-                    <p aria-label={`${it.rank}e place`} className="w-12 shrink-0 font-display text-5xl leading-none text-gold sm:w-16 sm:text-6xl">
+                    <p className="w-12 shrink-0 font-display text-5xl leading-none text-gold sm:w-16 sm:text-6xl">
+                      <span className="sr-only">Place </span>
                       {it.rank}
                     </p>
                     <div className="min-w-0">

@@ -50,3 +50,11 @@ describe("Relecture : titre 2025 contesté dans les chiffres clés", () => {
     assert.equal(canYearsLabel([2021]), "2021");
   });
 });
+
+describe("Relecture : éditions sans finale", () => {
+  it("1959 et 1976 (poule finale) ne comptent pas comme finales perdues", async () => {
+    const { canFinalsByCountry } = await import("../src/lib/data/can");
+    assert.equal(canFinalsByCountry().get("guinee"), undefined);
+    assert.deepEqual(canFinalsByCountry().get("soudan"), [1963]);
+  });
+});
