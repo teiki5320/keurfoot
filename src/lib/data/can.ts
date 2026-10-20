@@ -72,7 +72,7 @@ export const CAN_EDITIONS: CanEdition[] = [
 export const CAN_UPDATED = "2026-10-17";
 
 export const CAN_INTRO: string[] = [
-  "Née en 1957 avec seulement trois équipes, la Coupe d'Afrique des nations est devenue le grand rendez-vous du football africain : 24 sélections, des stades pleins et toute la diaspora devant l'écran.",
+  "Née en 1957 avec seulement trois équipes, la Coupe d'Afrique des nations est devenue le grand rendez-vous du football africain : 24 sélections, des stades pleins et des millions de supporters devant l'écran.",
   "L'Égypte détient le record avec sept titres, devant le Cameroun (cinq) et le Ghana (quatre). Le tournoi est passé à 16 équipes en 1998, puis à 24 en 2019.",
   "Le meilleur buteur de l'histoire de la compétition est le Camerounais Samuel Eto'o, avec 18 buts. Voici toutes les éditions, de la première à la CAN 2025, dont le titre attribué au Maroc est contesté devant le Tribunal arbitral du sport.",
 ];
@@ -92,6 +92,11 @@ export function canYearsLabel(years: number[]): string {
   const text = years.length > 1 ? `${years.slice(0, -1).join(", ")} et ${years.at(-1)}` : `${years[0] ?? ""}`;
   const disputed = years.some((y) => CAN_EDITIONS.some((ed) => ed.year === y && ed.disputed));
   return disputed ? `${text} (titre contesté)` : text;
+}
+
+/** Chiffre du devant des maillots : nombre de CAN gagnées, avec « * » si l'un des titres est contesté. */
+export function titlesBadge(years: number[]): string {
+  return `${years.length}${years.some((y) => CAN_EDITIONS.some((ed) => ed.year === y && ed.disputed)) ? "*" : ""}`;
 }
 
 /** Années des titres de chaque pays (slug → années croissantes). */
@@ -127,6 +132,8 @@ export const NEXT_CAN: NextCan = {
   year: 2027,
   hosts: ["kenya", "tanzanie", "ouganda"],
   dates: "Du 19 juin au 17 juillet 2027",
+  start: "2027-06-19",
+  end: "2027-07-17",
   text: [
     "La CAN 2027, baptisée « Pamoja » (« ensemble » en swahili), sera la première organisée par trois pays à la fois : le Kenya, la Tanzanie et l'Ouganda. Elle réunira 24 sélections.",
     "Les éliminatoires rassemblent 48 équipes réparties en 12 groupes de quatre : les deux premiers de chaque groupe se qualifient. Les journées sont programmées en septembre-octobre 2026, en novembre 2026 et en mars 2027.",

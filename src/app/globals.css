@@ -1,25 +1,32 @@
 @import "tailwindcss";
 
 /*
- * Charte Keur Foot, tirée du logo : fond nuit, or, vert émeraude, rouge en accent.
- * Titres en capitales condensées (Anton), texte en Geist. Mobile d'abord.
+ * Design « Vestiaire » (docs/design/vestiaire.dc.html) : casiers, penderie de maillots, tableau d'ardoise.
+ * Fond anthracite, or Keur Foot, gris acier ; titres en Barlow Condensed, texte en Barlow. Mobile d'abord.
  */
 @theme {
-  --color-night: #0b0d0c;
-  --color-surface: #151917;
-  --color-surface-2: #1d2320;
-  --color-chalk: #f7f5ee;
-  --color-muted: #a7aea9;
-  --color-faint: #808983;
-  --color-line: #2a312d;
-  --color-line-strong: #3f4842;
+  --color-night: #0f1113;
+  --color-surface: #1d2126;
+  --color-surface-2: #23272c;
+  --color-locker: #2c3137;
+  --color-chalk: #eceae4;
+  --color-muted: #9aa1a9;
+  --color-soft: #c9ced4;
+  --color-faint: #6c7279;
+  --color-line: #363c43;
+  --color-line-strong: #3a4048;
   --color-gold: #f2b705;
   --color-gold-soft: #2b2510;
   --color-pitch: #0f8a43;
   --color-pitch-soft: #10261a;
   --color-flame: #e8321e;
-  --font-sans: var(--font-geist), system-ui, sans-serif;
-  --font-display: var(--font-anton), Impact, "Arial Narrow", sans-serif;
+  --color-board: #1b2a22;
+  --color-board-ink: #e9e4d2;
+  --color-board-muted: #b7c4b5;
+  --color-wood: #3b2c1f;
+  --color-label: #e8e2d2;
+  --font-sans: var(--font-barlow), system-ui, sans-serif;
+  --font-display: var(--font-barlow-condensed), "Arial Narrow", sans-serif;
 }
 
 html {
@@ -27,7 +34,7 @@ html {
 }
 
 body {
-  background: var(--color-night);
+  background: var(--color-night) radial-gradient(ellipse at 30% 0%, #1d2126 0%, var(--color-night) 60%) no-repeat;
   color: var(--color-chalk);
   font-family: var(--font-sans);
 }
@@ -37,9 +44,9 @@ body {
   color: var(--color-night);
 }
 
-/* Anton n'existe qu'en une graisse : pas de faux gras. */
+/* Titres : Barlow Condensed en extra-gras par défaut. */
 .font-display {
-  font-weight: 400;
+  font-weight: 800;
 }
 
 .no-scrollbar {
@@ -53,7 +60,7 @@ body {
   @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
 }
 @utility btn {
-  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold tracking-wide uppercase transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold;
+  @apply inline-flex items-center justify-center gap-2 rounded px-5 py-2.5 font-display text-[15px] tracking-[0.06em] uppercase transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold;
 }
 @utility btn-primary {
   @apply btn bg-gold text-night hover:bg-chalk;
@@ -62,19 +69,26 @@ body {
   @apply btn border border-line-strong bg-transparent text-chalk hover:border-gold hover:text-gold;
 }
 @utility tag {
-  @apply inline-flex items-center rounded-full border border-line-strong px-3.5 py-1.5 text-[13px] text-chalk/85 hover:border-gold hover:text-gold;
+  @apply inline-flex items-center rounded border border-line-strong px-3.5 py-1.5 text-[13px] text-chalk/85 hover:border-gold hover:text-gold;
 }
 @utility section-title {
-  @apply font-display text-[32px] leading-none tracking-wide uppercase sm:text-5xl;
+  @apply font-display text-[34px] leading-[0.95] uppercase sm:text-5xl;
 }
 @utility eyebrow {
-  @apply text-[11px] font-bold tracking-[0.16em] text-gold uppercase;
+  @apply text-[12px] font-semibold tracking-[0.2em] text-gold uppercase;
+}
+/* Plaque d'acier (cartes, casiers) et tableau d'ardoise encadré de bois. */
+@utility panel {
+  @apply rounded border border-line bg-surface;
+}
+@utility board {
+  @apply rounded border-[10px] border-wood bg-board text-board-ink shadow-[inset_0_0_60px_rgba(0,0,0,0.5)];
 }
 
 @utility prose-text {
   @apply max-w-3xl text-[16px] leading-[1.7] text-chalk/85;
   & h2 {
-    @apply mt-10 mb-3 scroll-mt-28 font-display text-[28px] leading-tight tracking-wide text-chalk uppercase;
+    @apply mt-10 mb-3 scroll-mt-28 font-display text-[30px] leading-tight text-chalk uppercase;
   }
   & h3 {
     @apply mt-8 mb-2 text-xl leading-tight font-bold text-chalk;
@@ -116,6 +130,63 @@ body {
       animation-timeline: view();
       animation-range: entry 0% entry 60%;
     }
+  }
+}
+
+/* Vestiaire : maillots qui se balancent sur leur cintre, barres du tableau qui se remplissent, voyant qui clignote. */
+@media (prefers-reduced-motion: no-preference) {
+  .kf-hang {
+    transform-origin: 50% 0;
+    animation: kf-hang 3.4s ease-in-out infinite alternate;
+  }
+  .kf-hang:hover {
+    animation-play-state: paused;
+  }
+  .kf-rise {
+    animation: kf-rise 0.5s ease both;
+  }
+  .kf-grow {
+    transform-origin: left;
+    animation: kf-grow 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  .kf-blink {
+    animation: kf-blink 1.2s steps(1) infinite;
+  }
+}
+@keyframes kf-hang {
+  from {
+    transform: rotate(-3deg);
+  }
+  to {
+    transform: rotate(3deg);
+  }
+}
+@keyframes kf-rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes kf-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes kf-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0.25;
   }
 }
 

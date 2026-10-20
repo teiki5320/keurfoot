@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
-import { PageHero } from "@/components/ui/PageHero";
+import { CanCountdown } from "@/components/ui/CanCountdown";
+import { todayInParis } from "@/lib/conseils/article";
 import { SourcesList } from "@/components/ui/SourcesList";
 import { getCountry } from "@/lib/countries";
 import { CAN_EDITIONS, NEXT_CAN } from "@/lib/data/can";
 import { formatDate } from "@/lib/format";
-import { illustration } from "@/lib/illustrations";
 import { clip, pageMetadata } from "@/lib/metadata";
 
 const hosts = NEXT_CAN.hosts.map((h) => getCountry(h)?.name ?? h);
@@ -29,18 +29,28 @@ export default function NextCanPage() {
           { name: `CAN ${NEXT_CAN.year}`, href: "/can/prochaine-edition" },
         ]}
       />
-      <PageHero eyebrow="La prochaine édition" title={`CAN ${NEXT_CAN.year}`} image={illustration("can")}>
-        <dl className="mt-6 grid max-w-2xl gap-3 sm:grid-cols-2">
-          <div className="rounded-xl border border-line bg-surface/80 p-4">
-            <dt className="eyebrow">{hosts.length > 1 ? "Pays hôtes" : "Pays hôte"}</dt>
-            <dd className="mt-1 font-display text-2xl uppercase">{hostsText}</dd>
+      <div className="container-page kf-rise pt-6">
+        <p className="eyebrow">Coupe d&apos;Afrique des nations</p>
+        <h1 className="mt-1.5 font-display text-[80px] leading-[0.85] uppercase sm:text-[120px] lg:text-[160px]">CAN {NEXT_CAN.year}</h1>
+        <dl className="mt-6 grid gap-3.5 sm:grid-cols-3">
+          {NEXT_CAN.start && (
+            <div className="panel p-5">
+              <dd className="font-display text-[64px] leading-none text-gold">
+                <CanCountdown start={NEXT_CAN.start} built={todayInParis()} />
+              </dd>
+              <dt className="mt-1.5 text-xs font-medium tracking-[0.1em] text-muted uppercase">Avant le coup d&apos;envoi</dt>
+            </div>
+          )}
+          <div className="panel p-5">
+            <dd className="font-display text-[28px] leading-tight uppercase">{hostsText}</dd>
+            <dt className="mt-1.5 text-xs font-medium tracking-[0.1em] text-muted uppercase">{hosts.length > 1 ? "Pays hôtes" : "Pays hôte"}</dt>
           </div>
-          <div className="rounded-xl border border-line bg-surface/80 p-4">
-            <dt className="eyebrow">Dates</dt>
-            <dd className="mt-1 font-display text-2xl uppercase">{NEXT_CAN.dates ?? "À confirmer"}</dd>
+          <div className="panel p-5">
+            <dd className="font-display text-[28px] leading-tight uppercase">{NEXT_CAN.dates ?? "À confirmer"}</dd>
+            <dt className="mt-1.5 text-xs font-medium tracking-[0.1em] text-muted uppercase">Dates</dt>
           </div>
         </dl>
-      </PageHero>
+      </div>
 
       <div className="container-page mt-10">
         <div className="prose-text">
@@ -48,7 +58,8 @@ export default function NextCanPage() {
             <p key={p.slice(0, 24)}>{p}</p>
           ))}
           <p>
-            Tenant du titre : <strong>{winner}</strong>, vainqueur de la CAN {last.year}. Retrouvez{" "}
+            Tenant du titre : <strong>{winner}</strong>, vainqueur de la CAN {last.year}
+            {last.disputed ? " selon la CAF, un titre contesté devant le Tribunal arbitral du sport" : ""}. Retrouvez{" "}
             <Link href="/can">toutes les éditions et le palmarès complet</Link>.
           </p>
           <p className="text-sm text-muted">Informations vérifiées le {formatDate(NEXT_CAN.checkedOn)} : elles peuvent évoluer d&apos;ici le tournoi.</p>

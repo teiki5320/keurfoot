@@ -4,7 +4,7 @@
 
 ## Règles générales
 
-1. Tout est en **français**, ton chaleureux et vivant, pour un supporter de la diaspora en France qui connaît le foot mais pas forcément toute l'histoire.
+1. Tout est en **français**, ton chaleureux et vivant, pour tous les passionnés de football africain, qui connaissent le foot mais pas forcément toute son histoire.
 2. **Rien d'inventé.** Chaque chiffre (titres, finales, sélections, buts, années, scores, dates) vient d'une source fiable et vérifiée. Une donnée qu'on ne peut pas vérifier n'est pas publiée : `null`, ou on n'en parle pas.
 3. **Sources citées** : chaque fiche a un tableau `sources` d'au moins 2 adresses `https://` précises (la page exacte, pas l'accueil du site), dont au moins une hors Wikipédia pour les chiffres.
 4. **Statistiques datées** : pour un joueur en activité, sélections et buts relevés à une date précise (`statsAsOf`), affichée sur la page (« au 1er octobre 2026 »).

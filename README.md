@@ -1,6 +1,6 @@
 # Keur Foot
 
-Le football africain pour la diaspora en France : sélections nationales, CAN, grands joueurs, classements Top 10,
+Le football africain pour tous les passionnés : sélections nationales, CAN, grands joueurs, classements Top 10,
 boutique supporter (liens Amazon Partenaires) et conseils d'achat. Un site TOA KEUR, construit sur la base technique
 de Keurbook (Next.js 16 statique, Tailwind 4, données dans le code).
 

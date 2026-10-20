@@ -5,13 +5,12 @@ import { AdSlot } from "@/components/ads/AdSlot";
 import { AmazonButton } from "@/components/ui/AmazonButton";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { FlagBand } from "@/components/ui/FlagBand";
-import { Jersey } from "@/components/ui/Jersey";
-import { PageHero } from "@/components/ui/PageHero";
+import { FlipJersey } from "@/components/ui/FlipJersey";
 import { SourcesList } from "@/components/ui/SourcesList";
 import { amazonUrl } from "@/lib/amazon";
 import { getCountry } from "@/lib/countries";
-import { canYearsLabel } from "@/lib/data/can";
-import { getPlayer } from "@/lib/data/players";
+import { canYearsLabel, titlesBadge } from "@/lib/data/can";
+import { POSITIONS, getPlayer, playersOf } from "@/lib/data/players";
 import { SELECTIONS, getSelection } from "@/lib/data/selections";
 import { TOPS } from "@/lib/data/tops";
 import { illustration } from "@/lib/illustrations";
@@ -38,6 +37,7 @@ export default async function SelectionPage({ params }: PageProps<"/selection/[s
   const s = getSelection((await params).slug);
   if (!s) notFound();
   const country = getCountry(s.country)!;
+  const casePlayers = playersOf(s.country);
   const tops = TOPS.filter((t) => t.country === s.country || t.items.some((i) => i.country === s.country)).slice(0, 4);
   const stats = [
     { label: "CAN gagnées", value: s.canTitles.length, detail: s.canTitles.length ? canYearsLabel(s.canTitles) : "Pas encore de titre" },
@@ -53,21 +53,54 @@ export default async function SelectionPage({ params }: PageProps<"/selection/[s
           { name: country.name, href: `/selection/${s.slug}` },
         ]}
       />
-      <PageHero eyebrow={s.nickname ?? "Sélection nationale"} title={country.name} intro={s.intro} image={illustration(`selection-${s.slug}`)}>
-        <FlagBand colors={s.colors} className="mt-6 h-2 max-w-xs" />
-      </PageHero>
+      <div className="container-page kf-rise mt-5 grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-10">
+        {/* Le casier : maillot sur cintre, à retourner */}
+        <div className="relative flex flex-col items-center rounded border border-line bg-gradient-to-b from-surface-2 to-[#15181c] px-6 pt-8 pb-5">
+          <span className="absolute top-4 left-4 bg-gold px-2.5 py-1.5 font-display text-xs tracking-[0.14em] text-night uppercase">
+            Casier {SELECTIONS.findIndex((x) => x.slug === s.slug) + 1}
+          </span>
+          <FlipJersey
+            colors={s.colors}
+            label={`Maillot dessiné aux couleurs ${country.of}`}
+            front={titlesBadge(s.canTitles)}
+            backName={s.nickname}
+            back={titlesBadge(s.canTitles)}
+          />
+          <FlagBand colors={s.colors} className="mt-4 h-1.5 w-40" />
+        </div>
+        <div>
+          <p className="eyebrow">{s.nickname ?? "Sélection nationale"}</p>
+          <h1 className="mt-1.5 font-display text-[56px] leading-[0.88] uppercase sm:text-8xl lg:text-[112px]">{country.name}</h1>
+          <p className="mt-4 max-w-[560px] text-[17px] leading-relaxed text-soft">{s.intro}</p>
+          <dl className="mt-6 grid grid-cols-3 gap-2.5 sm:gap-3">
+            {stats.map((st, i) => (
+              <div key={st.label} className="panel p-3 sm:p-4">
+                <dd className={`font-display text-4xl leading-none sm:text-[44px] ${i === 0 ? "text-gold" : ""}`}>{st.value}</dd>
+                <dt className="mt-1 text-[11px] font-medium tracking-[0.1em] text-muted uppercase sm:text-xs">{st.label}</dt>
+                <dd className="mt-1.5 text-xs text-soft sm:text-[13px]">{st.detail}</dd>
+              </div>
+            ))}
+          </dl>
+          {casePlayers.length > 0 && (
+            <>
+              <p className="mt-7 text-[13px] font-bold tracking-[0.2em] text-muted uppercase">Légende du casier</p>
+              {casePlayers.map((p) => (
+                <Link key={p.slug} href={`/joueur/${p.slug}`} className="panel mt-2.5 flex items-center justify-between px-4 py-4 transition-colors hover:border-gold">
+                  <span>
+                    <span className="block font-display text-[26px] leading-none uppercase">{p.name}</span>
+                    <span className="mt-1 block text-[13px] text-muted">
+                      {POSITIONS[p.position]} · {p.active ? "En activité" : "Légende"}
+                    </span>
+                  </span>
+                  <span aria-hidden className="font-display text-xl text-gold">→</span>
+                </Link>
+              ))}
+            </>
+          )}
+        </div>
+      </div>
 
       <div className="container-page mt-8">
-        <dl className="grid gap-3 sm:grid-cols-3">
-          {stats.map((st) => (
-            <div key={st.label} className="rounded-2xl border border-line bg-surface p-4">
-              <dt className="eyebrow">{st.label}</dt>
-              <dd className="mt-1 font-display text-5xl leading-none">{st.value}</dd>
-              <dd className="mt-2 text-sm text-muted">{st.detail}</dd>
-            </div>
-          ))}
-        </dl>
-
         <div className="mt-12 grid gap-12 lg:grid-cols-[1fr_320px]">
           <div>
             <h2 className="section-title">L&apos;histoire</h2>
@@ -83,7 +116,7 @@ export default async function SelectionPage({ params }: PageProps<"/selection/[s
               {s.legends.map((l) => {
                 const player = l.playerSlug ? getPlayer(l.playerSlug) : undefined;
                 return (
-                  <li key={l.name} className="rounded-2xl border border-line bg-surface p-4">
+                  <li key={l.name} className="rounded border border-line bg-surface p-4">
                     <h3 className="font-display text-xl tracking-wide uppercase">
                       {player ? <Link href={`/joueur/${player.slug}`} className="text-gold hover:text-chalk">{l.name} →</Link> : l.name}
                     </h3>
@@ -95,9 +128,8 @@ export default async function SelectionPage({ params }: PageProps<"/selection/[s
           </div>
 
           <aside className="space-y-6">
-            <div className="rounded-2xl border border-line bg-surface p-5 text-center">
+            <div className="rounded border border-line bg-surface p-5 text-center">
               <p className="eyebrow">Le maillot</p>
-              <Jersey colors={s.colors} label={`Maillot dessiné aux couleurs ${country.of}`} className="mx-auto mt-3 h-40 w-auto" />
               <p className="mt-3 font-semibold">{s.jersey.label}</p>
               <p className="mt-1 text-xs text-muted">Dessin Keur Foot aux couleurs du drapeau, pas le maillot officiel.</p>
               <AmazonButton href={amazonUrl(s.jersey)} label="Voir le maillot sur Amazon" className="mt-4 w-full" />

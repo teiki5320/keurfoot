@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AdSlot } from "@/components/ads/AdSlot";
+import { CanCountdown } from "@/components/ui/CanCountdown";
+import { ScoreBoard } from "@/components/ui/Vestiaire";
+import { todayInParis } from "@/lib/conseils/article";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { PageHero } from "@/components/ui/PageHero";
 import { SourcesList } from "@/components/ui/SourcesList";
 import { siteConfig } from "@/lib/config";
 import { getCountry } from "@/lib/countries";
-import { CAN_EDITIONS, CAN_INTRO, CAN_SOURCES, CAN_UPDATED, NEXT_CAN, canRanking } from "@/lib/data/can";
+import { CAN_EDITIONS, CAN_INTRO, CAN_SOURCES, CAN_UPDATED, NEXT_CAN } from "@/lib/data/can";
 import { countryLink } from "@/lib/data/links";
 import { illustration } from "@/lib/illustrations";
 import { itemListLd, jsonLd } from "@/lib/json-ld";
@@ -30,7 +33,6 @@ function CountryName({ slug, as }: { slug: string; as?: string | null }) {
 }
 
 export default function CanPage() {
-  const ranking = canRanking();
   return (
     <>
       <script
@@ -51,7 +53,7 @@ export default function CanPage() {
         </Link>
       </PageHero>
 
-      <div className="container-page mt-10 grid gap-12 lg:grid-cols-[1fr_320px]">
+      <div className="container-page mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_400px]">
         <div>
           <div className="prose-text">
             {CAN_INTRO.slice(1).map((p) => (
@@ -62,11 +64,12 @@ export default function CanPage() {
           <h2 className="section-title mt-10">Toutes les éditions</h2>
           <ol className="mt-5 space-y-2">
             {[...CAN_EDITIONS].reverse().map((e) => (
-              <li key={e.year} id={`can-${e.year}`} className="scroll-mt-28 rounded-xl border border-line bg-surface p-4 sm:grid sm:grid-cols-[90px_1fr_200px] sm:items-start sm:gap-4">
+              <li key={e.year} id={`can-${e.year}`} className="scroll-mt-28 rounded border border-line bg-surface p-4 sm:grid sm:grid-cols-[90px_1fr_200px] sm:items-start sm:gap-4">
                 <p className="font-display text-3xl text-gold">{e.year}</p>
                 <div className="mt-1 sm:mt-0">
                   <p className="text-[15px] font-semibold">
-                    🏆 <CountryName slug={e.winner} as={e.winnerAs} />
+                    <span aria-hidden>🏆 </span>
+                    <CountryName slug={e.winner} as={e.winnerAs} />
                     {e.disputed && (
                       <span className="ml-2 rounded-full bg-flame/15 px-2 py-0.5 align-middle text-[11px] font-bold tracking-wide text-flame uppercase">Contesté</span>
                     )}
@@ -93,23 +96,22 @@ export default function CanPage() {
           <AdSlot placement="can" />
         </div>
 
-        <aside>
-          <h2 className="section-title text-[28px] sm:text-[32px]">Les pays titrés</h2>
-          <ol className="mt-4 divide-y divide-line rounded-xl border border-line bg-surface">
-            {ranking.map((r) => (
-              <li key={r.country} className="flex items-center gap-3 px-4 py-3">
-                <span className="w-6 font-display text-xl text-gold">{r.rank}</span>
-                <span className="flex-1 text-[15px]">
-                  <CountryName slug={r.country} />
-                  <span className="block text-xs text-muted">{r.years.join(", ")}</span>
-                </span>
-                <span className="font-display text-2xl">{r.years.length}</span>
-              </li>
-            ))}
-          </ol>
-          <Link href="/top-10/pays-les-plus-titres-can" className="tag mt-4">
-            Le Top 10 des pays les plus titrés →
-          </Link>
+        <aside className="space-y-4 lg:sticky lg:top-6 lg:self-start">
+          <ScoreBoard title={`Palmarès · ${CAN_EDITIONS.length} éditions`} limit={20}>
+            {last.disputed && `Titre ${last.year} contesté devant le TAS. `}
+            <Link href="/top-10/pays-les-plus-titres-can" className="underline underline-offset-2 hover:text-gold">Le Top 10 des pays les plus titrés</Link>
+          </ScoreBoard>
+          {NEXT_CAN.start && (
+            <Link href="/can/prochaine-edition" className="panel flex items-center justify-between p-5 transition-colors hover:border-gold">
+              <span>
+                <span className="eyebrow block">Prochaine édition</span>
+                <span className="font-display text-4xl">CAN {NEXT_CAN.year}</span>
+              </span>
+              <span className="font-display text-3xl text-gold">
+                <CanCountdown start={NEXT_CAN.start} built={todayInParis()} />
+              </span>
+            </Link>
+          )}
         </aside>
       </div>
 

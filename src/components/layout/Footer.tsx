@@ -6,7 +6,7 @@ import { NAV } from "./nav";
 
 export function Footer() {
   return (
-    <footer className="mt-24 border-t border-line bg-black/30">
+    <footer className="mt-16 border-t border-line bg-black/30">
       <div className="container-page grid gap-10 py-12 text-sm sm:grid-cols-3">
         <div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -22,7 +22,7 @@ export function Footer() {
         </div>
         <nav aria-label="Rubriques" className="flex flex-col gap-2.5">
           {NAV.map((n) => (
-            <Link key={n.href} href={n.href} className="font-display text-xl tracking-wide uppercase hover:text-gold">
+            <Link key={n.href} href={n.href} className="font-display text-xl tracking-[0.06em] uppercase hover:text-gold">
               {n.label}
             </Link>
           ))}

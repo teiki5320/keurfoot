@@ -29,7 +29,7 @@ export function PageHero({
       {!image && <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,var(--color-pitch-soft),transparent_60%)]" />}
       <div className="container-page pt-10 pb-10 sm:pt-16 sm:pb-14">
         {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-        <h1 className="mt-2 max-w-4xl font-display text-[44px] leading-[0.95] tracking-wide uppercase sm:text-7xl">{title}</h1>
+        <h1 className="mt-2 max-w-4xl font-display text-[48px] leading-[0.9] uppercase sm:text-7xl">{title}</h1>
         {intro && <div className="mt-4 max-w-2xl text-[16px] leading-relaxed text-chalk/85 sm:text-lg">{intro}</div>}
         {children}
       </div>

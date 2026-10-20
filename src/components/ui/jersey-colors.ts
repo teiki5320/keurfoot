@@ -18,6 +18,12 @@ export function contrast(a: string, b: string): number {
   return (hi + 0.05) / (lo + 0.05);
 }
 
+/** Couleurs du maillot dessiné : corps, manches (et col), liseré — tirées des couleurs du drapeau. */
+export function jerseyParts(colors: string[]): { body: string; sleeve: string; trim: string } {
+  const [body, sleeve = body, trim = sleeve] = colors;
+  return { body, sleeve, trim };
+}
+
 export function jerseyTextColor(bg: string): typeof DARK | typeof LIGHT {
   return contrast(bg, LIGHT) >= contrast(bg, DARK) ? LIGHT : DARK;
 }

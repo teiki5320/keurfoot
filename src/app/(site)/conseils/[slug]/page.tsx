@@ -81,12 +81,12 @@ export default async function ConseilPage({ params }: PageProps<"/conseils/[slug
               width={1200}
               height={800}
               fetchPriority="high"
-              className="aspect-[3/2] w-full rounded-2xl object-cover"
+              className="aspect-[3/2] w-full rounded object-cover"
             />
             <figcaption className="mt-2 text-[11px] text-faint">Illustration originale Keur Foot.</figcaption>
           </figure>
         )}
-        <p className="mt-8 rounded-2xl border-l-4 border-gold bg-surface p-5 text-[17px] leading-relaxed">
+        <p className="mt-8 rounded border-l-4 border-gold bg-surface p-5 text-[17px] leading-relaxed">
           <span className="sr-only">En bref : </span>
           {conseil.resume}
         </p>
@@ -121,7 +121,7 @@ export default async function ConseilPage({ params }: PageProps<"/conseils/[slug
             </h2>
             <ul className="mt-3 space-y-2.5">
               {c.products.map((p) => (
-                <li key={p.name} className="flex items-center gap-4 rounded-xl border border-line bg-surface p-3">
+                <li key={p.name} className="flex items-center gap-4 rounded border border-line bg-surface p-3">
                   <div className="min-w-0 flex-1">
                     <p className="font-semibold">{p.name}</p>
                     <p className="mt-0.5 text-xs text-muted">{p.note}</p>

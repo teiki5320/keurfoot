@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+@keyframes kfHang{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
+@keyframes kfRise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes kfGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes kfBlink{0%,49%{opacity:1}50%,100%{opacity:.25}}
+@keyframes kfFlicker{0%,100%{opacity:1}92%{opacity:1}93%{opacity:.6}94%{opacity:1}97%{opacity:.7}98%{opacity:1}}
+body{margin:0;background:#0f1113;color:#eceae4;font-family:Barlow,system-ui,sans-serif}
+a{color:inherit;text-decoration:none;cursor:pointer}a:hover{color:inherit}
+*{box-sizing:border-box}
+</style>
+</helmet>
+<svg width="0" height="0" style="position:absolute;width:0;height:0" aria-hidden="true">
+  <defs>
+    <linearGradient id="kfShade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".22"></stop><stop offset=".32" stop-color="#fff" stop-opacity="0"></stop><stop offset=".62" stop-color="#000" stop-opacity="0"></stop><stop offset="1" stop-color="#000" stop-opacity=".34"></stop></linearGradient>
+    <linearGradient id="kfSheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"></stop><stop offset=".25" stop-color="#fff" stop-opacity="0"></stop><stop offset="1" stop-color="#000" stop-opacity=".16"></stop></linearGradient>
+    <pattern id="kfMesh" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".7" fill="#fff" fill-opacity=".13"></circle></pattern>
+    <symbol id="kf-base" viewBox="0 0 240 260">
+      <path d="M50 50 L14 106 L48 128 L68 100 Z" fill="var(--sleeve)"></path>
+      <path d="M190 50 L226 106 L192 128 L172 100 Z" fill="var(--sleeve)"></path>
+      <path d="M50 50 L14 106 L48 128 L68 100 Z M190 50 L226 106 L192 128 L172 100 Z" fill="url(#kfShade)"></path>
+      <path d="M50 50 L14 106 L48 128 L68 100 Z M190 50 L226 106 L192 128 L172 100 Z" fill="url(#kfMesh)"></path>
+      <path d="M17 104 L46 124 M223 104 L194 124" stroke="var(--trim)" stroke-width="7"></path>
+      <path d="M17 104 L46 124 M223 104 L194 124" stroke="#000" stroke-opacity=".3" stroke-width="1.5"></path>
+      <path d="M50 50 L88 36 Q120 48 152 36 L190 50 L172 100 L174 244 Q120 254 66 244 L68 100 Z" fill="var(--body)"></path>
+      <path d="M50 50 L88 36 Q120 48 152 36 L190 50 L172 100 L174 244 Q120 254 66 244 L68 100 Z" fill="url(#kfMesh)"></path>
+      <path d="M68 100 L82 104 L84 246 Q75 246 66 244 Z" fill="var(--trim)" fill-opacity=".92"></path>
+      <path d="M172 100 L158 104 L156 246 Q165 246 174 244 Z" fill="var(--trim)" fill-opacity=".92"></path>
+      <path d="M50 50 L88 36 Q120 48 152 36 L190 50 L172 100 L174 244 Q120 254 66 244 L68 100 Z" fill="url(#kfShade)"></path>
+      <path d="M50 50 L88 36 Q120 48 152 36 L190 50 L172 100 L174 244 Q120 254 66 244 L68 100 Z" fill="url(#kfSheen)"></path>
+      <path d="M68 100 Q86 116 82 146 L68 140 Z M172 100 Q154 116 158 146 L172 140 Z" fill="#000" fill-opacity=".16"></path>
+      <path d="M100 120 q4 40 -2 70 M140 120 q-4 40 2 70" stroke="#000" stroke-opacity=".07" stroke-width="6" fill="none" stroke-linecap="round"></path>
+      <path d="M66 244 Q120 254 174 244" stroke="#000" stroke-opacity=".3" stroke-width="3" fill="none"></path>
+      <path d="M68 238 Q120 248 172 238" stroke="#fff" stroke-opacity=".28" stroke-width="1" stroke-dasharray="3 3" fill="none"></path>
+      <path d="M50 50 L68 100 M190 50 L172 100 M88 36 L50 50 M152 36 L190 50" stroke="#000" stroke-opacity=".32" stroke-width="1.5" fill="none"></path>
+      <path d="M54 54 L70 97 M186 54 L170 97" stroke="#fff" stroke-opacity=".3" stroke-width="1" stroke-dasharray="3 3" fill="none"></path>
+    </symbol>
+    <symbol id="kf-front" viewBox="0 0 240 260">
+      <use href="#kf-base" width="240" height="260"></use>
+      <path d="M92 38 Q120 50 148 38 L120 80 Z" fill="#101214" fill-opacity=".92"></path>
+      <path d="M88 36 L120 84 L152 36" stroke="var(--sleeve)" stroke-width="9" stroke-linejoin="round" fill="none"></path>
+      <path d="M90 42 L120 88 L150 42" stroke="#000" stroke-opacity=".22" stroke-width="1.5" fill="none"></path>
+      <path d="M86 32 L120 80 L154 32" stroke="#fff" stroke-opacity=".22" stroke-width="1" fill="none"></path>
+      <circle cx="94" cy="108" r="9.5" fill="#f5f1e6"></circle><circle cx="94" cy="108" r="5.5" fill="var(--sleeve)"></circle><circle cx="94" cy="108" r="2" fill="#f2b705"></circle>
+      <path d="M136 103 l9 5 l9 -7" stroke="#fff" stroke-opacity=".85" stroke-width="2.5" fill="none" stroke-linecap="round"></path>
+    </symbol>
+    <symbol id="kf-back" viewBox="0 0 240 260">
+      <use href="#kf-base" width="240" height="260"></use>
+      <path d="M90 38 Q120 56 150 38 Q120 48 90 38 Z" fill="#101214" fill-opacity=".92"></path>
+      <path d="M88 36 Q120 58 152 36" stroke="var(--sleeve)" stroke-width="8" fill="none"></path>
+      <path d="M90 42 Q120 62 150 42" stroke="#000" stroke-opacity=".22" stroke-width="1.5" fill="none"></path>
+    </symbol>
+  </defs>
+</svg>
+<div style="min-height:100vh;display:grid;grid-template-columns:220px minmax(0,1fr);background:#0f1113 radial-gradient(ellipse at 30% 0%,#1d2126 0%,#0f1113 60%)">
+  <!-- casiers = navigation -->
+  <aside style="border-right:1px solid #24282d;display:flex;flex-direction:column;padding:20px 14px;gap:16px;position:sticky;top:0;height:100vh;background:linear-gradient(90deg,#15181c,#101214)">
+    <a onClick="{{ goHome }}" style="display:flex;align-items:center;gap:10px;padding:4px 6px"><img src="public/brand/keurfoot-embleme.webp" alt="" style="width:34px;height:34px"><span style="font:800 20px 'Barlow Condensed';letter-spacing:.06em;text-transform:uppercase">Keur Foot</span></a>
+    <div style="font:600 10px Barlow;letter-spacing:.2em;text-transform:uppercase;color:#6c7279;padding:0 6px">Vestiaire · rangée A</div>
+    <nav style="display:flex;flex-direction:column;gap:5px">
+      <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+        <a onClick="{{ n.go }}" style="position:relative;display:flex;flex-direction:column;justify-content:space-between;height:66px;padding:8px 10px;background:linear-gradient(#2c3137,#1e2227);border:1px solid #3a4048;border-radius:3px;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)" style-hover="border-color:#f2b705">
+          <span style="display:block;height:10px;background:repeating-linear-gradient(0deg,#15181c 0 2px,transparent 2px 4px);border-radius:1px;opacity:.9"></span>
+          <span style="display:flex;justify-content:space-between;align-items:center"><span style="padding:2px 8px;background:#e8e2d2;color:#15181c;border-radius:2px;font:700 13px 'Barlow Condensed';letter-spacing:.1em;text-transform:uppercase">{{ n.label }}</span><span style="width:9px;height:9px;border-radius:50%;background:{{ n.led }};box-shadow:0 0 10px {{ n.led }}"></span></span>
+        </a>
+      </sc-for>
+    </nav>
+    <div style="margin-top:auto;padding:12px;border:1px dashed #363c43;border-radius:3px;font:500 12px/1.5 Barlow;color:#9aa1a9"><span style="color:#f2b705;animation:kfBlink 1.2s steps(1) infinite">●</span> CAN 2027 · {{ jDays }}<br>{{ hostsText }}</div>
+  </aside>
+
+  <main style="padding:36px 44px 60px;min-width:0">
+    <!-- ACCUEIL -->
+    <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+      <div style="animation:kfRise .5s ease both">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+          <h1 style="margin:0;font:800 clamp(48px,7vw,96px)/0.9 'Barlow Condensed';text-transform:uppercase;letter-spacing:-.01em;max-width:760px;text-wrap:pretty">Le football africain,<br><span style="color:#f2b705">de la CAN à la diaspora</span></h1>
+          <p style="margin:0;max-width:320px;font:400 16px/1.5 Barlow;color:#b4bac1">Sélections, légendes, palmarès et équipement de supporter. Vérifié et sourcé. Décroche un maillot pour commencer.</p>
+        </div>
+        <!-- penderie -->
+        <div style="margin-top:44px;position:relative">
+          <div style="height:12px;border-radius:6px;background:linear-gradient(#b8bfc7,#6b7279 55%,#2c3137);box-shadow:0 6px 14px rgba(0,0,0,.6)"></div>
+          <div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-top:-6px">
+            <sc-for list="{{ sels }}" as="s" hint-placeholder-count="6">
+              <a onClick="{{ s.open }}" style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 4px 16px;transform-origin:50% 0;animation:kfHang 3.4s ease-in-out infinite alternate;animation-delay:{{ s.delay }}" style-hover="animation-play-state:paused">
+                <span style="display:block;position:relative;width:100%;max-width:190px;container-type:size;aspect-ratio:240/306"><svg viewBox="0 -46 240 306" style="display:block;width:100%;filter:drop-shadow(0 22px 18px rgba(0,0,0,.6));--body:{{ s.body }};--sleeve:{{ s.sleeve }};--trim:{{ s.stripe }}">
+                  <path d="M120 -46 q-11 0 -11 10 q0 7 7 9 l4 2 v12" stroke="#c9ced4" stroke-width="3.5" fill="none" stroke-linecap="round"></path>
+                  <path d="M120 -13 L40 52 L200 52 Z" fill="none" stroke="#b8bfc7" stroke-width="4" stroke-linejoin="round"></path>
+                  <use href="#kf-front" width="240" height="260"></use>
+                  
+                </svg><span style="position:absolute;left:0;right:0;top:79.1%;transform:translateY(-100%);text-align:center;color:#fff;opacity:.92;font:800 26.14cqh 'Barlow Condensed';line-height:1;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.4);text-transform:uppercase">{{ s.nTitles }}</span></span>
+                <span style="font:700 22px 'Barlow Condensed';text-transform:uppercase;letter-spacing:.04em">{{ s.name }}</span>
+                <span style="font:400 12px Barlow;color:#9aa1a9;letter-spacing:.06em;text-transform:uppercase">{{ s.titlesText }}</span>
+              </a>
+            </sc-for>
+          </div>
+          <div style="margin:4px 20px 0;height:16px;border-radius:3px;background:linear-gradient(#8a5a35,#5a3a20);box-shadow:0 8px 16px rgba(0,0,0,.5)"></div>
+        </div>
+        <!-- tableau + CAN -->
+        <div style="display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px;margin-top:40px">
+          <div style="background:#1b2a22;border:10px solid #3b2c1f;border-radius:4px;padding:28px 30px;box-shadow:inset 0 0 60px rgba(0,0,0,.5);color:#e9e4d2">
+            <div style="font:700 13px Barlow;letter-spacing:.2em;text-transform:uppercase;color:#b7c4b5">Tableau · pays les plus titrés</div>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-top:18px">
+              <sc-for list="{{ ranking }}" as="r" hint-placeholder-count="8">
+                <div style="display:grid;grid-template-columns:24px 130px minmax(0,1fr) 30px;gap:12px;align-items:center;font:500 16px Barlow">
+                  <span style="color:#b7c4b5">{{ r.rank }}</span><span>{{ r.name }}</span>
+                  <span style="height:10px;background:rgba(255,255,255,.08)"><span style="display:block;height:100%;width:{{ r.pct }};background:#f2b705;transform-origin:left;animation:kfGrow .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:{{ r.stag }}"></span></span>
+                  <span style="font:800 22px 'Barlow Condensed';text-align:right">{{ r.titles }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="margin-top:16px;font:400 12px/1.5 Barlow;color:#b7c4b5">35 éditions, 1957–2025. Titre 2025 contesté devant le TAS.</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <a onClick="{{ goCan }}" style="flex:1;position:relative;overflow:hidden;border-radius:4px;border:1px solid #363c43;padding:24px;display:flex;flex-direction:column;justify-content:flex-end;min-height:220px">
+              <img src="public/illustrations/can.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55">
+              <div style="position:absolute;inset:0;background:linear-gradient(to top,#0f1113 10%,transparent 70%)"></div>
+              <div style="position:relative"><div style="font:700 12px Barlow;letter-spacing:.2em;text-transform:uppercase;color:#f2b705">Prochaine édition</div><div style="font:800 64px/0.9 'Barlow Condensed'">CAN 2027</div><div style="font:400 14px Barlow;color:#c9ced4">{{ hostsText }} · {{ jDays }}</div></div>
+            </a>
+            <a onClick="{{ goTops }}" style="border-radius:4px;border:1px solid #363c43;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;font:700 20px 'Barlow Condensed';text-transform:uppercase;letter-spacing:.06em" style-hover="border-color:#f2b705;color:#f2b705">Les Top 10 <span>→</span></a>
+            <a onClick="{{ goPlayers }}" style="border-radius:4px;border:1px solid #363c43;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;font:700 20px 'Barlow Condensed';text-transform:uppercase;letter-spacing:.06em" style-hover="border-color:#f2b705;color:#f2b705">Les légendes <span>→</span></a>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- SÉLECTIONS -->
+    <sc-if value="{{ isSels }}" hint-placeholder-val="{{ false }}">
+      <div style="animation:kfRise .5s ease both">
+        <h1 style="margin:0;font:800 72px/0.9 'Barlow Condensed';text-transform:uppercase">Les sélections</h1>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:28px">
+          <sc-for list="{{ sels }}" as="s" hint-placeholder-count="6">
+            <a onClick="{{ s.open }}" style="display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:center;padding:18px;background:#1d2126;border:1px solid #363c43;border-radius:4px;animation:kfRise .5s ease both;animation-delay:{{ s.stag }}" style-hover="border-color:#f2b705">
+              <span style="display:block;position:relative;width:96px;container-type:size;aspect-ratio:240/260"><svg viewBox="0 0 240 260" style="display:block;width:100%;filter:drop-shadow(0 8px 8px rgba(0,0,0,.5));--body:{{ s.body }};--sleeve:{{ s.sleeve }};--trim:{{ s.stripe }}"><use href="#kf-front" width="240" height="260"></use></svg><span style="position:absolute;left:0;right:0;top:75.4%;transform:translateY(-100%);text-align:center;color:#fff;opacity:.92;font:800 30.77cqh 'Barlow Condensed';line-height:1;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.4);text-transform:uppercase">{{ s.nTitles }}</span></span>
+              <span><span style="display:block;font:800 30px/1 'Barlow Condensed';text-transform:uppercase">{{ s.name }}</span><span style="display:block;margin-top:4px;font:400 14px Barlow;color:#9aa1a9">{{ s.nick }}</span><span style="display:block;margin-top:8px;font:700 12px Barlow;letter-spacing:.1em;text-transform:uppercase;color:#f2b705">{{ s.titlesText }}</span></span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- FICHE SÉLECTION -->
+    <sc-if value="{{ isSel }}" hint-placeholder-val="{{ false }}">
+      <div style="animation:kfRise .5s ease both">
+        <a onClick="{{ goSels }}" style="font:600 12px Barlow;letter-spacing:.14em;text-transform:uppercase;color:#9aa1a9" style-hover="color:#f2b705">← Toutes les sélections</a>
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:40px;margin-top:20px;align-items:start">
+          <div style="position:relative;background:linear-gradient(#23272c,#15181c);border:1px solid #363c43;border-radius:4px;padding:30px 30px 20px;display:flex;flex-direction:column;align-items:center;gap:14px">
+            <a onClick="{{ flip }}" style="display:block;width:100%;max-width:360px;perspective:1200px">
+              <span style="display:block;position:relative;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.3,.9,.3,1);transform:rotateY({{ flipDeg }})">
+                <span style="display:block;position:relative;width:100%;backface-visibility:hidden;transform-origin:50% 0;animation:kfHang 4s ease-in-out infinite alternate;container-type:size;aspect-ratio:240/306"><svg viewBox="0 -46 240 306" style="display:block;width:100%;display:block;filter:drop-shadow(0 26px 24px rgba(0,0,0,.65));--body:{{ cur.body }};--sleeve:{{ cur.sleeve }};--trim:{{ cur.stripe }}">
+                  <path d="M120 -46 q-11 0 -11 10 q0 7 7 9 l4 2 v12" stroke="#c9ced4" stroke-width="3.5" fill="none" stroke-linecap="round"></path>
+                  <path d="M120 -13 L40 52 L200 52 Z" fill="none" stroke="#b8bfc7" stroke-width="4" stroke-linejoin="round"></path>
+                  <use href="#kf-front" width="240" height="260"></use>
+                  
+                </svg><span style="position:absolute;left:0;right:0;top:79.1%;transform:translateY(-100%);text-align:center;color:#fff;opacity:.92;font:800 26.14cqh 'Barlow Condensed';line-height:1;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.4);text-transform:uppercase">{{ cur.nTitles }}</span></span>
+                <span style="display:block;position:absolute;inset:0;width:100%;backface-visibility:hidden;transform:rotateY(180deg);container-type:size;aspect-ratio:240/306"><svg viewBox="0 -46 240 306" style="display:block;width:100%;display:block;filter:drop-shadow(0 26px 24px rgba(0,0,0,.65));--body:{{ cur.body }};--sleeve:{{ cur.sleeve }};--trim:{{ cur.stripe }}">
+                  <path d="M120 -46 q-11 0 -11 10 q0 7 7 9 l4 2 v12" stroke="#c9ced4" stroke-width="3.5" fill="none" stroke-linecap="round"></path>
+                  <path d="M120 -13 L40 52 L200 52 Z" fill="none" stroke="#b8bfc7" stroke-width="4" stroke-linejoin="round"></path>
+                  <use href="#kf-back" width="240" height="260"></use>
+                  
+                  
+                </svg><span style="position:absolute;left:0;right:0;top:47.7%;transform:translateY(-100%);text-align:center;color:#fff;opacity:.92;font:700 6.21cqh 'Barlow Condensed';letter-spacing:.12em;line-height:1;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.4);text-transform:uppercase">{{ cur.nickUpper }}</span><span style="position:absolute;left:0;right:0;top:83.7%;transform:translateY(-100%);text-align:center;color:#fff;opacity:.92;font:800 35.95cqh 'Barlow Condensed';line-height:1;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.4);text-transform:uppercase">{{ cur.nTitles }}</span></span>
+              </span>
+            </a>
+            <span style="font:600 11px Barlow;letter-spacing:.14em;text-transform:uppercase;color:#9aa1a9">Cliquer pour retourner · {{ sideLabel }}</span>
+            <span style="position:absolute;left:16px;top:16px;padding:6px 10px;background:#f2b705;color:#0f1113;font:800 12px 'Barlow Condensed';letter-spacing:.14em;text-transform:uppercase">Casier {{ cur.idx }}</span>
+          </div>
+          <div>
+            <div style="font:700 13px Barlow;letter-spacing:.2em;text-transform:uppercase;color:#f2b705">{{ cur.nick }}</div>
+            <h1 style="margin:6px 0 0;font:800 clamp(56px,8vw,112px)/0.88 'Barlow Condensed';text-transform:uppercase">{{ cur.name }}</h1>
+            <p style="margin:18px 0 0;font:400 17px/1.55 Barlow;color:#c9ced4;max-width:560px">{{ cur.story }}</p>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px">
+              <div style="padding:16px;background:#1d2126;border:1px solid #363c43;border-radius:4px"><div style="font:800 44px/1 'Barlow Condensed';color:#f2b705">{{ cur.nTitles }}</div><div style="font:500 12px Barlow;letter-spacing:.1em;text-transform:uppercase;color:#9aa1a9;margin-top:4px">CAN gagnées</div><div style="font:400 13px Barlow;color:#c9ced4;margin-top:6px">{{ cur.years }}</div></div>
+              <div style="padding:16px;background:#1d2126;border:1px solid #363c43;border-radius:4px"><div style="font:800 44px/1 'Barlow Condensed'">{{ cur.finals.length }}</div><div style="font:500 12px Barlow;letter-spacing:.1em;text-transform:uppercase;color:#9aa1a9;margin-top:4px">Finales perdues</div></div>
+              <div style="padding:16px;background:#1d2126;border:1px solid #363c43;border-radius:4px"><div style="font:800 44px/1 'Barlow Condensed'">{{ cur.wc }}</div><div style="font:500 12px Barlow;letter-spacing:.1em;text-transform:uppercase;color:#9aa1a9;margin-top:4px">Coupes du monde</div></div>
+            </div>
+            <div style="margin-top:28px;font:700 13px Barlow;letter-spacing:.2em;text-transform:uppercase;color:#9aa1a9">Légende du casier</div>
+            <sc-for list="{{ curPlayers }}" as="p" hint-placeholder-count="1">
+              <a onClick="{{ p.open }}" style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding:16px 18px;background:#1d2126;border:1px solid #363c43;border-radius:4px" style-hover="border-color:#f2b705"><span><span style="display:block;font:800 26px/1 'Barlow Condensed';text-transform:uppercase">{{ p.name }}</span><span style="display:block;font:400 13px Barlow;color:#9aa1a9;margin-top:3px">{{ p.pos }} · {{ p.era }}</span></span><span style="font:800 20px 'Barlow Condensed';color:#f2b705">→</span></a>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- JOUEURS -->
+    <sc-if value="{{ isPlayers }}" hint-placeholder-val="{{ false }}">
+      <div style="animation:kfRise .5s ease both">
+        <h1 style="margin:0;font:800 72px/0.9 'Barlow Condensed';text-transform:uppercase">Les légendes</h1>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:28px">
+          <sc-for list="{{ players }}" as="p" hint-placeholder-count="6">
+            <a onClick="{{ p.open }}" style="display:grid;grid-template-columns:72px 1fr;gap:14px;align-items:center;padding:18px;background:#1d2126;border:1px solid #363c43;border-radius:4px;animation:kfRise .5s ease both;animation-delay:{{ p.stag }}" style-hover="border-color:#f2b705">
+              <span style="display:block;position:relative;width:72px;container-type:size;aspect-ratio:240/260"><svg viewBox="0 0 240 260" style="display:block;width:100%;filter:drop-shadow(0 6px 6px rgba(0,0,0,.5));--body:{{ p.team.body }};--sleeve:{{ p.team.sleeve }};--trim:{{ p.team.stripe }}"><use href="#kf-back" width="240" height="260"></use></svg><span style="position:absolute;left:0;right:0;top:78.8%;transform:translateY(-100%);text-align:center;color:#fff;opacity:.92;font:800 38.46cqh 'Barlow Condensed';line-height:1;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.4);text-transform:uppercase">{{ p.num }}</span></span>
+              <span><span style="display:block;font:800 26px/1 'Barlow Condensed';text-transform:uppercase">{{ p.name }}</span><span style="display:block;margin-top:5px;font:400 13px Barlow;color:#9aa1a9">{{ p.team.name }} · {{ p.pos }}</span><span style="display:block;margin-top:10px;font:700 11px Barlow;letter-spacing:.1em;text-transform:uppercase;color:#f2b705">{{ p.facts.0.0 }} · {{ p.facts.0.1 }}</span></span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- FICHE JOUEUR -->
+    <sc-if value="{{ isPlayer }}" hint-placeholder-val="{{ false }}">
+      <div style="animation:kfRise .5s ease both">
+        <a onClick="{{ backToSel }}" style="font:600 12px Barlow;letter-spacing:.14em;text-transform:uppercase;color:#9aa1a9" style-hover="color:#f2b705">← {{ player.team.name }}</a>
+        <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:40px;margin-top:20px;align-items:start">
+          <div>
+            <div style="font:700 13px Barlow;letter-spacing:.2em;text-transform:uppercase;color:#f2b705">{{ player.pos }} · {{ player.era }}</div>
+            <h1 style="margin:6px 0 0;font:800 clamp(56px,8vw,112px)/0.88 'Barlow Condensed';text-transform:uppercase;text-wrap:balance">{{ player.name }}</h1>
+            <p style="margin:18px 0 0;font:400 17px/1.55 Barlow;color:#c9ced4;max-width:560px">{{ player.bio }}</p>
+            <div style="margin-top:24px;border-top:1px solid #363c43">
+              <sc-for list="{{ player.factRows }}" as="f" hint-placeholder-count="3">
+                <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #363c43;font:500 16px Barlow"><span style="color:#9aa1a9">{{ f.k }}</span><span style="font:800 22px 'Barlow Condensed'">{{ f.v }}</span></div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="background:linear-gradient(#23272c,#15181c);border:1px solid #363c43;border-radius:4px;padding:30px;display:flex;flex-direction:column;align-items:center;gap:14px">
+            <span style="display:block;position:relative;width:100%;max-width:280px;transform-origin:50% 0;animation:kfHang 4s ease-in-out infinite alternate;container-type:size;aspect-ratio:240/306"><svg viewBox="0 -46 240 306" style="display:block;width:100%;filter:drop-shadow(0 22px 20px rgba(0,0,0,.6));--body:{{ player.team.body }};--sleeve:{{ player.team.sleeve }};--trim:{{ player.team.stripe }}">
+              <path d="M120 -46 q-11 0 -11 10 q0 7 7 9 l4 2 v12" stroke="#c9ced4" stroke-width="3.5" fill="none" stroke-linecap="round"></path>
+              <path d="M120 -13 L40 52 L200 52 Z" fill="none" stroke="#b8bfc7" stroke-width="4" stroke-linejoin="round"></path>
+              <use href="#kf-back" width="240" height="260"></use>
+              
+              
+            </svg><span style="position:absolute;left:0;right:0;top:47.7%;transform:translateY(-100%);text-align:center;color:#fff;opacity:.92;font:700 6.21cqh 'Barlow Condensed';letter-spacing:.12em;line-height:1;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.4);text-transform:uppercase">{{ player.lastUpper }}</span><span style="position:absolute;left:0;right:0;top:83.7%;transform:translateY(-100%);text-align:center;color:#fff;opacity:.92;font:800 35.95cqh 'Barlow Condensed';line-height:1;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.4);text-transform:uppercase">{{ player.num }}</span></span>
+            <span style="font:700 12px Barlow;letter-spacing:.14em;text-transform:uppercase;color:#9aa1a9">Maillot dessiné · aucune photo</span>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- CAN -->
+    <sc-if value="{{ isCan }}" hint-placeholder-val="{{ false }}">
+      <div style="animation:kfRise .5s ease both">
+        <div style="font:700 13px Barlow;letter-spacing:.2em;text-transform:uppercase;color:#f2b705">Coupe d'Afrique des nations</div>
+        <h1 style="margin:6px 0 0;font:800 clamp(72px,12vw,160px)/0.85 'Barlow Condensed';text-transform:uppercase">CAN 2027</h1>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:24px">
+          <div style="padding:20px;background:#1d2126;border:1px solid #363c43;border-radius:4px"><div style="font:800 64px/1 'Barlow Condensed';color:#f2b705;animation:kfFlicker 6s infinite">{{ jDays }}</div><div style="font:500 12px Barlow;letter-spacing:.1em;text-transform:uppercase;color:#9aa1a9;margin-top:6px">Avant le coup d'envoi</div></div>
+          <div style="padding:20px;background:#1d2126;border:1px solid #363c43;border-radius:4px"><div style="font:800 28px/1.1 'Barlow Condensed';text-transform:uppercase">{{ hostsText }}</div><div style="font:500 12px Barlow;letter-spacing:.1em;text-transform:uppercase;color:#9aa1a9;margin-top:6px">Pays hôtes</div></div>
+          <div style="padding:20px;background:#1d2126;border:1px solid #363c43;border-radius:4px"><div style="font:800 28px/1.1 'Barlow Condensed';text-transform:uppercase">{{ can.startText }} → {{ can.end }}</div><div style="font:500 12px Barlow;letter-spacing:.1em;text-transform:uppercase;color:#9aa1a9;margin-top:6px">Dates</div></div>
+        </div>
+        <div style="margin-top:28px;background:#1b2a22;border:10px solid #3b2c1f;border-radius:4px;padding:28px 30px;color:#e9e4d2">
+          <div style="font:700 13px Barlow;letter-spacing:.2em;text-transform:uppercase;color:#b7c4b5">Palmarès · 35 éditions</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:18px">
+            <sc-for list="{{ ranking }}" as="r" hint-placeholder-count="8">
+              <div style="display:grid;grid-template-columns:24px 150px minmax(0,1fr) 30px;gap:12px;align-items:center;font:500 16px Barlow"><span style="color:#b7c4b5">{{ r.rank }}</span><span>{{ r.name }}</span><span style="height:10px;background:rgba(255,255,255,.08)"><span style="display:block;height:100%;width:{{ r.pct }};background:#f2b705;transform-origin:left;animation:kfGrow .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:{{ r.stag }}"></span></span><span style="font:800 22px 'Barlow Condensed';text-align:right">{{ r.titles }}</span></div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- TOP 10 -->
+    <sc-if value="{{ isTops }}" hint-placeholder-val="{{ false }}">
+      <div style="animation:kfRise .5s ease both">
+        <h1 style="margin:0;font:800 72px/0.9 'Barlow Condensed';text-transform:uppercase">Les Top 10</h1>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:28px">
+          <sc-for list="{{ tops }}" as="t" hint-placeholder-count="4">
+            <a href="#" style="background:#1d2126;border:1px solid #363c43;border-radius:4px;overflow:hidden;animation:kfRise .5s ease both;animation-delay:{{ t.stag }}" style-hover="border-color:#f2b705">
+              <img src="{{ t.img }}" alt="" style="display:block;width:100%;aspect-ratio:4/3;object-fit:cover">
+              <span style="display:block;padding:16px 18px"><span style="display:block;font:700 11px Barlow;letter-spacing:.14em;text-transform:uppercase;color:#f2b705">{{ t.kind }}</span><span style="display:block;margin-top:6px;font:800 24px/1.05 'Barlow Condensed';text-transform:uppercase">{{ t.title }}</span><span style="display:block;margin-top:8px;font:400 13px Barlow;color:#9aa1a9">N°1 · {{ t.first }}</span></span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- BOUTIQUE -->
+    <sc-if value="{{ isShop }}" hint-placeholder-val="{{ false }}">
+      <div style="animation:kfRise .5s ease both">
+        <h1 style="margin:0;font:800 72px/0.9 'Barlow Condensed';text-transform:uppercase">Boutique</h1>
+        <p style="margin:8px 0 0;font:400 15px Barlow;color:#9aa1a9">Maillots de supporter sélectionnés, liens partenaires.</p>
+        <div style="margin-top:36px;position:relative">
+          <div style="height:12px;border-radius:6px;background:linear-gradient(#b8bfc7,#6b7279 55%,#2c3137);box-shadow:0 6px 14px rgba(0,0,0,.6)"></div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:-6px">
+            <sc-for list="{{ shop }}" as="x" hint-placeholder-count="4">
+              <a href="#" style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 10px 16px;transform-origin:50% 0;animation:kfHang 3.6s ease-in-out infinite alternate;animation-delay:{{ x.team.delay }}" style-hover="animation-play-state:paused">
+                <svg viewBox="0 -46 240 306" style="width:100%;max-width:200px;filter:drop-shadow(0 22px 18px rgba(0,0,0,.6));--body:{{ x.team.body }};--sleeve:{{ x.team.sleeve }};--trim:{{ x.team.stripe }}">
+                  <path d="M120 -46 q-11 0 -11 10 q0 7 7 9 l4 2 v12" stroke="#c9ced4" stroke-width="3.5" fill="none" stroke-linecap="round"></path>
+                  <path d="M120 -13 L40 52 L200 52 Z" fill="none" stroke="#b8bfc7" stroke-width="4" stroke-linejoin="round"></path>
+                  <use href="#kf-front" width="240" height="260"></use>
+                </svg>
+                <span style="font:700 18px/1.1 'Barlow Condensed';text-transform:uppercase;text-align:center">{{ x.name }}</span>
+                <span style="padding:6px 12px;background:#f2b705;color:#0f1113;font:800 14px 'Barlow Condensed'">{{ x.price }}</span>
+              </a>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { page: "home", sel: null, player: null, lib: null, flipped: false };
+  async componentDidMount() { const lib = await import("./keurfoot-data.js"); this.setState({ lib }); this.t = setInterval(() => this.forceUpdate(), 60000); }
+  componentWillUnmount() { clearInterval(this.t); }
+  renderVals() {
+    if (!this.state.lib) return { isHome: true, flipDeg: "0deg" };
+    const v = this.state.lib.build(this);
+    const nums = { mane: 10, drogba: 11, etoo: 9, hakimi: 2, mahrez: 7, keita: 8 };
+    v.nav = v.nav.map((n) => ({ ...n, led: n.active ? "#f2b705" : "#3a4048" }));
+    v.sels = v.sels.map((s) => ({ ...s, nickUpper: s.nick.toUpperCase() }));
+    const team = (slug) => v.sels.find((s) => s.slug === slug);
+    v.players = v.players.map((p) => ({ ...p, team: team(p.sel), num: nums[p.slug], lastUpper: p.name.split(" ").pop().toUpperCase() }));
+    v.shop = v.shop.map((x) => ({ ...x, team: team(x.sel) }));
+    v.cur = team(v.cur.slug);
+    v.player = v.players.find((p) => p.slug === v.player.slug);
+    v.curPlayers = v.players.filter((p) => p.sel === v.cur.slug);
+    v.flipDeg = this.state.flipped ? "180deg" : "0deg";
+    v.sideLabel = this.state.flipped ? "dos" : "face";
+    v.flip = () => this.setState((s) => ({ flipped: !s.flipped }));
+    return v;
+  }
+}
+</script>
+</body>
+</html>

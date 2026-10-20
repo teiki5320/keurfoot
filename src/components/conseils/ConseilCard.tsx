@@ -8,7 +8,7 @@ export function ConseilCard({ conseil }: { conseil: Conseil }) {
   return (
     <Link
       href={`/conseils/${conseil.slug}`}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-surface transition hover:-translate-y-0.5 hover:border-gold"
+      className="group flex flex-col overflow-hidden rounded border border-line bg-surface transition hover:-translate-y-0.5 hover:border-gold"
     >
       {conseil.image ? (
         <img src={withBase(conseil.image)} alt="" loading="lazy" className="aspect-[3/2] w-full object-cover" />

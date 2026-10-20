@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Anton, Geist } from "next/font/google";
+import { Barlow, Barlow_Condensed } from "next/font/google";
 import { ADSENSE_CLIENT, NOINDEX, siteConfig } from "@/lib/config";
 import { DEFAULT_SHARE_IMAGES } from "@/lib/metadata";
 import "./globals.css";
 
-const geist = Geist({ variable: "--font-geist", subsets: ["latin"], display: "swap" });
-const anton = Anton({ variable: "--font-anton", subsets: ["latin"], weight: "400", display: "swap" });
+const barlow = Barlow({ variable: "--font-barlow", subsets: ["latin"], weight: ["400", "500", "600"], display: "swap" });
+const barlowCondensed = Barlow_Condensed({ variable: "--font-barlow-condensed", subsets: ["latin"], weight: ["500", "700", "800"], display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b0d0c",
+  themeColor: "#0f1113",
   colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
@@ -40,7 +40,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="fr" className={`${geist.variable} ${anton.variable} antialiased`} suppressHydrationWarning>
+    <html lang="fr" className={`${barlow.variable} ${barlowCondensed.variable} antialiased`} suppressHydrationWarning>
       {ADSENSE_CLIENT && (
         <head>
           {/* Code AdSense : charge les annonces et le bandeau de consentement de Google (réglé dans AdSense). */}

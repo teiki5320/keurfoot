@@ -19,9 +19,9 @@ export const NOINDEX = process.env.NEXT_PUBLIC_NOINDEX === "1";
 
 export const siteConfig = {
   name: process.env.NEXT_PUBLIC_SITE_NAME || "Keur Foot",
-  tagline: "Le football africain, de la CAN à la diaspora",
+  tagline: "Le football africain, de la CAN aux légendes",
   description:
-    "Le football africain pour la diaspora en France : sélections nationales, histoire de la CAN, grands joueurs africains, classements et équipement de supporter.",
+    "Le football africain pour tous les passionnés : sélections nationales, histoire de la CAN, grands joueurs africains, classements et équipement de supporter.",
   url: (process.env.NEXT_PUBLIC_SITE_URL || "https://keurfoot.com").replace(/\/$/, ""),
   locale: "fr_FR",
   contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "keurfoot@toakeur.com",

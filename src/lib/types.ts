@@ -86,6 +86,9 @@ export interface NextCan {
   hosts: string[];
   /** Dates officielles, sinon null (« à confirmer »). */
   dates: string | null;
+  /** Coup d'envoi et finale (AAAA-MM-JJ), s'ils sont officiels : compte à rebours. */
+  start: string | null;
+  end: string | null;
   text: string[];
   sources: Source[];
   checkedOn: string;

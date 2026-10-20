@@ -2,7 +2,7 @@
 
 ## Intention
 
-Keur Foot (keurfoot.com, domaine pas encore acheté) : le football africain pour la diaspora en France. Sélections nationales, CAN, grands joueurs africains, équipement de supporter. Monétisation : liens Amazon Partenaires (tag `keurfoot-21`, déjà créé) et Google AdSense (même éditeur que Keurbook).
+Keur Foot (keurfoot.com, domaine pas encore acheté) : le football africain pour tous les passionnés (et non plus « pour la diaspora en France », décision du 2026-10-20). Sélections nationales, CAN, grands joueurs africains, équipement de supporter. Monétisation : liens Amazon Partenaires (tag `keurfoot-21`, déjà créé) et Google AdSense (même éditeur que Keurbook).
 
 Modèle technique : le site Keurbook (`~/Dev/apps/Keurbook`, dépôt `teiki5320/keurbook`). On reprend sa stack, sa structure, son déploiement, sa gestion des liens Amazon, des cookies, des mentions légales et son pied de page « Un site TOA KEUR ». On ne reprend aucun contenu.
 
@@ -55,7 +55,7 @@ Modèle technique : le site Keurbook (`~/Dev/apps/Keurbook`, dépôt `teiki5320/
 
 ## Règles de contenu
 
-1. Tout en français, ton chaleureux et vivant, pour un supporter de la diaspora.
+1. Tout en français, ton chaleureux et vivant, pour tous les passionnés de football africain.
 2. **Rien d'inventé** : chaque chiffre (titres, sélections, buts, années, scores) vient d'au moins une source fiable (CAF, FIFA, RSSSF, Wikipédia, L'Équipe, fédérations), citée en bas de page. Une donnée non vérifiable n'est pas publiée.
 3. Statistiques d'un joueur en activité : toujours datées (« au 1er octobre 2026 »).
 4. Les classements « meilleurs » affichent leurs critères et se présentent comme « notre sélection » ; les classements chiffrés (buteurs, titres) sont des faits.

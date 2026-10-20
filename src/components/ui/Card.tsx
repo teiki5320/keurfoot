@@ -19,7 +19,7 @@ export function Card({
   return (
     <Link
       href={href}
-      className={`group flex flex-col overflow-hidden rounded-2xl border border-line bg-surface transition hover:-translate-y-0.5 hover:border-gold ${className}`}
+      className={`group flex flex-col overflow-hidden rounded border border-line bg-surface transition hover:-translate-y-0.5 hover:border-gold ${className}`}
     >
       {visual && <div className="relative flex aspect-[4/3] items-center justify-center bg-surface-2">{visual}</div>}
       <div className="flex flex-1 flex-col p-4">

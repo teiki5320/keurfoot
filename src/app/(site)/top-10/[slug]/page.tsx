@@ -69,7 +69,7 @@ export default async function TopPage({ params }: PageProps<"/top-10/[slug]">) {
               <p key={p.slice(0, 24)}>{p}</p>
             ))}
           </div>
-          <p className="mt-2 rounded-xl border border-line bg-surface p-4 text-sm text-chalk/80">
+          <p className="mt-2 rounded border border-line bg-surface p-4 text-sm text-chalk/80">
             <strong className="text-gold">{top.kind === "classement" ? "Méthode : " : "Nos critères : "}</strong>
             {top.criteria}
             {top.statsAsOf && ` Sélections et buts en équipe nationale au ${formatDate(top.statsAsOf)}.`}
@@ -83,7 +83,7 @@ export default async function TopPage({ params }: PageProps<"/top-10/[slug]">) {
               return (
                 <li key={it.name}>
                   {i === 5 && <AdSlot placement="top" />}
-                  <article className="flex gap-4 rounded-2xl border border-line bg-surface p-4 sm:p-5">
+                  <article className="flex gap-4 rounded border border-line bg-surface p-4 sm:p-5">
                     <p aria-label={`${it.rank}e place`} className="w-12 shrink-0 font-display text-5xl leading-none text-gold sm:w-16 sm:text-6xl">
                       {it.rank}
                     </p>

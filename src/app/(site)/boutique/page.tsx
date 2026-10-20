@@ -4,7 +4,9 @@ import { AmazonButton } from "@/components/ui/AmazonButton";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { PageHero } from "@/components/ui/PageHero";
 import { AMAZON_DISCLOSURE, amazonUrl } from "@/lib/amazon";
+import { SELECTIONS } from "@/lib/data/selections";
 import { SHOP } from "@/lib/data/shop";
+import { Rail, RailSelection } from "@/components/ui/Vestiaire";
 import { illustration } from "@/lib/illustrations";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -41,19 +43,31 @@ export default function ShopPage() {
       </PageHero>
 
       <div className="container-page mt-4">
-        <p className="rounded-xl border border-line bg-surface px-4 py-3 text-xs text-muted">
+        <p className="rounded border border-line bg-surface px-4 py-3 text-xs text-muted">
           {AMAZON_DISCLOSURE} Les liens ouvrent Amazon.fr : prix, disponibilité et tailles sont ceux affichés par le vendeur.
         </p>
 
-        {SHOP.map((c) => (
+        <div className="mt-10">
+          <Rail label="Penderie des maillots">
+            {SELECTIONS.map((sel, i) => (
+              <div key={sel.slug} className="flex flex-col items-center">
+                <RailSelection s={sel} i={i} caption={sel.jersey.label} />
+                <AmazonButton href={amazonUrl(sel.jersey)} label="Amazon" className="-mt-1 mb-3 px-4 text-sm" />
+              </div>
+            ))}
+          </Rail>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <Link href="/boutique/maillots" className="tag">Tous les maillots des sélections →</Link>
+            <Link href={GUIDES.maillots.href} className="tag">{GUIDES.maillots.label}</Link>
+          </div>
+        </div>
+
+        {SHOP.filter((c) => c.slug !== "maillots").map((c) => (
           <section key={c.slug} id={c.slug} aria-labelledby={`titre-${c.slug}`} className="mt-14 scroll-mt-28">
             <h2 id={`titre-${c.slug}`} className="section-title">{c.name}</h2>
             <p className="mt-3 max-w-2xl text-chalk/85">{c.intro}</p>
-            {(c.slug === "maillots" || GUIDES[c.slug]) && (
+            {GUIDES[c.slug] && (
               <div className="mt-3 flex flex-wrap gap-2">
-                {c.slug === "maillots" && (
-                  <Link href="/boutique/maillots" className="tag">Tous les maillots des sélections →</Link>
-                )}
                 {GUIDES[c.slug] && (
                   <Link href={GUIDES[c.slug].href} className="tag">{GUIDES[c.slug].label}</Link>
                 )}
@@ -61,7 +75,7 @@ export default function ShopPage() {
             )}
             <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {c.products.map((p) => (
-                <li key={p.name} className="flex flex-col rounded-2xl border border-line bg-surface p-4">
+                <li key={p.name} className="flex flex-col rounded border border-line bg-surface p-4">
                   <h3 className="font-display text-xl tracking-wide uppercase">{p.name}</h3>
                   <p className="mt-1.5 flex-1 text-sm text-muted">{p.note}</p>
                   <AmazonButton href={amazonUrl(p)} label="Voir sur Amazon" className="mt-4 self-start" />

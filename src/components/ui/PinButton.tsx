@@ -21,6 +21,6 @@ export function PinButton({ slug, path, description }: { slug: string; path: str
 export function PinPreview({ slug, alt }: { slug: string; alt: string }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
-    <img src={withBase(pinPath(slug))} alt={alt} width={1000} height={1500} loading="lazy" className="w-full rounded-2xl border border-line" />
+    <img src={withBase(pinPath(slug))} alt={alt} width={1000} height={1500} loading="lazy" className="w-full rounded border border-line" />
   );
 }

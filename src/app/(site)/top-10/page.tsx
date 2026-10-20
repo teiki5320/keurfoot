@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
-import { Card } from "@/components/ui/Card";
+import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
 import { siteConfig, withBase } from "@/lib/config";
 import { TOPS } from "@/lib/data/tops";
@@ -29,22 +29,26 @@ export default function TopsPage() {
         title="Top 10"
         intro="Les classements du football africain : légendes de chaque pays, buteurs de la CAN, nations les plus titrées. Chaque classement cite ses sources et ses critères."
       />
-      <div className="container-page mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-        {TOPS.map((t) => {
+      <div className="container-page mt-8 grid gap-3.5 sm:grid-cols-[repeat(auto-fill,minmax(260px,1fr))]">
+        {TOPS.map((t, i) => {
           const img = illustration(`top-${t.slug}`);
           return (
-            <Card
+            <Link
               key={t.slug}
               href={`/top-10/${t.slug}`}
-              eyebrow={t.kind === "classement" ? "Classement chiffré" : "Notre sélection"}
-              title={t.pinTitle}
-              visual={
-                img ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={withBase(img)} alt="" loading="lazy" className="absolute inset-0 size-full object-cover" />
-                ) : undefined
-              }
-            />
+              className="kf-rise panel overflow-hidden transition-colors hover:border-gold"
+              style={{ animationDelay: `${i * 0.06}s` }}
+            >
+              {img && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={withBase(img)} alt="" loading="lazy" className="block aspect-[4/3] w-full object-cover" />
+              )}
+              <span className="block px-4 py-4">
+                <span className="eyebrow block text-[11px]">{t.kind === "classement" ? "Classement chiffré" : "Notre sélection"}</span>
+                <span className="mt-1.5 block font-display text-2xl leading-[1.05] uppercase">{t.title}</span>
+                <span className="mt-2 block text-[13px] text-muted">N°1 · {t.items[0].name}</span>
+              </span>
+            </Link>
           );
         })}
       </div>
