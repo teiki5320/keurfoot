@@ -1,8 +1,10 @@
 # Keur Foot — cahier des charges (validé le 2026-10-17)
 
+> **Mise à jour du 21 octobre 2026** : document d'origine conservé tel quel, sauf l'identifiant Amazon. Le site n'est plus publié sur GitHub Pages ni sur Cloudflare Pages : le domaine keurfoot.com a été acheté et le site y est en ligne depuis le 20 octobre 2026, sur un Worker de fichiers statiques Cloudflare (`wrangler.jsonc`, voir le README). L'identifiant Amazon est désormais `keurfootfr-21` (nouveau compte Amazon Partenaires du 18 octobre 2026, l'ancien `keurfoot-21` est fermé).
+
 ## Intention
 
-Keur Foot (keurfoot.com, domaine pas encore acheté) : le football africain pour tous les passionnés (et non plus « pour la diaspora en France », décision du 2026-10-20). Sélections nationales, CAN, grands joueurs africains, équipement de supporter. Monétisation : liens Amazon Partenaires (tag `keurfoot-21`, déjà créé) et Google AdSense (même éditeur que Keurbook).
+Keur Foot (keurfoot.com, domaine pas encore acheté) : le football africain pour tous les passionnés (et non plus « pour la diaspora en France », décision du 2026-10-20). Sélections nationales, CAN, grands joueurs africains, équipement de supporter. Monétisation : liens Amazon Partenaires (tag `keurfootfr-21`) et Google AdSense (même éditeur que Keurbook).
 
 Modèle technique : le site Keurbook (`~/Dev/apps/Keurbook`, dépôt `teiki5320/keurbook`). On reprend sa stack, sa structure, son déploiement, sa gestion des liens Amazon, des cookies, des mentions légales et son pied de page « Un site TOA KEUR ». On ne reprend aucun contenu.
 
