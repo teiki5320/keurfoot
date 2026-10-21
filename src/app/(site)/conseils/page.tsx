@@ -8,8 +8,8 @@ import { itemListLd, jsonLd } from "@/lib/json-ld";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Conseils : nos guides d'achat pour supporters",
-  description: "Tailles de maillot, buts pliables, ballons, crampons : nos guides pratiques pour bien choisir l'équipement du supporter et du petit joueur.",
+  title: "Conseils foot : guides d'achat pour supporters",
+  description: "Taille de maillot, crampons, ballon selon l'âge, but pliable, cadeau : nos guides pratiques pour bien choisir l'équipement du supporter et du petit joueur.",
   path: "/conseils",
 });
 
@@ -27,7 +27,7 @@ export default function ConseilsPage() {
       <PageHero
         eyebrow="Guides d'achat"
         title="Conseils"
-        intro="Des réponses claires aux questions qu'on se pose avant d'acheter : la bonne taille de maillot, le bon ballon, le bon but pour le jardin."
+        intro="Des réponses claires aux questions qu'on se pose avant d'acheter ou de jouer : la bonne taille de maillot et son lavage, les crampons selon le terrain, le ballon adapté à l'âge de l'enfant, le but pliable pour le jardin ou le cadeau pour un fan de football africain. Chaque guide répond à une question précise, avec nos repères et des idées de la boutique."
       />
       <div className="container-page mt-10">
         <ConseilGrid conseils={conseils} />
