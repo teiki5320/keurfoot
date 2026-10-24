@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: PageProps<"/joueur/[slug]">):
   if (!p) return {};
   return pageMetadata({
     title: `${p.name} : carrière, palmarès et statistiques`,
-    description: clip(p.intro),
+    description: p.seoDescription ?? clip(p.intro),
     path: `/joueur/${p.slug}`,
     type: "profile",
   });
@@ -43,6 +43,7 @@ export default async function PlayerPage({ params }: PageProps<"/joueur/[slug]">
     birthDate: p.birthDate,
     nationality: country.name,
     jobTitle: "Footballeur",
+    description: p.intro,
     url: `${siteConfig.url}/joueur/${p.slug}`,
   };
 

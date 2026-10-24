@@ -52,6 +52,8 @@ export interface Player {
   /** Couleurs du drapeau, seulement si sa sélection n'a pas (encore) de fiche sur le site. */
   colors?: string[];
   intro: string;
+  /** Description pour Google (155 caractères au plus), sinon l'introduction coupée. */
+  seoDescription?: string;
   /** 3 à 6 paragraphes écrits par nous. */
   bio: string[];
   clubs: string[];

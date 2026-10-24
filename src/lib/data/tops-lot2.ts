@@ -42,12 +42,13 @@ export const TOPS_LOT2: TopList[] = [
   },
   {
     slug: "meilleurs-joueurs-marocains",
-    title: "Les 10 meilleurs joueurs marocains de l'histoire",
+    title: "Les 10 meilleurs joueurs du Maroc de l'histoire",
     pinTitle: "Les 10 meilleurs joueurs marocains de l'histoire",
-    description: "Ahmed Faras, Achraf Hakimi, Badou Zaki, Noureddine Naybet… notre classement des plus grands joueurs de l'histoire des Lions de l'Atlas.",
+    description: "Qui est le meilleur joueur du Maroc ? Ahmed Faras, Achraf Hakimi, Badou Zaki, Noureddine Naybet… notre top 10 des plus grands Lions de l'Atlas.",
     intro: [
       "Du premier titre continental de 1976 à la demi-finale historique de 2022, voici notre classement des plus grands Lions de l'Atlas.",
       "Ce classement est un choix de la rédaction, fondé sur des faits vérifiés et recoupé avec le classement d'Afrik-Foot (2025) et l'équipe historique publiée par Hespress.",
+      "Qui est le meilleur joueur du Maroc ? Pour notre rédaction, c'est Ahmed Faras : Ballon d'or africain 1975, champion d'Afrique 1976 et meilleur buteur de l'histoire des Lions de l'Atlas, avec 36 buts. Parmi les joueurs d'aujourd'hui, Achraf Hakimi, élu joueur africain de l'année par la CAF en 2025, se classe deuxième.",
     ],
     kind: "selection",
     criteria:

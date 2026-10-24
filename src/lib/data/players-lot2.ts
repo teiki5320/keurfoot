@@ -60,6 +60,8 @@ export const PLAYERS_LOT2: Player[] = [
     shirtNumber: 19,
     intro:
       "Élu joueur africain de l'année par la CAF quatre années de suite, de 2011 à 2014, Yaya Touré a porté la Côte d'Ivoire jusqu'au titre continental de 2015.",
+    seoDescription:
+      "Yaya Touré, milieu de la Côte d'Ivoire : champion d'Afrique 2015, 4 fois joueur africain de l'année CAF, Barcelone, Manchester City, clubs et statistiques.",
     bio: [
       "Né le 13 mai 1983 à Bouaké, Yaya Touré débute en Europe à Beveren, en Belgique, avant de passer par le Metalurh Donetsk, l'Olympiakos et l'AS Monaco. En 2007, il rejoint le FC Barcelone, avec lequel il gagne la Ligue des champions 2009 et deux championnats d'Espagne.",
       "Arrivé à Manchester City en 2010, il devient le moteur de l'équipe : FA Cup 2011, puis trois titres de champion d'Angleterre, en 2012, 2014 et 2018. Milieu puissant et buteur, il est élu joueur africain de l'année par la CAF quatre années de suite, de 2011 à 2014.",
@@ -244,6 +246,8 @@ export const PLAYERS_LOT2: Player[] = [
     shirtNumber: 11,
     intro:
       "Deux fois joueur africain de l'année pour la CAF, en 2001 et 2002, El Hadji Diouf a été la star du Sénégal finaliste de la CAN et quart de finaliste de la Coupe du monde en 2002.",
+    seoDescription:
+      "El Hadji Diouf, star du Sénégal de 2002 : 2 fois joueur africain de l'année CAF, Lens, Liverpool, Bolton, palmarès, clubs et 24 buts en sélection.",
     bio: [
       "Né le 15 janvier 1981 à Dakar, El Hadji Diouf commence sa carrière en France, à Sochaux, Rennes puis Lens. Il honore sa première sélection le 23 avril 2000 contre le Bénin et s'impose vite comme le leader offensif des Lions de la Teranga.",
       "Élu joueur africain de l'année par la CAF en 2001 puis en 2002, il mène le Sénégal jusqu'en finale de la CAN 2002, perdue aux tirs au but contre le Cameroun. Quelques mois plus tard, il est l'homme du match de la victoire contre la France (1-0) en ouverture de la Coupe du monde, que le Sénégal termine en quart de finale.",

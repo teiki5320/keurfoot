@@ -35,10 +35,11 @@ export default function HomePage() {
   const hosts = NEXT_CAN.hosts.map((h) => getCountry(h)?.name).join(", ");
   const can = illustration("can");
   const website = { "@context": "https://schema.org", "@type": "WebSite", name: siteConfig.name, url: siteConfig.url, inLanguage: "fr", description: siteConfig.description };
+  const organization = { "@context": "https://schema.org", "@type": "Organization", name: siteConfig.name, url: siteConfig.url, logo: `${siteConfig.url}/brand/keurfoot-logo.webp` };
 
   return (
     <div className="container-page kf-rise pt-8 lg:pt-10">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(website) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd([website, organization]) }} />
 
       <div className="flex flex-wrap items-end justify-between gap-6">
         <h1 className="max-w-[760px] font-display text-[46px] leading-[0.9] tracking-[-0.01em] text-pretty uppercase sm:text-7xl lg:text-8xl">

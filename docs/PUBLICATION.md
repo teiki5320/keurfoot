@@ -60,7 +60,8 @@
   et cite le sitemap.
 - **Google Search Console** : propriété, envoi du sitemap et pages indexées à vérifier dans la
   console.
-- **IndexNow** : non branché.
+- **IndexNow** : clé publique servie à la racine du site et script `scripts/indexnow.mjs` (24 octobre 2026),
+  lancé à la main après une publication ; journal du référencement dans `docs/referencement.md`.
 - **Mesure d'audience** : aucune balise Cloudflare Web Analytics constatée sur le site le
   21 octobre 2026, bien que la politique de sécurité l'autorise.
 - **Publicité** : Google AdSense en place (script chargé sur les pages,

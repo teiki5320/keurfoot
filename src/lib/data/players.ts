@@ -27,6 +27,8 @@ const PLAYERS_LOT1: Player[] = [
     shirtNumber: 11,
     intro:
       "Meilleur buteur de l'histoire de la Côte d'Ivoire (65 buts), deux fois joueur africain de l'année pour la CAF, Didier Drogba a porté les Éléphants jusqu'à leur première Coupe du monde, en 2006.",
+    seoDescription:
+      "Didier Drogba, meilleur buteur de la Côte d'Ivoire (65 buts) : Marseille, Chelsea, Ligue des champions 2012, palmarès, clubs et statistiques en sélection.",
     bio: [
       "Né le 11 mars 1978 à Abidjan, Didier Drogba se révèle en France : au Mans de 1998 à 2002, puis à Guingamp et à l'Olympique de Marseille, où il est élu meilleur joueur de Ligue 1 en 2004 et atteint la finale de la Coupe UEFA. Il rejoint Chelsea à l'été 2004.",
       "À Chelsea, il remporte quatre championnats d'Angleterre, quatre FA Cup et deux Souliers d'or de Premier League. Le 19 mai 2012, en finale de la Ligue des champions contre le Bayern Munich, il égalise en fin de match puis transforme le tir au but de la victoire. Il est le premier Africain à marquer 100 buts en Premier League.",

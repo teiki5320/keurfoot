@@ -46,9 +46,22 @@ export default async function TopPage({ params }: PageProps<"/top-10/[slug]">) {
     itemListElement: top.items.map((it, i) => ({ "@type": "ListItem", position: i + 1, name: it.name })),
   };
 
+  const article = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: top.title,
+    description: top.description,
+    dateModified: top.updatedAt,
+    inLanguage: "fr",
+    image: `${siteConfig.url}${pinPath(top.slug)}`,
+    author: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
+    url: `${siteConfig.url}${path}`,
+    publisher: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url, logo: `${siteConfig.url}/brand/keurfoot-logo.webp` },
+  };
+
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(list) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd([article, list]) }} />
       <Breadcrumb
         items={[
           { name: "Top 10", href: "/top-10" },

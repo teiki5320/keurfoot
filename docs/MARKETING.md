@@ -31,8 +31,9 @@ publications réelles, ou routine qui publie).
 - ✅ Site en ligne sur `keurfoot.com` depuis le 20 octobre 2026.
 - ✅ Contenu régulier : articles Conseils publiés automatiquement le lundi, le mercredi et le
   vendredi (7 publiés et 14 programmés jusqu'au 25 novembre 2026, au 24 octobre 2026).
-- ⬜ Référencement naturel : sitemap et `robots.txt` en ligne ; Search Console et indexation à
-  vérifier dans la console ; pas de signalement IndexNow.
+- ⬜ Référencement naturel : sitemap et `robots.txt` en ligne ; Google montre déjà des pages joueurs
+  (Search Console relevée par le Studio, 24 septembre – 22 octobre 2026) ; signalement IndexNow
+  (Bing…) par `scripts/indexnow.mjs` depuis le 24 octobre 2026 ; suivi dans `docs/referencement.md`.
 - ⬜ Pinterest : 9 épingles et leurs textes prêts (docs/pinterest-epingles.md), mais aucun compte
   Keur Foot branché au Studio et aucune publication constatée.
 - ⬜ TikTok, YouTube, Instagram : aucun compte Keur Foot.
