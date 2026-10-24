@@ -1,6 +1,6 @@
 # PUBLICATION — état de la mise en ligne
 
-> Mis à jour le 21 octobre 2026, d'après le site en ligne et les exécutions GitHub Actions.
+> Mis à jour le 24 octobre 2026, d'après le site en ligne et les exécutions GitHub Actions.
 >
 > Aucun secret ici — uniquement des références.
 
@@ -8,7 +8,7 @@
 
 - **Production** : en ligne sur keurfoot.com depuis le 20 octobre 2026
 - **Domaine & SSL** : Cloudflare, certificat valide jusqu'au 18 janvier 2027, renouvelé seul
-- **Visibilité** : sitemap de 96 adresses ; indexation Google à vérifier dans la console
+- **Visibilité** : sitemap de 97 adresses ; indexation Google à vérifier dans la console
 - **Contact** : keurfoot@toakeur.com
 
 ## Boutiques
@@ -35,12 +35,12 @@
 
 | | |
 |---|---|
-| Adresse | **En ligne** sur https://keurfoot.com (vérifié le 21 octobre 2026 : réponse 200) |
+| Adresse | **En ligne** sur https://keurfoot.com (vérifié le 24 octobre 2026 : réponse 200) |
 | Hébergeur | Cloudflare, Worker de fichiers statiques `keurfoot` (`wrangler.jsonc`), workflow `deploy.yml` |
-| Dernière publication | 21 octobre 2026, publication réussie |
+| Dernière publication | 24 octobre 2026, publication réussie |
 | Mise en ligne | 20 octobre 2026 (version provisoire sur GitHub Pages depuis le 17 octobre) |
 | Dépôt | https://github.com/teiki5320/keurfoot |
-| Taille publiée | 96 adresses dans le sitemap |
+| Taille publiée | 97 adresses dans le sitemap (24 octobre 2026) |
 | Contact affiché | `keurfoot@toakeur.com` |
 | Maintenance | désactivée (`content/maintenance.json`) |
 
@@ -56,7 +56,7 @@
 
 ## Visibilité
 
-- **Sitemap** : https://keurfoot.com/sitemap.xml répond (96 adresses) ; `robots.txt` autorise tout
+- **Sitemap** : https://keurfoot.com/sitemap.xml répond (97 adresses, dont 7 articles Conseils, le 24 octobre 2026) ; `robots.txt` autorise tout
   et cite le sitemap.
 - **Google Search Console** : propriété, envoi du sitemap et pages indexées à vérifier dans la
   console.

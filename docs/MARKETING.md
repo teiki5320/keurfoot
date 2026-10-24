@@ -1,6 +1,6 @@
 # MARKETING — plan marketing & rémunération
 
-Mis à jour le 21 octobre 2026. Un canal n'est coché que s'il est prouvé (compte branché et
+Mis à jour le 24 octobre 2026. Un canal n'est coché que s'il est prouvé (compte branché et
 publications réelles, ou routine qui publie).
 
 ## Positionnement
@@ -43,7 +43,7 @@ publications réelles, ou routine qui publie).
 
 ## Mesures
 
-- **Adresses dans le sitemap** : 96 (21 octobre 2026)
+- **Adresses dans le sitemap** : 97 (24 octobre 2026)
 - **Pages indexées par Google** : à vérifier dans la console
 - **Articles Conseils** : 7 publiés, 14 programmés jusqu'au 25 novembre 2026 (24 octobre 2026)
 - **Liens Amazon directs** : aucun, tous les liens ouvrent une recherche Amazon
@@ -54,7 +54,7 @@ publications réelles, ou routine qui publie).
 ## Les 3 priorités
 
 - Faire entrer keurfoot.com dans Google : vérifier la propriété dans la Search Console, y envoyer
-  le sitemap et suivre l'indexation des 96 pages.
+  le sitemap et suivre l'indexation des 97 pages.
 - Ouvrir un compte Pinterest Keur Foot, le brancher au Planning du Studio et publier les
   9 épingles déjà prêtes.
 - Vérifier que keurfoot.com est déclaré dans le nouveau compte Amazon Partenaires, puis brancher
