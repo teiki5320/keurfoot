@@ -31,7 +31,7 @@ publications réelles, ou routine qui publie).
 
 - ✅ Site en ligne sur `keurfoot.com` depuis le 20 octobre 2026.
 - ✅ Contenu régulier : articles Conseils publiés automatiquement le lundi, le mercredi et le
-  vendredi (8 publiés et 13 programmés jusqu'au 25 novembre 2026, au 26 octobre 2026).
+  vendredi (8 publiés et 25 programmés jusqu'au 23 décembre 2026, au 27 octobre 2026).
 - ✅ Référencement naturel : propriété keurfoot.com vérifiée dans la Search Console, sitemap envoyé
   le 20 octobre 2026 et relu par Google le 25 octobre ; 95 pages sur 97 indexées (relevé du Studio,
   25 octobre 2026) ; Google montre déjà des pages joueurs ; signalement IndexNow
@@ -50,7 +50,7 @@ publications réelles, ou routine qui publie).
 
 - **Adresses dans le sitemap** : 99 (27 octobre 2026, avec la page Actus)
 - **Pages indexées par Google** : 95 sur 97 (relevé du Studio, 25 octobre 2026)
-- **Articles Conseils** : 8 publiés, 13 programmés jusqu'au 25 novembre 2026 (26 octobre 2026)
+- **Articles Conseils** : 8 publiés, 25 programmés jusqu'au 23 décembre 2026 (27 octobre 2026)
 - **Liens Amazon directs** : aucun, tous les liens ouvrent une recherche Amazon
 - **Visites** : à instrumenter
 - **Clics et revenus Amazon** : à vérifier dans la console
