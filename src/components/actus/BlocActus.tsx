@@ -106,8 +106,9 @@ export function BlocActus({ titre, limite, pays, lienTout = false, avecDate = fa
       ) : (
         <div className="grid gap-4">
           <ActuBandeau actu={une} prioritaire={prioritaire} horizontal />
+          {/* Vignettes sur deux colonnes ; un nombre impair laisse la dernière seule : elle prend toute la ligne. */}
           {suite.length > 0 && (
-            <div className="grid gap-3 md:grid-cols-2">
+            <div className="grid gap-3 md:grid-cols-2 md:[&>:last-child:nth-child(odd)]:col-span-2">
               {suite.map((a) => (
                 <ActuVignette key={a.id} actu={a} />
               ))}
