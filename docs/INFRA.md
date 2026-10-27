@@ -60,7 +60,7 @@ uniquement des noms de variables et de consoles.
   décrit dans `wrangler.jsonc` et publié par `npx wrangler deploy` depuis `deploy.yml`. Pas
   d'adresse technique `workers.dev` ni d'aperçus publics : seul keurfoot.com sert le site.
 - **En-têtes** : `public/_headers` (politique de sécurité limitée au site lui-même, à Google AdSense,
-  à Cloudflare Web Analytics et, depuis le 27 octobre 2026, à `https://teiki5320.github.io` pour le
+  à Cloudflare Web Analytics et, depuis le 27 octobre 2026, à `teiki5320.github.io` pour le
   fichier et les images des actus (connect-src et img-src seulement) ; HSTS, cache des images).
 - **Redirections** : `public/_redirects`.
 - **Ancienne adresse** : https://teiki5320.github.io/keurfoot/ (version provisoire du 17 au
@@ -74,10 +74,11 @@ uniquement des noms de variables et de consoles.
   (4 actus), la page `/actus` (20 actus) et chaque fiche sélection (3 actus du pays, bloc absent
   s'il n'y en a aucune).
 - **Service** : une tâche Claude prépare le fichier 2 fois par jour (12 h et 19 h) dans le dépôt
-  public `teiki5320/veille`, publié par GitHub Pages :
+  public `teiki5320/veille` ; le site lit ce fichier depuis `teiki5320.github.io` (pages GitHub
+  du dépôt de la veille, pas celles du site) :
   https://teiki5320.github.io/veille/actus/keurfoot.json (schéma v3 :
-  https://teiki5320.github.io/veille/schema/actus-schema-v3.json). Images copiées sur le même
-  GitHub Pages (photos Wikimedia ou Openverse, ou carte générée « Illustration : Keur Foot »).
+  https://teiki5320.github.io/veille/schema/actus-schema-v3.json). Les images sont copiées au même
+  endroit (photos Wikimedia ou Openverse, ou carte générée « Illustration : Keur Foot »).
 - **Côté site** : `src/lib/veille.ts` et `src/components/actus/`. Le fichier est lu dans le
   navigateur du visiteur (délai 8 s, cache de 15 min dans la session) ; le site n'est pas
   reconstruit à chaque passage. En cas de panne, les blocs s'effacent sans casser la page. Google

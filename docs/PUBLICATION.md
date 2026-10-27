@@ -38,7 +38,7 @@
 | Adresse | **En ligne** sur https://keurfoot.com (vérifié le 26 octobre 2026 : réponse 200) |
 | Hébergeur | Cloudflare, Worker de fichiers statiques `keurfoot` (`wrangler.jsonc`), workflow `deploy.yml` |
 | Dernière publication | 27 octobre 2026, rubrique Actus (la précédente, programmée, le 26 octobre) |
-| Mise en ligne | 20 octobre 2026 (version provisoire sur GitHub Pages depuis le 17 octobre) |
+| Mise en ligne | 20 octobre 2026 (version provisoire sur GitHub Pages du 17 au 20 octobre, remplacée par Cloudflare) |
 | Dépôt | https://github.com/teiki5320/keurfoot |
 | Taille publiée | 99 adresses dans le sitemap (27 octobre 2026) |
 | Contact affiché | `keurfoot@toakeur.com` |
