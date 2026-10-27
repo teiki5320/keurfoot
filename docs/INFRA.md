@@ -15,7 +15,7 @@ uniquement des noms de variables et de consoles.
 ## Parcours
 
 - 🌐 **Web** : 🐙 GitHub — main · publication au vert [ok] → ⚙️ GitHub Actions — lint, types, tests, build [ok] → ☁️ Cloudflare Workers — Worker keurfoot [ok] → 🌍 keurfoot.com — en ligne, réponse 200 [ok]
-- 📝 **Contenu** : ✍️ Conseils — 8 publiés, 25 programmés jusqu'au 23 décembre 2026 [ok] → ⚙️ GitHub Actions — publie lundi, mercredi, vendredi [ok] → 🔍 Google — 95 sur 97 indexées au 25 octobre [ok]
+- 📝 **Contenu** : ✍️ Conseils — 8 publiés, 25 programmés jusqu'au 23 décembre 2026 [ok] → ⚙️ GitHub Actions — publie lundi, mercredi, vendredi [ok] → 🔍 Google — 97 sur 99 indexées au 27 octobre [ok]
 - 🛒 **Affiliation** : 🛍️ Boutique et fiches — boutons Amazon [ok] → 🛒 Amazon Partenaires (affiliation) — tag keurfootfr-21 [ok] → 🌐 Site déclaré chez Amazon — à vérifier dans la console [à faire] → 🔗 Liens directs — aucun ASIN, recherches seulement [pas encore]
 - 🗞️ **Actus** : 🤖 Tâche Claude — 12 h et 19 h [ok] → 🐙 Dépôt teiki5320/veille — actus/keurfoot.json [ok] → 📄 GitHub Pages — fichier et images [ok] → 🌍 keurfoot.com — accueil, /actus, fiches sélection [ok]
 - 📰 **Publicité** : 📰 AdSense (publicité web) — script et ads.txt en place [ok] → ✅ Examen du site — demandé le 20 octobre [à faire] → 🧱 Blocs d'annonces — aucun identifiant renseigné [pas encore]

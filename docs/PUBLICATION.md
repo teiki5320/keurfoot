@@ -8,7 +8,7 @@
 
 - **Production** : en ligne sur keurfoot.com depuis le 20 octobre 2026
 - **Domaine & SSL** : Cloudflare, certificat valide jusqu'au 18 janvier 2027, renouvelé seul
-- **Visibilité** : sitemap de 99 adresses (page Actus ajoutée le 27 octobre) ; 95 pages indexées par Google (relevé du 25 octobre)
+- **Visibilité** : sitemap de 99 adresses (page Actus ajoutée le 27 octobre) ; 97 pages indexées par Google (relevé du 27 octobre)
 - **Contact** : keurfoot@toakeur.com
 
 ## Boutiques
@@ -19,7 +19,7 @@
 | Hébergement | [ok] Worker de fichiers statiques Cloudflare « keurfoot » |
 | Domaine | [ok] keurfoot.com, www sert le même site |
 | SSL | [ok] Certificat Cloudflare, HSTS actif |
-| Indexation | [ok] Search Console : 95 pages sur 97 indexées (25 octobre) |
+| Indexation | [ok] Search Console : 97 pages sur 99 indexées (27 octobre) |
 | Mesure d'audience | [pas encore] Aucune balise constatée |
 
 ## Ce qui reste, dans l'ordre
@@ -59,8 +59,8 @@
 - **Sitemap** : https://keurfoot.com/sitemap.xml répond (99 adresses, dont 8 articles Conseils et la page Actus, le 27 octobre 2026) ; `robots.txt` autorise tout
   et cite le sitemap.
 - **Google Search Console** : propriété `keurfoot.com` vérifiée ; sitemap envoyé le 20 octobre 2026,
-  sans erreur, relu par Google le 25 octobre ; 95 pages sur 97 indexées, 1 explorée mais pas encore
-  indexée, 1 encore inconnue de Google (relevé du Studio, 25 octobre 2026).
+  sans erreur, relu par Google le 26 octobre ; 97 pages sur 99 indexées, 2 encore inconnues de
+  Google (relevé du Studio, 27 octobre 2026).
 - **IndexNow** : clé publique servie à la racine du site et script `scripts/indexnow.mjs` (24 octobre 2026),
   lancé à la main après une publication ; journal du référencement dans `docs/referencement.md`.
 - **Mesure d'audience** : aucune balise Cloudflare Web Analytics constatée sur le site le
