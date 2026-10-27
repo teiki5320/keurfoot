@@ -65,7 +65,7 @@ const PAGES = [
   "conseils/comment-choisir-ses-crampons-selon-le-terrain",
   "conseils/quel-cadeau-offrir-a-un-fan-de-football-africain",
 ];
-const ENTRIES = ["index", "selections", "joueurs", "top-10", "conseils", "mentions-legales", "confidentialite", "conditions"];
+const ENTRIES = ["index", "selections", "joueurs", "top-10", "conseils", "actus", "mentions-legales", "confidentialite", "conditions"];
 
 function htmlFiles(dir: string): string[] {
   return readdirSync(dir).flatMap((f) => {

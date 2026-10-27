@@ -24,7 +24,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   });
   return [
     { url: base, lastModified: day("2026-10-17"), changeFrequency: "weekly", priority: 1 },
-    ...["/selections", "/joueurs", "/can", "/can/prochaine-edition", "/top-10", "/boutique", "/boutique/maillots", "/conseils"].map((p) =>
+    ...["/selections", "/joueurs", "/can", "/can/prochaine-edition", "/top-10", "/boutique", "/boutique/maillots", "/conseils", "/actus"].map((p) =>
       page(p, "2026-10-17", 0.8, "weekly"),
     ),
     ...SELECTIONS.map((s) => page(`/selection/${s.slug}`, s.updatedAt, 0.8)),

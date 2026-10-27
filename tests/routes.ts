@@ -16,6 +16,7 @@ const STATIC = new Set([
   "/boutique",
   "/boutique/maillots",
   "/conseils",
+  "/actus",
   "/mentions-legales",
   "/confidentialite",
   "/conditions",

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { BlocActus } from "@/components/actus/BlocActus";
 import { AdSlot } from "@/components/ads/AdSlot";
 import { AmazonButton } from "@/components/ui/AmazonButton";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
@@ -15,6 +16,7 @@ import { SELECTIONS, getSelection } from "@/lib/data/selections";
 import { TOPS } from "@/lib/data/tops";
 import { illustration } from "@/lib/illustrations";
 import { clip, pageMetadata } from "@/lib/metadata";
+import { titreActusSelection } from "@/lib/veille";
 
 export function generateStaticParams() {
   return SELECTIONS.map((s) => ({ slug: s.slug }));
@@ -158,6 +160,9 @@ export default async function SelectionPage({ params }: PageProps<"/selection/[s
         </div>
 
         <SourcesList sources={s.sources} updatedAt={s.updatedAt} />
+
+        {/* Actus du pays, loin des annonces et des liens Amazon ; bloc absent s'il n'y en a aucune. */}
+        <BlocActus titre={titreActusSelection(s.nickname, country.of)} limite={3} pays={country.iso2} className="mt-14" />
       </div>
     </>
   );

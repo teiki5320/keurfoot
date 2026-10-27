@@ -1,6 +1,6 @@
 # MARKETING — plan marketing & rémunération
 
-Mis à jour le 26 octobre 2026. Un canal n'est coché que s'il est prouvé (compte branché et
+Mis à jour le 27 octobre 2026. Un canal n'est coché que s'il est prouvé (compte branché et
 publications réelles, ou routine qui publie).
 
 ## Positionnement
@@ -24,6 +24,7 @@ publications réelles, ou routine qui publie).
 
 - 🌍 **Toute l'Afrique** : les 54 sélections nationales ont leur fiche, classées par région, avec leur palmarès.
 - 🏆 **Top 10 et légendes** : 10 classements et 15 fiches joueurs, avec 9 épingles Pinterest déjà prêtes.
+- 🗞️ **Actus** : depuis le 27 octobre 2026, les actus du foot africain résumées en français 2 fois par jour, sur l'accueil, la page /actus et les fiches sélection, chacune avec le lien vers sa source.
 - 🎨 **Images maison** : illustrations originales sans logo ni visage, qui évitent tout souci de droits.
 
 ## Canaux
@@ -35,6 +36,9 @@ publications réelles, ou routine qui publie).
   le 20 octobre 2026 et relu par Google le 25 octobre ; 95 pages sur 97 indexées (relevé du Studio,
   25 octobre 2026) ; Google montre déjà des pages joueurs ; signalement IndexNow
   (Bing…) par `scripts/indexnow.mjs` depuis le 24 octobre 2026 ; suivi dans `docs/referencement.md`.
+- ✅ Rubrique Actus : page `/actus` (dans le menu) et blocs sur l'accueil et les fiches sélection
+  depuis le 27 octobre 2026, mis à jour automatiquement à 12 h et 19 h (pages non reconstruites ;
+  actus invisibles pour Google, c'est voulu).
 - ⬜ Pinterest : 9 épingles et leurs textes prêts (docs/pinterest-epingles.md), mais aucun compte
   Keur Foot branché au Studio et aucune publication constatée.
 - ⬜ TikTok, YouTube, Instagram : aucun compte Keur Foot.
@@ -44,7 +48,7 @@ publications réelles, ou routine qui publie).
 
 ## Mesures
 
-- **Adresses dans le sitemap** : 98 (26 octobre 2026)
+- **Adresses dans le sitemap** : 99 (27 octobre 2026, avec la page Actus)
 - **Pages indexées par Google** : 95 sur 97 (relevé du Studio, 25 octobre 2026)
 - **Articles Conseils** : 8 publiés, 13 programmés jusqu'au 25 novembre 2026 (26 octobre 2026)
 - **Liens Amazon directs** : aucun, tous les liens ouvrent une recherche Amazon

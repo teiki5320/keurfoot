@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BlocActus } from "@/components/actus/BlocActus";
 import { ConseilGrid } from "@/components/conseils/ConseilCard";
 import { CanCountdown } from "@/components/ui/CanCountdown";
 import { Rail, RailSelection, ScoreBoard } from "@/components/ui/Vestiaire";
@@ -61,6 +62,9 @@ export default function HomePage() {
         <Link href="/selections" className="tag mt-4">Les {SELECTIONS.length} sélections →</Link>
         {last.disputed && <p className="mt-3 text-xs text-muted">* Le titre de la CAN {last.year}, attribué au Maroc par la CAF, est contesté devant le Tribunal arbitral du sport.</p>}
       </div>
+
+      {/* Actus du foot africain, lues en direct depuis la veille (rien ne s'affiche si elles sont indisponibles). */}
+      <BlocActus titre="Actus" limite={4} lienTout prioritaire className="mt-14" />
 
       {/* Tableau d'ardoise et CAN 2027 */}
       <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
