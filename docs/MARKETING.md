@@ -15,7 +15,7 @@ publications réelles, ou routine qui publie).
 ## Rémunération par phases
 
 - [fait] **Aujourd'hui** : affiliation Amazon Partenaires (tag `keurfootfr-21`) sur la boutique et les fiches ; le site ne vend rien.
-- [en cours] **Examen AdSense** : demandé le 20 octobre ; avis de Google à vérifier dans la console.
+- [en cours] **Examen AdSense** : demandé le 20 octobre ; « En préparation » dans la console AdSense, ni validé ni refusé (vérifié le 27 octobre 2026).
 - **Blocs d'annonces** : créer les blocs AdSense et renseigner leurs identifiants pour afficher les 7 emplacements prévus.
 - **Liens Amazon directs** : remplacer les recherches par des fiches produits (ASIN vérifiés) sur les maillots les plus vus.
 - **Partenariats** : équipementiers ou boutiques de supporters, une fois l'audience mesurée.
@@ -60,7 +60,7 @@ publications réelles, ou routine qui publie).
 
 - Ouvrir un compte Pinterest Keur Foot, le brancher au Planning du Studio et publier les
   9 épingles déjà prêtes.
-- Vérifier que keurfoot.com est déclaré dans le compte Amazon Partenaires (`keurfootfr-21`), puis
+- Vérifier que keurfoot.com est déclaré dans le compte Amazon Partenaires (`keurfootfr-21`) — pas encore vérifié au 27 octobre 2026 —, puis
   brancher une mesure d'audience (Cloudflare Web Analytics) pour savoir quelles pages rapportent.
 - Activer « Always Use HTTPS » dans Cloudflare : http://keurfoot.com répond encore sans renvoyer
   vers https (constaté le 25 octobre 2026).

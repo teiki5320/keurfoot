@@ -29,7 +29,7 @@
 3. ✅ **Ancienne adresse redirigée** : GitHub Pages renvoie chaque visiteur vers keurfoot.com.
 4. ✅ **Search Console** : propriété keurfoot.com vérifiée et sitemap envoyé à Google le 20 octobre 2026.
 5. **Mesure d'audience** : activer Cloudflare Web Analytics, déjà permis par `public/_headers`.
-6. **Validation AdSense** : suivre l'examen demandé le 20 octobre, puis créer les blocs d'annonces.
+6. **Validation AdSense** : suivre l'examen demandé le 20 octobre (« En préparation » au 27 octobre 2026), puis créer les blocs d'annonces.
 
 ## Web · Production
 
@@ -66,5 +66,6 @@
 - **Mesure d'audience** : aucune balise Cloudflare Web Analytics constatée sur le site le
   21 octobre 2026, bien que la politique de sécurité l'autorise.
 - **Publicité** : Google AdSense en place (script chargé sur les pages,
-  `https://keurfoot.com/ads.txt` répond) ; examen du site demandé le 20 octobre 2026, aucun bloc
-  d'annonces renseigné.
+  `https://keurfoot.com/ads.txt` répond) ; examen du site demandé le 20 octobre 2026, « En préparation » dans la
+  console au 27 octobre 2026 ; la console y affiche encore `ads.txt` « Introuvable » alors que le
+  fichier répond (200) : elle ne l'a pas revérifié. Aucun bloc d'annonces renseigné.

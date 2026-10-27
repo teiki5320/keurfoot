@@ -16,9 +16,9 @@ uniquement des noms de variables et de consoles.
 
 - 🌐 **Web** : 🐙 GitHub — main · publication au vert [ok] → ⚙️ GitHub Actions — lint, types, tests, build [ok] → ☁️ Cloudflare Workers — Worker keurfoot [ok] → 🌍 keurfoot.com — en ligne, réponse 200 [ok]
 - 📝 **Contenu** : ✍️ Conseils — 8 publiés, 25 programmés jusqu'au 23 décembre 2026 [ok] → ⚙️ GitHub Actions — publie lundi, mercredi, vendredi [ok] → 🔍 Google — 97 sur 99 indexées au 27 octobre [ok]
-- 🛒 **Affiliation** : 🛍️ Boutique et fiches — boutons Amazon [ok] → 🛒 Amazon Partenaires (affiliation) — tag keurfootfr-21 [ok] → 🌐 Site déclaré chez Amazon — à vérifier dans la console [à faire] → 🔗 Liens directs — aucun ASIN, recherches seulement [pas encore]
+- 🛒 **Affiliation** : 🛍️ Boutique et fiches — boutons Amazon [ok] → 🛒 Amazon Partenaires (affiliation) — tag keurfootfr-21 [ok] → 🌐 Site déclaré chez Amazon — non revérifié au 27 octobre, à vérifier dans la console [à faire] → 🔗 Liens directs — aucun ASIN, recherches seulement [pas encore]
 - 🗞️ **Actus** : 🤖 Tâche Claude — 12 h et 19 h [ok] → 🐙 Dépôt teiki5320/veille — actus/keurfoot.json [ok] → 📄 GitHub Pages — fichier et images [ok] → 🌍 keurfoot.com — accueil, /actus, fiches sélection [ok]
-- 📰 **Publicité** : 📰 AdSense (publicité web) — script et ads.txt en place [ok] → ✅ Examen du site — demandé le 20 octobre [à faire] → 🧱 Blocs d'annonces — aucun identifiant renseigné [pas encore]
+- 📰 **Publicité** : 📰 AdSense (publicité web) — script et ads.txt en place [ok] → ✅ Examen du site — demandé le 20 octobre, « En préparation » au 27 octobre [à faire] → 🧱 Blocs d'annonces — aucun identifiant renseigné [pas encore]
 
 ## Vue d'ensemble
 
@@ -105,7 +105,7 @@ uniquement des noms de variables et de consoles.
   tous les liens ouvrent une recherche Amazon.
 - **Identifiant** : `keurfootfr-21` depuis le 20 octobre 2026 (nouveau compte Amazon Partenaires
   du 18 octobre 2026 ; l'ancien `keurfoot-21` est fermé).
-- **Site déclaré** : `keurfoot.com` parmi les sites du compte : à vérifier dans la console.
+- **Site déclaré** : `keurfoot.com` parmi les sites du compte : jamais confirmé (non revérifié le 27 octobre 2026), à vérifier dans la console.
 - **Console** : https://partenaires.amazon.fr
 
 ## AdSense (publicité web)
