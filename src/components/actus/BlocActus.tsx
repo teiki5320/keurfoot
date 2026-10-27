@@ -29,7 +29,7 @@ type Etat = { phase: "chargement" } | { phase: "pret"; actus: Actu[]; genereLe: 
 /** Squelette discret pendant le chargement. */
 function Squelette({ compacte }: { compacte: boolean }) {
   return (
-    <div aria-hidden className={`grid animate-pulse gap-4 ${compacte ? "lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)]" : ""}`}>
+    <div aria-hidden className={`grid animate-pulse gap-4 ${compacte ? "lg:grid-cols-[minmax(0,11fr)_minmax(0,9fr)]" : ""}`}>
       <div className="panel aspect-video w-full" />
       <div className="grid gap-3">
         {[0, 1].map((i) => (
@@ -78,11 +78,25 @@ export function BlocActus({ titre, limite, pays, lienTout = false, avecDate = fa
       {maj && <p className="mb-4 text-sm text-muted">Mis à jour le {maj}.</p>}
       {etat.phase === "chargement" ? (
         <Squelette compacte={compacte} />
-      ) : compacte ? (
-        <div className="grid items-start gap-4 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)]">
+      ) : compacte && suite.length === 1 ? (
+        // Deux actus seulement : sur grand écran, deux bandeaux côte à côte de même hauteur
+        // (une vignette seule, étirée à la hauteur du bandeau, aurait l'air vide).
+        <div className="grid gap-4 lg:grid-cols-2">
           <ActuBandeau actu={une} prioritaire={prioritaire} />
+          <div className="lg:hidden">
+            <ActuVignette actu={suite[0]} />
+          </div>
+          <div className="hidden lg:block">
+            <ActuBandeau actu={suite[0]} />
+          </div>
+        </div>
+      ) : compacte ? (
+        // Bandeau à gauche (55 %), vignettes à droite (45 %) : les deux colonnes finissent à la même hauteur.
+        // L'image du bandeau prend la hauteur restante, les vignettes se partagent la colonne à parts égales.
+        <div className={`grid gap-4 ${suite.length > 0 ? "lg:grid-cols-[minmax(0,11fr)_minmax(0,9fr)]" : ""}`}>
+          <ActuBandeau actu={une} prioritaire={prioritaire} colonne={suite.length > 0} />
           {suite.length > 0 && (
-            <div className="grid gap-3">
+            <div className="grid gap-3 lg:auto-rows-fr">
               {suite.map((a) => (
                 <ActuVignette key={a.id} actu={a} />
               ))}
