@@ -33,3 +33,14 @@ Affiche sportive sérigraphiée : aplats vifs, motifs wax en texture, fond nuit,
 2. Vérifier le coût (`openart_model_cost`), générer, télécharger la planche dans le scratchpad.
 3. `node scripts/decouper-planche.mjs planche.png 2 2 cle1 cle2 cle3 cle4` (ajouter `KEURFOOT_FORMAT=portrait` pour les fonds d'épingles 2:3).
 4. Regarder chaque image : aucune marge crème, aucun texte, aucun logo, aucun visage.
+
+## Photos libres et cartes des conseils (depuis le 27 octobre 2026)
+
+Les conseils qui n'ont pas d'illustration originale reçoivent une image selon les règles de la veille actus (Studio : `docs/veille/decisions-v1.md`, section « Images ») :
+
+1. **Wikimedia Commons**, puis **Openverse** en usage commercial (CC0, domaine public, CC BY, CC BY-SA), mots-clés en anglais. Auteur connu obligatoire. Jamais de photo de joueur, de logo ou d'écusson bien visible.
+2. Sinon, **carte générée** aux couleurs du site (ballon, catégorie du conseil, « Keur Foot · Conseils »).
+
+- Fichier : `public/illustrations/conseil-<slug>.webp`, WebP 1200 × 800 (3:2), servi par le site (aucun lien vers un serveur tiers).
+- Crédit et texte alt : `src/lib/data/conseils-images.ts`. Affiché sous l'image de l'article : « Photo : auteur · licence » (lien vers la page d'origine) ou « Illustration : Keur Foot ». Sans entrée dans ce fichier, l'image est une illustration originale (« Illustration originale Keur Foot. »).
+- On ne remplace pas une image existante ; jamais deux fois la même image sur le site (contrôlé par `tests/conseils.test.ts`, qui exige aussi une image pour chaque conseil).

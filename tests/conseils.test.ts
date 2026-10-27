@@ -4,10 +4,12 @@
  * Lancement : npm test
  */
 import assert from "node:assert/strict";
-import { readdirSync, readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, it } from "node:test";
 import { DESCRIPTION_MAX, DESCRIPTION_MIN, internalLinks, isPublished, parseConseil, splitAtMiddleSection, todayInParis, type Conseil } from "../src/lib/conseils/article";
+import { CONSEIL_IMAGES } from "../src/lib/data/conseils-images";
 import { getCategory } from "../src/lib/data/shop";
 import { validInternalPath } from "./routes";
 import { assertAmazon } from "./helpers";
@@ -72,5 +74,32 @@ describe("Emplacement d'annonce au milieu d'un article", () => {
   it("ne coupe pas un article de moins de 3 parties", () => {
     const html = "<p>a</p><h2>1</h2><p>b</p><h2>2</h2>";
     assert.deepEqual(splitAtMiddleSection(html), [html, ""]);
+  });
+});
+
+describe("Conseils : images et crédits", () => {
+  const imageDe = (slug: string) => join(root, "public", "illustrations", `conseil-${slug}.webp`);
+  for (const c of conseils) {
+    it(`« ${c.slug} » a une image`, () => assert.ok(existsSync(imageDe(c.slug)), `public/illustrations/conseil-${c.slug}.webp manquant`));
+  }
+  for (const [slug, credit] of Object.entries(CONSEIL_IMAGES)) {
+    it(`crédit de « ${slug} » complet`, () => {
+      assert.ok(bySlug.has(slug), "aucun article de ce nom");
+      assert.ok(existsSync(imageDe(slug)), "image absente");
+      assert.ok(credit.alt.trim().length >= 15, "texte alt trop court");
+      if (credit.type === "photo") {
+        assert.ok(credit.auteur.trim(), "auteur manquant");
+        assert.match(credit.licence, /^(CC0|CC BY|CC BY-SA|Domaine public|Public domain)/, "licence non libre");
+        assert.doesNotMatch(credit.licence, /NC|ND/, "licence non commerciale");
+        assert.match(credit.page, /^https:\/\//, "page d'origine manquante");
+      }
+    });
+  }
+  it("jamais deux fois la même photo", () => {
+    const pages = Object.values(CONSEIL_IMAGES).flatMap((c) => (c.type === "photo" ? [c.page] : []));
+    assert.equal(new Set(pages).size, pages.length);
+    const fichiers = conseils.map((c) => imageDe(c.slug)).filter((f) => existsSync(f));
+    const empreintes = fichiers.map((f) => createHash("sha1").update(readFileSync(f)).digest("hex"));
+    assert.equal(new Set(empreintes).size, empreintes.length, "deux articles ont le même fichier image");
   });
 });

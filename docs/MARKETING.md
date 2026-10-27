@@ -25,7 +25,7 @@ publications réelles, ou routine qui publie).
 - 🌍 **Toute l'Afrique** : les 54 sélections nationales ont leur fiche, classées par région, avec leur palmarès.
 - 🏆 **Top 10 et légendes** : 10 classements et 15 fiches joueurs, avec 9 épingles Pinterest déjà prêtes.
 - 🗞️ **Actus** : depuis le 27 octobre 2026, les actus du foot africain résumées en français 2 fois par jour, sur l'accueil, la page /actus et les fiches sélection, chacune avec le lien vers sa source.
-- 🎨 **Images maison** : illustrations originales sans logo ni visage, qui évitent tout souci de droits.
+- 🎨 **Images maison** : illustrations originales sans logo ni visage, qui évitent tout souci de droits ; depuis le 27 octobre 2026, les conseils sans illustration ont une photo libre créditée (Wikimedia, Openverse) ou une carte aux couleurs du site.
 
 ## Canaux
 

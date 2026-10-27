@@ -36,7 +36,9 @@ uniquement des noms de variables et de consoles.
   10 Top 10, 2 pages CAN, 8 articles Conseils publiés, boutique, page Actus, pages de liste et
   pages légales).
 - **Images** : illustrations originales créées avec OpenArt puis découpées par
-  `scripts/decouper-planche.mjs` (voir docs/ILLUSTRATIONS.md) ; épingles Pinterest des Top 10
+  `scripts/decouper-planche.mjs` (voir docs/ILLUSTRATIONS.md) ; depuis le 27 octobre 2026, les conseils
+  sans illustration originale ont une photo libre (Wikimedia Commons ou Openverse, crédit sous l'image)
+  ou une carte générée, rangée dans `public/illustrations/` (crédits dans `src/lib/data/conseils-images.ts`) ; épingles Pinterest des Top 10
   générées avant chaque build par `scripts/epingles.mts` (satori et resvg), dans `public/epingles/`.
 - **Particularités** : interrupteur de maintenance dans `content/maintenance.json` (désactivé),
   tests de cohérence des contenus dans `tests/`, contrôle de la sortie par `npm run test:sortie`.

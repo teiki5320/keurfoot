@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { cache } from "react";
 import { marked } from "marked";
 import { withBase } from "@/lib/config";
+import { CONSEIL_IMAGES } from "@/lib/data/conseils-images";
 import { illustration } from "@/lib/illustrations";
 import { anchorId, isPublished, parseConseil, relatedConseils, todayInParis, type Conseil } from "@/lib/conseils/article";
 
@@ -15,7 +16,8 @@ export const getAllConseils = cache((): Conseil[] =>
     .filter((f) => f.endsWith(".md"))
     .map((f) => {
       const slug = f.replace(/\.md$/, "");
-      return { ...parseConseil(slug, readFileSync(join(DIR, f), "utf8")), image: illustration(`conseil-${slug}`) };
+      const image = illustration(`conseil-${slug}`);
+      return { ...parseConseil(slug, readFileSync(join(DIR, f), "utf8")), image, imageCredit: image ? (CONSEIL_IMAGES[slug] ?? null) : null };
     })
     .sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title, "fr")),
 );

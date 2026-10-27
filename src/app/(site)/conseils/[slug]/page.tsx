@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: PageProps<"/conseils/[slug]">
     type: "article",
     publishedTime: conseil.date,
     image: conseil.image,
-    imageAlt: `Illustration : ${conseil.title}`,
+    imageAlt: conseil.imageCredit?.alt ?? `Illustration : ${conseil.title}`,
   });
 }
 
@@ -77,13 +77,28 @@ export default async function ConseilPage({ params }: PageProps<"/conseils/[slug
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={withBase(conseil.image)}
-              alt={`Illustration de l'article « ${conseil.title} »`}
+              alt={conseil.imageCredit?.alt ?? `Illustration de l'article « ${conseil.title} »`}
               width={1200}
               height={800}
               fetchPriority="high"
               className="aspect-[3/2] w-full rounded object-cover"
             />
-            <figcaption className="mt-2 text-[11px] text-faint">Illustration originale Keur Foot.</figcaption>
+            <figcaption className="mt-2 text-[11px] text-faint">
+              {conseil.imageCredit?.type === "photo" ? (
+                <a
+                  href={conseil.imageCredit.page}
+                  target="_blank"
+                  rel="noopener nofollow"
+                  className="underline decoration-line-strong underline-offset-2 hover:text-chalk"
+                >
+                  Photo : {conseil.imageCredit.auteur} · {conseil.imageCredit.licence}
+                </a>
+              ) : conseil.imageCredit?.type === "carte" ? (
+                `Illustration : ${siteConfig.name}`
+              ) : (
+                "Illustration originale Keur Foot."
+              )}
+            </figcaption>
           </figure>
         )}
         <p className="mt-8 rounded border-l-4 border-gold bg-surface p-5 text-[17px] leading-relaxed">

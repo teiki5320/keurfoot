@@ -105,6 +105,11 @@ export default function LegalNoticePage() {
           l&apos;aide de l&apos;intelligence artificielle. Elles ne représentent aucune personne réelle. Les maillots dessinés
           sur le site sont des créations génériques aux couleurs des drapeaux, et non les maillots officiels.
         </li>
+        <li>
+          Certains articles de conseils sont illustrés par des <strong>photos sous licence libre</strong> (Wikimedia Commons ou
+          Openverse, licences permettant un usage commercial). L&apos;auteur, la licence et un lien vers la page d&apos;origine
+          sont indiqués sous chaque photo.
+        </li>
         <li>Le site ne publie aucune photo de joueur.</li>
         <li>Pour toute demande de retrait ou de correction, écrivez à l&apos;adresse de contact.</li>
       </ul>

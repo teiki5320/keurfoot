@@ -16,9 +16,20 @@ export interface Conseil {
   produits: string[];
   /** Corps de l'article en Markdown (parties en « ## »). */
   body: string;
-  /** Illustration Keur Foot : public/illustrations/conseil-<slug>.webp, si elle existe. */
+  /** Image de l'article : public/illustrations/conseil-<slug>.webp, si elle existe. */
   image?: string | null;
+  /** Crédit de l'image (photo libre ou carte générée) ; absent pour une illustration originale Keur Foot. */
+  imageCredit?: ConseilImageCredit | null;
 }
+
+/**
+ * Crédit d'une image de conseil qui n'est pas une illustration originale (src/lib/data/conseils-images.ts).
+ * Photo : Wikimedia Commons ou Openverse (usage commercial), auteur, licence et page d'origine obligatoires.
+ * Carte : générée par le site, aux couleurs de Keur Foot, en dernier recours.
+ */
+export type ConseilImageCredit =
+  | { type: "photo"; source: "wikimedia" | "openverse"; auteur: string; licence: string; page: string; alt: string }
+  | { type: "carte"; alt: string };
 
 export const DESCRIPTION_MIN = 70;
 export const DESCRIPTION_MAX = 160;
