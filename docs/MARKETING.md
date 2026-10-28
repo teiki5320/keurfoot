@@ -63,5 +63,5 @@ publications réelles, ou routine qui publie).
   9 épingles déjà prêtes.
 - Vérifier que keurfoot.com est déclaré dans le compte Amazon Partenaires (`keurfootfr-21`) — pas encore vérifié au 28 octobre 2026 —, puis
   brancher une mesure d'audience (Cloudflare Web Analytics) pour savoir quelles pages rapportent.
-- Activer « Always Use HTTPS » dans Cloudflare : http://keurfoot.com répond encore sans renvoyer
-  vers https (constaté le 28 octobre 2026).
+- Décider du sort des articles d'actus pendant l'examen AdSense : les enrichir, ou les sortir de
+  l'index le temps de l'examen (risque « contenu à faible valeur », audit du 28 octobre 2026).

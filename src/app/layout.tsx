@@ -30,6 +30,8 @@ export const metadata: Metadata = {
   formatDetection: { telephone: false },
   // Version provisoire (GitHub Pages) : rien d'indexé ; sinon, grande image autorisée dans Google Discover et les résultats.
   robots: NOINDEX ? { index: false, follow: false } : { "max-image-preview": "large" },
+  // Validation du site dans Bing Webmaster Tools (balise à garder même après la validation).
+  verification: { other: { "msvalidate.01": "8BA824DE3FC8A5F0EC901A67D71AB314" } },
   // Validation du site dans AdSense.
   ...(ADSENSE_CLIENT && { other: { "google-adsense-account": ADSENSE_CLIENT } }),
 };

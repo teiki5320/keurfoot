@@ -17,8 +17,8 @@
 |---|---|
 | État | [ok] En ligne, réponse 200 (28 octobre) |
 | Hébergement | [ok] Worker de fichiers statiques Cloudflare « keurfoot » |
-| Domaine | [ok] keurfoot.com, www sert le même site |
-| SSL | [ok] Certificat Cloudflare, HSTS actif |
+| Domaine | [ok] keurfoot.com ; www renvoie vers keurfoot.com (301) depuis le 28 octobre |
+| SSL | [ok] Certificat Cloudflare, HSTS actif, http renvoie vers https (28 octobre) |
 | Indexation | [ok] Search Console : 97 pages sur 99 indexées (27 octobre) |
 | Mesure d'audience | [pas encore] Aucune balise constatée (28 octobre) |
 
@@ -46,11 +46,12 @@
 
 ## Domaine & SSL
 
-- **Domaine** : `keurfoot.com` (adresse canonique) ; `www.keurfoot.com` sert le même site, avec une
-  adresse canonique qui pointe vers `keurfoot.com`.
+- **Domaine** : `keurfoot.com` (adresse canonique) ; depuis le 28 octobre 2026, `www.keurfoot.com`
+  renvoie définitivement (301) vers `keurfoot.com` (règle de redirection Cloudflare).
 - **Registraire et DNS** : Cloudflare ; échéance à vérifier dans la console.
 - **SSL** : certificat fourni et renouvelé par Cloudflare (valide jusqu'au 18 janvier 2027) ;
-  HSTS activé dans `public/_headers`.
+  HSTS activé dans `public/_headers` ; « Toujours utiliser HTTPS » activé dans Cloudflare le
+  28 octobre 2026 (http renvoie vers https).
 - **Ancienne adresse** : https://teiki5320.github.io/keurfoot/ ne sert plus qu'une page de renvoi
   vers keurfoot.com, en `noindex`.
 

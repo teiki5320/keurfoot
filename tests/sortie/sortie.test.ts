@@ -105,6 +105,10 @@ describe("Site construit", () => {
       assert.match(html, /aucune publicité/, page);
     }
   });
+  it("l'accueil porte la balise de validation Bing Webmaster Tools", () => {
+    const html = readFileSync(join(out, "index.html"), "utf8");
+    assert.match(html, /<meta name="msvalidate.01" content="8BA824DE3FC8A5F0EC901A67D71AB314"/);
+  });
   it("chaque fiche sélection décrit l'équipe pour Google (SportsTeam)", () => {
     const html = readFileSync(join(out, "selection", "senegal.html"), "utf8");
     assert.match(html, /"@type":"SportsTeam","name":"Équipe du Sénégal de football","alternateName":"Lions de la Teranga","sport":"Football"/);

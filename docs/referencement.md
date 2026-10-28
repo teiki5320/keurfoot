@@ -30,7 +30,7 @@ Données : Search Console relevée par le Studio, du 24 septembre au 22 octobre 
 - IndexNow : clé publique créée (`public/<clé>.txt`) et script `scripts/indexnow.mjs`, sur le modèle de Keur Cook ; à lancer après une publication (`node scripts/indexnow.mjs`).
 - Google Discover : `max-image-preview:large` déjà sur toutes les pages ; image de partage par défaut de 1200 × 630, épingles pour les Top 10.
 - Vitesse sur téléphone : PageSpeed Insights a refusé (quota du jour épuisé). À refaire au prochain passage : accueil, /joueur/didier-drogba, /top-10/meilleurs-joueurs-marocains.
-- Constaté : http://keurfoot.com répond sans renvoyer vers https (réglage Cloudflare « Always Use HTTPS » à activer par Jean) ; l'adresse canonique en https limite le problème.
+- Constaté : http://keurfoot.com répondait sans renvoyer vers https ; corrigé le 28 octobre 2026 (« Toujours utiliser HTTPS » activé dans Cloudflare, et www.keurfoot.com renvoie en 301 vers keurfoot.com).
 
 ### Page nouvelle
 

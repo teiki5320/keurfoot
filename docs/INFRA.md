@@ -111,9 +111,12 @@ uniquement des noms de variables et de consoles.
 
 ## Nom de domaine
 
-- **Domaine** : `keurfoot.com`, adresse canonique sans www ; `www.keurfoot.com` sert aussi le site,
-  avec une adresse canonique qui pointe vers `keurfoot.com`. Tous deux sont des domaines
-  personnalisés du Worker (`wrangler.jsonc`).
+- **Domaine** : `keurfoot.com`, adresse canonique sans www ; depuis le 28 octobre 2026,
+  `www.keurfoot.com` renvoie définitivement (301) vers `keurfoot.com`, chemin et paramètres
+  compris (règle de redirection Cloudflare « Rediriger de WWW vers la racine »). Tous deux
+  restent des domaines personnalisés du Worker (`wrangler.jsonc`).
+- **HTTPS forcé** : réglage Cloudflare « Toujours utiliser HTTPS » activé le 28 octobre 2026 ;
+  toute adresse en http renvoie (301) vers https.
 - **Registraire et DNS** : Cloudflare. Échéance à vérifier dans la console Cloudflare.
 - **Adresse de contact** : `keurfoot@toakeur.com`, affichée sur le site
   (`NEXT_PUBLIC_CONTACT_EMAIL`).
