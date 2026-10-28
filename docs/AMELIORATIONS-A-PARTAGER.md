@@ -6,7 +6,7 @@ keurfoot.com · Next.js 16.3.6 en export statique (React 19, Tailwind 4) · héb
 
 1. **La publication automatique qui vérifie avant de publier (points 2 et 3).** Un site cassé n'est jamais mis en ligne. Les publications programmées ne s'arrêtent pas en silence au bout de 60 jours.
 2. **Les images réduites proposées au navigateur (point 18).** C'est le plus gros gain de vitesse sur téléphone, et ça demande peu de code : un script avant le build et un `srcset`.
-3. **http vers https, www vers l'adresse principale, et les en-têtes de sécurité (points 8 et 31).** Dix minutes de réglage. On évite les pages en double pour Google et on gagne les en-têtes que vérifient les outils d'audit.
+3. **http vers https, www vers l'adresse principale, et les en-têtes de sécurité (points 8 et 30).** Dix minutes de réglage. On évite les pages en double pour Google et on gagne les en-têtes que vérifient les outils d'audit.
 
 ## A. Mise en ligne
 
