@@ -7,7 +7,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = pageMetadata({
   title: "Actus du foot africain",
   description:
-    "Les dernières actus du football africain : sélections, CAN, éliminatoires et joueurs. Résumées en français, mises à jour deux fois par jour, avec le lien vers chaque source.",
+    "Les dernières actus du football africain : sélections, CAN, éliminatoires et joueurs, résumées en français deux fois par jour, avec le lien vers chaque source.",
   path: "/actus",
 });
 
