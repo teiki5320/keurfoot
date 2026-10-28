@@ -58,29 +58,51 @@ jobs:
           NEXT_PUBLIC_SITE_URL: https://keurfoot.com
           NEXT_TELEMETRY_DISABLED: 1
 
+      # Contrôle du site construit, sur le dossier out/ qui va être publié (pas de seconde construction) :
+      # un titre h1 par page, titres ≤ 60 caractères, pages indexables, liens Amazon, images réduites…
+      - name: Contrôler le site construit (tests/sortie)
+        run: npm run test:sortie:controle
+
+      # Repère propre à cette publication : l'étape « Vérifier que keurfoot.com sert la nouvelle version » le relit en ligne.
+      - name: Marquer la version publiée
+        run: echo "${GITHUB_SHA} ${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" > out/version.txt
+
       # Les secrets ne sont donnés qu'aux étapes qui en ont besoin (pas à l'installation ni au build).
+      # Sans eux, la publication échoue (en rouge, avec un e-mail de GitHub) au lieu de passer pour réussie.
       - name: Vérifier la présence des secrets Cloudflare
-        id: secrets
         env:
           HAS_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
           HAS_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID != '' }}
         run: |
-          if [ "$HAS_TOKEN" = "true" ] && [ "$HAS_ACCOUNT" = "true" ]; then
-            echo "ok=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "ok=false" >> "$GITHUB_OUTPUT"
-            echo "::warning::Ajoutez les secrets CLOUDFLARE_API_TOKEN et CLOUDFLARE_ACCOUNT_ID pour publier le site."
+          if [ "$HAS_TOKEN" != "true" ] || [ "$HAS_ACCOUNT" != "true" ]; then
+            echo "::error::Secrets CLOUDFLARE_API_TOKEN ou CLOUDFLARE_ACCOUNT_ID absents : rien n'est publié."
+            exit 1
           fi
 
       - name: Publier sur Cloudflare (keurfoot.com)
-        if: steps.secrets.outputs.ok == 'true'
         env:
           # Réglés par le propriétaire dans Settings → Secrets and variables → Actions.
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          # wrangler est figé dans package-lock.json (installé par npm ci) ; configuration dans wrangler.jsonc.
+          # wrangler est figé dans package-lock.json (installé par npm ci) ; configuration dans wrangler.jsonc
+          # (fichiers de out/ + script worker/index.ts des redirections 301).
           npx wrangler deploy
+
+      # Le site en ligne doit servir la version qui vient d'être publiée (jusqu'à 3 minutes d'attente).
+      - name: Vérifier que keurfoot.com sert la nouvelle version
+        run: |
+          attendu="$(cat out/version.txt)"
+          for i in $(seq 1 18); do
+            servi="$(curl -fsS -H 'Cache-Control: no-cache' "https://keurfoot.com/version.txt?v=${GITHUB_RUN_ID}-${i}" || true)"
+            if [ "$servi" = "$attendu" ]; then
+              echo "keurfoot.com sert bien la version $attendu"
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "::error::keurfoot.com ne sert pas la nouvelle version (attendu « $attendu », reçu « $servi »)."
+          exit 1
 
       # GitHub coupe les tâches programmées d'un dépôt public après 60 jours sans activité :
       # chaque publication programmée réactive la tâche, pour que les articles continuent de paraître.

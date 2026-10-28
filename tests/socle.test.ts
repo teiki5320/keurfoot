@@ -38,3 +38,17 @@ describe("Chemins du site", () => {
     assert.equal(withBase("https://exemple.fr/a.png"), "https://exemple.fr/a.png");
   });
 });
+
+describe("Titres des pages", () => {
+  it("un titre trop long est coupé en fin de mot, sous 60 caractères", async () => {
+    const { couperTexte, pageMetadata } = await import("../src/lib/metadata");
+    const long = "Les dix meilleurs joueurs de l'histoire du football camerounais, des Lions indomptables";
+    const coupe = couperTexte(long, 60);
+    assert.ok(coupe.length <= 60, coupe);
+    assert.ok(coupe.endsWith("…"));
+    assert.ok(long.startsWith(coupe.slice(0, -1)), "coupé en fin de mot");
+    assert.equal(couperTexte("Court", 60), "Court");
+    const meta = pageMetadata({ title: long, description: "x", path: "/x" });
+    assert.deepEqual(meta.title, { absolute: coupe });
+  });
+});

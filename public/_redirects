@@ -1,4 +1,4 @@
-# Redirections servies par Cloudflare (keurfoot.com).
+# Anciennes adresses : traitées d'abord par worker/index.ts (301 en un seul saut) ; gardées ici en secours.
 /selection /selections 301
 /joueur /joueurs 301
 /favicon.ico /icon.png 301

@@ -1,12 +1,17 @@
-// Publication de keurfoot.com sur Cloudflare (Worker de fichiers statiques, sans code serveur).
+// Publication de keurfoot.com sur Cloudflare : Worker de fichiers statiques, avec un petit script (worker/index.ts)
+// qui redirige en 301, en un seul saut, les adresses avec barre finale, en .html ou anciennes vers l'adresse canonique.
 // Le site est construit dans out/ par `npm run build`, puis publié par `npx wrangler deploy`
-// (à la main ou par .github/workflows/deploy.yml). En-têtes et redirections : public/_headers et public/_redirects.
+// (à la main ou par .github/workflows/deploy.yml). En-têtes : public/_headers ; redirections : worker/index.ts (qui reprend celles de public/_redirects).
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "keurfoot",
   "compatibility_date": "2026-09-26",
+  "main": "worker/index.ts",
   "assets": {
     "directory": "./out",
+    "binding": "ASSETS",
+    // Le script passe avant les fichiers : il redirige, puis confie la requête aux fichiers statiques.
+    "run_worker_first": true,
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash"
   },

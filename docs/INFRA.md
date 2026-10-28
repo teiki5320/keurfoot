@@ -45,15 +45,21 @@ uniquement des noms de variables et de consoles.
   (480 et 800 px) de chaque illustration dans `public/reduites/` (non suivi par git) : les pages les
   proposent au navigateur (srcset), un téléphone ne charge plus l'original de 1 600 px.
 - **Particularités** : interrupteur de maintenance dans `content/maintenance.json` (désactivé),
-  tests de cohérence des contenus dans `tests/`, contrôle de la sortie par `npm run test:sortie`.
+  tests de cohérence des contenus dans `tests/`, contrôle du site construit (`tests/sortie/`) lancé par
+  `deploy.yml` sur le dossier `out/` publié, avant chaque publication, depuis le 28 octobre 2026 (un h1 par
+  page, titres de 60 caractères au plus, pages indexables, liens Amazon…).
 
 ## GitHub
 
-- **Rôle** : dépôt du code et des contenus, et trois workflows :
-  - `deploy.yml` (« Publier le site ») : lint, types, tests, build, puis publication sur Cloudflare
+- **Rôle** : dépôt du code et des contenus, et quatre workflows :
+  - `deploy.yml` (« Publier le site ») : lint, types, tests, build, contrôle du site construit, puis publication sur Cloudflare
     par `npx wrangler deploy` à chaque push sur `main`, chaque lundi, mercredi et vendredi à
     23 h 15 UTC la veille (articles programmés), chaque jour à 11 h 50 et 18 h 50 UTC depuis le
     28 octobre 2026 (pages des articles d'actus, juste après la veille de 12 h et 19 h) et à la main ;
+    depuis le 28 octobre 2026, la publication échoue (en rouge) s'il manque un secret Cloudflare, puis
+    vérifie pendant 3 minutes au plus que keurfoot.com sert bien la nouvelle version (`/version.txt`) ;
+  - `indexnow.yml` (depuis le 28 octobre 2026) : signale toutes les pages du sitemap à IndexNow (Bing…)
+    après chaque publication réussie de `main`, chaque lundi à 2 h UTC et à la main ;
   - `maintenance.yml` : met le site en pause ou le rouvre, puis republie ;
   - `pages.yml` : publie sur l'ancienne adresse GitHub Pages une simple page qui renvoie vers
     keurfoot.com.
@@ -69,7 +75,11 @@ uniquement des noms de variables et de consoles.
 - **En-têtes** : `public/_headers` (politique de sécurité limitée au site lui-même, à Google AdSense,
   à Cloudflare Web Analytics et, depuis le 27 octobre 2026, à `teiki5320.github.io` pour le
   fichier et les images des actus (connect-src et img-src seulement) ; HSTS, cache des images).
-- **Redirections** : `public/_redirects`.
+- **Redirections** : depuis le 28 octobre 2026, le petit script `worker/index.ts` (lancé avant les
+  fichiers, `run_worker_first`) renvoie en 301, en un seul saut, vers l'adresse canonique sans barre
+  finale : `/page/` → `/page`, `/page.html` et `/index.html` → la page, anciennes adresses (`/selection`,
+  `/joueur`, `/favicon.ico`, gardées aussi dans `public/_redirects`) → leur page finale ; avant, Cloudflare
+  répondait en 307 (temporaire).
 - **Ancienne adresse** : https://teiki5320.github.io/keurfoot/ (version provisoire du 17 au
   20 octobre 2026) ne sert plus qu'une page de renvoi vers keurfoot.com, en `noindex`.
 - **Console** : tableau de bord Cloudflare, rubrique Workers & Pages → `keurfoot`.

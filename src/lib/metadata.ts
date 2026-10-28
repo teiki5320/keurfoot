@@ -25,13 +25,14 @@ interface PageMetadataInput {
  * Next.js remplace entièrement le bloc openGraph du layout dès qu'une page en définit un : on le reconstruit ici.
  */
 export function pageMetadata({ title, description, path, image, imageAlt, type = "website", publishedTime, noindex, absoluteTitle }: PageMetadataInput): Metadata {
-  // Titre complet limité à ~60 caractères (au-delà, Google le coupe) : sans le suffixe s'il est trop long.
+  // Titre complet limité à 60 caractères (au-delà, Google le coupe) : sans le suffixe s'il est trop long,
+  // puis coupé proprement en fin de mot si le titre seul dépasse encore.
   const suffixed = `${title} | ${siteConfig.name}`;
   const absolute = absoluteTitle || suffixed.length > 60;
-  const fullTitle = absolute ? title : suffixed;
+  const fullTitle = absolute ? couperTexte(title, 60) : suffixed;
   const images = image ? [{ url: image, alt: imageAlt ?? title }] : DEFAULT_SHARE_IMAGES;
   return {
-    title: absolute ? { absolute: title } : title,
+    title: absolute ? { absolute: fullTitle } : title,
     description,
     alternates: { canonical: path },
     openGraph: {
@@ -59,4 +60,12 @@ export function clip(text: string, max = 155): string {
   if (text.length <= max) return text;
   const cut = text.slice(0, max - 1);
   return `${cut.slice(0, cut.lastIndexOf(" "))}…`;
+}
+
+/** Texte coupé en fin de mot, suivi de « … », pour tenir en max caractères (« … » compris). */
+export function couperTexte(texte: string, max: number): string {
+  if (texte.length <= max) return texte;
+  const coupe = texte.slice(0, max - 1);
+  const espace = coupe.lastIndexOf(" ");
+  return `${(espace > max / 2 ? coupe.slice(0, espace) : coupe).replace(/[\s,;:.!?«»–—-]+$/, "")}…`;
 }

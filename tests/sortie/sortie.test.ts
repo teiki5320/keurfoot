@@ -1,6 +1,7 @@
 /**
- * Contrôle du site construit (dossier out/), version GitHub Pages sous /keurfoot.
- * Lancement : npm run test:sortie (construit d'abord le site avec les réglages de pages.yml).
+ * Contrôle du site construit (dossier out/), tel qu'il est publié sur keurfoot.com.
+ * Lancement : npm run test:sortie (construit d'abord le site avec les réglages de deploy.yml),
+ * ou npm run test:sortie:controle sur un out/ déjà construit (c'est ce que fait deploy.yml avant chaque publication).
  */
 import assert from "node:assert/strict";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
@@ -9,7 +10,6 @@ import { describe, it } from "node:test";
 import { COUNTRIES } from "../../src/lib/countries";
 
 const out = join(import.meta.dirname, "..", "..", "out");
-const BASE = "/keurfoot";
 
 /** Les 20 premières pages du cahier des charges, plus les pages d'entrée. */
 const PAGES = [
@@ -79,32 +79,48 @@ function htmlFiles(dir: string): string[] {
 describe("Site construit", () => {
   it("le dossier out/ existe", () => assert.ok(existsSync(join(out, "index.html")), "lancer npm run test:sortie"));
   for (const page of [...PAGES, ...ENTRIES]) {
-    it(`${page} : une page, un seul h1, une description, non indexée`, () => {
+    it(`${page} : une page, un seul h1, une description, indexable`, () => {
       const file = join(out, `${page}.html`);
       assert.ok(existsSync(file), `${page}.html manquant`);
       const html = readFileSync(file, "utf8");
       assert.equal((html.match(/<h1[\s>]/g) ?? []).length, 1, "un seul titre h1");
       assert.match(html, /<meta name="description" content="[^"]{50,}"/);
-      assert.match(html, /<meta name="robots" content="noindex/);
-      assert.doesNotMatch(html, /googlesyndication/, "aucun script Google dans la version provisoire");
+      assert.doesNotMatch(html, /<meta name="robots" content="noindex/, "page publiée : jamais noindex");
     });
   }
-  it("tous les liens et images internes passent par /keurfoot", () => {
+  it("construit pour keurfoot.com (pas pour l'ancienne adresse /keurfoot)", () => {
+    const html = readFileSync(join(out, "selection", "senegal.html"), "utf8");
+    assert.match(html, /<link rel="canonical" href="https:\/\/keurfoot\.com\/selection\/senegal"\/>/);
     const bad: string[] = [];
     for (const file of htmlFiles(out)) {
       const html = readFileSync(file, "utf8");
-      for (const m of html.matchAll(/(?:src|href)="(\/[^"]*)"/g)) {
-        if (!m[1].startsWith(`${BASE}/`) && m[1] !== BASE) bad.push(`${file.replace(out, "")} → ${m[1]}`);
-      }
+      for (const m of html.matchAll(/(?:src|href)="(\/keurfoot(?:\/[^"]*)?)"/g)) bad.push(`${file.replace(out, "")} → ${m[1]}`);
     }
     assert.deepEqual(bad.slice(0, 10), []);
   });
-  it("sans AdSense, les pages légales ne décrivent ni bandeau ni annonces", () => {
-    for (const page of ["confidentialite", "mentions-legales"]) {
-      const html = readFileSync(join(out, `${page}.html`), "utf8");
-      assert.doesNotMatch(html, /Gérer mes cookies|bandeau de Google|annonces fournies par Google/, page);
-      assert.match(html, /aucune publicité/, page);
+  it("chaque page a un titre de 60 caractères au plus", () => {
+    const longs: string[] = [];
+    for (const file of htmlFiles(out)) {
+      const brut = readFileSync(file, "utf8").match(/<title>([^<]*)<\/title>/)?.[1];
+      if (brut === undefined) continue;
+      const titre = brut
+        .replace(/&#x([0-9a-f]+);/gi, (_, h: string) => String.fromCodePoint(parseInt(h, 16)))
+        .replace(/&#(\d+);/g, (_, d: string) => String.fromCodePoint(Number(d)))
+        .replace(/&quot;/g, '"').replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
+      if ([...titre].length > 60) longs.push(`${file.replace(out, "")} (${[...titre].length}) : ${titre}`);
     }
+    assert.deepEqual(longs, []);
+  });
+  it("les liens Amazon s'ouvrent dans un nouvel onglet, signalés « sponsored nofollow noopener »", () => {
+    let vus = 0;
+    for (const file of htmlFiles(out)) {
+      for (const m of readFileSync(file, "utf8").matchAll(/<a\b[^>]*href="https:\/\/www\.amazon\.fr[^"]*"[^>]*>/g)) {
+        vus++;
+        assert.match(m[0], /target="_blank"/, file.replace(out, ""));
+        assert.match(m[0], /rel="[^"]*\bsponsored nofollow noopener\b[^"]*"/, file.replace(out, ""));
+      }
+    }
+    assert.ok(vus > 0, "aucun lien Amazon trouvé");
   });
   it("l'accueil porte la balise de validation Bing Webmaster Tools", () => {
     const html = readFileSync(join(out, "index.html"), "utf8");
@@ -116,7 +132,7 @@ describe("Site construit", () => {
   });
   it("les illustrations proposent des versions réduites (srcset)", () => {
     const html = readFileSync(join(out, "can.html"), "utf8");
-    assert.match(html, /srcSet="\/keurfoot\/reduites\/can-480\.webp 480w, \/keurfoot\/reduites\/can-800\.webp 800w, \/keurfoot\/illustrations\/can\.webp \d+w"/);
+    assert.match(html, /srcSet="\/reduites\/can-480\.webp 480w, \/reduites\/can-800\.webp 800w, \/illustrations\/can\.webp \d+w"/);
     assert.ok(existsSync(join(out, "reduites", "can-480.webp")));
   });
   // Actus : seulement si la veille a répondu pendant le build (sinon le site est construit sans actus).
@@ -124,7 +140,7 @@ describe("Site construit", () => {
   const articles = existsSync(veille) ? (JSON.parse(readFileSync(veille, "utf8")).articles as Array<{ id: string; slug: string; pays?: string[] }>) : [];
   it("la page Actus contient ses actus dans le HTML (vues par Google)", { skip: articles.length === 0 }, () => {
     const html = readFileSync(join(out, "actus.html"), "utf8");
-    assert.match(html, /href="\/keurfoot\/actus\/[a-z0-9-]+"/);
+    assert.match(html, /href="\/actus\/[a-z0-9-]+"/);
   });
   it("chaque article d'actu renvoie vers la fiche sélection de ses pays africains", { skip: articles.length === 0 }, () => {
     const isoVersSlug = new Map(COUNTRIES.map((c) => [c.iso2, c.slug]));
@@ -133,7 +149,7 @@ describe("Site construit", () => {
       if (slugs.length === 0) continue;
       const html = readFileSync(join(out, "actus", `${a.slug}.html`), "utf8");
       assert.match(html, /Pour aller plus loin/, a.slug);
-      for (const s of slugs) assert.match(html, new RegExp(`href="/keurfoot/selection/${s}"`), `${a.slug} → ${s}`);
+      for (const s of slugs) assert.match(html, new RegExp(`href="/selection/${s}"`), `${a.slug} → ${s}`);
     }
   });
   it("chaque article d'actu a une image de partage JPG", { skip: articles.length === 0 }, () => {
@@ -147,7 +163,7 @@ describe("Site construit", () => {
     const avecPhoto = articles.filter((a) => existsSync(join(out, "reduites", "actus", `${a.id}-480.webp`)));
     assert.ok(avecPhoto.length > 0, "aucune photo réduite");
     const html = readFileSync(join(out, "actus", `${avecPhoto[0].slug}.html`), "utf8");
-    assert.match(html, new RegExp(`srcSet="/keurfoot/reduites/actus/${avecPhoto[0].id}-480\\.webp 480w`));
+    assert.match(html, new RegExp(`srcSet="/reduites/actus/${avecPhoto[0].id}-480\\.webp 480w`));
   });
   it("une épingle Pinterest par Top 10", () => {
     for (const p of PAGES.filter((x) => x.startsWith("top-10/"))) {

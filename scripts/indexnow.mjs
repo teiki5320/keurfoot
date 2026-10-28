@@ -1,5 +1,5 @@
 // Signale toutes les pages du site à Bing, Yandex, Seznam… via IndexNow.
-// Usage : node scripts/indexnow.mjs (à lancer après une publication).
+// Usage : node scripts/indexnow.mjs (lancé par .github/workflows/indexnow.yml après chaque publication et chaque lundi).
 // La clé est publique par conception : elle est servie à la racine du site (public/<clé>.txt).
 const SITE = "https://keurfoot.com";
 const CLE = "e1f431b182197047c01bec418bc0ecc2";

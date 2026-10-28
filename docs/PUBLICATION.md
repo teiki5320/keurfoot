@@ -53,6 +53,12 @@
 - **SSL** : certificat fourni et renouvelé par Cloudflare (valide jusqu'au 18 janvier 2027) ;
   HSTS activé dans `public/_headers` ; « Toujours utiliser HTTPS » activé dans Cloudflare le
   28 octobre 2026 (http renvoie vers https).
+- **Une seule adresse par page** : depuis le 28 octobre 2026, `worker/index.ts` renvoie en 301, en un
+  seul saut, les adresses avec barre finale, en `.html` ou anciennes vers l'adresse canonique sans barre
+  finale (avant : 307, temporaire).
+- **Contrôle avant publication** : depuis le 28 octobre 2026, `deploy.yml` contrôle le site construit
+  (`tests/sortie/`) avant de le publier, échoue s'il manque un secret Cloudflare et vérifie ensuite en
+  ligne que keurfoot.com sert la nouvelle version (`/version.txt`, 3 minutes au plus).
 - **Ancienne adresse** : https://teiki5320.github.io/keurfoot/ ne sert plus qu'une page de renvoi
   vers keurfoot.com, en `noindex`.
 
@@ -64,7 +70,8 @@
   sans erreur, relu par Google le 26 octobre ; 97 pages sur 99 indexées, 2 encore inconnues de
   Google (relevé du Studio, 27 octobre 2026).
 - **IndexNow** : clé publique servie à la racine du site et script `scripts/indexnow.mjs` (24 octobre 2026),
-  lancé à la main après une publication (il lit le sitemap, donc signale aussi les articles d'actus) ; journal du référencement dans `docs/referencement.md`.
+  lancé automatiquement depuis le 28 octobre 2026 par `.github/workflows/indexnow.yml` après chaque publication
+  réussie et chaque lundi (il lit le sitemap, donc signale aussi les articles d'actus) ; journal du référencement dans `docs/referencement.md`.
 - **Mesure d'audience** : aucune balise Cloudflare Web Analytics constatée sur le site le
   28 octobre 2026, bien que la politique de sécurité l'autorise.
 - **Publicité** : Google AdSense en place (script chargé sur les pages,
