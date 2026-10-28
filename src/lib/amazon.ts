@@ -19,3 +19,12 @@ export function amazonUrl(p: { asin: string | null; amazonQuery: string }): stri
 /** Mention obligatoire du programme Partenaires Amazon. */
 export const AMAZON_DISCLOSURE =
   "En tant que Partenaire Amazon, Keur Foot réalise un bénéfice sur les achats remplissant les conditions requises.";
+
+/** Libellé unique de tous les boutons vers Amazon (modèle validé par Jean, identique à keurcook.com). */
+export const AMAZON_LABEL = "Voir sur Amazon";
+
+/** Petite ligne affichée sous chaque bouton Amazon (ou une fois sous une grille dense). */
+export const AMAZON_NOTE = "Lien partenaire Amazon. Prix, disponibilité et vendeur sont indiqués sur Amazon.";
+
+/** Ligne affichée à côté des images de produits qui sont des illustrations. */
+export const ILLUSTRATION_NOTE = "Illustration IA : l'article vendu peut différer.";

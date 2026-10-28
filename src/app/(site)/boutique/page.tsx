@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AmazonButton } from "@/components/ui/AmazonButton";
+import { AmazonButton, AmazonNote } from "@/components/ui/AmazonButton";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { PageHero } from "@/components/ui/PageHero";
-import { AMAZON_DISCLOSURE, amazonUrl } from "@/lib/amazon";
+import { ILLUSTRATION_NOTE, amazonUrl } from "@/lib/amazon";
 import { mostTitled } from "@/lib/data/selections";
 import { SHOP } from "@/lib/data/shop";
 import { Rail, RailSelection } from "@/components/ui/Vestiaire";
@@ -45,19 +45,19 @@ export default function ShopPage() {
       </PageHero>
 
       <div className="container-page mt-4">
-        <p className="rounded border border-line bg-surface px-4 py-3 text-xs text-muted">
-          {AMAZON_DISCLOSURE} Les liens ouvrent Amazon.fr : prix, disponibilité et tailles sont ceux affichés par le vendeur.
-        </p>
-
         <div className="mt-10">
           <Rail label="Penderie des maillots">
             {mostTitled(12).map((sel, i) => (
               <div key={sel.slug} className="flex flex-col items-center">
                 <RailSelection s={sel} i={i} caption={sel.jersey.label} />
-                <AmazonButton href={amazonUrl(sel.jersey)} label="Amazon" className="-mt-1 mb-3 px-4 text-sm" />
+                <AmazonButton href={amazonUrl(sel.jersey)} produit={sel.jersey.label} icone={false} className="-mt-1 mb-3 px-3 text-[13px]" />
               </div>
             ))}
           </Rail>
+          <AmazonNote className="mt-3 text-xs" />
+          <p className="mt-1 text-xs text-muted">
+            {ILLUSTRATION_NOTE} Les maillots dessinés sont des créations Keur Foot aux couleurs des drapeaux, pas les maillots officiels.
+          </p>
           <div className="mt-4 flex flex-wrap gap-2">
             <Link href="/boutique/maillots" className="tag">Tous les maillots des sélections →</Link>
             <Link href={GUIDES.maillots.href} className="tag">{GUIDES.maillots.label}</Link>
@@ -80,7 +80,7 @@ export default function ShopPage() {
                 <li key={p.name} className="flex flex-col rounded border border-line bg-surface p-4">
                   <h3 className="font-display text-xl tracking-wide uppercase">{p.name}</h3>
                   <p className="mt-1.5 flex-1 text-sm text-muted">{p.note}</p>
-                  <AmazonButton href={amazonUrl(p)} label="Voir sur Amazon" className="mt-4 self-start" />
+                  <AmazonButton href={amazonUrl(p)} produit={p.name} note className="mt-4 items-start" />
                 </li>
               ))}
             </ul>

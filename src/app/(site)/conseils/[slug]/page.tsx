@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AdSlot } from "@/components/ads/AdSlot";
 import { ConseilGrid } from "@/components/conseils/ConseilCard";
-import { AmazonButton } from "@/components/ui/AmazonButton";
+import { AmazonButton, AmazonNote } from "@/components/ui/AmazonButton";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { amazonUrl } from "@/lib/amazon";
 import { conseilSections, splitAtMiddleSection } from "@/lib/conseils/article";
@@ -137,15 +137,16 @@ export default async function ConseilPage({ params }: PageProps<"/conseils/[slug
             </h2>
             <ul className="mt-3 space-y-2.5">
               {c.products.map((p) => (
-                <li key={p.name} className="flex items-center gap-4 rounded border border-line bg-surface p-3">
+                <li key={p.name} className="flex flex-col gap-3 rounded border border-line bg-surface p-3 sm:flex-row sm:items-center sm:gap-4">
                   <div className="min-w-0 flex-1">
                     <p className="font-semibold">{p.name}</p>
                     <p className="mt-0.5 text-xs text-muted">{p.note}</p>
                   </div>
-                  <AmazonButton href={amazonUrl(p)} label="Amazon" className="px-3 py-2 text-xs" />
+                  <AmazonButton href={amazonUrl(p)} produit={p.name} className="self-start px-3 py-2 text-xs sm:self-auto" />
                 </li>
               ))}
             </ul>
+            <AmazonNote className="mt-2 text-xs" />
             <Link href={c.slug === "maillots" ? "/boutique/maillots" : `/boutique#${c.slug}`} className="tag mt-3">
               Voir dans la boutique →
             </Link>

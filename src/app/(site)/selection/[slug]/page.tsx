@@ -8,7 +8,7 @@ import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { FlagBand } from "@/components/ui/FlagBand";
 import { FlipJersey } from "@/components/ui/FlipJersey";
 import { SourcesList } from "@/components/ui/SourcesList";
-import { amazonUrl } from "@/lib/amazon";
+import { ILLUSTRATION_NOTE, amazonUrl } from "@/lib/amazon";
 import { getCountry } from "@/lib/countries";
 import { canYearsLabel, titlesBadge } from "@/lib/data/can";
 import { POSITIONS, getPlayer, playersOf } from "@/lib/data/players";
@@ -149,8 +149,10 @@ export default async function SelectionPage({ params }: PageProps<"/selection/[s
             <div className="rounded border border-line bg-surface p-5 text-center">
               <p className="eyebrow">Le maillot</p>
               <p className="mt-3 font-semibold">{s.jersey.label}</p>
-              <p className="mt-1 text-xs text-muted">Dessin Keur Foot aux couleurs du drapeau, pas le maillot officiel.</p>
-              <AmazonButton href={amazonUrl(s.jersey)} label="Voir le maillot sur Amazon" className="mt-4 w-full" />
+              <p className="mt-1 text-xs text-muted">
+                Dessin Keur Foot aux couleurs du drapeau, pas le maillot officiel. {ILLUSTRATION_NOTE}
+              </p>
+              <AmazonButton href={amazonUrl(s.jersey)} produit={s.jersey.label} note className="mt-4 w-full" />
               <Link href="/conseils/comment-choisir-sa-taille-de-maillot-de-foot" className="mt-3 block text-xs text-gold underline underline-offset-2">
                 Comment choisir sa taille ?
               </Link>
