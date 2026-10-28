@@ -31,8 +31,12 @@ export interface Selection {
   bestWorldCup: string | null;
   /** 4 à 8 joueurs emblématiques. */
   legends: Array<{ name: string; playerSlug: string | null; why: string }>;
-  /** Maillot actuel : recherche Amazon précise, ASIN seulement s'il est vérifié à la main. */
-  jersey: { label: string; amazonQuery: string; asin: string | null };
+  /**
+   * Maillot actuel : recherche Amazon précise, ASIN seulement s'il est vérifié à la main (src/lib/data/produits-amazon.json).
+   * `objet: "drapeau"` : le maillot de la sélection n'est pas vendu sur amazon.fr (vérifié le 28 octobre 2026),
+   * le lien mène alors au drapeau du pays.
+   */
+  jersey: { label: string; amazonQuery: string; asin: string | null; objet?: "drapeau" };
   sources: Source[];
   updatedAt: string;
 }

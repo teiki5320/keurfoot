@@ -98,6 +98,50 @@ export const SHOP: ShopCategory[] = [
       { name: "Livres de foot pour enfants", amazonQuery: "livre football enfant", asin: null, note: "Romans et documentaires pour les jeunes fans de ballon rond." },
     ],
   },
+  {
+    slug: "gants",
+    name: "Gants de gardien",
+    intro:
+      "La paume en latex fait tout : souple pour l'herbe, plus résistante pour le synthétique. Prenez la taille qui dépasse un peu le bout des doigts et une fermeture bien serrée au poignet.",
+    products: [
+      { name: "Gants de gardien adulte", amazonQuery: "gants de gardien de but adulte latex", asin: null, note: "Paume en latex pour accrocher le ballon, en taille adulte." },
+      { name: "Gants de gardien enfant", amazonQuery: "gants de gardien de but enfant", asin: null, note: "Tailles plus petites, pour les jeunes gardiens qui débutent." },
+      { name: "Gants avec protège-doigts", amazonQuery: "gants gardien de but protège doigts", asin: null, note: "Des baleines dans les doigts pour limiter les retournements." },
+    ],
+  },
+  {
+    slug: "protege-tibias",
+    name: "Protège-tibias",
+    intro:
+      "Obligatoires en match, les protège-tibias doivent couvrir le tibia du bas du genou à la cheville. Les modèles à chaussette intégrée tiennent mieux chez les enfants.",
+    products: [
+      { name: "Protège-tibias avec chevillères", amazonQuery: "protège-tibias football avec chevillère", asin: null, note: "La coque et la protection de cheville d'un seul tenant." },
+      { name: "Protège-tibias à glisser", amazonQuery: "protège-tibias football à glisser", asin: null, note: "Légers, à glisser sous la chaussette, pour les joueurs confirmés." },
+      { name: "Protège-tibias enfant", amazonQuery: "protège-tibias football enfant", asin: null, note: "Petites tailles et maintien facile pour les premiers matchs." },
+    ],
+  },
+  {
+    slug: "pompes",
+    name: "Pompes et manomètres",
+    intro:
+      "Un ballon bien gonflé rebondit juste et s'abîme moins. La pression recommandée est imprimée près de la valve : une pompe à aiguille et un manomètre suffisent pour la respecter.",
+    products: [
+      { name: "Pompe à ballon avec aiguilles", amazonQuery: "pompe ballon football aiguilles", asin: null, note: "Petite pompe à main, avec des aiguilles de rechange." },
+      { name: "Manomètre pour ballon", amazonQuery: "manomètre ballon football", asin: null, note: "Pour lire la pression et dégonfler au besoin." },
+      { name: "Pompe avec manomètre intégré", amazonQuery: "pompe ballon avec manomètre", asin: null, note: "Gonfler et contrôler la pression avec le même outil." },
+    ],
+  },
+  {
+    slug: "cadres",
+    name: "Cadres pour maillot",
+    intro:
+      "Un maillot dédicacé ou chargé de souvenirs mérite d'être protégé de la poussière et de la lumière. Vérifiez les dimensions intérieures du cadre avant de commander.",
+    products: [
+      { name: "Cadre vitrine pour maillot", amazonQuery: "cadre vitrine maillot de foot", asin: null, note: "Un caisson profond pour exposer le maillot à plat." },
+      { name: "Cadre pour maillot enfant", amazonQuery: "cadre maillot football enfant", asin: null, note: "Un format plus petit, pour les maillots des plus jeunes." },
+      { name: "Vitrine murale pour maillot", amazonQuery: "vitrine murale maillot football", asin: null, note: "À accrocher au mur, avec une façade transparente." },
+    ],
+  },
 ];
 
 const BY_SLUG = new Map(SHOP.map((c) => [c.slug, c]));

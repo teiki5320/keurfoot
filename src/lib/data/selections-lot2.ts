@@ -68,7 +68,7 @@ export const SELECTIONS_LOT2: Selection[] = [
       { name: "Vincent Enyeama", playerSlug: null, why: "Gardien, 101 sélections entre 2002 et 2015." },
       { name: "Muda Lawal", playerSlug: null, why: "Buteur en finale de la CAN 1980, 86 sélections entre 1975 et 1985." },
     ],
-    jersey: { label: "Maillot du Nigeria", amazonQuery: "maillot Nigeria football Super Eagles", asin: null },
+    jersey: { label: "Maillot domicile du Nigeria 2026 (Nike)", amazonQuery: "maillot Nigeria football Super Eagles", asin: "B0FNRNZ3LZ" },
     sources: [
       { label: "RSSSF — Records des internationaux nigérians (mis à jour le 6 octobre 2026)", url: "https://rsssf.org/miscellaneous/nig-recintlp.html" },
       { label: "RSSSF — CAN 1980", url: "https://rsssf.org/tables/80a.html" },
@@ -146,7 +146,7 @@ export const SELECTIONS_LOT2: Selection[] = [
       { name: "Wahbi Khazri", playerSlug: null, why: "Auteur du but de la victoire contre la France au Mondial 2022." },
       { name: "Riadh Bouazizi", playerSlug: null, why: "Capitaine des champions d'Afrique 2004, 92 sélections." },
     ],
-    jersey: { label: "Maillot de la Tunisie (Kappa)", amazonQuery: "maillot Tunisie Kappa football", asin: null },
+    jersey: { label: "Maillot domicile de la Tunisie 2026-2027 (Kappa)", amazonQuery: "maillot Tunisie Kappa football", asin: "B0H41J94P2" },
     sources: [
       { label: "RSSSF — Records des internationaux tunisiens (mis à jour le 2 avril 2026)", url: "https://www.rsssf.org/miscellaneous/tun-recintlp.html" },
       { label: "Guinness World Records — Première victoire africaine en Coupe du monde", url: "https://www.guinnessworldrecords.com/world-records/484189-first-victory-by-an-african-football-soccer-nation-at-a-fifa-world-cup" },
@@ -223,7 +223,7 @@ export const SELECTIONS_LOT2: Selection[] = [
       { name: "Doctor Khumalo", playerSlug: null, why: "Buteur sur penalty lors du premier match après la réintégration, contre le Cameroun en 1992." },
       { name: "Ronwen Williams", playerSlug: null, why: "Capitaine et gardien, héros de la séance de tirs au but contre le Cap-Vert à la CAN 2023." },
     ],
-    jersey: { label: "Maillot de l'Afrique du Sud (adidas)", amazonQuery: "maillot Afrique du Sud adidas Bafana Bafana", asin: null },
+    jersey: { label: "Drapeau de l'Afrique du Sud", amazonQuery: "drapeau Afrique du Sud", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Sélections des internationaux sud-africains", url: "https://rsssf.org/miscellaneous/zaf-recintlp.html" },
       { label: "The Herald — Trente ans depuis le retour de l'Afrique du Sud (7 juillet 2022)", url: "https://www.heraldonline.co.zw/sa-mark-30-years-since-return-from-football-wilderness/" },

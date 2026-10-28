@@ -15,6 +15,7 @@ de Keurbook (Next.js 16 statique, Tailwind 4, données dans le code).
 | `npm run build` | Site statique dans `out/` (génère d'abord les épingles Pinterest) |
 | `npm run test:sortie` | Construit le site comme pour keurfoot.com et contrôle les pages, les titres, les liens et les épingles (`npm run test:sortie:controle` : contrôle seul, lancé par `deploy.yml` avant chaque publication) |
 | `node scripts/logos.mjs` | Régénère icônes, logo et image de partage depuis `docs/brand/` |
+| `npm run verifier-produits` | Sur le Mac : vérifie sur amazon.fr que chaque fiche Amazon vérifiée (`src/lib/data/produits-amazon.json`, 3 maillots au 28 octobre 2026) a encore son bouton d'achat (`-- --ecrire` pour enregistrer) |
 
 ## Publication
 

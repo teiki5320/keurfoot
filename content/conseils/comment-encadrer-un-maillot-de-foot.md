@@ -4,7 +4,7 @@ description: Cadre profond, verre anti-UV, maillot plié sur un carton : comment
 date: 2026-12-18
 theme: acheter
 resume: Lavez et repassez d'abord le maillot à basse température, puis pliez-le sur un carton neutre pour montrer le devant ou le dos floqué. Choisissez un cadre profond (dit « cadre vitrine »), de préférence avec un verre ou un plexiglas filtrant les UV, et accrochez-le loin du soleil direct et de l'humidité.
-produits: maillots
+produits: cadres, maillots
 ---
 Le maillot du premier match au stade, celui d'une finale de CAN, ou un maillot floqué au nom de votre joueur préféré : certains maillots méritent mieux qu'un tiroir. Bien encadré, il devient une vraie pièce de déco. Voici comment faire.
 

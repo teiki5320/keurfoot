@@ -11,7 +11,8 @@
     "test": "tsx --test tests/*.test.ts",
     "prebuild": "tsx scripts/epingles.mts && tsx scripts/images.mts && tsx scripts/articles.mts",
     "test:sortie": "NEXT_PUBLIC_SITE_URL=https://keurfoot.com NEXT_TELEMETRY_DISABLED=1 npm run build && npm run test:sortie:controle",
-    "test:sortie:controle": "tsx --test tests/sortie/*.test.ts"
+    "test:sortie:controle": "tsx --test tests/sortie/*.test.ts",
+    "verifier-produits": "node scripts/verifier-produits.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.48.0",
@@ -30,6 +31,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.6",
+    "playwright-core": "1.63.0",
     "satori": "^0.62.0",
     "sharp": "^0.35.5",
     "tailwindcss": "^4",

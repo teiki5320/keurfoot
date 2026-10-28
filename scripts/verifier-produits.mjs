@@ -1,0 +1,77 @@
+// Vérification des fiches Amazon (à lancer sur le Mac, pas sur GitHub : Amazon bloque souvent les serveurs).
+// Pour chaque produit actif de src/lib/data/produits-amazon.json, la fiche amazon.fr/dp/<ASIN> est ouverte
+// dans Chrome : si le bouton d'achat est présent, verifie_le passe à la date du jour ; sinon le produit passe
+// en « indisponible » (son lien revient alors à la recherche Amazon, son ASIN est conservé).
+// Rien n'est inventé : seul l'état lu sur la fiche est enregistré. Captcha Amazon : arrêt immédiat.
+//
+// Usage : npm run verifier-produits              (rapport seul)
+//         npm run verifier-produits -- --ecrire  (met à jour src/lib/data/produits-amazon.json)
+//         npm run verifier-produits -- --ecrire --lot 30
+//           (seulement les 30 produits vérifiés il y a le plus longtemps, avec des pauses plus longues)
+// Chrome : CHROMIUM_PATH=/chemin/vers/chrome (par défaut, Google Chrome sur macOS).
+import { readFileSync, writeFileSync } from "node:fs";
+import { resolve } from "node:path";
+import { chromium } from "playwright-core";
+
+const RACINE = resolve(import.meta.dirname, "..");
+const FICHIER = resolve(RACINE, "src/lib/data/produits-amazon.json");
+const ecrire = process.argv.includes("--ecrire");
+const aujourdhui = new Intl.DateTimeFormat("fr-CA", { timeZone: "Europe/Paris" }).format(new Date());
+const chrome = process.env.CHROMIUM_PATH || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+
+const produits = JSON.parse(readFileSync(FICHIER, "utf8"));
+const iLot = process.argv.indexOf("--lot");
+const lot = iLot > -1 ? Number(process.argv[iLot + 1]) || 30 : 0;
+const tous = produits.filter((p) => p.statut === "actif" && p.asin);
+const actifs = lot ? [...tous].sort((a, b) => String(a.verifie_le || "").localeCompare(String(b.verifie_le || ""))).slice(0, lot) : tous;
+
+if (!actifs.length) {
+  console.log("Aucun produit actif à vérifier.");
+  process.exit(0);
+}
+
+const navigateur = await chromium.launch({ executablePath: chrome, headless: true });
+const page = await (await navigateur.newContext({ locale: "fr-FR" })).newPage();
+const disponibles = [];
+const indisponibles = [];
+let bloque = false;
+
+for (const p of actifs) {
+  let etat;
+  try {
+    const reponse = await page.goto(`https://www.amazon.fr/dp/${p.asin}`, { waitUntil: "domcontentloaded", timeout: 45000 });
+    etat = await page.evaluate(() => ({
+      captcha: !!document.querySelector('form[action*="validateCaptcha"]'),
+      achat: !!document.querySelector("#add-to-cart-button, #buy-now-button"),
+      titre: (document.querySelector("#productTitle")?.textContent || document.title || "").trim(),
+    }));
+    etat.statut = reponse?.status() ?? 0;
+  } catch (e) {
+    console.log(`? ${p.asin} : erreur de chargement, non modifié (${e.message.split("\n")[0]})`);
+    continue;
+  }
+  if (etat.captcha) {
+    bloque = true;
+    console.log(`Amazon demande une vérification (captcha) : arrêt, aucun produit modifié après ${p.asin}.`);
+    break;
+  }
+  if (etat.achat) {
+    disponibles.push(p);
+    console.log(`✓ ${p.asin} : achetable · ${etat.titre.slice(0, 70)}`);
+  } else {
+    indisponibles.push(p);
+    console.log(`✗ ${p.asin} (${p.produit}) : plus achetable (HTTP ${etat.statut})`);
+  }
+  await page.waitForTimeout(lot ? 4000 + Math.random() * 4000 : 1200 + Math.random() * 1500); // rythme humain
+}
+await navigateur.close();
+
+console.log(`\n${disponibles.length} disponible(s), ${indisponibles.length} indisponible(s), ${actifs.length - disponibles.length - indisponibles.length} non vérifié(s).`);
+if (ecrire) {
+  for (const p of disponibles) p.verifie_le = aujourdhui;
+  for (const p of indisponibles) p.statut = "indisponible";
+  writeFileSync(FICHIER, "[\n" + produits.map((p) => "  " + JSON.stringify(p)).join(",\n") + "\n]\n");
+  console.log(`src/lib/data/produits-amazon.json mis à jour (${aujourdhui}).`);
+}
+if (indisponibles.length) console.log("À remplacer par un équivalent vérifié : " + indisponibles.map((p) => p.asin).join(", "));
+process.exit(bloque ? 2 : 0);

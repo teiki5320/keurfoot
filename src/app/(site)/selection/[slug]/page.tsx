@@ -3,12 +3,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BlocActus } from "@/components/actus/BlocActus";
 import { AdSlot } from "@/components/ads/AdSlot";
-import { AmazonButton } from "@/components/ui/AmazonButton";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
+import { EncadreProduit, produitSelection, titreProduitSelection } from "@/components/ui/EncadreProduit";
 import { FlagBand } from "@/components/ui/FlagBand";
 import { FlipJersey } from "@/components/ui/FlipJersey";
 import { SourcesList } from "@/components/ui/SourcesList";
-import { ILLUSTRATION_NOTE, amazonUrl } from "@/lib/amazon";
+import { ILLUSTRATION_NOTE } from "@/lib/amazon";
 import { getCountry } from "@/lib/countries";
 import { canYearsLabel, titlesBadge } from "@/lib/data/can";
 import { POSITIONS, getPlayer, playersOf } from "@/lib/data/players";
@@ -48,6 +48,19 @@ export default async function SelectionPage({ params }: PageProps<"/selection/[s
     { label: "Finales perdues", value: s.canFinals.length, detail: s.canFinals.length ? canYearsLabel(s.canFinals) : "—" },
     { label: "Coupes du monde", value: s.worldCups.length, detail: s.bestWorldCup ? `Meilleur résultat : ${s.bestWorldCup}` : "Jamais qualifié" },
   ];
+
+  const encadre = (
+    <EncadreProduit surtitre={titreProduitSelection(s)} produits={[produitSelection(s)]} emplacement="fiche">
+      <p className="mt-3 text-xs text-muted">
+        Le maillot dessiné en haut de page est une création Keur Foot aux couleurs du drapeau, pas le maillot officiel. {ILLUSTRATION_NOTE}
+      </p>
+      {s.jersey.objet !== "drapeau" && (
+        <Link href="/conseils/comment-choisir-sa-taille-de-maillot-de-foot" className="mt-2 inline-flex min-h-11 items-center text-xs text-gold underline underline-offset-2">
+          Comment choisir sa taille ?
+        </Link>
+      )}
+    </EncadreProduit>
+  );
 
   const image = illustration(`selection-${s.slug}`);
   const equipe = {
@@ -99,6 +112,8 @@ export default async function SelectionPage({ params }: PageProps<"/selection/[s
               </div>
             ))}
           </dl>
+          {/* Téléphone : le maillot juste après les chiffres clés, loin de l'annonce placée après l'histoire. */}
+          <div className="mt-6 lg:hidden">{encadre}</div>
           {casePlayers.length > 0 && (
             <>
               <p className="mt-7 text-[13px] font-bold tracking-[0.2em] text-muted uppercase">Légende du casier</p>
@@ -146,17 +161,8 @@ export default async function SelectionPage({ params }: PageProps<"/selection/[s
           </div>
 
           <aside className="space-y-6">
-            <div className="rounded border border-line bg-surface p-5 text-center">
-              <p className="eyebrow">Le maillot</p>
-              <p className="mt-3 font-semibold">{s.jersey.label}</p>
-              <p className="mt-1 text-xs text-muted">
-                Dessin Keur Foot aux couleurs du drapeau, pas le maillot officiel. {ILLUSTRATION_NOTE}
-              </p>
-              <AmazonButton href={amazonUrl(s.jersey)} produit={s.jersey.label} note className="mt-4 w-full" />
-              <Link href="/conseils/comment-choisir-sa-taille-de-maillot-de-foot" className="mt-3 block text-xs text-gold underline underline-offset-2">
-                Comment choisir sa taille ?
-              </Link>
-            </div>
+            {/* Ordinateur : l'encadré reste dans la colonne de droite (sur téléphone, il est sous les chiffres clés). */}
+            <div className="hidden lg:block">{encadre}</div>
             {tops.length > 0 && (
               <div>
                 <p className="eyebrow">Classements</p>

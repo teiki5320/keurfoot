@@ -25,7 +25,7 @@ export const SELECTIONS_LOT5: Selection[] = [
       { name: "François Amégasse", playerSlug: null, why: "110 sélections et 9 buts entre 1984 et 2000, selon RSSSF." },
       { name: "Théodore Nzué Nguéma", playerSlug: null, why: "Deuxième buteur de l'histoire : 23 buts en 77 sélections entre 1995 et 2005, selon RSSSF." },
     ],
-    jersey: { label: "Maillot du Gabon", amazonQuery: "maillot Gabon football", asin: null },
+    jersey: { label: "Drapeau du Gabon", amazonQuery: "drapeau Gabon", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux gabonais (mis à jour le 1er octobre 2026)", url: "https://rsssf.org/miscellaneous/gab-recintlp.html" },
       { label: "RSSSF — Matchs internationaux du Gabon (mis à jour le 12 février 2026)", url: "https://rsssf.org/tablesg/gab-intres.html" },
@@ -59,7 +59,7 @@ export const SELECTIONS_LOT5: Selection[] = [
       { name: "Thievy Bifouma", playerSlug: null, why: "Meilleur buteur de l'histoire : 16 buts en 40 sélections entre 2014 et 2023, selon la liste RSSSF, incomplète." },
       { name: "Delvin N'Dinga", playerSlug: null, why: "Recordman des sélections à égalité avec Jonas Bahamboula : 56 matchs entre 2008 et 2021, selon RSSSF." },
     ],
-    jersey: { label: "Maillot du Congo", amazonQuery: "maillot Congo Brazzaville football", asin: null },
+    jersey: { label: "Drapeau du Congo", amazonQuery: "drapeau Congo Brazzaville", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux congolais (mis à jour le 11 mars 2026, liste incomplète)", url: "https://rsssf.org/miscellaneous/kongb-recintlp.html" },
       { label: "RSSSF — Coupe d'Afrique des nations 1972", url: "https://rsssf.org/tables/72a.html" },
@@ -93,7 +93,7 @@ export const SELECTIONS_LOT5: Selection[] = [
       { name: "Pablo Ganet", playerSlug: null, why: "61 sélections au 5 octobre 2026 selon RSSSF ; buteur lors du 4-0 contre la Côte d'Ivoire à la CAN 2023." },
       { name: "Iban Edú", playerSlug: null, why: "Deuxième buteur de l'histoire : 10 buts en 58 sélections, selon RSSSF au 5 octobre 2026." },
     ],
-    jersey: { label: "Maillot de la Guinée équatoriale", amazonQuery: "maillot Guinée équatoriale football", asin: null },
+    jersey: { label: "Drapeau de la Guinée équatoriale", amazonQuery: "drapeau Guinée équatoriale", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux équato-guinéens (mis à jour le 5 octobre 2026)", url: "https://rsssf.org/miscellaneous/eqguinea-recintlp.html" },
       { label: "RSSSF — Matchs internationaux de la Guinée équatoriale (mis à jour le 12 février 2026)", url: "https://rsssf.org/tablese/eqguinea-intres.html" },
@@ -126,7 +126,7 @@ export const SELECTIONS_LOT5: Selection[] = [
       { name: "Geoffrey Kondogbia", playerSlug: null, why: "Passé par l'équipe de France, il compte 22 sélections et 3 buts avec la Centrafrique au 5 octobre 2026, selon RSSSF." },
       { name: "Hilaire Momi", playerSlug: null, why: "Doublé lors de la victoire 3-2 en Égypte, le 15 juin 2012, en éliminatoires de la CAN 2013." },
     ],
-    jersey: { label: "Maillot de la Centrafrique", amazonQuery: "maillot Centrafrique football", asin: null },
+    jersey: { label: "Drapeau de la Centrafrique", amazonQuery: "drapeau Centrafrique", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux centrafricains (mis à jour le 5 octobre 2026)", url: "https://rsssf.org/miscellaneous/cafr-recintlp.html" },
       { label: "RSSSF — Matchs internationaux de la Centrafrique (mis à jour le 12 février 2026)", url: "https://rsssf.org/tablesc/cafr-intres.html" },
@@ -154,7 +154,7 @@ export const SELECTIONS_LOT5: Selection[] = [
       { name: "Ezechiel N'Douassel", playerSlug: null, why: "Recordman des sélections et meilleur buteur selon Wikipédia : 51 sélections et 14 buts au 10 juin 2025." },
       { name: "Japhet N'Doram", playerSlug: null, why: "Champion de France 1995 avec le FC Nantes, surnommé « le sorcier de la Beaujoire »." },
     ],
-    jersey: { label: "Maillot du Tchad", amazonQuery: "maillot Tchad football", asin: null },
+    jersey: { label: "Drapeau du Tchad", amazonQuery: "drapeau Tchad", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Matchs internationaux du Tchad (mis à jour le 12 février 2026)", url: "https://rsssf.org/tablesc/chad-intres.html" },
       { label: "FIFA — Suspension de la fédération tchadienne (7 avril 2021)", url: "https://inside.fifa.com/en/news/fifa-suspends-chad-and-pakistan-football-associations" },
@@ -184,7 +184,7 @@ export const SELECTIONS_LOT5: Selection[] = [
       { name: "Joazhifel Soares", playerSlug: null, why: "Joueur le plus capé : 36 sélections entre 2011 et 2023, selon Wikipédia." },
       { name: "Ronaldo Afonso", playerSlug: null, why: "Buteur sur penalty de la victoire 1-0 contre le Malawi, le 13 octobre 2025, seul succès des éliminatoires du Mondial 2026." },
     ],
-    jersey: { label: "Maillot de Sao Tomé-et-Principe", amazonQuery: "maillot Sao Tomé-et-Principe football", asin: null },
+    jersey: { label: "Drapeau de Sao Tomé-et-Principe", amazonQuery: "drapeau Sao Tomé-et-Principe", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Matchs internationaux de Sao Tomé-et-Principe (mis à jour le 12 février 2026)", url: "https://rsssf.org/tabless/saotome-intres.html" },
       { label: "Wikipédia (anglais) — São Tomé and Príncipe national football team", url: "https://en.wikipedia.org/wiki/S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe_national_football_team" },
@@ -212,7 +212,7 @@ export const SELECTIONS_LOT5: Selection[] = [
       { name: "Mohammad Nashnoush", playerSlug: null, why: "Gardien recordman des sélections : 76 matchs entre 2011 et 2021, selon RSSSF." },
       { name: "Ahmed Saad Osman", playerSlug: null, why: "L'un des joueurs les plus capés de l'histoire de la sélection, entre 2001 et 2013, selon Wikipédia." },
     ],
-    jersey: { label: "Maillot de la Libye", amazonQuery: "maillot Libye football", asin: null },
+    jersey: { label: "Drapeau de la Libye", amazonQuery: "drapeau Libye", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Matchs internationaux de la Libye (mis à jour le 12 février 2026)", url: "https://rsssf.org/tablesl/lib-intres.html" },
       { label: "SAnews — La Libye sacrée au CHAN 2014", url: "https://www.sanews.gov.za/node/20792" },
@@ -245,7 +245,7 @@ export const SELECTIONS_LOT5: Selection[] = [
       { name: "Mohamed Abdelrahman", playerSlug: null, why: "Capitaine et troisième buteur de l'histoire : 23 buts en 64 sélections au 22 mars 2026, selon RSSSF." },
       { name: "Mahjoub El-Muez", playerSlug: null, why: "Gardien recordman : 81 sélections entre 2002 et 2015, selon RSSSF." },
     ],
-    jersey: { label: "Maillot du Soudan", amazonQuery: "maillot Soudan football", asin: null },
+    jersey: { label: "Drapeau du Soudan", amazonQuery: "drapeau Soudan", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux soudanais (mis à jour le 22 mars 2026)", url: "https://rsssf.org/miscellaneous/soed-recintlp.html" },
       { label: "RSSSF — Matchs internationaux du Soudan (mis à jour le 12 février 2026)", url: "https://rsssf.org/tabless/soed-intres.html" },

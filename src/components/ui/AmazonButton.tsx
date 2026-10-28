@@ -3,6 +3,7 @@ import { AMAZON_LABEL, AMAZON_NOTE } from "@/lib/amazon";
 
 /**
  * Bouton « Voir sur Amazon » (lien d'affiliation signalé « sponsored ») : ouvre un nouvel onglet.
+ * Toujours 44 px de haut au moins (min-h-11) et toujours avec son texte, pour le doigt sur téléphone.
  * Le libellé est toujours le même ; `produit` complète le nom accessible (« Voir sur Amazon : … »).
  * `note` affiche juste dessous la ligne « Lien partenaire Amazon… » ; `icone={false}` pour les cartes étroites.
  */
@@ -25,7 +26,7 @@ export function AmazonButton({
       target="_blank"
       rel="sponsored nofollow noopener noreferrer"
       aria-label={produit ? `${AMAZON_LABEL} : ${produit}` : undefined}
-      className={`btn-primary whitespace-nowrap ${note ? "" : className}`}
+      className={`btn-primary min-h-11 whitespace-nowrap ${note ? "" : className}`}
     >
       {icone && <ShoppingBag aria-hidden className="size-4" />}
       {AMAZON_LABEL}

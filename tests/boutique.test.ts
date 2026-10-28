@@ -9,10 +9,10 @@ import { SHOP, getCategory } from "../src/lib/data/shop";
 import { assertAmazon, dupes } from "./helpers";
 
 describe("Boutique", () => {
-  it("les 7 catégories du cahier des charges, dans l'ordre", () => {
+  it("les 7 catégories du cahier des charges, puis les 4 ajoutées le 28 octobre 2026, dans l'ordre", () => {
     assert.deepEqual(
       SHOP.map((c) => c.slug),
-      ["maillots", "echarpes", "drapeaux", "ballons", "crampons", "buts-pliables", "livres"],
+      ["maillots", "echarpes", "drapeaux", "ballons", "crampons", "buts-pliables", "livres", "gants", "protege-tibias", "pompes", "cadres"],
     );
   });
   it("getCategory retrouve une catégorie", () => {
@@ -25,7 +25,7 @@ describe("Boutique", () => {
       assert.ok(c.intro.length >= 60, "introduction trop courte");
       assert.deepEqual(dupes(c.products.map((p) => p.name)), []);
       for (const p of c.products) {
-        assertAmazon(amazonUrl(p), `${c.slug} / ${p.name}`);
+        assertAmazon(amazonUrl(p, "boutique"), `${c.slug} / ${p.name}`);
         if (p.asin) assert.match(p.asin, /^[0-9A-Z]{10}$/, "ASIN de 10 caractères");
         assert.ok(p.note.length >= 20 && p.note.length <= 220, `${p.name} : note de ${p.note.length} caractères`);
         assert.doesNotMatch(p.note, /\d+([,.]\d+)?\s?€/, `${p.name} : pas de prix sur le site`);

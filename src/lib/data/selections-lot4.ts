@@ -26,7 +26,7 @@ export const SELECTIONS_LOT4: Selection[] = [
       { name: "Joe Kadenge", playerSlug: null, why: "Attaquant vedette des années 1960 : 25 buts en 63 sélections entre 1957 et 1970, selon RSSSF." },
       { name: "Victor Wanyama", playerSlug: null, why: "Premier Kényan buteur en Ligue des champions, contre Barcelone en 2012, et premier à jouer en Premier League, en 2013." },
     ],
-    jersey: { label: "Maillot du Kenya", amazonQuery: "maillot Kenya football", asin: null },
+    jersey: { label: "Drapeau du Kenya", amazonQuery: "drapeau Kenya", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux kényans (mis à jour le 5 octobre 2026)", url: "https://www.rsssf.org/miscellaneous/kenya-recintlp.html" },
       { label: "CAF — Chapeaux des éliminatoires de la CAN 2027 (19 mai 2026)", url: "https://www.cafonline.com/afcon2025/news/totalenergies-caf-afcon-2027-qualifying-pots-revealed-ahead-of-cairo-draw/" },
@@ -59,7 +59,7 @@ export const SELECTIONS_LOT4: Selection[] = [
       { name: "Simon Msuva", playerSlug: null, why: "Co-meilleur buteur de l'histoire (25 buts au 16 juillet 2025 selon RSSSF) et buteur de la qualification pour la CAN 2025." },
       { name: "Mrisho Ngasa", playerSlug: null, why: "25 buts en 100 sélections entre 2006 et 2015, co-meilleur buteur de l'histoire selon RSSSF." },
     ],
-    jersey: { label: "Maillot de la Tanzanie", amazonQuery: "maillot Tanzanie football", asin: null },
+    jersey: { label: "Drapeau de la Tanzanie", amazonQuery: "drapeau Tanzanie", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Joueurs à 100 sélections et recordmen nationaux (mis à jour le 9 octobre 2026)", url: "https://www.rsssf.org/miscellaneous/century.html" },
       { label: "The Citizen — La Tanzanie qualifiée pour sa quatrième CAN (20 novembre 2024)", url: "https://thecitizen.co.tz/tanzania/sports/football/tanzania-reach-afcon-finals-for-fourth-time-4829228" },
@@ -93,7 +93,7 @@ export const SELECTIONS_LOT4: Selection[] = [
       { name: "Phillip Omondi", playerSlug: null, why: "Co-meilleur buteur de la CAN 1978 avec trois buts, dont un en demi-finale contre le Nigeria." },
       { name: "Majid Musisi", playerSlug: null, why: "20 buts en 29 sélections ; il rejoint le Stade Rennais en 1992, premier Ougandais recruté par un club européen." },
     ],
-    jersey: { label: "Maillot de l'Ouganda", amazonQuery: "maillot Ouganda football", asin: null },
+    jersey: { label: "Drapeau de l'Ouganda", amazonQuery: "drapeau Ouganda", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Joueurs à 100 sélections et recordmen nationaux (mis à jour le 9 octobre 2026)", url: "https://www.rsssf.org/miscellaneous/century.html" },
       { label: "FUFA — Trophées CAF 2016 : les Cranes et Onyango récompensés (6 janvier 2017)", url: "https://fufa.co.ug/?p=27629" },
@@ -127,7 +127,7 @@ export const SELECTIONS_LOT4: Selection[] = [
       { name: "Italo Vassallo", playerSlug: null, why: "Buteur en prolongation de la finale de la CAN 1962, gagnée 4-2." },
       { name: "Adane Girma", playerSlug: null, why: "Auteur du but éthiopien contre la Zambie (1-1) le 21 janvier 2013, pour le retour en CAN après 31 ans d'absence." },
     ],
-    jersey: { label: "Maillot de l'Éthiopie", amazonQuery: "maillot Éthiopie football", asin: null },
+    jersey: { label: "Drapeau de l'Éthiopie", amazonQuery: "drapeau Éthiopie", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Matchs internationaux de l'Éthiopie (mis à jour le 12 février 2026)", url: "https://www.rsssf.org/tablese/ethi-intres.html" },
       { label: "CAF — Le sacre inoubliable de l'Éthiopie en 1962 (2 janvier 2022)", url: "https://www.cafonline.com/afcon2025/news/ethiopia-s-unforgotten-1962-glory/" },
@@ -160,7 +160,7 @@ export const SELECTIONS_LOT4: Selection[] = [
       { name: "Saïd Abedi Makasi", playerSlug: null, why: "Auteur du but de la victoire 1-0 contre la RD Congo à la CAN 2004, seule victoire du Rwanda en phase finale." },
       { name: "Jean-Baptiste Mugiraneza", playerSlug: null, why: "90 sélections entre 2005 et 2018, deuxième total de l'histoire selon RSSSF." },
     ],
-    jersey: { label: "Maillot du Rwanda", amazonQuery: "maillot Rwanda football", asin: null },
+    jersey: { label: "Drapeau du Rwanda", amazonQuery: "drapeau Rwanda", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux rwandais (mis à jour le 6 octobre 2026)", url: "https://www.rsssf.org/miscellaneous/rwan-recintlp.html" },
       { label: "RSSSF — Matchs internationaux du Rwanda (mis à jour le 12 février 2026)", url: "https://www.rsssf.org/tablesr/rwan-intres.html" },
@@ -192,7 +192,7 @@ export const SELECTIONS_LOT4: Selection[] = [
       { name: "Cédric Amissi", playerSlug: null, why: "Buteur du 1-1 contre le Gabon, le 23 mars 2019, qui qualifie le Burundi pour sa première CAN." },
       { name: "Saidi Ntibazonkiza", playerSlug: null, why: "Deuxième meilleur buteur de l'histoire : 13 buts en 38 sélections au 1er octobre 2026, selon RSSSF." },
     ],
-    jersey: { label: "Maillot du Burundi", amazonQuery: "maillot Burundi football", asin: null },
+    jersey: { label: "Drapeau du Burundi", amazonQuery: "drapeau Burundi", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux burundais (mis à jour le 1er octobre 2026)", url: "https://www.rsssf.org/miscellaneous/buru-recintlp.html" },
       { label: "RSSSF — Matchs internationaux du Burundi (mis à jour le 12 février 2026)", url: "https://www.rsssf.org/tablesb/buru-intres.html" },
@@ -221,7 +221,7 @@ export const SELECTIONS_LOT4: Selection[] = [
       { name: "Peter Chol", playerSlug: null, why: "Joueur le plus capé du pays : 30 sélections en matchs officiels au 12 février 2026, selon RSSSF." },
       { name: "Tito Okello", playerSlug: null, why: "Meilleur buteur en matchs officiels : 5 buts au 12 février 2026, selon RSSSF." },
     ],
-    jersey: { label: "Maillot du Soudan du Sud", amazonQuery: "maillot Soudan du Sud football", asin: null },
+    jersey: { label: "Drapeau du Soudan du Sud", amazonQuery: "drapeau Soudan du Sud", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Matchs internationaux du Soudan du Sud (mis à jour le 12 février 2026)", url: "https://www.rsssf.org/tablesz/zsoed-intres.html" },
       { label: "FIFA — Les Bright Stars progressent (21 novembre 2019)", url: "https://inside.fifa.com/fifa-world-ranking/news/improving-bright-stars-shooting-to-greater-heights" },
@@ -250,7 +250,7 @@ export const SELECTIONS_LOT4: Selection[] = [
       { name: "Ali Suleiman", playerSlug: null, why: "Auteur des deux buts de la victoire 2-1 à Lobamba contre l'Eswatini, le 31 mars 2026, qui qualifie l'Érythrée pour la phase de groupes." },
       { name: "Siem Eyob-Abraha", playerSlug: null, why: "Buteur lors de la victoire 2-0 contre l'Eswatini à Meknès, le 25 mars 2026, pour le retour de l'Érythrée en éliminatoires de la CAN." },
     ],
-    jersey: { label: "Maillot de l'Érythrée", amazonQuery: "maillot Érythrée football", asin: null },
+    jersey: { label: "Drapeau de l'Érythrée", amazonQuery: "drapeau Érythrée", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Matchs internationaux de l'Érythrée", url: "https://rsssf.org/tablese/erit-intres.html" },
       { label: "CAF — Fédération membre : Érythrée", url: "https://www.cafonline.com/inside-caf/member-associations/eritrea/" },
@@ -281,7 +281,7 @@ export const SELECTIONS_LOT4: Selection[] = [
       { name: "Mahdi Houssein Mahabeh", playerSlug: null, why: "Buteur sur penalty lors de la victoire 2-1 contre l'Eswatini, le 4 septembre 2019, qui ouvre le deuxième tour des éliminatoires du Mondial." },
       { name: "Samuel Akinbinu", playerSlug: null, why: "Buteur lors des deux victoires 3-1 qui offrent à Djibouti le tournoi à quatre de Maurice, en juin 2023." },
     ],
-    jersey: { label: "Maillot de Djibouti", amazonQuery: "maillot Djibouti football", asin: null },
+    jersey: { label: "Drapeau de Djibouti", amazonQuery: "drapeau Djibouti", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Matchs internationaux de Djibouti", url: "https://rsssf.org/tablesd/dji-intres.html" },
       { label: "CAF — Fédération membre : Djibouti", url: "https://www.cafonline.com/inside-caf/member-associations/djibouti/" },
@@ -310,7 +310,7 @@ export const SELECTIONS_LOT4: Selection[] = [
       { name: "Anwar Shakunda", playerSlug: null, why: "Buteur de la première victoire somalienne en éliminatoires de Coupe du monde : 1-0 contre le Zimbabwe, le 5 septembre 2019." },
       { name: "Said Aleele", playerSlug: null, why: "Gardien, il arrête deux tirs au but contre Maurice le 31 mars 2026 et qualifie la Somalie pour la phase de groupes." },
     ],
-    jersey: { label: "Maillot de la Somalie", amazonQuery: "maillot Somalie football", asin: null },
+    jersey: { label: "Drapeau de la Somalie", amazonQuery: "drapeau Somalie", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Matchs internationaux de la Somalie", url: "https://rsssf.org/tabless/som-intres.html" },
       { label: "CAF — Fédération membre : Somalie", url: "https://www.cafonline.com/inside-caf/member-associations/somalia/" },

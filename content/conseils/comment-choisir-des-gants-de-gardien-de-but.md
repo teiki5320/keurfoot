@@ -4,7 +4,7 @@ description: Mousse en latex, coupe, fermeture, taille : nos repères pour chois
 date: 2026-12-11
 theme: acheter
 resume: Choisissez d'abord la paume selon le terrain : un latex souple qui accroche bien pour l'herbe, plus épais et résistant pour le synthétique et les surfaces dures. Prenez ensuite la bonne taille (le gant doit dépasser un peu le bout des doigts), la coupe qui vous plaît et une fermeture bien serrée au poignet.
-produits: ballons
+produits: gants
 ---
 Pour un gardien, les gants sont l'outil le plus important. Ils ne sont pourtant pas obligatoires : les Lois du jeu de l'IFAB les citent parmi les protections autorisées, au même titre qu'un casque souple. Mais jouer sans eux, c'est se priver d'adhérence et de protection. Voici comment bien les choisir.
 

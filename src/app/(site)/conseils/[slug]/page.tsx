@@ -6,7 +6,7 @@ import { ConseilGrid } from "@/components/conseils/ConseilCard";
 import { AmazonButton, AmazonNote } from "@/components/ui/AmazonButton";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { amazonUrl } from "@/lib/amazon";
-import { conseilSections, splitAtMiddleSection } from "@/lib/conseils/article";
+import { conseilSections, splitAfterFirstSection, splitAtMiddleSection } from "@/lib/conseils/article";
 import { CONSEIL_CATEGORIES } from "@/lib/conseils/categories";
 import { siteConfig } from "@/lib/config";
 import { getConseilBySlug, getConseils, getRelatedConseils, renderConseil } from "@/lib/data/conseils";
@@ -43,6 +43,9 @@ export default async function ConseilPage({ params }: PageProps<"/conseils/[slug
   const related = getRelatedConseils(conseil);
   const sections = conseilSections(conseil.body);
   const [firstHalf, secondHalf] = splitAtMiddleSection(renderConseil(conseil.body));
+  // Rappel de 1 à 2 produits après la première partie : au moins une partie entière le sépare de l'annonce du milieu.
+  const [debut, suiteDebut] = splitAfterFirstSection(firstHalf);
+  const rappel = suiteDebut ? (categories[0]?.products.slice(0, 2) ?? []) : [];
   const url = `${siteConfig.url}/conseils/${conseil.slug}`;
 
   const article = {
@@ -121,7 +124,27 @@ export default async function ConseilPage({ params }: PageProps<"/conseils/[slug
             </ol>
           </nav>
         )}
-        <div className="prose-text mt-8" dangerouslySetInnerHTML={{ __html: firstHalf }} />
+        <div className="prose-text mt-8" dangerouslySetInnerHTML={{ __html: rappel.length ? debut : firstHalf }} />
+        {rappel.length > 0 && (
+          <aside aria-labelledby="rappel-produits" className="my-8 rounded border border-line bg-surface p-4">
+            <h2 id="rappel-produits" className="eyebrow">
+              Pour s&apos;équiper : {categories[0].name.toLowerCase()}
+            </h2>
+            <ul className="mt-3 space-y-2.5">
+              {rappel.map((p) => (
+                <li key={p.name} className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+                  <div className="min-w-0 flex-1">
+                    <p className="font-semibold">{p.name}</p>
+                    <p className="mt-0.5 text-xs text-muted">{p.note}</p>
+                  </div>
+                  <AmazonButton href={amazonUrl(p, "conseil")} produit={p.name} className="self-start px-4 sm:self-auto" />
+                </li>
+              ))}
+            </ul>
+            <AmazonNote className="mt-2 text-xs" />
+          </aside>
+        )}
+        {rappel.length > 0 && <div className="prose-text" dangerouslySetInnerHTML={{ __html: suiteDebut }} />}
         {secondHalf && (
           <>
             {/* Publicité : au milieu du texte, entre deux parties. */}
@@ -142,7 +165,7 @@ export default async function ConseilPage({ params }: PageProps<"/conseils/[slug
                     <p className="font-semibold">{p.name}</p>
                     <p className="mt-0.5 text-xs text-muted">{p.note}</p>
                   </div>
-                  <AmazonButton href={amazonUrl(p)} produit={p.name} className="self-start px-3 py-2 text-xs sm:self-auto" />
+                  <AmazonButton href={amazonUrl(p, "conseil")} produit={p.name} className="self-start px-4 sm:self-auto" />
                 </li>
               ))}
             </ul>

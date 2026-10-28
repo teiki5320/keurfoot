@@ -17,7 +17,8 @@ publications réelles, ou routine qui publie).
 - [fait] **Aujourd'hui** : affiliation Amazon Partenaires (tag `keurfootfr-21`) sur la boutique et les fiches ; le site ne vend rien.
 - [en cours] **Examen AdSense** : demandé le 20 octobre ; « En préparation » dans la console AdSense, ni validé ni refusé (vérifié le 28 octobre 2026).
 - **Blocs d'annonces** : créer les blocs AdSense et renseigner leurs identifiants pour afficher les 7 emplacements prévus.
-- **Liens Amazon directs** : remplacer les recherches par des fiches produits (ASIN vérifiés) sur les maillots les plus vus.
+- [en cours] **Liens Amazon directs** : 3 maillots en fiche produit vérifiée depuis le 28 octobre 2026 (Maroc, Nigeria, Tunisie, vendus par Amazon) ; les autres grands pays n'ont pas de fiche fidèle vendue par Amazon, ils gardent la recherche.
+- **Codes de suivi par type de page** : la table est prête (`AMAZON_TAGS` dans `src/lib/amazon.ts`) ; tous les emplacements utilisent encore `keurfootfr-21` en attendant que Jean crée les codes dans la console.
 - **Partenariats** : équipementiers ou boutiques de supporters, une fois l'audience mesurée.
 
 ## Points forts
@@ -55,7 +56,8 @@ publications réelles, ou routine qui publie).
 - **Adresses dans le sitemap** : 132 au 28 octobre 2026 (100 fixes, dont la page Actus, et 32 articles d'actus)
 - **Pages indexées par Google** : 97 sur 99 (relevé du Studio, 27 octobre 2026)
 - **Articles Conseils** : 9 publiés, 24 programmés jusqu'au 23 décembre 2026 (28 octobre 2026)
-- **Liens Amazon directs** : aucun, tous les liens ouvrent une recherche Amazon
+- **Liens Amazon directs** : 3 sélections sur 54 (Maroc, Nigeria, Tunisie) depuis le 28 octobre 2026 ; avant : aucune
+- **Pages de contenu avec un produit Amazon** : toutes les fiches sélection, les 9 Top 10 et les 15 fiches joueurs depuis le 28 octobre 2026 (Top 10 et joueurs : aucun avant) ; l'accueil n'a aucun bouton Amazon
 - **Visites** : à instrumenter
 - **Clics et revenus Amazon** : à vérifier dans la console
 - **Revenus AdSense** : aucun (aucun bloc d'annonces en place)

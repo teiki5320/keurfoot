@@ -4,7 +4,7 @@ description: Obligatoires en match, les protège-tibias se choisissent selon la 
 date: 2026-12-04
 theme: acheter
 resume: Les Lois du jeu rendent les protège-tibias obligatoires et demandent qu'ils soient couverts par les chaussettes. Choisissez-les selon la taille du joueur (repère indiqué par le fabricant), avec une coque qui couvre le tibia de la cheville jusque sous le genou, et un maintien qui ne bouge pas pendant la course.
-produits: crampons
+produits: protege-tibias, crampons
 ---
 On les oublie souvent dans le sac, jusqu'au jour où l'arbitre refuse un joueur sans eux. Les protège-tibias protègent des coups de crampons et des contacts, et ils sont obligatoires en match. Voici comment bien les choisir.
 

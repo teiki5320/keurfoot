@@ -102,3 +102,13 @@ export function splitAtMiddleSection(html: string): [string, string] {
   const cut = starts[Math.floor(starts.length / 2)];
   return [html.slice(0, cut), html.slice(cut)];
 }
+
+/**
+ * Coupe le HTML juste après la première partie (avant le 2e h2), pour y glisser le rappel de 1 à 2 produits,
+ * loin de l'annonce du milieu. Moins de 2 parties : pas de coupure.
+ */
+export function splitAfterFirstSection(html: string): [string, string] {
+  const starts = [...html.matchAll(/<h2[\s>]/g)].map((m) => m.index);
+  if (starts.length < 2) return [html, ""];
+  return [html.slice(0, starts[1]), html.slice(starts[1])];
+}

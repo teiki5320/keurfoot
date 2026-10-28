@@ -4,6 +4,7 @@ import { AmazonButton, AmazonNote } from "@/components/ui/AmazonButton";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { PageHero } from "@/components/ui/PageHero";
 import { ILLUSTRATION_NOTE, amazonUrl } from "@/lib/amazon";
+import { getConseils } from "@/lib/data/conseils";
 import { mostTitled } from "@/lib/data/selections";
 import { SHOP } from "@/lib/data/shop";
 import { Rail, RailSelection } from "@/components/ui/Vestiaire";
@@ -13,7 +14,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = pageMetadata({
   title: "Boutique supporter : maillots, écharpes, drapeaux, ballons",
   description:
-    "L'équipement du supporter du foot africain : maillots des sélections, écharpes, drapeaux, ballons, crampons, buts pliables pour enfants et livres de foot.",
+    "L'équipement du supporter du foot africain : maillots des sélections, écharpes, drapeaux, ballons, crampons, gants, buts pliables et livres de foot.",
   path: "/boutique",
 });
 
@@ -23,9 +24,16 @@ const GUIDES: Record<string, { href: string; label: string }> = {
   "buts-pliables": { href: "/conseils/quel-but-de-foot-pliable-choisir-pour-un-enfant", label: "Quel but pliable choisir pour un enfant ?" },
   ballons: { href: "/conseils/quel-ballon-de-foot-choisir-selon-l-age", label: "Quel ballon choisir selon l'âge ?" },
   crampons: { href: "/conseils/comment-choisir-ses-crampons-selon-le-terrain", label: "Comment choisir ses crampons ?" },
+  gants: { href: "/conseils/comment-choisir-des-gants-de-gardien-de-but", label: "Comment choisir des gants de gardien ?" },
+  "protege-tibias": { href: "/conseils/comment-choisir-ses-protege-tibias", label: "Comment choisir ses protège-tibias ?" },
+  pompes: { href: "/conseils/quelle-pression-pour-un-ballon-de-foot", label: "Quelle pression pour un ballon ?" },
+  cadres: { href: "/conseils/comment-encadrer-un-maillot-de-foot", label: "Comment encadrer un maillot ?" },
 };
 
 export default function ShopPage() {
+  // Un guide n'est proposé qu'une fois l'article publié (les conseils paraissent à leur date).
+  const publies = new Set(getConseils().map((c) => `/conseils/${c.slug}`));
+  const guide = (slug: string) => (GUIDES[slug] && publies.has(GUIDES[slug].href) ? GUIDES[slug] : null);
   return (
     <>
       <Breadcrumb items={[{ name: "Boutique", href: "/boutique" }]} />
@@ -50,7 +58,7 @@ export default function ShopPage() {
             {mostTitled(12).map((sel, i) => (
               <div key={sel.slug} className="flex flex-col items-center">
                 <RailSelection s={sel} i={i} caption={sel.jersey.label} />
-                <AmazonButton href={amazonUrl(sel.jersey)} produit={sel.jersey.label} icone={false} className="-mt-1 mb-3 px-3 text-[13px]" />
+                <AmazonButton href={amazonUrl(sel.jersey, "boutique")} produit={sel.jersey.label} icone={false} className="-mt-1 mb-3 px-3 text-[13px]" />
               </div>
             ))}
           </Rail>
@@ -68,11 +76,9 @@ export default function ShopPage() {
           <section key={c.slug} id={c.slug} aria-labelledby={`titre-${c.slug}`} className="mt-14 scroll-mt-28">
             <h2 id={`titre-${c.slug}`} className="section-title">{c.name}</h2>
             <p className="mt-3 max-w-2xl text-chalk/85">{c.intro}</p>
-            {GUIDES[c.slug] && (
+            {guide(c.slug) && (
               <div className="mt-3 flex flex-wrap gap-2">
-                {GUIDES[c.slug] && (
-                  <Link href={GUIDES[c.slug].href} className="tag">{GUIDES[c.slug].label}</Link>
-                )}
+                <Link href={guide(c.slug)!.href} className="tag">{guide(c.slug)!.label}</Link>
               </div>
             )}
             <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -80,7 +86,7 @@ export default function ShopPage() {
                 <li key={p.name} className="flex flex-col rounded border border-line bg-surface p-4">
                   <h3 className="font-display text-xl tracking-wide uppercase">{p.name}</h3>
                   <p className="mt-1.5 flex-1 text-sm text-muted">{p.note}</p>
-                  <AmazonButton href={amazonUrl(p)} produit={p.name} note className="mt-4 items-start" />
+                  <AmazonButton href={amazonUrl(p, "boutique")} produit={p.name} note className="mt-4 items-start" />
                 </li>
               ))}
             </ul>

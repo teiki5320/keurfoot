@@ -2,14 +2,20 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AdSlot } from "@/components/ads/AdSlot";
+import { AmazonButton, AmazonNote } from "@/components/ui/AmazonButton";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
+import { EncadreProduit, produitSelection, titreProduitSelection } from "@/components/ui/EncadreProduit";
 import { PageHero } from "@/components/ui/PageHero";
 import { PinButton, PinPreview } from "@/components/ui/PinButton";
+import { Rail, RailSelection } from "@/components/ui/Vestiaire";
 import { SourcesList } from "@/components/ui/SourcesList";
+import { amazonUrl } from "@/lib/amazon";
 import { siteConfig } from "@/lib/config";
 import { getCountry } from "@/lib/countries";
 import { countryLink } from "@/lib/data/links";
 import { getPlayer } from "@/lib/data/players";
+import { getSelection, mostTitled } from "@/lib/data/selections";
+import { getCategory } from "@/lib/data/shop";
 import { TOPS, getTop, relatedTops } from "@/lib/data/tops";
 import { illustration, imageAllegee } from "@/lib/illustrations";
 import { jsonLd } from "@/lib/json-ld";
@@ -34,10 +40,23 @@ export async function generateMetadata({ params }: PageProps<"/top-10/[slug]">):
   });
 }
 
+/** Livre proposé par les Top 10 qui ne parlent pas d'un seul pays (nom exact d'un produit de la catégorie « livres »). */
+const LIVRE_DU_TOP: Record<string, string> = {
+  "meilleurs-buteurs-can": "Livres sur l'histoire de la CAN",
+  "joueurs-africains-de-l-annee": "Livres sur le football africain",
+  "exploits-africains-coupe-du-monde": "Livres sur le football africain",
+};
+
+/** Top 10 des pays les plus titrés : penderie des 3 maillots les plus titrés (3 produits au plus par page). */
+const TOP_PENDERIE = "pays-les-plus-titres-can";
+
 export default async function TopPage({ params }: PageProps<"/top-10/[slug]">) {
   const top = getTop((await params).slug);
   if (!top) notFound();
   const path = `/top-10/${top.slug}`;
+  // Un seul encadré produit par Top 10, en colonne de droite (après la liste sur téléphone), loin des annonces.
+  const selection = top.country ? getSelection(top.country) : undefined;
+  const livre = getCategory("livres")?.products.find((p) => p.name === LIVRE_DU_TOP[top.slug]);
   const list = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -117,6 +136,25 @@ export default async function TopPage({ params }: PageProps<"/top-10/[slug]">) {
               );
             })}
           </ol>
+
+          {top.slug === TOP_PENDERIE && (
+            <section aria-labelledby="penderie-titres" className="mt-12">
+              <h2 id="penderie-titres" className="section-title text-[28px] sm:text-4xl">Les maillots des plus titrés</h2>
+              <div className="mt-5">
+                <Rail label="Maillots des sélections les plus titrées">
+                  {mostTitled(3).map((sel, i) => (
+                    <div key={sel.slug} className="flex flex-col items-center">
+                      <RailSelection s={sel} i={i} caption={sel.jersey.label} />
+                      <AmazonButton href={amazonUrl(sel.jersey, "top")} produit={sel.jersey.label} icone={false} className="-mt-1 mb-3 px-3 text-[13px]" />
+                    </div>
+                  ))}
+                </Rail>
+              </div>
+              <AmazonNote className="mt-3 text-xs" />
+              <p className="mt-1 text-xs text-muted">Maillots dessinés par Keur Foot aux couleurs des drapeaux, pas les maillots officiels.</p>
+              <Link href="/boutique/maillots" className="tag mt-4">Tous les maillots des sélections →</Link>
+            </section>
+          )}
         </div>
 
         <aside className="lg:sticky lg:top-24 lg:self-start">
@@ -128,6 +166,14 @@ export default async function TopPage({ params }: PageProps<"/top-10/[slug]">) {
             <PinButton slug={top.slug} path={path} description={`${top.title} — ${siteConfig.name}`} />
           </div>
           <Link href="/top-10" className="tag mt-6">Tous les Top 10 →</Link>
+          {selection && (
+            <EncadreProduit surtitre={titreProduitSelection(selection)} produits={[produitSelection(selection)]} emplacement="top" className="mt-8">
+              <Link href={`/selection/${selection.slug}`} className="mt-3 inline-flex min-h-11 items-center text-xs text-gold underline underline-offset-2">
+                La fiche de la sélection
+              </Link>
+            </EncadreProduit>
+          )}
+          {livre && <EncadreProduit surtitre="À lire" produits={[livre]} emplacement="top" className="mt-8" />}
         </aside>
       </div>
 

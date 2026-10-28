@@ -26,7 +26,7 @@ export const SELECTIONS_LOT3: Selection[] = [
       { name: "Jodel Dossou", playerSlug: null, why: "80 sélections au 5 octobre 2026 selon RSSSF ; buteur égalisateur contre l'Égypte en huitièmes de la CAN 2025." },
       { name: "Oumar Tchomogo", playerSlug: null, why: "15 buts en 34 sélections entre 1995 et 2008, selon RSSSF." },
     ],
-    jersey: { label: "Maillot du Bénin", amazonQuery: "maillot Bénin football", asin: null },
+    jersey: { label: "Drapeau du Bénin", amazonQuery: "drapeau Bénin", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux béninois (mis à jour le 5 octobre 2026)", url: "https://www.rsssf.org/miscellaneous/benin-recintlp.html" },
       { label: "Afrik-Foot — Les Écureuils deviennent les Guépards (2022)", url: "https://www.afrik-foot.com/benin-changement-de-surnom-pour-les-ecureuils-officiel" },
@@ -61,7 +61,7 @@ export const SELECTIONS_LOT3: Selection[] = [
       { name: "Bertrand Traoré", playerSlug: null, why: "91 sélections et 22 buts au 5 octobre 2026, selon RSSSF." },
       { name: "Alain Traoré", playerSlug: null, why: "Auteur du seul but du match pour la troisième place de la CAN 2017, contre le Ghana." },
     ],
-    jersey: { label: "Maillot du Burkina Faso", amazonQuery: "maillot Burkina Faso football", asin: null },
+    jersey: { label: "Drapeau du Burkina Faso", amazonQuery: "drapeau Burkina Faso", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux burkinabè (mis à jour le 5 octobre 2026)", url: "https://www.rsssf.org/miscellaneous/burk-recintlp.html" },
       { label: "Afrik-Foot — Pitroipa meilleur joueur de la CAN 2013", url: "https://www.afrik-foot.com/can-2013-pitroipa-meilleur-joueur-de-la-competition" },
@@ -95,7 +95,7 @@ export const SELECTIONS_LOT3: Selection[] = [
       { name: "Héldon Ramos", playerSlug: null, why: "Deuxième buteur de l'histoire : 15 buts en 52 sélections, selon RSSSF." },
       { name: "Ianique Tavares « Stopira »", playerSlug: null, why: "Buteur lors du 3-0 contre l'Eswatini qui qualifie le Cap-Vert pour sa première Coupe du monde, le 13 octobre 2025." },
     ],
-    jersey: { label: "Maillot du Cap-Vert", amazonQuery: "maillot Cap-Vert football", asin: null },
+    jersey: { label: "Drapeau du Cap-Vert", amazonQuery: "drapeau Cap-Vert", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux cap-verdiens (mis à jour le 2 octobre 2026)", url: "https://rsssf.org/miscellaneous/kaapv-recintlp.html" },
       { label: "CAF — Fédération membre : Cap-Vert", url: "https://www.cafonline.com/inside-caf/member-associations/cape-verde/" },
@@ -129,7 +129,7 @@ export const SELECTIONS_LOT3: Selection[] = [
       { name: "Assan Ceesay", playerSlug: null, why: "Deuxième buteur de l'histoire : 13 buts en 41 sélections entre 2013 et 2024, selon RSSSF." },
       { name: "Yankuba Minteh", playerSlug: null, why: "7 buts en 20 sélections au 5 octobre 2026, selon RSSSF." },
     ],
-    jersey: { label: "Maillot de la Gambie", amazonQuery: "maillot Gambie football", asin: null },
+    jersey: { label: "Drapeau de la Gambie", amazonQuery: "drapeau Gambie", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux gambiens (mis à jour le 5 octobre 2026)", url: "https://www.rsssf.org/miscellaneous/gamb-recintlp.html" },
       { label: "CAF — Fédération membre : Gambie", url: "https://www.cafonline.com/inside-caf/member-associations/gambia/" },
@@ -164,7 +164,7 @@ export const SELECTIONS_LOT3: Selection[] = [
       { name: "Issiaga Sylla", playerSlug: null, why: "Recordman des sélections : 92 matchs au 5 octobre 2026, selon RSSSF." },
       { name: "Naby Keïta", playerSlug: null, why: "56 sélections et 11 buts au 5 octobre 2026, selon RSSSF." },
     ],
-    jersey: { label: "Maillot de la Guinée", amazonQuery: "maillot Guinée football", asin: null },
+    jersey: { label: "Drapeau de la Guinée", amazonQuery: "drapeau Guinée", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux guinéens (mis à jour le 5 octobre 2026)", url: "https://rsssf.org/miscellaneous/guinea-recintlp.html" },
       { label: "RSSSF — Coupe d'Afrique des nations 1976", url: "https://www.rsssf.org/tables/76a.html" },
@@ -197,7 +197,7 @@ export const SELECTIONS_LOT3: Selection[] = [
       { name: "Toni Silva", playerSlug: null, why: "Buteur à la 97e minute de la victoire 3-2 contre la Zambie, le 4 juin 2016, en qualifications pour la CAN 2017." },
       { name: "Piqueti", playerSlug: null, why: "40 sélections et 7 buts entre 2015 et 2023, deuxième buteur de l'histoire à égalité selon RSSSF." },
     ],
-    jersey: { label: "Maillot de la Guinée-Bissau", amazonQuery: "maillot Guinée-Bissau football", asin: null },
+    jersey: { label: "Drapeau de la Guinée-Bissau", amazonQuery: "drapeau Guinée-Bissau", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux bissau-guinéens (mis à jour le 1er octobre 2026)", url: "https://rsssf.org/miscellaneous/gbis-recintlp.html" },
       { label: "RSSSF — Matchs internationaux de la Guinée-Bissau (mis à jour le 12 février 2026)", url: "https://www.rsssf.org/tablesg/gbis-intres.html" },
@@ -229,7 +229,7 @@ export const SELECTIONS_LOT3: Selection[] = [
       { name: "James « Salinsa » Debbah", playerSlug: null, why: "58 sélections et 13 buts entre 1986 et 2018, deuxième buteur de l'histoire à égalité selon RSSSF." },
       { name: "Oscar Dorley", playerSlug: null, why: "Joueur en activité le plus capé : 54 sélections au 5 octobre 2026, selon RSSSF." },
     ],
-    jersey: { label: "Maillot du Liberia", amazonQuery: "maillot Liberia football", asin: null },
+    jersey: { label: "Drapeau du Liberia", amazonQuery: "drapeau Liberia", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux libériens (mis à jour le 5 octobre 2026)", url: "https://rsssf.org/miscellaneous/liber-recintlp.html" },
       { label: "RSSSF — Matchs internationaux du Liberia (mis à jour le 12 février 2026)", url: "https://www.rsssf.org/tablesl/liber-intres.html" },
@@ -262,7 +262,7 @@ export const SELECTIONS_LOT3: Selection[] = [
       { name: "Ismaël Diakité", playerSlug: null, why: "Doublé contre le Botswana le 18 novembre 2018, qui qualifie la Mauritanie pour sa première CAN." },
       { name: "Moctar Sidi El-Hacen", playerSlug: null, why: "Auteur du premier but mauritanien en CAN, sur penalty contre le Mali, le 24 juin 2019." },
     ],
-    jersey: { label: "Maillot de la Mauritanie", amazonQuery: "maillot Mauritanie football", asin: null },
+    jersey: { label: "Drapeau de la Mauritanie", amazonQuery: "drapeau Mauritanie", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux mauritaniens (mis à jour le 5 octobre 2026)", url: "https://rsssf.org/miscellaneous/maur-recintlp.html" },
       { label: "RSSSF — Matchs internationaux de la Mauritanie (mis à jour le 12 février 2026)", url: "https://www.rsssf.org/tablesm/maur-intres.html" },
@@ -294,7 +294,7 @@ export const SELECTIONS_LOT3: Selection[] = [
       { name: "William N'Gounou", playerSlug: null, why: "Auteur du premier but du Niger en CAN, contre la Tunisie, le 27 janvier 2012." },
       { name: "Daniel Sosah", playerSlug: null, why: "Buteur de la victoire 1-0 en Zambie, le 12 octobre 2025, qui assure au Niger la deuxième place de son groupe." },
     ],
-    jersey: { label: "Maillot du Niger", amazonQuery: "maillot Niger football", asin: null },
+    jersey: { label: "Drapeau du Niger", amazonQuery: "drapeau Niger", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Matchs internationaux du Niger (mis à jour le 12 février 2026)", url: "https://rsssf.org/tablesn/niger-intres.html" },
       { label: "Africasoccer — Le Niger bat la Zambie et finit deuxième (12 octobre 2025)", url: "https://africasoccer.com/niger-beat-zambia-in-final-world-cup-qualifier-to-finish-second-in-group-e/" },
@@ -326,7 +326,7 @@ export const SELECTIONS_LOT3: Selection[] = [
       { name: "Umaru Bangura", playerSlug: null, why: "Joueur le plus capé de l'histoire : 55 sélections entre 2006 et 2022, selon Wikipédia." },
       { name: "Steven Caulker", playerSlug: null, why: "International anglais en 2012, il porte ensuite 18 fois le maillot de la Sierra Leone entre 2022 et 2024, selon RSSSF." },
     ],
-    jersey: { label: "Maillot de la Sierra Leone", amazonQuery: "maillot Sierra Leone football", asin: null },
+    jersey: { label: "Drapeau de la Sierra Leone", amazonQuery: "drapeau Sierra Leone", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Matchs internationaux de la Sierra Leone (mis à jour le 12 février 2026)", url: "https://rsssf.org/tabless/sier-intres.html" },
       { label: "RSSSF — Steven Caulker, sélections internationales", url: "https://rsssf.org/miscellaneous/dc-caulker-intl.html" },
@@ -360,7 +360,7 @@ export const SELECTIONS_LOT3: Selection[] = [
       { name: "Kodjo Fo Doh Laba", playerSlug: null, why: "Deuxième buteur de l'histoire : 21 buts en 58 sélections au 2 octobre 2026, selon RSSSF." },
       { name: "Djené Dakonam", playerSlug: null, why: "Capitaine, 93 sélections au 2 octobre 2026 selon RSSSF." },
     ],
-    jersey: { label: "Maillot du Togo", amazonQuery: "maillot Togo football", asin: null },
+    jersey: { label: "Drapeau du Togo", amazonQuery: "drapeau Togo", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux togolais (mis à jour le 2 octobre 2026)", url: "https://rsssf.org/miscellaneous/togo-recintlp.html" },
       { label: "RSSSF — Matchs internationaux du Togo (mis à jour le 12 février 2026)", url: "https://rsssf.org/tablest/togo-intres.html" },

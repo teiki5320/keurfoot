@@ -4,7 +4,7 @@ description: Entre 0,6 et 1,1 bar pour un ballon de match selon les Lois du jeu 
 date: 2026-11-02
 theme: acheter
 resume: Les Lois du jeu fixent la pression d'un ballon de match entre 0,6 et 1,1 atmosphère au niveau de la mer, soit environ 0,6 à 1,1 bar. Dans la pratique, suivez la pression imprimée près de la valve de votre ballon, gonflez avec une aiguille humidifiée et vérifiez avec un manomètre.
-produits: ballons
+produits: pompes, ballons
 ---
 Un ballon trop mou ne part pas, un ballon trop dur fait mal au pied et rebondit dans tous les sens. Bien le gonfler prend deux minutes et change vraiment le plaisir de jouer.
 

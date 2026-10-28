@@ -27,7 +27,7 @@ export const SELECTIONS_LOT6: Selection[] = [
       { name: "Stoppila Sunzu", playerSlug: null, why: "Auteur du tir au but décisif de la finale de la CAN 2012 contre la Côte d'Ivoire." },
       { name: "Patson Daka", playerSlug: null, why: "22 buts en 57 sélections au 2 octobre 2026, selon RSSSF." },
     ],
-    jersey: { label: "Maillot de la Zambie", amazonQuery: "maillot Zambie football", asin: null },
+    jersey: { label: "Drapeau de la Zambie", amazonQuery: "drapeau Zambie", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux zambiens (mis à jour le 2 octobre 2026)", url: "https://rsssf.org/miscellaneous/zam-recintlp.html" },
       { label: "COSAFA — Fédération zambienne de football", url: "https://cosafa.com/?p=1719" },
@@ -62,7 +62,7 @@ export const SELECTIONS_LOT6: Selection[] = [
       { name: "Manucho", playerSlug: null, why: "Troisième buteur de l'histoire : 22 buts en 53 sélections, selon RSSSF." },
       { name: "Gelson Dala", playerSlug: null, why: "21 buts en 54 sélections au 5 octobre 2026 selon RSSSF ; doublé contre la Namibie en huitièmes de la CAN 2023." },
     ],
-    jersey: { label: "Maillot de l'Angola", amazonQuery: "maillot Angola football", asin: null },
+    jersey: { label: "Drapeau de l'Angola", amazonQuery: "drapeau Angola", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux angolais (mis à jour le 5 octobre 2026)", url: "https://rsssf.org/miscellaneous/ango-recintlp.html" },
       { label: "COSAFA — Angola", url: "https://cosafa.com/members/angola/" },
@@ -94,7 +94,7 @@ export const SELECTIONS_LOT6: Selection[] = [
       { name: "Knowledge Musona", playerSlug: null, why: "26 buts en 58 sélections au 5 octobre 2026, selon RSSSF." },
       { name: "Khama Billiat", playerSlug: null, why: "63 sélections et 18 buts au 5 octobre 2026, selon RSSSF." },
     ],
-    jersey: { label: "Maillot du Zimbabwe", amazonQuery: "maillot Zimbabwe football", asin: null },
+    jersey: { label: "Drapeau du Zimbabwe", amazonQuery: "drapeau Zimbabwe", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux zimbabwéens (mis à jour le 5 octobre 2026)", url: "https://rsssf.org/miscellaneous/zimb-recintlp.html" },
       { label: "RSSSF — Peter Ndlovu, buts internationaux", url: "https://rsssf.org/miscellaneous/ndlovu-intlg.html" },
@@ -126,7 +126,7 @@ export const SELECTIONS_LOT6: Selection[] = [
       { name: "Mexer", playerSlug: null, why: "81 sélections au 5 octobre 2026, selon RSSSF." },
       { name: "Geny Catamo", playerSlug: null, why: "Quatrième buteur de l'histoire : 13 buts en 43 sélections au 5 octobre 2026, selon RSSSF." },
     ],
-    jersey: { label: "Maillot du Mozambique", amazonQuery: "maillot Mozambique football", asin: null },
+    jersey: { label: "Drapeau du Mozambique", amazonQuery: "drapeau Mozambique", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux mozambicains (mis à jour le 5 octobre 2026)", url: "https://rsssf.org/miscellaneous/moz-recintlp.html" },
       { label: "COSAFA — Mozambique", url: "https://cosafa.com/members/mozambique/" },
@@ -157,7 +157,7 @@ export const SELECTIONS_LOT6: Selection[] = [
       { name: "Joseph Kamwendo", playerSlug: null, why: "104 sélections entre 2003 et 2017, selon RSSSF." },
       { name: "Gabadinho Mhango", playerSlug: null, why: "20 buts en 75 sélections au 5 octobre 2026 selon RSSSF ; buteur contre le Maroc en huitièmes de la CAN 2021." },
     ],
-    jersey: { label: "Maillot du Malawi", amazonQuery: "maillot Malawi football", asin: null },
+    jersey: { label: "Drapeau du Malawi", amazonQuery: "drapeau Malawi", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux malawites (mis à jour le 5 octobre 2026)", url: "https://rsssf.org/miscellaneous/malaw-recintlp.html" },
       { label: "COSAFA — Malawi", url: "https://cosafa.com/members/malawi/" },
@@ -188,7 +188,7 @@ export const SELECTIONS_LOT6: Selection[] = [
       { name: "Denzil Haoseb", playerSlug: null, why: "Co-recordman des sélections avec 84 matchs entre 2011 et 2024, selon RSSSF." },
       { name: "Rudolph Bester", playerSlug: null, why: "Deuxième buteur de l'histoire : 13 buts en 46 sélections entre 2004 et 2014, selon RSSSF." },
     ],
-    jersey: { label: "Maillot de la Namibie", amazonQuery: "maillot Namibie football", asin: null },
+    jersey: { label: "Drapeau de la Namibie", amazonQuery: "drapeau Namibie", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux namibiens (mis à jour le 1er octobre 2026)", url: "https://rsssf.org/miscellaneous/nami-recintlp.html" },
       { label: "COSAFA — Fiche de la Namibie (Coupe COSAFA 2022)", url: "https://cosafa.com/wp-content/uploads/2019/07/Namibia_TEAM-NOTES.pdf" },
@@ -219,7 +219,7 @@ export const SELECTIONS_LOT6: Selection[] = [
       { name: "Joel Mogorosi", playerSlug: null, why: "95 sélections et 16 buts entre 2005 et 2019, selon RSSSF." },
       { name: "Dipsy Selolwane", playerSlug: null, why: "Deuxième buteur de l'histoire : 18 buts en 70 sélections entre 1998 et 2012, selon RSSSF." },
     ],
-    jersey: { label: "Maillot du Botswana", amazonQuery: "maillot Botswana football", asin: null },
+    jersey: { label: "Drapeau du Botswana", amazonQuery: "drapeau Botswana", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux botswanais (mis à jour le 4 octobre 2026)", url: "https://rsssf.org/miscellaneous/bots-recintlp.html" },
       { label: "RSSSF — Matchs internationaux du Botswana", url: "https://rsssf.org/tablesb/bots-intres.html" },
@@ -248,7 +248,7 @@ export const SELECTIONS_LOT6: Selection[] = [
       { name: "Jane Thabantso", playerSlug: null, why: "Recordman des sélections : 101 matchs et 15 buts au 6 octobre 2026, selon RSSSF." },
       { name: "Sera Motebang", playerSlug: null, why: "76 sélections et 12 buts, selon Wikipédia." },
     ],
-    jersey: { label: "Maillot du Lesotho", amazonQuery: "maillot Lesotho football", asin: null },
+    jersey: { label: "Drapeau du Lesotho", amazonQuery: "drapeau Lesotho", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Matchs internationaux du Lesotho", url: "https://rsssf.org/tablesl/leso-intres.html" },
       { label: "RSSSF — Jane Thabantso, sélections internationales (mis à jour le 6 octobre 2026)", url: "https://rsssf.org/miscellaneous/leso-thabantso-intl.html" },
@@ -278,7 +278,7 @@ export const SELECTIONS_LOT6: Selection[] = [
       { name: "Felix Badenhorst", playerSlug: null, why: "Meilleur buteur de l'histoire de la Coupe COSAFA, avec neuf buts, un de plus que le Zimbabwéen Peter Ndlovu." },
       { name: "Tony Tsabedze", playerSlug: null, why: "71 sélections et 8 buts, selon Wikipédia." },
     ],
-    jersey: { label: "Maillot de l'Eswatini", amazonQuery: "maillot Eswatini football", asin: null },
+    jersey: { label: "Drapeau de l'Eswatini", amazonQuery: "drapeau Eswatini", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Matchs internationaux de l'Eswatini", url: "https://rsssf.org/tabless/swaz-intres.html" },
       { label: "COSAFA — Fiche de l'Eswatini (Coupe COSAFA 2022)", url: "https://cosafa.com/wp-content/uploads/2019/07/Eswatini_TEAM-NOTES.pdf" },
@@ -308,7 +308,7 @@ export const SELECTIONS_LOT6: Selection[] = [
       { name: "Faneva Ima Andriatsima", playerSlug: null, why: "14 buts en 49 sélections entre 2003 et 2021, selon RSSSF." },
       { name: "Charles Andriamahitsinoro", playerSlug: null, why: "Buteur lors de la victoire 2-0 contre le Nigeria à la CAN 2019." },
     ],
-    jersey: { label: "Maillot de Madagascar", amazonQuery: "maillot Madagascar football", asin: null },
+    jersey: { label: "Drapeau de Madagascar", amazonQuery: "drapeau Madagascar", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux malgaches (mis à jour le 5 octobre 2026)", url: "https://www.rsssf.org/miscellaneous/madag-recintlp.html" },
       { label: "RSSSF — Matchs internationaux de Madagascar", url: "https://www.rsssf.org/tablesm/madag-intres.html" },
@@ -339,7 +339,7 @@ export const SELECTIONS_LOT6: Selection[] = [
       { name: "Jimmy Cundasamy", playerSlug: null, why: "69 sélections entre 1997 et 2014, deuxième total de l'histoire selon RSSSF." },
       { name: "Kévin Jean-Louis", playerSlug: null, why: "Gardien et capitaine, 66 sélections au 6 octobre 2026, selon RSSSF." },
     ],
-    jersey: { label: "Maillot de Maurice", amazonQuery: "maillot île Maurice football", asin: null },
+    jersey: { label: "Drapeau de Maurice", amazonQuery: "drapeau île Maurice", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux mauriciens (mis à jour le 6 octobre 2026)", url: "https://www.rsssf.org/miscellaneous/mauri-recintlp.html" },
       { label: "RSSSF — Matchs internationaux de Maurice", url: "https://www.rsssf.org/tablesm/mauri-intres.html" },
@@ -372,7 +372,7 @@ export const SELECTIONS_LOT6: Selection[] = [
       { name: "Chaker Alhadhur", playerSlug: null, why: "Joueur de champ aligné dans les buts en huitièmes de finale de la CAN 2021, faute de gardien disponible." },
       { name: "Myziane Maolida", playerSlug: null, why: "Buteur de la victoire 1-0 contre le Ghana en éliminatoires du Mondial 2026, le 21 novembre 2023." },
     ],
-    jersey: { label: "Maillot des Comores", amazonQuery: "maillot Comores football", asin: null },
+    jersey: { label: "Drapeau des Comores", amazonQuery: "drapeau Comores", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Records des internationaux comoriens (mis à jour le 5 octobre 2026)", url: "https://www.rsssf.org/miscellaneous/como-recintlp.html" },
       { label: "RSSSF — Matchs internationaux des Comores", url: "https://www.rsssf.org/tablesc/como-intres.html" },
@@ -401,7 +401,7 @@ export const SELECTIONS_LOT6: Selection[] = [
       { name: "Philip Zialor", playerSlug: null, why: "Meilleur buteur de l'histoire : 14 buts en 33 sélections entre 1998 et 2009, selon RSSSF." },
       { name: "Stenio Marie", playerSlug: null, why: "Recordman des sélections : 64 matchs entre 2013 et 2024, selon RSSSF." },
     ],
-    jersey: { label: "Maillot des Seychelles", amazonQuery: "maillot Seychelles football", asin: null },
+    jersey: { label: "Drapeau des Seychelles", amazonQuery: "drapeau Seychelles", asin: null, objet: "drapeau" },
     sources: [
       { label: "RSSSF — Matchs internationaux des Seychelles", url: "https://www.rsssf.org/tabless/sey-intres.html" },
       { label: "RSSSF — Joueurs à 100 sélections et recordmen nationaux", url: "https://www.rsssf.org/miscellaneous/century.html" },

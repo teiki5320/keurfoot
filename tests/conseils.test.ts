@@ -8,7 +8,7 @@ import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, it } from "node:test";
-import { DESCRIPTION_MAX, DESCRIPTION_MIN, internalLinks, isPublished, parseConseil, splitAtMiddleSection, todayInParis, type Conseil } from "../src/lib/conseils/article";
+import { DESCRIPTION_MAX, DESCRIPTION_MIN, internalLinks, isPublished, parseConseil, splitAfterFirstSection, splitAtMiddleSection, todayInParis, type Conseil } from "../src/lib/conseils/article";
 import { CONSEIL_IMAGES } from "../src/lib/data/conseils-images";
 import { getCategory } from "../src/lib/data/shop";
 import { validInternalPath } from "./routes";
@@ -74,6 +74,14 @@ describe("Emplacement d'annonce au milieu d'un article", () => {
   it("ne coupe pas un article de moins de 3 parties", () => {
     const html = "<p>a</p><h2>1</h2><p>b</p><h2>2</h2>";
     assert.deepEqual(splitAtMiddleSection(html), [html, ""]);
+  });
+  it("le rappel produits se place après la 1re partie, avant la 2e (une partie entière avant l'annonce du milieu)", () => {
+    const html = "<p>a</p><h2 id=\"1\">1</h2><p>b</p><h2 id=\"2\">2</h2><p>c</p><h2 id=\"3\">3</h2><p>d</p><h2 id=\"4\">4</h2>";
+    const [moitie] = splitAtMiddleSection(html);
+    const [debut, suite] = splitAfterFirstSection(moitie);
+    assert.equal(debut + suite, moitie);
+    assert.ok(suite.startsWith('<h2 id="2">'));
+    assert.deepEqual(splitAfterFirstSection("<p>a</p><h2>1</h2>"), ["<p>a</p><h2>1</h2>", ""]);
   });
 });
 

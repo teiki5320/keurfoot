@@ -29,7 +29,7 @@ export const SELECTIONS_MAROC_ALGERIE_MALI: Selection[] = [
       { name: "Yassine Bounou", playerSlug: null, why: "Gardien des demi-finalistes de 2022, élu gardien africain de l'année par la CAF en 2025." },
       { name: "Youssef En-Nesyri", playerSlug: null, why: "Auteur du but contre le Portugal qui envoie le Maroc en demi-finale du Mondial 2022." },
     ],
-    jersey: { label: "Maillot du Maroc (Puma)", amazonQuery: "maillot Maroc Puma football", asin: null },
+    jersey: { label: "Maillot domicile du Maroc 2026 (Puma)", amazonQuery: "maillot Maroc Puma football", asin: "B0FFNFKS85" },
     sources: [
       { label: "FIFA — Fédération royale marocaine de football", url: "https://inside.fifa.com/associations/MAR" },
       { label: "RSSSF — Records des internationaux marocains", url: "https://rsssf.org/miscellaneous/maro-recintlp.html" },

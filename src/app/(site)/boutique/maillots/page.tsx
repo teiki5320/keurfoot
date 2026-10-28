@@ -26,7 +26,7 @@ export default function JerseysPage() {
       <PageHero
         eyebrow="Boutique supporter"
         title="Les maillots des sélections"
-        intro="Choisissez votre équipe : chaque lien ouvre la recherche du maillot sur Amazon, en version adulte et enfant selon les vendeurs."
+        intro="Choisissez votre équipe : chaque bouton ouvre le maillot sur Amazon (sa fiche quand nous l'avons vérifiée, sinon une recherche). Quand le maillot d'une sélection n'y est pas vendu, le bouton mène à son drapeau."
       >
         <Link href="/conseils/comment-choisir-sa-taille-de-maillot-de-foot" className="btn-secondary mt-6">
           Comment choisir sa taille ?
@@ -39,9 +39,9 @@ export default function JerseysPage() {
             <h2 id={`maillots-${g.region}`} className="section-title mb-5 text-[28px] sm:text-4xl">{g.label}</h2>
             <Rail label={`Maillots : ${g.label}`}>
               {g.selections.map((s, i) => (
-                <div key={s.slug} className="flex flex-col items-center">
+                <div key={s.slug} id={`maillot-${s.slug}`} className="flex scroll-mt-28 flex-col items-center">
                   <RailSelection s={s} i={i} caption={s.jersey.label} />
-                  <AmazonButton href={amazonUrl(s.jersey)} produit={s.jersey.label} icone={false} className="-mt-1 mb-3 px-3 text-[13px]" />
+                  <AmazonButton href={amazonUrl(s.jersey, "boutique")} produit={s.jersey.label} icone={false} className="-mt-1 mb-3 px-3 text-[13px]" />
                 </div>
               ))}
             </Rail>

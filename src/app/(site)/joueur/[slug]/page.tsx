@@ -3,12 +3,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AdSlot } from "@/components/ads/AdSlot";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
+import { EncadreProduit, produitSelection, titreProduitSelection } from "@/components/ui/EncadreProduit";
 import { Jersey } from "@/components/ui/Jersey";
 import { SourcesList } from "@/components/ui/SourcesList";
 import { siteConfig } from "@/lib/config";
 import { getCountry } from "@/lib/countries";
 import { PLAYERS, POSITIONS, getPlayer, playerColors } from "@/lib/data/players";
 import { getSelection } from "@/lib/data/selections";
+import { getCategory } from "@/lib/data/shop";
 import { TOPS } from "@/lib/data/tops";
 import { formatDate } from "@/lib/format";
 import { jsonLd } from "@/lib/json-ld";
@@ -29,6 +31,12 @@ export async function generateMetadata({ params }: PageProps<"/joueur/[slug]">):
   });
 }
 
+/** Livres déjà proposés par la boutique, pour les joueurs qui en ont (nom exact d'un produit de la catégorie « livres »). */
+const LIVRE_DU_JOUEUR: Record<string, string> = {
+  "didier-drogba": "Livres sur Didier Drogba",
+  "samuel-eto-o": "Livres sur Samuel Eto'o",
+};
+
 export default async function PlayerPage({ params }: PageProps<"/joueur/[slug]">) {
   const p = getPlayer((await params).slug);
   if (!p) notFound();
@@ -36,6 +44,7 @@ export default async function PlayerPage({ params }: PageProps<"/joueur/[slug]">
   const selection = getSelection(p.selection);
   const colors = playerColors(p);
   const tops = TOPS.filter((t) => t.items.some((i) => i.playerSlug === p.slug));
+  const livre = getCategory("livres")?.products.find((l) => l.name === LIVRE_DU_JOUEUR[p.slug]);
   const person = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -144,6 +153,11 @@ export default async function PlayerPage({ params }: PageProps<"/joueur/[slug]">
                 ))}
               </section>
             )}
+            {/* Le maillot de sa sélection (jamais « le maillot de <joueur> »), en bas de colonne : loin de l'annonce après la biographie. */}
+            {selection && (
+              <EncadreProduit surtitre={titreProduitSelection(selection)} produits={[produitSelection(selection)]} emplacement="joueur" />
+            )}
+            {livre && <EncadreProduit surtitre="À lire" produits={[livre]} emplacement="joueur" />}
           </aside>
         </div>
 

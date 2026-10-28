@@ -16,7 +16,7 @@ uniquement des noms de variables et de consoles.
 
 - 🌐 **Web** : 🐙 GitHub — main · publication au vert [ok] → ⚙️ GitHub Actions — lint, types, tests, build [ok] → ☁️ Cloudflare Workers — Worker keurfoot [ok] → 🌍 keurfoot.com — en ligne, réponse 200 le 28 octobre [ok]
 - 📝 **Contenu** : ✍️ Conseils — 9 publiés, 24 programmés jusqu'au 23 décembre [ok] → ⚙️ GitHub Actions — publie lundi, mercredi, vendredi [ok] → 🔍 Google — 97 sur 99 indexées au 27 octobre [ok]
-- 🛒 **Affiliation** : 🛍️ Boutique et fiches — boutons Amazon [ok] → 🛒 Amazon Partenaires (affiliation) — tag keurfootfr-21 [ok] → 🌐 Site déclaré chez Amazon — non revérifié au 28 octobre, à vérifier dans la console [à faire] → 🔗 Liens directs — aucun ASIN, recherches seulement [pas encore]
+- 🛒 **Affiliation** : 🛍️ Boutique et fiches — boutons Amazon [ok] → 🛒 Amazon Partenaires (affiliation) — tag keurfootfr-21 [ok] → 🌐 Site déclaré chez Amazon — non revérifié au 28 octobre, à vérifier dans la console [à faire] → 🔗 Liens directs — 3 maillots vérifiés le 28 octobre (Maroc, Nigeria, Tunisie), recherches ailleurs [en cours]
 - 🗞️ **Actus** : 🤖 Tâche Claude — 12 h et 19 h [ok] → 🐙 Dépôt teiki5320/veille — actus/keurfoot.json et articles [ok] → 📄 GitHub Pages — fichiers et images [ok] → ⚙️ GitHub Actions — reconstruit le site à 12 h 50 et 19 h 50 [ok] → 🌍 keurfoot.com — accueil, /actus, fiches sélection, pages d'articles [ok]
 - 📰 **Publicité** : 📰 AdSense (publicité web) — script et ads.txt en place [ok] → ✅ Examen du site — demandé le 20 octobre, « En préparation » au 28 octobre [à faire] → 🧱 Blocs d'annonces — aucun identifiant renseigné [pas encore]
 
@@ -134,10 +134,18 @@ uniquement des noms de variables et de consoles.
 
 ## Amazon Partenaires (affiliation)
 
-- **Rôle** : les boutons de la boutique supporter (sept catégories : maillots, écharpes…), des
-  fiches sélections et des Conseils mènent à Amazon.fr avec le tag `keurfootfr-21` (construits par
-  `src/lib/amazon.ts`, réglable par `NEXT_PUBLIC_AMAZON_TAG`). Aucun ASIN n'est encore renseigné :
-  tous les liens ouvrent une recherche Amazon.
+- **Rôle** : les boutons de la boutique supporter (onze catégories depuis le 28 octobre 2026 : maillots,
+  écharpes… puis gants de gardien, protège-tibias, pompes et manomètres, cadres pour maillot), des fiches
+  sélections, des Top 10, des fiches joueurs et des Conseils mènent à Amazon.fr (liens construits par
+  `src/lib/amazon.ts`, code réglable par `NEXT_PUBLIC_AMAZON_TAG`). Jamais de bouton Amazon sur l'accueil ni dans les actus.
+- **Codes de suivi** : chaque lien reçoit son emplacement (fiche, joueur, top, conseil, boutique) et prend son code
+  dans une table unique (`AMAZON_TAGS`) ; au 28 octobre 2026, tous les emplacements utilisent `keurfootfr-21`.
+- **Fiches vérifiées** : 3 ASIN (maillots domicile du Maroc, du Nigeria et de la Tunisie), vérifiés le 28 octobre 2026
+  et listés dans `src/lib/data/produits-amazon.json` ; tous les autres liens ouvrent une recherche Amazon. Les sélections
+  dont le maillot n'est pas vendu sur amazon.fr (43 sur 54, vérifié le 28 octobre 2026) mènent à la recherche de leur drapeau.
+- **Vérification** : `npm run verifier-produits` (sur le Mac, pas sur GitHub ; `-- --ecrire` pour enregistrer,
+  `--lot 30` par petits lots) ouvre chaque fiche vérifiée : bouton d'achat présent → date mise à jour, sinon le produit
+  passe « indisponible » et son lien revient à la recherche. Dernier passage : 28 octobre 2026, 3 sur 3 achetables.
 - **Identifiant** : `keurfootfr-21` depuis le 20 octobre 2026 (nouveau compte Amazon Partenaires
   du 18 octobre 2026 ; l'ancien `keurfoot-21` est fermé).
 - **Site déclaré** : `keurfoot.com` parmi les sites du compte : jamais confirmé (non revérifié le 28 octobre 2026), à vérifier dans la console.

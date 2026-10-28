@@ -133,7 +133,7 @@ describe("Sélections", () => {
         if (l.playerSlug) assert.ok(playerSlugs.has(l.playerSlug) || PLAYERS_TO_COME.has(l.playerSlug), `fiche joueur inconnue : ${l.playerSlug}`);
         assert.ok(l.why.length >= 20 && l.why.length <= 220, `${l.name} : ${l.why.length} caractères`);
       }
-      assertAmazon(amazonUrl(s.jersey), s.slug);
+      assertAmazon(amazonUrl(s.jersey, "fiche"), s.slug);
       if (s.jersey.asin) assert.match(s.jersey.asin, /^[0-9A-Z]{10}$/);
       assertSources(s.sources, s.slug);
       assert.match(s.updatedAt, DATE);
