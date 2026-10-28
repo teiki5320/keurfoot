@@ -47,13 +47,19 @@ export function getArticle(slug: string): ArticleActu | undefined {
   return articlesConstruits().find((a) => a.slug === slug);
 }
 
-/** Toutes les fiches qu'un tag peut désigner (joueurs et sélections existants). */
+/**
+ * Toutes les fiches qu'un article peut désigner : par tag (« joueur:<slug> », « selection:<slug> »), par code pays
+ * de l'actu (« pays:SN ») et, pour les joueurs, par leur nom complet cité dans le texte.
+ */
 export function fichesParTag(): Record<string, LienFiche> {
   const fiches: Record<string, LienFiche> = {};
-  for (const p of PLAYERS) fiches[`joueur:${p.slug}`] = { tag: `joueur:${p.slug}`, href: `/joueur/${p.slug}`, texte: `Lire la fiche de ${p.name}` };
+  for (const p of PLAYERS) fiches[`joueur:${p.slug}`] = { tag: `joueur:${p.slug}`, href: `/joueur/${p.slug}`, texte: `Lire la fiche de ${p.name}`, nom: p.name };
   for (const s of SELECTIONS) {
     const pays = getCountry(s.country);
-    if (pays) fiches[`selection:${s.slug}`] = { tag: `selection:${s.slug}`, href: `/selection/${s.slug}`, texte: `Voir la fiche de la sélection ${pays.of}` };
+    if (!pays) continue;
+    const fiche = { tag: `selection:${s.slug}`, href: `/selection/${s.slug}`, texte: `Voir la fiche de la sélection ${pays.of}` };
+    fiches[`selection:${s.slug}`] = fiche;
+    fiches[`pays:${pays.iso2}`] = fiche;
   }
   return fiches;
 }

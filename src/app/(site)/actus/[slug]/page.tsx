@@ -10,7 +10,7 @@ import { getMaintenance } from "@/lib/data/settings";
 import { jsonLd } from "@/lib/json-ld";
 import { clip, pageMetadata } from "@/lib/metadata";
 import { LARGEURS_REDUITES } from "@/lib/images";
-import { cheminPartageActu, cheminReduitActu, lienActu, liensFiches, type ArticleActu } from "@/lib/veille";
+import { cheminPartageActu, cheminReduitActu, fichesLiees, lienActu, type ArticleActu } from "@/lib/veille";
 
 /** Versions réduites de la photo (fabriquées avant le build) puis l'original ; undefined s'il n'y en a pas. */
 function srcsetPhoto(article: ArticleActu): string | undefined {
@@ -88,7 +88,7 @@ export default async function ArticleActuPage({ params }: PageProps<"/actus/[slu
           { name: article.titre, href: `/actus/${article.slug}` },
         ]}
       />
-      <ArticleVue article={article} fiches={liensFiches(article.tags, fichesParTag())} autres={autres} srcSet={srcsetPhoto(article)} />
+      <ArticleVue article={article} fiches={fichesLiees(article, fichesParTag())} autres={autres} srcSet={srcsetPhoto(article)} />
     </>
   );
 }

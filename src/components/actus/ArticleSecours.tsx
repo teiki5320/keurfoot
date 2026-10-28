@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
-import { chargerArticle, chargerFlux, idDemande, lienActu, liensFiches, type ArticleActu, type LienFiche } from "@/lib/veille";
+import { chargerArticle, chargerFlux, fichesLiees, idDemande, lienActu, type ArticleActu, type LienFiche } from "@/lib/veille";
 import { ArticleVue, type AutreActu } from "./ArticleVue";
 
 type Etat = { phase: "chargement" } | { phase: "introuvable" } | { phase: "pret"; article: ArticleActu; autres: AutreActu[] };
@@ -48,7 +48,7 @@ export function ArticleSecours({ construits, fiches }: { construits: string[]; f
             { name: etat.article.titre, href: `/actus/article?id=${etat.article.id}` },
           ]}
         />
-        <ArticleVue article={etat.article} fiches={liensFiches(etat.article.tags, fiches)} autres={etat.autres} />
+        <ArticleVue article={etat.article} fiches={fichesLiees(etat.article, fiches)} autres={etat.autres} />
       </>
     );
 

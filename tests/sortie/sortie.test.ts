@@ -6,6 +6,7 @@ import assert from "node:assert/strict";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { describe, it } from "node:test";
+import { COUNTRIES } from "../../src/lib/countries";
 
 const out = join(import.meta.dirname, "..", "..", "out");
 const BASE = "/keurfoot";
@@ -120,10 +121,20 @@ describe("Site construit", () => {
   });
   // Actus : seulement si la veille a répondu pendant le build (sinon le site est construit sans actus).
   const veille = join(import.meta.dirname, "..", "..", ".veille", "articles.json");
-  const articles = existsSync(veille) ? (JSON.parse(readFileSync(veille, "utf8")).articles as Array<{ id: string; slug: string }>) : [];
+  const articles = existsSync(veille) ? (JSON.parse(readFileSync(veille, "utf8")).articles as Array<{ id: string; slug: string; pays?: string[] }>) : [];
   it("la page Actus contient ses actus dans le HTML (vues par Google)", { skip: articles.length === 0 }, () => {
     const html = readFileSync(join(out, "actus.html"), "utf8");
     assert.match(html, /href="\/keurfoot\/actus\/[a-z0-9-]+"/);
+  });
+  it("chaque article d'actu renvoie vers la fiche sélection de ses pays africains", { skip: articles.length === 0 }, () => {
+    const isoVersSlug = new Map(COUNTRIES.map((c) => [c.iso2, c.slug]));
+    for (const a of articles) {
+      const slugs = (a.pays ?? []).map((p) => isoVersSlug.get(p)).filter((s): s is string => Boolean(s));
+      if (slugs.length === 0) continue;
+      const html = readFileSync(join(out, "actus", `${a.slug}.html`), "utf8");
+      assert.match(html, /Pour aller plus loin/, a.slug);
+      for (const s of slugs) assert.match(html, new RegExp(`href="/keurfoot/selection/${s}"`), `${a.slug} → ${s}`);
+    }
   });
   it("chaque article d'actu a une image de partage JPG", { skip: articles.length === 0 }, () => {
     for (const a of articles.slice(0, 5)) {

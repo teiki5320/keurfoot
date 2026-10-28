@@ -259,6 +259,8 @@ export interface LienFiche {
   tag: string;
   href: string;
   texte: string;
+  /** Nom complet du joueur, cherché dans le texte de l'article (fiches joueurs seulement). */
+  nom?: string;
 }
 
 /** Garde seulement les tags qui correspondent à une fiche existante du site (les autres sont ignorés), sans doublon. */
@@ -270,6 +272,28 @@ export function liensFiches(tags: readonly string[] | undefined, fiches: Readonl
     vus.add(f.href);
     return [f];
   });
+}
+
+/** Apostrophe courbe ramenée à l'apostrophe droite, pour comparer les noms (« Eto’o » = « Eto'o »). */
+const apostrophesDroites = (texte: string) => texte.replace(/[’‘]/g, "'");
+
+/** Le nom figure-t-il en entier dans le texte, sans lettre ni chiffre collé avant ou après ? */
+function citeLeNom(texte: string, nom: string): boolean {
+  const motif = apostrophesDroites(nom).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return new RegExp(`(?<![\\p{L}\\p{N}])${motif}(?![\\p{L}\\p{N}])`, "u").test(texte);
+}
+
+/**
+ * Fiches du site liées à un article, sans doublon : la sélection de chaque pays de l'actu (clés « pays:<ISO> »),
+ * puis les joueurs cités par leur nom complet, puis les tags de la veille qui désignent une fiche.
+ */
+export function fichesLiees(
+  article: Pick<ArticleActu, "tags" | "pays"> & Partial<Pick<ArticleActu, "titre" | "chapo" | "blocs">>,
+  fiches: Readonly<Record<string, LienFiche>>,
+): LienFiche[] {
+  const texte = apostrophesDroites([article.titre, article.chapo, ...(article.blocs ?? []).flatMap((b) => [b.intertitre, ...b.paragraphes])].filter(Boolean).join("\n"));
+  const joueurs = Object.keys(fiches).filter((cle) => fiches[cle].nom && citeLeNom(texte, fiches[cle].nom!));
+  return liensFiches([...(article.pays ?? []).map((p) => `pays:${p}`), ...joueurs, ...(article.tags ?? [])], fiches);
 }
 
 /** Date de parution en toutes lettres : « 27 octobre 2026 » (heure de Paris). */

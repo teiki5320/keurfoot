@@ -15,6 +15,7 @@ import {
   cheminReduitActu,
   dateArticle,
   dateMiseAJour,
+  fichesLiees,
   filtrerActus,
   idDemande,
   imageCarree,
@@ -217,6 +218,37 @@ describe("Articles des actus : lecture d'un article", () => {
     assert.deepEqual(liensFiches(lireArticle(article())!.tags, fiches).map((f) => f.href), ["/joueur/sadio-mane"]);
     assert.deepEqual(liensFiches(["constructor"], fiches), []);
     assert.deepEqual(liensFiches(undefined, fiches), []);
+  });
+
+  describe("fiches liées à un article", () => {
+    const fiches = {
+      "pays:SN": { tag: "selection:senegal", href: "/selection/senegal", texte: "Voir la fiche de la sélection du Sénégal" },
+      "pays:MA": { tag: "selection:maroc", href: "/selection/maroc", texte: "Voir la fiche de la sélection du Maroc" },
+      "selection:senegal": { tag: "selection:senegal", href: "/selection/senegal", texte: "Voir la fiche de la sélection du Sénégal" },
+      "joueur:sadio-mane": { tag: "joueur:sadio-mane", href: "/joueur/sadio-mane", texte: "Lire la fiche de Sadio Mané", nom: "Sadio Mané" },
+      "joueur:samuel-eto-o": { tag: "joueur:samuel-eto-o", href: "/joueur/samuel-eto-o", texte: "Lire la fiche de Samuel Eto'o", nom: "Samuel Eto'o" },
+      "joueur:akwa": { tag: "joueur:akwa", href: "/joueur/akwa", texte: "Lire la fiche d'Akwá", nom: "Akwá" },
+    };
+    const texte = (paragraphe: string) => ({ blocs: [{ intertitre: null, paragraphes: [paragraphe] }] });
+    const hrefs = (a: Parameters<typeof fichesLiees>[0]) => fichesLiees(a, fiches).map((f) => f.href);
+
+    it("sans tags, renvoie vers la sélection de chaque pays de l'actu qui a sa fiche", () => {
+      const a = article({ tags: [], pays: ["MA", "DE", "SN"] });
+      assert.deepEqual(hrefs(lireArticle(a)!), ["/selection/maroc", "/selection/senegal"]);
+    });
+
+    it("renvoie vers les joueurs cités par leur nom complet, apostrophe droite ou courbe", () => {
+      assert.deepEqual(hrefs({ titre: "Sadio Mané buteur", ...texte("Samuel Eto’o était présent.") }), ["/joueur/sadio-mane", "/joueur/samuel-eto-o"]);
+    });
+
+    it("ignore un nom incomplet ou collé à un autre mot", () => {
+      assert.deepEqual(hrefs({ titre: "Mané buteur", ...texte("Le stade Akwáville et Sadio Manéx.") }), []);
+    });
+
+    it("sélections d'abord, puis joueurs, puis tags restants, sans doublon", () => {
+      const a = { tags: ["selection:senegal", "joueur:sadio-mane"], pays: ["SN"], titre: "Sadio Mané", ...texte("Akwá aussi.") };
+      assert.deepEqual(hrefs(a), ["/selection/senegal", "/joueur/sadio-mane", "/joueur/akwa"]);
+    });
   });
 
   it("nom d'une autre source et date de l'article", () => {

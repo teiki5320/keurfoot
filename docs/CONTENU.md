@@ -39,7 +39,7 @@ Héros avec le logo et la promesse ; carrousel des sélections ; Top 10 en vedet
 ## Actus
 
 - `/actus` : 20 actus lues en direct depuis la veille ; toute la carte ouvre l'article (page construite, sinon page de secours, sinon la source).
-- `/actus/[adresse]` : article complet écrit par la veille (300 à 450 mots), construit avec le site : fil d'Ariane, titre, chapô, date et temps de lecture, image 16:9 et son crédit, intertitres, encadré « Sources », liens vers les fiches joueur ou sélection citées (tags), 1 publicité en fin d'article, 3 autres actus. Jamais de lien Amazon.
+- `/actus/[adresse]` : article complet écrit par la veille (300 à 450 mots), construit avec le site : fil d'Ariane, titre, chapô, date et temps de lecture, image 16:9 et son crédit, intertitres, bloc « Pour aller plus loin » (fiche sélection de chaque pays africain de l'actu, fiches des joueurs cités par leur nom complet, tags de la veille), encadré « Sources », 1 publicité en fin d'article, 3 autres actus. Jamais de lien Amazon.
 - `/actus/article?id=…` : page de secours (`noindex`, hors sitemap) pour un article arrivé après la dernière construction.
 
 ## Pages légales

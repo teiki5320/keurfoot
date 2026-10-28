@@ -75,6 +75,22 @@ export function ArticleVue({
           ))}
         </div>
 
+        {/* Fiches du site liées à l'actu : sélections des pays concernés, joueurs cités. */}
+        {fiches.length > 0 && (
+          <nav aria-labelledby="fiches-liees" className="mt-10">
+            <h2 id="fiches-liees" className="eyebrow">
+              Pour aller plus loin
+            </h2>
+            <div className="mt-3 flex flex-wrap gap-2.5">
+              {fiches.map((f) => (
+                <Link key={f.href} href={f.href} className="tag">
+                  {f.texte} →
+                </Link>
+              ))}
+            </div>
+          </nav>
+        )}
+
         <aside aria-labelledby="sources-article" className="mt-10 rounded border-l-4 border-gold bg-surface p-5 text-[15px] leading-relaxed">
           <h2 id="sources-article" className="eyebrow">
             Sources
@@ -97,16 +113,6 @@ export function ArticleVue({
             .
           </p>
         </aside>
-
-        {fiches.length > 0 && (
-          <nav aria-label="Fiches liées" className="mt-6 flex flex-wrap gap-2.5">
-            {fiches.map((f) => (
-              <Link key={f.href} href={f.href} className="tag">
-                {f.texte} →
-              </Link>
-            ))}
-          </nav>
-        )}
 
         {/* Publicité : même modèle que les conseils, en fin d'article. */}
         <AdSlot placement="article" />
