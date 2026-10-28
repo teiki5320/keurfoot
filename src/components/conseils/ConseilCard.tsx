@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element -- site statique : images non optimisées par Next.js */
 import Link from "next/link";
-import { withBase } from "@/lib/config";
 import type { Conseil } from "@/lib/conseils/article";
 import { CONSEIL_CATEGORIES } from "@/lib/conseils/categories";
+import { imageAllegee } from "@/lib/illustrations";
 
 export function ConseilCard({ conseil }: { conseil: Conseil }) {
   return (
@@ -11,7 +11,7 @@ export function ConseilCard({ conseil }: { conseil: Conseil }) {
       className="group flex flex-col overflow-hidden rounded border border-line bg-surface transition hover:-translate-y-0.5 hover:border-gold"
     >
       {conseil.image ? (
-        <img src={withBase(conseil.image)} alt="" loading="lazy" className="aspect-[3/2] w-full object-cover" />
+        <img {...imageAllegee(conseil.image, "(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw")} alt="" loading="lazy" className="aspect-[3/2] w-full object-cover" />
       ) : (
         <div aria-hidden className="aspect-[3/2] w-full bg-[radial-gradient(ellipse_at_bottom_left,var(--color-pitch-soft),var(--color-surface-2))]" />
       )}

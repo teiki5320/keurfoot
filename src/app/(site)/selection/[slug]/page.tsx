@@ -14,7 +14,9 @@ import { canYearsLabel, titlesBadge } from "@/lib/data/can";
 import { POSITIONS, getPlayer, playersOf } from "@/lib/data/players";
 import { SELECTIONS, getSelection } from "@/lib/data/selections";
 import { TOPS } from "@/lib/data/tops";
+import { siteConfig } from "@/lib/config";
 import { illustration } from "@/lib/illustrations";
+import { jsonLd } from "@/lib/json-ld";
 import { clip, pageMetadata } from "@/lib/metadata";
 import { titreActusSelection } from "@/lib/veille";
 
@@ -47,8 +49,22 @@ export default async function SelectionPage({ params }: PageProps<"/selection/[s
     { label: "Coupes du monde", value: s.worldCups.length, detail: s.bestWorldCup ? `Meilleur résultat : ${s.bestWorldCup}` : "Jamais qualifié" },
   ];
 
+  const image = illustration(`selection-${s.slug}`);
+  const equipe = {
+    "@context": "https://schema.org",
+    "@type": "SportsTeam",
+    name: `Équipe ${country.of} de football`,
+    ...(s.nickname ? { alternateName: s.nickname } : {}),
+    sport: "Football",
+    description: s.intro,
+    url: `${siteConfig.url}/selection/${s.slug}`,
+    ...(image ? { image: `${siteConfig.url}${image}` } : {}),
+    location: { "@type": "Country", name: country.name },
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(equipe) }} />
       <Breadcrumb
         items={[
           { name: "Sélections", href: "/selections" },

@@ -1,7 +1,7 @@
 /**
  * Veille actus : actus du football africain préparées 2 fois par jour (12 h et 19 h) dans le dépôt public
- * teiki5320/veille et publiées sur GitHub Pages. Le site ne fait que lire ce fichier, dans le navigateur
- * du visiteur (il n'est pas reconstruit à chaque passage). Schéma : veille/schema/actus-schema-v3.json.
+ * teiki5320/veille et publiées sur GitHub Pages. Le site lit ce fichier au build (actus écrites dans les pages,
+ * scripts/articles.mts) puis dans le navigateur du visiteur, pour afficher les plus récentes. Schéma : veille/schema/actus-schema-v3.json.
  * Règle légale : le titre original n'est jamais dans le fichier ; on affiche toujours la source et le crédit de l'image.
  */
 
@@ -93,6 +93,14 @@ export const slugValide = (v: unknown): v is string => typeof v === "string" && 
 
 /** Identifiant d'une actu : SHA-1 en hexadécimal (40 caractères). */
 export const idValide = (v: unknown): v is string => typeof v === "string" && /^[0-9a-f]{40}$/.test(v);
+
+/**
+ * Image de partage d'un article (balise og:image) : JPG 1200 × 630 fabriqué avant le build par scripts/articles.mts
+ * à partir de l'image de l'actu. Les cartes de la veille sont en SVG, que WhatsApp, Facebook, X et Google refusent.
+ */
+export function cheminPartageActu(id: string): string | null {
+  return idValide(id) ? `/og/actus/${id}.jpg` : null;
+}
 
 /** Identifiant demandé dans l'adresse de la page de secours (« ?id=… ») ; chaîne vide s'il est absent ou mal formé. */
 export function idDemande(recherche: string): string {

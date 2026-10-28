@@ -9,7 +9,7 @@
     "lint": "eslint",
     "typecheck": "next typegen && tsc --noEmit",
     "test": "tsx --test tests/*.test.ts",
-    "prebuild": "tsx scripts/epingles.mts && tsx scripts/articles.mts",
+    "prebuild": "tsx scripts/epingles.mts && tsx scripts/images.mts && tsx scripts/articles.mts",
     "test:sortie": "NEXT_PUBLIC_NOINDEX=1 NEXT_PUBLIC_BASE_PATH=/keurfoot NEXT_PUBLIC_SITE_URL=https://teiki5320.github.io/keurfoot NEXT_PUBLIC_ADSENSE_CLIENT= NEXT_TELEMETRY_DISABLED=1 npm run build && tsx --test tests/sortie/*.test.ts"
   },
   "dependencies": {

@@ -110,7 +110,7 @@ export function Jersey({
       )}
       <use href={side === "face" ? "#kf-front" : "#kf-back"} width="240" height="260" />
       {side === "dos" && name && (
-        <text x="120" y="98" fontSize="19" letterSpacing="2.3" {...TEXT} fontWeight={700}>
+        <text x="120" y="98" fontSize="19" letterSpacing="2.3" {...TEXT}>
           {name.toUpperCase()}
         </text>
       )}

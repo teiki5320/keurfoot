@@ -1,4 +1,4 @@
-import { withBase } from "@/lib/config";
+import { imageAllegee } from "@/lib/illustrations";
 
 /**
  * En-tête de page : sur-titre, grand titre en capitales, chapeau, et illustration originale en fond si elle existe.
@@ -22,7 +22,7 @@ export function PageHero({
       {image && (
         <>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={withBase(image)} alt="" className="absolute inset-0 -z-20 size-full object-cover opacity-60" />
+          <img {...imageAllegee(image, "100vw")} alt="" className="absolute inset-0 -z-20 size-full object-cover opacity-60" />
           <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-night via-night/80 to-night/20" />
         </>
       )}

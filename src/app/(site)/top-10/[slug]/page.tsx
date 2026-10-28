@@ -6,12 +6,12 @@ import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { PageHero } from "@/components/ui/PageHero";
 import { PinButton, PinPreview } from "@/components/ui/PinButton";
 import { SourcesList } from "@/components/ui/SourcesList";
-import { siteConfig, withBase } from "@/lib/config";
+import { siteConfig } from "@/lib/config";
 import { getCountry } from "@/lib/countries";
 import { countryLink } from "@/lib/data/links";
 import { getPlayer } from "@/lib/data/players";
 import { TOPS, getTop, relatedTops } from "@/lib/data/tops";
-import { illustration } from "@/lib/illustrations";
+import { illustration, imageAllegee } from "@/lib/illustrations";
 import { jsonLd } from "@/lib/json-ld";
 import { pageMetadata } from "@/lib/metadata";
 import { pinPath } from "@/lib/pinterest";
@@ -140,7 +140,7 @@ export default async function TopPage({ params }: PageProps<"/top-10/[slug]">) {
               <Link key={t.slug} href={`/top-10/${t.slug}`} className="panel overflow-hidden transition-colors hover:border-gold">
                 {img && (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={withBase(img)} alt="" loading="lazy" className="block aspect-[4/3] w-full object-cover" />
+                  <img {...imageAllegee(img, "(min-width: 640px) 30vw, 100vw")} alt="" loading="lazy" className="block aspect-[4/3] w-full object-cover" />
                 )}
                 <span className="block px-4 py-4">
                   <span className="eyebrow block text-[11px]">{t.kind === "classement" ? "Classement chiffré" : "Notre sélection"}</span>

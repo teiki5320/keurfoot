@@ -11,6 +11,7 @@ import {
   ageActu,
   chargerActus,
   chargerArticle,
+  cheminPartageActu,
   dateArticle,
   dateMiseAJour,
   filtrerActus,
@@ -281,5 +282,17 @@ describe("Articles des actus : index de tous les articles", () => {
     assert.equal(lireIndex({ version: 2, articles: [] }), null);
     assert.equal(lireIndex("pas du json"), null);
     assert.equal(lireIndex(null), null);
+  });
+});
+
+describe("Articles des actus : image de partage", () => {
+  const id = "9190255f85fea072930d4cfa7a71a10e61b46ab3";
+
+  it("JPG 1200 × 630 rangé sous /og/actus/ (réseaux sociaux : jamais de SVG)", () => {
+    assert.equal(cheminPartageActu(id), `/og/actus/${id}.jpg`);
+  });
+
+  it("refuse un identifiant mal formé", () => {
+    assert.equal(cheminPartageActu("../../etc"), null);
   });
 });

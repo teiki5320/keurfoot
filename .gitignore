@@ -57,3 +57,6 @@ next-env.d.ts
 
 # Articles des actus téléchargés avant chaque build (scripts/articles.mts)
 /.veille/
+
+# Versions réduites des illustrations générées au build (scripts/images.mts)
+/public/reduites/

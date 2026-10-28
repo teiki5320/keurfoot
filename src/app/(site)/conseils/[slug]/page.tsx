@@ -8,13 +8,14 @@ import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { amazonUrl } from "@/lib/amazon";
 import { conseilSections, splitAtMiddleSection } from "@/lib/conseils/article";
 import { CONSEIL_CATEGORIES } from "@/lib/conseils/categories";
-import { siteConfig, withBase } from "@/lib/config";
+import { siteConfig } from "@/lib/config";
 import { getConseilBySlug, getConseils, getRelatedConseils, renderConseil } from "@/lib/data/conseils";
 import { getMaintenance } from "@/lib/data/settings";
 import { getCategory } from "@/lib/data/shop";
 import { formatDate } from "@/lib/format";
 import { jsonLd } from "@/lib/json-ld";
 import { pageMetadata } from "@/lib/metadata";
+import { imageAllegee } from "@/lib/illustrations";
 
 export function generateStaticParams() {
   return getConseils().map((c) => ({ slug: c.slug }));
@@ -76,7 +77,7 @@ export default async function ConseilPage({ params }: PageProps<"/conseils/[slug
           <figure className="mt-8">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={withBase(conseil.image)}
+              {...imageAllegee(conseil.image, "(min-width: 768px) 720px, 100vw")}
               alt={conseil.imageCredit?.alt ?? `Illustration de l'article « ${conseil.title} »`}
               width={1200}
               height={800}

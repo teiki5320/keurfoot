@@ -1,3 +1,5 @@
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArticleVue, type AutreActu } from "@/components/actus/ArticleVue";
@@ -7,7 +9,13 @@ import { siteConfig } from "@/lib/config";
 import { getMaintenance } from "@/lib/data/settings";
 import { jsonLd } from "@/lib/json-ld";
 import { clip, pageMetadata } from "@/lib/metadata";
-import { lienActu, liensFiches } from "@/lib/veille";
+import { cheminPartageActu, lienActu, liensFiches, type ArticleActu } from "@/lib/veille";
+
+/** Image de partage JPG de l'article (fabriquée avant le build) ; sinon l'image de l'actu. */
+function imagePartage(article: ArticleActu): string {
+  const chemin = cheminPartageActu(article.id);
+  return chemin && existsSync(join(process.cwd(), "public", chemin)) ? `${siteConfig.url}${chemin}` : article.image.url;
+}
 
 /** Seules les pages construites existent ; une adresse inconnue donne la page 404. */
 export const dynamicParams = false;
@@ -28,7 +36,7 @@ export async function generateMetadata({ params }: PageProps<"/actus/[slug]">): 
     path: `/actus/${article.slug}`,
     type: "article",
     publishedTime: article.publie_le,
-    image: article.image.url,
+    image: imagePartage(article),
     imageAlt: article.image.alt,
   });
 }
@@ -52,7 +60,7 @@ export default async function ArticleActuPage({ params }: PageProps<"/actus/[slu
     datePublished: article.publie_le,
     dateModified: article.redige_le,
     inLanguage: "fr",
-    image: [article.image.url],
+    image: [imagePartage(article)],
     url,
     mainEntityOfPage: url,
     wordCount: article.mots,

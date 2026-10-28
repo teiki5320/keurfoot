@@ -5,13 +5,13 @@ import { ConseilGrid } from "@/components/conseils/ConseilCard";
 import { CanCountdown } from "@/components/ui/CanCountdown";
 import { Rail, RailSelection, ScoreBoard } from "@/components/ui/Vestiaire";
 import { todayInParis } from "@/lib/conseils/article";
-import { siteConfig, withBase } from "@/lib/config";
+import { siteConfig } from "@/lib/config";
 import { getCountry } from "@/lib/countries";
 import { CAN_EDITIONS, NEXT_CAN } from "@/lib/data/can";
 import { getConseils } from "@/lib/data/conseils";
 import { SELECTIONS, mostTitled } from "@/lib/data/selections";
 import { SHOP } from "@/lib/data/shop";
-import { illustration } from "@/lib/illustrations";
+import { illustration, imageAllegee } from "@/lib/illustrations";
 import { jsonLd } from "@/lib/json-ld";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -77,7 +77,7 @@ export default function HomePage() {
             {can && (
               <>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={withBase(can)} alt="" loading="lazy" className="absolute inset-0 size-full object-cover opacity-55" />
+                <img {...imageAllegee(can, "(min-width: 1024px) 40vw, 100vw")} alt="" loading="lazy" className="absolute inset-0 size-full object-cover opacity-55" />
                 <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-night from-10% to-transparent to-70%" />
               </>
             )}

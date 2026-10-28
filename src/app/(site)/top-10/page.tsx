@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
-import { siteConfig, withBase } from "@/lib/config";
+import { siteConfig } from "@/lib/config";
 import { TOPS } from "@/lib/data/tops";
-import { illustration } from "@/lib/illustrations";
+import { illustration, imageAllegee } from "@/lib/illustrations";
 import { itemListLd, jsonLd } from "@/lib/json-ld";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -41,7 +41,7 @@ export default function TopsPage() {
             >
               {img && (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={withBase(img)} alt="" loading="lazy" className="block aspect-[4/3] w-full object-cover" />
+                <img {...imageAllegee(img, "(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw")} alt="" loading="lazy" className="block aspect-[4/3] w-full object-cover" />
               )}
               <span className="block px-4 py-4">
                 <span className="eyebrow block text-[11px]">{t.kind === "classement" ? "Classement chiffré" : "Notre sélection"}</span>

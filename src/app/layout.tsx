@@ -5,7 +5,8 @@ import { DEFAULT_SHARE_IMAGES } from "@/lib/metadata";
 import "./globals.css";
 
 const barlow = Barlow({ variable: "--font-barlow", subsets: ["latin"], weight: ["400", "500", "600"], display: "swap" });
-const barlowCondensed = Barlow_Condensed({ variable: "--font-barlow-condensed", subsets: ["latin"], weight: ["500", "700", "800"], display: "swap" });
+/* Titres : seule la graisse 800 sert (.font-display, maillots), une seule police de titre à charger. */
+const barlowCondensed = Barlow_Condensed({ variable: "--font-barlow-condensed", subsets: ["latin"], weight: ["800"], display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),

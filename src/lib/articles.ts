@@ -9,7 +9,7 @@ import { join } from "node:path";
 import { getCountry } from "./countries";
 import { PLAYERS } from "./data/players";
 import { SELECTIONS } from "./data/selections";
-import { lireArticle, type ArticleActu, type LienFiche } from "./veille";
+import { lireArticle, lireFlux, type ArticleActu, type FluxActus, type LienFiche } from "./veille";
 
 let cache: ArticleActu[] | null = null;
 
@@ -26,6 +26,16 @@ export function articlesConstruits(): ArticleActu[] {
     cache = [];
   }
   return cache;
+}
+
+/** Actus récentes téléchargées avant le build (.veille/actus.json) ; null si la veille n'a pas répondu. */
+export function fluxConstruit(): FluxActus | null {
+  try {
+    const fichier = join(process.cwd(), ".veille", "actus.json");
+    return existsSync(fichier) ? lireFlux(JSON.parse(readFileSync(fichier, "utf8"))) : null;
+  } catch {
+    return null;
+  }
 }
 
 /** Adresses (slugs) des pages construites : les cartes d'actus pointent vers elles. */

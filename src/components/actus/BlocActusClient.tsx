@@ -44,21 +44,36 @@ function Squelette({ compacte }: { compacte: boolean }) {
  * Bloc d'actus lu en direct depuis la veille (voir src/lib/veille.ts).
  * En cas d'erreur ou s'il n'y a aucune actu, le bloc entier disparaît : la page reste intacte.
  * `construits` : adresses des pages d'articles construites avec le site (les cartes y mènent, voir lienActu).
+ * `initial` : actus téléchargées au build, affichées d'emblée (null : squelette jusqu'à la lecture de la veille).
  */
-export function BlocActusClient({ titre, limite, pays, lienTout = false, avecDate = false, prioritaire = false, siVide = null, className = "", construits }: BlocActusProps & { construits: string[] }) {
-  const [etat, setEtat] = useState<Etat>({ phase: "chargement" });
+export function BlocActusClient({
+  titre,
+  limite,
+  pays,
+  lienTout = false,
+  avecDate = false,
+  prioritaire = false,
+  siVide = null,
+  className = "",
+  construits,
+  initial,
+}: BlocActusProps & { construits: string[]; initial: { actus: Actu[]; genereLe: string } | null }) {
+  // Actus du build tout de suite (dans le HTML), remplacées par les plus récentes une fois la veille lue.
+  const [etat, setEtat] = useState<Etat>(initial ? { phase: "pret", ...initial } : { phase: "chargement" });
+  const avecInitial = initial !== null;
   const pages = useMemo(() => new Set(construits), [construits]);
   const lien = (a: Actu) => lienActu(a, pages);
 
   useEffect(() => {
     let actif = true;
     chargerFlux().then((flux) => {
-      if (actif) setEtat({ phase: "pret", actus: flux ? filtrerActus(flux.actus, { pays, limite }) : [], genereLe: flux?.genere_le ?? "" });
+      // Veille muette : on garde les actus du build plutôt que de vider le bloc.
+      if (actif && (flux || !avecInitial)) setEtat({ phase: "pret", actus: flux ? filtrerActus(flux.actus, { pays, limite }) : [], genereLe: flux?.genere_le ?? "" });
     });
     return () => {
       actif = false;
     };
-  }, [pays, limite]);
+  }, [pays, limite, avecInitial]);
 
   const compacte = limite <= 4;
   if (etat.phase === "pret" && etat.actus.length === 0) return siVide ? <div className={className}>{siVide}</div> : null;

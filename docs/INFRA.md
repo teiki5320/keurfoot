@@ -41,6 +41,9 @@ uniquement des noms de variables et de consoles.
   sans illustration originale ont une photo libre (Wikimedia Commons ou Openverse, crédit sous l'image)
   ou une carte générée, rangée dans `public/illustrations/` (crédits dans `src/lib/data/conseils-images.ts`) ; épingles Pinterest des Top 10
   générées avant chaque build par `scripts/epingles.mts` (satori et resvg), dans `public/epingles/`.
+  Depuis le 28 octobre 2026, `scripts/images.mts` fabrique avant chaque build des versions réduites
+  (480 et 800 px) de chaque illustration dans `public/reduites/` (non suivi par git) : les pages les
+  proposent au navigateur (srcset), un téléphone ne charge plus l'original de 1 600 px.
 - **Particularités** : interrupteur de maintenance dans `content/maintenance.json` (désactivé),
   tests de cohérence des contenus dans `tests/`, contrôle de la sortie par `npm run test:sortie`.
 
@@ -83,9 +86,11 @@ uniquement des noms de variables et de consoles.
   https://teiki5320.github.io/veille/actus/keurfoot.json (schéma v3 :
   https://teiki5320.github.io/veille/schema/actus-schema-v3.json). Les images sont copiées au même
   endroit (photos Wikimedia ou Openverse, ou carte générée « Illustration : Keur Foot »).
-- **Côté site** : `src/lib/veille.ts` et `src/components/actus/`. Le fichier est lu dans le
-  navigateur du visiteur (délai 8 s, cache de 15 min dans la session). En cas de panne, les blocs
-  s'effacent sans casser la page. Les blocs d'actus eux-mêmes ne sont pas vus par Google : c'est voulu.
+- **Côté site** : `src/lib/veille.ts` et `src/components/actus/`. Depuis le 28 octobre 2026, le
+  fichier est téléchargé avant chaque build (`.veille/actus.json`) et les blocs d'actus (accueil, page
+  Actus, fiches sélection) sont écrits dans le HTML : Google voit les actus et leurs liens. Dans le
+  navigateur, le fichier est relu (délai 8 s, cache de 15 min dans la session) pour afficher les plus
+  récentes ; s'il ne répond pas, les actus du build restent affichées.
 - **Articles complets** (depuis le 28 octobre 2026) : la veille écrit aussi, pour chaque actu, un
   article de 300 à 450 mots (https://teiki5320.github.io/veille/articles/keurfoot/<id>.json, schéma
   https://teiki5320.github.io/veille/schema/article-schema-v1.json). Avant chaque build,
@@ -94,7 +99,9 @@ uniquement des noms de variables et de consoles.
   supprimés, même quand l'actu sort des 60 plus récentes, donc une page indexée ne disparaît jamais),
   les télécharge dans `.veille/articles.json` (non suivi par git) et le site
   construit une page `/actus/<adresse>` par article, visible par Google (sitemap, données
-  NewsArticle). Le site est reconstruit à 12 h 50 et 19 h 50 (heure d'hiver) par `deploy.yml`, sans
+  NewsArticle). Chaque article a une image de partage JPG 1200 × 630 (`public/og/actus/<id>.jpg`,
+  fabriquée par le même script, non suivie par git) : les cartes SVG de la veille ne s'affichent ni sur
+  WhatsApp, ni sur Facebook, ni dans Google. Le site est reconstruit à 12 h 50 et 19 h 50 (heure d'hiver) par `deploy.yml`, sans
   clé ni secret de plus. Un article arrivé entre deux constructions s'ouvre sur la page de secours
   `/actus/article?id=<id>` (lue dans le navigateur, `noindex`, hors sitemap). Toute la carte d'une
   actu ouvre son article ; sans article, elle ouvre la source. Si la veille ne répond pas au build,

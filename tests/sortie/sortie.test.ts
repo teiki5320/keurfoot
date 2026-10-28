@@ -105,6 +105,29 @@ describe("Site construit", () => {
       assert.match(html, /aucune publicité/, page);
     }
   });
+  it("chaque fiche sélection décrit l'équipe pour Google (SportsTeam)", () => {
+    const html = readFileSync(join(out, "selection", "senegal.html"), "utf8");
+    assert.match(html, /"@type":"SportsTeam","name":"Équipe du Sénégal de football","alternateName":"Lions de la Teranga","sport":"Football"/);
+  });
+  it("les illustrations proposent des versions réduites (srcset)", () => {
+    const html = readFileSync(join(out, "can.html"), "utf8");
+    assert.match(html, /srcSet="\/keurfoot\/reduites\/can-480\.webp 480w, \/keurfoot\/reduites\/can-800\.webp 800w, \/keurfoot\/illustrations\/can\.webp \d+w"/);
+    assert.ok(existsSync(join(out, "reduites", "can-480.webp")));
+  });
+  // Actus : seulement si la veille a répondu pendant le build (sinon le site est construit sans actus).
+  const veille = join(import.meta.dirname, "..", "..", ".veille", "articles.json");
+  const articles = existsSync(veille) ? (JSON.parse(readFileSync(veille, "utf8")).articles as Array<{ id: string; slug: string }>) : [];
+  it("la page Actus contient ses actus dans le HTML (vues par Google)", { skip: articles.length === 0 }, () => {
+    const html = readFileSync(join(out, "actus.html"), "utf8");
+    assert.match(html, /href="\/keurfoot\/actus\/[a-z0-9-]+"/);
+  });
+  it("chaque article d'actu a une image de partage JPG", { skip: articles.length === 0 }, () => {
+    for (const a of articles.slice(0, 5)) {
+      const html = readFileSync(join(out, "actus", `${a.slug}.html`), "utf8");
+      assert.match(html, new RegExp(`<meta property="og:image" content="[^"]*/og/actus/${a.id}\\.jpg"`), a.slug);
+      assert.ok(existsSync(join(out, "og", "actus", `${a.id}.jpg`)), a.id);
+    }
+  });
   it("une épingle Pinterest par Top 10", () => {
     for (const p of PAGES.filter((x) => x.startsWith("top-10/"))) {
       assert.ok(existsSync(join(out, "epingles", `${p.split("/")[1]}.png`)), p);

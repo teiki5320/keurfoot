@@ -12,8 +12,8 @@ export const metadata: Metadata = pageMetadata({
 });
 
 /**
- * Actus du foot africain : 20 actus lues en direct depuis la veille (src/lib/veille.ts).
- * Chargées dans le navigateur, elles ne sont pas vues par Google : ce sont les pages /actus/<slug> qui le sont.
+ * Actus du foot africain : les 20 actus du dernier build écrites dans la page (vues par Google, avec leurs liens
+ * vers les pages /actus/<slug>), puis rafraîchies en direct depuis la veille (src/lib/veille.ts).
  */
 export default function ActusPage() {
   return (
