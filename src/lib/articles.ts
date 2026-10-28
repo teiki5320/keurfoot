@@ -9,6 +9,7 @@ import { join } from "node:path";
 import { getCountry } from "./countries";
 import { PLAYERS } from "./data/players";
 import { SELECTIONS } from "./data/selections";
+import { TOPS } from "./data/tops";
 import { lireArticle, lireFlux, type ArticleActu, type FluxActus, type LienFiche } from "./veille";
 
 let cache: ArticleActu[] | null = null;
@@ -60,6 +61,11 @@ export function fichesParTag(): Record<string, LienFiche> {
     const fiche = { tag: `selection:${s.slug}`, href: `/selection/${s.slug}`, texte: `Voir la fiche de la sélection ${pays.of}` };
     fiches[`selection:${s.slug}`] = fiche;
     fiches[`pays:${pays.iso2}`] = fiche;
+    // Suite d'une sélection citée : le Top 10 du pays s'il existe, sinon les maillots des sélections.
+    const top = TOPS.find((t) => t.country === s.slug);
+    fiches[`suite:selection:${s.slug}`] = top
+      ? { tag: `suite:selection:${s.slug}`, href: `/top-10/${top.slug}`, texte: top.pinTitle }
+      : { tag: `suite:selection:${s.slug}`, href: "/boutique/maillots", texte: "Les maillots des sélections" };
   }
   return fiches;
 }

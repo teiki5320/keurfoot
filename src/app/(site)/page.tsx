@@ -10,7 +10,6 @@ import { getCountry } from "@/lib/countries";
 import { CAN_EDITIONS, NEXT_CAN } from "@/lib/data/can";
 import { getConseils } from "@/lib/data/conseils";
 import { SELECTIONS, mostTitled } from "@/lib/data/selections";
-import { SHOP } from "@/lib/data/shop";
 import { illustration, imageAllegee } from "@/lib/illustrations";
 import { jsonLd } from "@/lib/json-ld";
 import { pageMetadata } from "@/lib/metadata";
@@ -59,9 +58,32 @@ export default function HomePage() {
             <RailSelection key={s.slug} s={s} i={i} />
           ))}
         </Rail>
-        <Link href="/selections" className="tag mt-4">Les {SELECTIONS.length} sélections →</Link>
+        <div className="mt-4 flex flex-wrap gap-2">
+          <Link href="/selections" className="tag">Les {SELECTIONS.length} sélections →</Link>
+          <Link href="/top-10" className="tag">Les Top 10 →</Link>
+          <Link href="/boutique" className="tag">La boutique →</Link>
+        </div>
         {last.disputed && <p className="mt-3 text-xs text-muted">* Le titre de la CAN {last.year}, attribué au Maroc par la CAF, est contesté devant le Tribunal arbitral du sport.</p>}
       </div>
+
+      {/* Boutique : penderie des maillots, liens internes seulement (aucun bouton Amazon sur l'accueil). */}
+      <section className="mt-14" aria-labelledby="accueil-boutique">
+        <div className="flex items-end justify-between gap-4">
+          <h2 id="accueil-boutique" className="section-title">La boutique</h2>
+          <Link href="/boutique" className="shrink-0 font-display text-lg font-bold tracking-[0.06em] text-gold uppercase hover:text-chalk">Voir →</Link>
+        </div>
+        <div className="mt-5">
+          <Rail label="Penderie des maillots">
+            {mostTitled(6).map((s, i) => (
+              <RailSelection key={s.slug} s={s} i={i} href={`/boutique/maillots#maillot-${s.slug}`} caption="Voir le maillot" />
+            ))}
+          </Rail>
+        </div>
+        <div className="mt-4 flex flex-wrap gap-2">
+          <Link href="/boutique/maillots" className="tag">Tous les maillots des sélections →</Link>
+          <Link href="/boutique" className="tag">Écharpes, drapeaux, ballons →</Link>
+        </div>
+      </section>
 
       {/* Actus du foot africain, lues en direct depuis la veille (rien ne s'affiche si elles sont indisponibles). */}
       <BlocActus titre="Actus" limite={4} lienTout prioritaire className="mt-14" />
@@ -100,20 +122,6 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Boutique et conseils */}
-      <section className="mt-14">
-        <div className="flex items-end justify-between gap-4">
-          <h2 className="section-title">La boutique</h2>
-          <Link href="/boutique" className="shrink-0 font-display text-lg font-bold tracking-[0.06em] text-gold uppercase hover:text-chalk">Voir →</Link>
-        </div>
-        <div className="no-scrollbar mt-4 flex gap-2 overflow-x-auto pb-1 sm:flex-wrap">
-          {SHOP.map((c) => (
-            <Link key={c.slug} href={c.slug === "maillots" ? "/boutique/maillots" : `/boutique#${c.slug}`} className="tag shrink-0">
-              {c.name}
-            </Link>
-          ))}
-        </div>
-      </section>
       <section className="mt-14">
         <div className="flex items-end justify-between gap-4">
           <h2 className="section-title">Conseils</h2>

@@ -29,11 +29,11 @@ export function Rail({ children, label }: { children: React.ReactNode; label: st
 }
 
 /** Maillot d'une sélection accroché à la tringle : nombre de CAN gagnées sur la poitrine. */
-export function RailSelection({ s, i, caption }: { s: Selection; i: number; caption?: string }) {
+export function RailSelection({ s, i, caption, href }: { s: Selection; i: number; caption?: string; href?: string }) {
   const country = getCountry(s.country)!;
   const titles = s.canTitles.length;
   return (
-    <Link href={`/selection/${s.slug}`} className="kf-hang group flex flex-col items-center gap-2 px-1 pb-4" style={sway(i)}>
+    <Link href={href ?? `/selection/${s.slug}`} className="kf-hang group flex flex-col items-center gap-2 px-1 pb-4" style={sway(i)}>
       <Jersey
         colors={s.colors}
         hanger

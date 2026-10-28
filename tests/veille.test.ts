@@ -241,6 +241,19 @@ describe("Articles des actus : lecture d'un article", () => {
       assert.deepEqual(hrefs({ titre: "Sadio Mané buteur", ...texte("Samuel Eto’o était présent.") }), ["/joueur/sadio-mane", "/joueur/samuel-eto-o"]);
     });
 
+    it("ajoute après les fiches le Top 10 du pays (ou les maillots) de chaque sélection citée, sans doublon", () => {
+      const avecSuites = {
+        ...fiches,
+        "suite:selection:senegal": { tag: "suite:selection:senegal", href: "/top-10/meilleurs-joueurs-senegalais", texte: "Top 10 Sénégal" },
+        "suite:selection:maroc": { tag: "suite:selection:maroc", href: "/boutique/maillots", texte: "Les maillots des sélections" },
+      };
+      const a = article({ tags: [], pays: ["MA", "SN"] });
+      assert.deepEqual(
+        fichesLiees(lireArticle(a)!, avecSuites).map((f) => f.href),
+        ["/selection/maroc", "/selection/senegal", "/boutique/maillots", "/top-10/meilleurs-joueurs-senegalais"],
+      );
+    });
+
     it("ignore un nom incomplet ou collé à un autre mot", () => {
       assert.deepEqual(hrefs({ titre: "Mané buteur", ...texte("Le stade Akwáville et Sadio Manéx.") }), []);
     });

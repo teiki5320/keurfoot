@@ -293,7 +293,11 @@ export function fichesLiees(
 ): LienFiche[] {
   const texte = apostrophesDroites([article.titre, article.chapo, ...(article.blocs ?? []).flatMap((b) => [b.intertitre, ...b.paragraphes])].filter(Boolean).join("\n"));
   const joueurs = Object.keys(fiches).filter((cle) => fiches[cle].nom && citeLeNom(texte, fiches[cle].nom!));
-  return liensFiches([...(article.pays ?? []).map((p) => `pays:${p}`), ...joueurs, ...(article.tags ?? [])], fiches);
+  const liens = liensFiches([...(article.pays ?? []).map((p) => `pays:${p}`), ...joueurs, ...(article.tags ?? [])], fiches);
+  // Pour chaque sélection citée : son Top 10 s'il existe, sinon la page des maillots (clés « suite:selection:<slug> »).
+  // Liens internes seulement : jamais de lien Amazon dans une actu.
+  const suites = liens.flatMap((f) => (f.tag.startsWith("selection:") ? [`suite:${f.tag}`] : []));
+  return liensFiches([...liens.map((f) => f.tag), ...suites], { ...fiches, ...Object.fromEntries(liens.map((f) => [f.tag, f])) });
 }
 
 /** Date de parution en toutes lettres : « 27 octobre 2026 » (heure de Paris). */
