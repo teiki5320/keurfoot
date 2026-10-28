@@ -27,6 +27,7 @@ Données : Search Console relevée par le Studio, du 24 septembre au 22 octobre 
 
 ### Socle vérifié le 24 octobre 2026
 
+- Bing Webmaster Tools (ajouté le 28 octobre 2026) : site validé par la balise `msvalidate.01` (`src/app/layout.tsx`, à garder), sitemap https://keurfoot.com/sitemap.xml envoyé le même jour.
 - IndexNow : clé publique créée (`public/<clé>.txt`) et script `scripts/indexnow.mjs`, sur le modèle de Keur Cook ; à lancer après une publication (`node scripts/indexnow.mjs`).
 - Google Discover : `max-image-preview:large` déjà sur toutes les pages ; image de partage par défaut de 1200 × 630, épingles pour les Top 10.
 - Vitesse sur téléphone : PageSpeed Insights a refusé (quota du jour épuisé). À refaire au prochain passage : accueil, /joueur/didier-drogba, /top-10/meilleurs-joueurs-marocains.

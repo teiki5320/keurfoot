@@ -19,7 +19,7 @@
 | Hébergement | [ok] Worker de fichiers statiques Cloudflare « keurfoot » |
 | Domaine | [ok] keurfoot.com ; www renvoie vers keurfoot.com (301) depuis le 28 octobre |
 | SSL | [ok] Certificat Cloudflare, HSTS actif, http renvoie vers https (28 octobre) |
-| Indexation | [ok] Search Console : 97 pages sur 99 indexées (27 octobre) |
+| Indexation | [ok] Search Console : 97 pages sur 99 indexées (27 octobre) ; Bing Webmaster Tools : site validé et sitemap envoyé (28 octobre) |
 | Mesure d'audience | [pas encore] Aucune balise constatée (28 octobre) |
 
 ## Ce qui reste, dans l'ordre
@@ -27,7 +27,8 @@
 1. ✅ **Version provisoire** : site publié sur GitHub Pages, non indexé, le 17 octobre 2026.
 2. ✅ **Mise en ligne** : site publié sur keurfoot.com par un Worker Cloudflare le 20 octobre 2026.
 3. ✅ **Ancienne adresse redirigée** : GitHub Pages renvoie chaque visiteur vers keurfoot.com.
-4. ✅ **Search Console** : propriété keurfoot.com vérifiée et sitemap envoyé à Google le 20 octobre 2026.
+4. ✅ **Search Console** : propriété keurfoot.com vérifiée et sitemap envoyé à Google le 20 octobre 2026 ;
+   même chose dans Bing Webmaster Tools le 28 octobre 2026 (balise `msvalidate.01` dans `src/app/layout.tsx`).
 5. **Mesure d'audience** : activer Cloudflare Web Analytics, déjà permis par `public/_headers`.
 6. **Validation AdSense** : suivre l'examen demandé le 20 octobre (« En préparation » au 28 octobre 2026), puis créer les blocs d'annonces.
 

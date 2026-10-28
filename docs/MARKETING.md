@@ -35,7 +35,9 @@ publications réelles, ou routine qui publie).
 - ✅ Référencement naturel : propriété keurfoot.com vérifiée dans la Search Console, sitemap envoyé
   le 20 octobre 2026 et relu par Google le 26 octobre ; 97 pages sur 99 indexées (relevé du Studio,
   27 octobre 2026) ; Google montre déjà des pages joueurs ; signalement IndexNow
-  (Bing…) par `scripts/indexnow.mjs` depuis le 24 octobre 2026 ; suivi dans `docs/referencement.md`.
+  (Bing…) par `scripts/indexnow.mjs` depuis le 24 octobre 2026 ; site validé dans Bing Webmaster
+  Tools (balise `msvalidate.01`) et sitemap envoyé à Bing le 28 octobre 2026 ; suivi dans
+  `docs/referencement.md`.
 - ✅ Rubrique Actus : page `/actus` (dans le menu) et blocs sur l'accueil et les fiches sélection
   depuis le 27 octobre 2026, mis à jour automatiquement à 12 h et 19 h ; depuis le 28 octobre 2026,
   chaque actu a son article complet sur sa propre page `/actus/<adresse>`, construite à 12 h 50 et
