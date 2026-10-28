@@ -13,7 +13,7 @@ export function CreditImage({ image, className = "" }: { image: ImageActu; class
   return (
     <p className={classes}>
       {image.page ? (
-        <a href={image.page} target="_blank" rel="noopener nofollow" className="underline decoration-line-strong underline-offset-2 hover:text-chalk">
+        <a href={image.page} target="_blank" rel="noopener nofollow" className="relative z-10 underline decoration-line-strong underline-offset-2 hover:text-chalk">
           {texte}
         </a>
       ) : (

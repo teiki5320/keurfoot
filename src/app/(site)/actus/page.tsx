@@ -13,7 +13,7 @@ export const metadata: Metadata = pageMetadata({
 
 /**
  * Actus du foot africain : 20 actus lues en direct depuis la veille (src/lib/veille.ts).
- * Chargées dans le navigateur, elles ne sont pas vues par Google : c'est voulu.
+ * Chargées dans le navigateur, elles ne sont pas vues par Google : ce sont les pages /actus/<slug> qui le sont.
  */
 export default function ActusPage() {
   return (
@@ -22,7 +22,7 @@ export default function ActusPage() {
       <PageHero
         eyebrow="En direct des sélections"
         title="Actus du foot africain"
-        intro="Les dernières nouvelles des sélections africaines, de la CAN et des éliminatoires, résumées en français deux fois par jour. Chaque actu renvoie vers l'article d'origine : clique sur « Source » pour le lire en entier."
+        intro="Les dernières nouvelles des sélections africaines, de la CAN et des éliminatoires, résumées en français deux fois par jour. Touche une actu pour lire l'article complet, avec le lien vers sa source."
       />
       <div className="container-page mt-8">
         <BlocActus

@@ -54,3 +54,6 @@ next-env.d.ts
 
 # Espace de travail des plans
 /.superpowers/
+
+# Articles des actus téléchargés avant chaque build (scripts/articles.mts)
+/.veille/

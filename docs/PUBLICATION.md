@@ -8,7 +8,7 @@
 
 - **Production** : en ligne sur keurfoot.com depuis le 20 octobre 2026
 - **Domaine & SSL** : Cloudflare, certificat valide jusqu'au 18 janvier 2027, renouvelé seul
-- **Visibilité** : sitemap de 99 adresses (page Actus ajoutée le 27 octobre) ; 97 pages indexées par Google (relevé du 27 octobre)
+- **Visibilité** : sitemap de 99 adresses fixes (page Actus ajoutée le 27 octobre), plus les articles d'actus depuis le 28 octobre (16 ce jour-là) ; 97 pages indexées par Google (relevé du 27 octobre)
 - **Contact** : keurfoot@toakeur.com
 
 ## Boutiques
@@ -37,7 +37,7 @@
 |---|---|
 | Adresse | **En ligne** sur https://keurfoot.com (vérifié le 26 octobre 2026 : réponse 200) |
 | Hébergeur | Cloudflare, Worker de fichiers statiques `keurfoot` (`wrangler.jsonc`), workflow `deploy.yml` |
-| Dernière publication | 27 octobre 2026, rubrique Actus (la précédente, programmée, le 26 octobre) |
+| Dernière publication | 28 octobre 2026, pages des articles d'actus ; le site se republie désormais aussi chaque jour à 12 h 50 et 19 h 50 (la précédente publication, rubrique Actus, le 27 octobre) |
 | Mise en ligne | 20 octobre 2026 (version provisoire sur GitHub Pages du 17 au 20 octobre, remplacée par Cloudflare) |
 | Dépôt | https://github.com/teiki5320/keurfoot |
 | Taille publiée | 99 adresses dans le sitemap (27 octobre 2026) |
@@ -56,13 +56,13 @@
 
 ## Visibilité
 
-- **Sitemap** : https://keurfoot.com/sitemap.xml répond (99 adresses, dont 8 articles Conseils et la page Actus, le 27 octobre 2026) ; `robots.txt` autorise tout
+- **Sitemap** : https://keurfoot.com/sitemap.xml répond (99 adresses, dont 8 articles Conseils et la page Actus, le 27 octobre 2026 ; plus une adresse par article d'actu depuis le 28 octobre 2026, la page de secours `/actus/article` n'y est jamais) ; `robots.txt` autorise tout
   et cite le sitemap.
 - **Google Search Console** : propriété `keurfoot.com` vérifiée ; sitemap envoyé le 20 octobre 2026,
   sans erreur, relu par Google le 26 octobre ; 97 pages sur 99 indexées, 2 encore inconnues de
   Google (relevé du Studio, 27 octobre 2026).
 - **IndexNow** : clé publique servie à la racine du site et script `scripts/indexnow.mjs` (24 octobre 2026),
-  lancé à la main après une publication ; journal du référencement dans `docs/referencement.md`.
+  lancé à la main après une publication (il lit le sitemap, donc signale aussi les articles d'actus) ; journal du référencement dans `docs/referencement.md`.
 - **Mesure d'audience** : aucune balise Cloudflare Web Analytics constatée sur le site le
   21 octobre 2026, bien que la politique de sécurité l'autorise.
 - **Publicité** : Google AdSense en place (script chargé sur les pages,

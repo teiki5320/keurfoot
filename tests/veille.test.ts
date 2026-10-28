@@ -10,11 +10,19 @@ import {
   actuValide,
   ageActu,
   chargerActus,
+  chargerArticle,
+  dateArticle,
   dateMiseAJour,
   filtrerActus,
+  idDemande,
   imageCarree,
+  lienActu,
+  liensFiches,
+  lireArticle,
   lireFlux,
+  nomDeSource,
   titreActusSelection,
+  URL_ARTICLES,
   type Actu,
 } from "../src/lib/veille";
 
@@ -117,6 +125,132 @@ describe("Veille actus : sécurité", () => {
     const directives = Object.fromEntries(csp.split(";").map((d) => d.trim().split(/\s+/)).map(([nom, ...v]) => [nom, v]));
     for (const [nom, valeurs] of Object.entries(directives)) {
       assert.equal(valeurs.includes("https://teiki5320.github.io"), nom === "connect-src" || nom === "img-src", nom);
+    }
+  });
+});
+
+/* ---------- Articles complets : choix du lien des cartes et page de secours ---------- */
+
+const ID = "7bb83389f2cb9bade1df1270fc7e201d595b469f";
+const ID2 = "e1ae240089eb21db47b2e148fab3ed50c4338d0a";
+
+const article = (sur: Record<string, unknown> = {}) => ({
+  version: 1,
+  site: "keurfoot",
+  id: ID,
+  slug: "vozinha-invite-au-ballon-d-or-7bb833",
+  titre: "Vozinha invité à la soirée du Ballon d'Or",
+  chapo: "Le gardien cap-verdien a assisté lundi soir à Londres à la cérémonie du Ballon d'Or.",
+  blocs: [
+    { intertitre: null, paragraphes: ["Premier paragraphe de l'article, assez long pour être valable."] },
+    { intertitre: "Le contexte", paragraphes: ["Deuxième paragraphe de l'article, assez long lui aussi."] },
+  ],
+  mots: 320,
+  lecture_min: 2,
+  tags: ["joueur:sadio-mane", "selection:senegal", "auteur:inconnu"],
+  source_nom: "ESPN FC",
+  source_url: "https://www.espn.com/soccer/story",
+  autres_sources: ["https://www.rfi.fr/fr/sports/x", "javascript:alert(1)"],
+  publie_le: "2026-10-27T18:23:49.000Z",
+  redige_le: "2026-10-28T01:00:00.000Z",
+  image: actu(ID, []).image,
+  ...sur,
+});
+
+describe("Articles des actus : lien d'une carte", () => {
+  const avecArticle = { ...actu(ID, ["CV"]), slug: "vozinha-invite-au-ballon-d-or-7bb833", article_url: `${URL_ARTICLES}${ID}.json`, lecture_min: 2 };
+
+  it("page construite : la carte ouvre /actus/<slug>", () => {
+    assert.deepEqual(lienActu(avecArticle, ["vozinha-invite-au-ballon-d-or-7bb833"]), { href: "/actus/vozinha-invite-au-ballon-d-or-7bb833", type: "page" });
+    assert.equal(lienActu(avecArticle, new Set(["vozinha-invite-au-ballon-d-or-7bb833"])).type, "page");
+  });
+
+  it("article arrivé après la construction : la carte ouvre la page de secours", () => {
+    assert.deepEqual(lienActu(avecArticle, []), { href: `/actus/article?id=${ID}`, type: "secours" });
+  });
+
+  it("pas encore d'article : la carte ouvre la source, comme avant", () => {
+    assert.deepEqual(lienActu(actu(ID, []), ["autre"]), { href: "https://www.rfi.fr/article", type: "source" });
+  });
+
+  it("un article hébergé ailleurs que sur la veille ou un slug douteux sont ignorés", () => {
+    const flux = lireFlux({
+      version: 3,
+      site: "keurfoot",
+      genere_le: "x",
+      actus: [
+        { ...avecArticle, article_url: "https://exemple.com/a.json" },
+        { ...avecArticle, id: ID2, slug: "../../x", article_url: `${URL_ARTICLES}${ID2}.json` },
+        avecArticle,
+      ],
+    })!;
+    assert.equal(flux.actus[0].slug, undefined);
+    assert.equal(flux.actus[1].slug, undefined);
+    assert.equal(flux.actus[2].slug, "vozinha-invite-au-ballon-d-or-7bb833");
+    assert.equal(lienActu(flux.actus[0], ["vozinha-invite-au-ballon-d-or-7bb833"]).type, "source");
+  });
+});
+
+describe("Articles des actus : lecture d'un article", () => {
+  it("garde un article conforme et retire les sources douteuses", () => {
+    const a = lireArticle(article())!;
+    assert.equal(a.blocs.length, 2);
+    assert.equal(a.blocs[0].intertitre, null);
+    assert.deepEqual(a.autres_sources, ["https://www.rfi.fr/fr/sports/x"]);
+    assert.equal(a.lecture_min, 2);
+  });
+
+  it("refuse un article abîmé, d'une autre version, ou avec une image hébergée ailleurs", () => {
+    assert.equal(lireArticle(article({ version: 2 })), null);
+    assert.equal(lireArticle(article({ blocs: [] })), null);
+    assert.equal(lireArticle(article({ source_url: "javascript:alert(1)" })), null);
+    assert.equal(lireArticle(article({ image: actu(ID, [], { url: "https://exemple.com/x.webp" }).image })), null);
+    assert.equal(lireArticle(article({ slug: "article" })), null);
+    assert.equal(lireArticle(null), null);
+  });
+
+  it("les tags deviennent des liens seulement vers des fiches qui existent", () => {
+    const fiches = { "joueur:sadio-mane": { tag: "joueur:sadio-mane", href: "/joueur/sadio-mane", texte: "Lire la fiche de Sadio Mané" } };
+    assert.deepEqual(liensFiches(lireArticle(article())!.tags, fiches).map((f) => f.href), ["/joueur/sadio-mane"]);
+    assert.deepEqual(liensFiches(["constructor"], fiches), []);
+    assert.deepEqual(liensFiches(undefined, fiches), []);
+  });
+
+  it("nom d'une autre source et date de l'article", () => {
+    assert.equal(nomDeSource("https://www.rfi.fr/fr/sports/x"), "rfi.fr");
+    assert.equal(dateArticle("2026-10-27T23:30:00.000Z"), "28 octobre 2026");
+  });
+});
+
+describe("Articles des actus : page de secours", () => {
+  it("ne lit qu'un identifiant bien formé dans l'adresse", () => {
+    assert.equal(idDemande(`?id=${ID}`), ID);
+    assert.equal(idDemande("?id=../../secret"), "");
+    assert.equal(idDemande(""), "");
+  });
+
+  it("charge l'article demandé, et rien en cas d'id inconnu, d'erreur réseau ou de fichier abîmé", async () => {
+    const g = globalThis as Record<string, unknown>;
+    const fetchAvant = g.fetch;
+    const demandes: string[] = [];
+    try {
+      g.fetch = async (url: string) => {
+        demandes.push(url);
+        return url.endsWith(`${ID}.json`) ? new Response(JSON.stringify(article())) : new Response("introuvable", { status: 404 });
+      };
+      assert.equal((await chargerArticle(ID))?.titre, "Vozinha invité à la soirée du Ballon d'Or");
+      assert.equal(demandes[0], `${URL_ARTICLES}${ID}.json`);
+      assert.equal(await chargerArticle(ID2), null);
+      assert.equal(await chargerArticle("pas-un-id"), null);
+      assert.equal(demandes.length, 2, "un id mal formé ne déclenche aucune requête");
+      g.fetch = async () => new Response(JSON.stringify(article({ id: ID2 })));
+      assert.equal(await chargerArticle(ID), null, "le fichier doit correspondre à l'id demandé");
+      g.fetch = async () => {
+        throw new TypeError("réseau coupé");
+      };
+      assert.equal(await chargerArticle(ID), null);
+    } finally {
+      g.fetch = fetchAvant;
     }
   });
 });

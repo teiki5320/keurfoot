@@ -1,6 +1,6 @@
 # Vérifie, construit et publie le site statique sur Cloudflare (Worker « keurfoot », domaine keurfoot.com, voir wrangler.jsonc).
 # Se lance à chaque push sur main, chaque lundi, mercredi et vendredi (articles « Conseils » programmés),
-# à la main (onglet Actions) et après le bouton « Maintenance ».
+# 2 fois par jour après la veille (pages des articles d'actus), à la main (onglet Actions) et après le bouton « Maintenance ».
 name: Publier le site
 
 on:
@@ -9,8 +9,11 @@ on:
   workflow_dispatch:
   workflow_call:
   # Chaque lundi, mercredi et vendredi à 0 h 15 (heure de Paris en hiver, 1 h 15 en été) : publie les articles programmés.
+  # Chaque jour à 12 h 50 et 19 h 50 (heure de Paris en hiver, 13 h 50 et 20 h 50 en été), après la veille de 12 h et 19 h :
+  # construit les pages /actus/<slug> des nouveaux articles (voir scripts/articles.mts).
   schedule:
     - cron: "15 23 * * 0,2,4"
+    - cron: "50 11,18 * * *"
 
 permissions:
   contents: read

@@ -5,10 +5,16 @@
  * Règle légale : le titre original n'est jamais dans le fichier ; on affiche toujours la source et le crédit de l'image.
  */
 
-export const URL_VEILLE = "https://teiki5320.github.io/veille/actus/keurfoot.json";
+/** Adresse de la veille (réglable pour un essai hors ligne : NEXT_PUBLIC_VEILLE_BASE=http://localhost:8765). */
+export const BASE_VEILLE = (process.env.NEXT_PUBLIC_VEILLE_BASE || "https://teiki5320.github.io/veille").replace(/\/$/, "");
+
+export const URL_VEILLE = `${BASE_VEILLE}/actus/keurfoot.json`;
 
 /** Toutes les images des actus viennent de là (voir la CSP de public/_headers). */
 const ORIGINE_IMAGES = "https://teiki5320.github.io/veille/";
+
+/** Dossier des articles complets (un fichier par actu : <id>.json). Schéma : veille/schema/article-schema-v1.json. */
+export const URL_ARTICLES = `${BASE_VEILLE}/articles/keurfoot/`;
 
 export interface ImageActu {
   url: string;
@@ -40,6 +46,11 @@ export interface Actu {
   collecte_le?: string;
   langue?: string;
   image: ImageActu;
+  /** Adresse de l'article complet sur le site (« /actus/<slug> ») ; absente tant que l'article n'est pas écrit. */
+  slug?: string;
+  /** Fichier de l'article complet sur la veille (articles/keurfoot/<id>.json). */
+  article_url?: string;
+  lecture_min?: number;
 }
 
 export interface FluxActus {
@@ -77,12 +88,181 @@ export function actuValide(a: unknown): a is Actu {
   );
 }
 
+/** Adresse d'article sûre : minuscules, chiffres et tirets (jamais « article », réservé à la page de secours). */
+export const slugValide = (v: unknown): v is string => typeof v === "string" && /^[a-z0-9]+(-[a-z0-9]+)*$/.test(v) && v.length <= 80 && v !== "article";
+
+/** Identifiant d'une actu : SHA-1 en hexadécimal (40 caractères). */
+export const idValide = (v: unknown): v is string => typeof v === "string" && /^[0-9a-f]{40}$/.test(v);
+
+/** Identifiant demandé dans l'adresse de la page de secours (« ?id=… ») ; chaîne vide s'il est absent ou mal formé. */
+export function idDemande(recherche: string): string {
+  const id = new URLSearchParams(recherche).get("id") ?? "";
+  return idValide(id) ? id : "";
+}
+
+/** Retire d'une actu les champs d'article abîmés (slug douteux, fichier hors de la veille). */
+function nettoyerActu(a: Actu): Actu {
+  const ok = slugValide(a.slug) && typeof a.article_url === "string" && a.article_url === `${URL_ARTICLES}${a.id}.json`;
+  if (ok) return a;
+  const { slug: _s, article_url: _u, lecture_min: _l, ...reste } = a;
+  void _s;
+  void _u;
+  void _l;
+  return reste;
+}
+
 /** Lit le fichier reçu : null s'il n'a pas la forme attendue. */
 export function lireFlux(donnees: unknown): FluxActus | null {
   if (!donnees || typeof donnees !== "object") return null;
   const d = donnees as Partial<FluxActus>;
   if (d.version !== 3 || !Array.isArray(d.actus)) return null;
-  return { version: 3, site: String(d.site ?? ""), genere_le: String(d.genere_le ?? ""), actus: d.actus.filter(actuValide) };
+  return { version: 3, site: String(d.site ?? ""), genere_le: String(d.genere_le ?? ""), actus: d.actus.filter(actuValide).map(nettoyerActu) };
+}
+
+/* ---------- Article complet d'une actu ---------- */
+
+export interface BlocArticle {
+  intertitre: string | null;
+  paragraphes: string[];
+}
+
+export interface ArticleActu {
+  version: 1;
+  id: string;
+  slug: string;
+  /** Titre reformulé (jamais le titre original). */
+  titre: string;
+  /** Phrase d'attaque, mise en avant sous le titre. */
+  chapo: string;
+  blocs: BlocArticle[];
+  mots: number;
+  lecture_min: number;
+  theme?: string;
+  pays?: string[];
+  competition?: string | null;
+  tags?: string[];
+  source_nom: string;
+  source_url: string;
+  autres_sources?: string[];
+  publie_le: string;
+  redige_le: string;
+  /** Même image que l'actu (jamais celle de l'article d'origine). */
+  image: ImageActu;
+}
+
+/** Vérifie un fichier article (schéma article-schema-v1) ; null s'il est incomplet ou douteux. */
+export function lireArticle(donnees: unknown): ArticleActu | null {
+  if (!donnees || typeof donnees !== "object") return null;
+  const x = donnees as Partial<ArticleActu>;
+  if (x.version !== 1 || !idValide(x.id) || !slugValide(x.slug) || !estTexte(x.chapo) || !estTexte(x.redige_le)) return null;
+  // Mêmes contrôles que pour une actu : titre, source en http(s), image hébergée sur la veille avec son crédit.
+  if (!actuValide({ ...x, resume: x.chapo })) return null;
+  if (!Array.isArray(x.blocs) || x.blocs.length === 0) return null;
+  const blocs: BlocArticle[] = [];
+  for (const b of x.blocs as unknown[]) {
+    const bloc = b as Partial<BlocArticle> | null;
+    if (!bloc || !Array.isArray(bloc.paragraphes)) return null;
+    const paragraphes = bloc.paragraphes.filter(estTexte);
+    if (paragraphes.length === 0) return null;
+    blocs.push({ intertitre: estTexte(bloc.intertitre) ? bloc.intertitre : null, paragraphes });
+  }
+  const autres = Array.isArray(x.autres_sources) ? x.autres_sources.filter(estLienWeb) : [];
+  const tags = Array.isArray(x.tags) ? x.tags.filter((t): t is string => typeof t === "string" && /^[a-z]+:[a-z0-9-]+$/.test(t)) : [];
+  const mots = typeof x.mots === "number" ? x.mots : blocs.flatMap((b) => b.paragraphes).join(" ").split(/\s+/).length;
+  const lecture = typeof x.lecture_min === "number" && x.lecture_min >= 1 ? Math.round(x.lecture_min) : Math.max(1, Math.round(mots / 200));
+  return {
+    version: 1,
+    id: x.id,
+    slug: x.slug,
+    titre: x.titre as string,
+    chapo: x.chapo,
+    blocs,
+    mots,
+    lecture_min: lecture,
+    ...(x.theme ? { theme: String(x.theme) } : {}),
+    ...(Array.isArray(x.pays) ? { pays: x.pays.filter((p) => typeof p === "string") } : {}),
+    competition: typeof x.competition === "string" ? x.competition : null,
+    tags,
+    source_nom: x.source_nom as string,
+    source_url: x.source_url as string,
+    autres_sources: autres,
+    publie_le: x.publie_le as string,
+    redige_le: x.redige_le,
+    image: x.image as ImageActu,
+  };
+}
+
+/** Nom lisible d'une source à partir de son adresse : « www.rfi.fr » → « rfi.fr ». */
+export function nomDeSource(url: string): string {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
+}
+
+/** Lien d'une carte d'actu : page construite, sinon page de secours, sinon la source (nouvel onglet). */
+export interface LienActu {
+  href: string;
+  type: "page" | "secours" | "source";
+}
+
+/**
+ * Choisit où mène une carte d'actu.
+ * - « page » : /actus/<slug>, si cette page a été construite avec le site ;
+ * - « secours » : /actus/article?id=<id>, si l'article existe sur la veille mais est arrivé après la construction ;
+ * - « source » : l'article d'origine, tant que l'article complet n'est pas écrit.
+ */
+export function lienActu(actu: Pick<Actu, "id" | "slug" | "article_url" | "source_url">, construits: ReadonlySet<string> | readonly string[]): LienActu {
+  const liste = construits instanceof Set ? construits : new Set(construits as readonly string[]);
+  if (slugValide(actu.slug) && liste.has(actu.slug)) return { href: `/actus/${actu.slug}`, type: "page" };
+  if (idValide(actu.id) && actu.article_url === `${URL_ARTICLES}${actu.id}.json`) return { href: `/actus/article?id=${actu.id}`, type: "secours" };
+  return { href: actu.source_url, type: "source" };
+}
+
+/** Lien vers une fiche du site, donné par un tag de l'article (« joueur:sadio-mane », « selection:senegal »). */
+export interface LienFiche {
+  tag: string;
+  href: string;
+  texte: string;
+}
+
+/** Garde seulement les tags qui correspondent à une fiche existante du site (les autres sont ignorés), sans doublon. */
+export function liensFiches(tags: readonly string[] | undefined, fiches: Readonly<Record<string, LienFiche>>): LienFiche[] {
+  const vus = new Set<string>();
+  return (tags ?? []).flatMap((t) => {
+    const f = Object.hasOwn(fiches, t) ? fiches[t] : undefined;
+    if (!f || vus.has(f.href)) return [];
+    vus.add(f.href);
+    return [f];
+  });
+}
+
+/** Date de parution en toutes lettres : « 27 octobre 2026 » (heure de Paris). */
+export function dateArticle(iso: string): string {
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return "";
+  return new Intl.DateTimeFormat("fr-FR", { day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Paris" }).format(date).replace(/^1 /, "1er ");
+}
+
+/**
+ * Charge un article complet dans le navigateur (page de secours) : délai de 8 s.
+ * Ne lève jamais d'erreur : null si l'identifiant est faux, le fichier absent ou abîmé.
+ */
+export async function chargerArticle(id: string, base: string = URL_ARTICLES): Promise<ArticleActu | null> {
+  if (!idValide(id)) return null;
+  const controle = new AbortController();
+  const minuteur = setTimeout(() => controle.abort(), DELAI_MS);
+  try {
+    const rep = await fetch(`${base}${id}.json`, { signal: controle.signal, cache: "no-cache" });
+    if (!rep.ok) return null;
+    const article = lireArticle(await rep.json());
+    return article && article.id === id ? article : null;
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(minuteur);
+  }
 }
 
 function lireCache(): FluxActus | null {

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { articlesConstruits } from "@/lib/articles";
 import { NOINDEX, siteConfig } from "@/lib/config";
 import { getConseils } from "@/lib/data/conseils";
 import { PLAYERS } from "@/lib/data/players";
@@ -31,6 +32,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...PLAYERS.map((p) => page(`/joueur/${p.slug}`, p.updatedAt, 0.7)),
     ...TOPS.map((t) => page(`/top-10/${t.slug}`, t.updatedAt, 0.8)),
     ...getConseils().map((c) => page(`/conseils/${c.slug}`, c.date, 0.6)),
+    // Articles complets des actus construits avec le site (la page de secours /actus/article n'y est jamais).
+    ...articlesConstruits().map((a) => ({ url: `${base}/actus/${a.slug}`, lastModified: new Date(a.redige_le), changeFrequency: "monthly" as const, priority: 0.5 })),
     ...["/conditions", "/mentions-legales", "/confidentialite"].map((path) => ({
       url: `${base}${path}`,
       lastModified: day(LEGAL_UPDATED),
