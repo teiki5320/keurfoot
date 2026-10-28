@@ -192,6 +192,27 @@ export function lireArticle(donnees: unknown): ArticleActu | null {
   };
 }
 
+/** Entrée de l'index des articles (articles/keurfoot/index.json) : tous les articles écrits, jamais supprimés. */
+export interface EntreeIndex {
+  id: string;
+  slug: string;
+  titre: string;
+  publie_le: string;
+  redige_le: string;
+  url: string;
+}
+
+/** Lit l'index des articles : null s'il n'a pas la forme attendue ; les entrées douteuses sont écartées. */
+export function lireIndex(donnees: unknown): EntreeIndex[] | null {
+  if (!donnees || typeof donnees !== "object") return null;
+  const d = donnees as { version?: unknown; articles?: unknown };
+  if (d.version !== 1 || !Array.isArray(d.articles)) return null;
+  return d.articles.filter((e): e is EntreeIndex => {
+    const x = e as Partial<EntreeIndex> | null;
+    return !!x && idValide(x.id) && slugValide(x.slug) && estTexte(x.publie_le) && x.url === `${URL_ARTICLES}${x.id}.json`;
+  });
+}
+
 /** Nom lisible d'une source à partir de son adresse : « www.rfi.fr » → « rfi.fr ». */
 export function nomDeSource(url: string): string {
   try {

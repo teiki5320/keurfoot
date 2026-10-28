@@ -89,7 +89,10 @@ uniquement des noms de variables et de consoles.
 - **Articles complets** (depuis le 28 octobre 2026) : la veille écrit aussi, pour chaque actu, un
   article de 300 à 450 mots (https://teiki5320.github.io/veille/articles/keurfoot/<id>.json, schéma
   https://teiki5320.github.io/veille/schema/article-schema-v1.json). Avant chaque build,
-  `scripts/articles.mts` les télécharge dans `.veille/articles.json` (non suivi par git) et le site
+  `scripts/articles.mts` lit l'index de tous les articles
+  (https://teiki5320.github.io/veille/articles/keurfoot/index.json : les articles ne sont jamais
+  supprimés, même quand l'actu sort des 60 plus récentes, donc une page indexée ne disparaît jamais),
+  les télécharge dans `.veille/articles.json` (non suivi par git) et le site
   construit une page `/actus/<adresse>` par article, visible par Google (sitemap, données
   NewsArticle). Le site est reconstruit à 12 h 50 et 19 h 50 (heure d'hiver) par `deploy.yml`, sans
   clé ni secret de plus. Un article arrivé entre deux constructions s'ouvre sur la page de secours

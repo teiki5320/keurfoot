@@ -20,6 +20,7 @@ import {
   liensFiches,
   lireArticle,
   lireFlux,
+  lireIndex,
   nomDeSource,
   titreActusSelection,
   URL_ARTICLES,
@@ -252,5 +253,33 @@ describe("Articles des actus : page de secours", () => {
     } finally {
       g.fetch = fetchAvant;
     }
+  });
+});
+
+describe("Articles des actus : index de tous les articles", () => {
+  const entree = (sur: Record<string, unknown> = {}) => ({
+    id: ID,
+    slug: "vozinha-invite-au-ballon-d-or-7bb833",
+    titre: "Vozinha invité",
+    publie_le: "2026-10-27T18:23:49.000Z",
+    redige_le: "2026-10-28T00:38:05.073Z",
+    url: `${URL_ARTICLES}${ID}.json`,
+    ...sur,
+  });
+
+  it("garde les entrées valables, même pour des actus sorties du fichier des actus", () => {
+    const index = lireIndex({ version: 1, site: "keurfoot", genere_le: "x", articles: [entree(), entree({ id: ID2, slug: "autre-e1ae24", url: `${URL_ARTICLES}${ID2}.json` })] });
+    assert.deepEqual(index?.map((e) => e.slug), ["vozinha-invite-au-ballon-d-or-7bb833", "autre-e1ae24"]);
+  });
+
+  it("écarte les entrées douteuses et refuse un index abîmé", () => {
+    const index = lireIndex({
+      version: 1,
+      articles: [entree({ url: "https://exemple.com/a.json" }), entree({ slug: "../x" }), entree({ id: "1" }), null, entree()],
+    });
+    assert.equal(index?.length, 1);
+    assert.equal(lireIndex({ version: 2, articles: [] }), null);
+    assert.equal(lireIndex("pas du json"), null);
+    assert.equal(lireIndex(null), null);
   });
 });

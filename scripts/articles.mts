@@ -1,7 +1,9 @@
 /**
  * Articles complets des actus (veille) : téléchargés juste avant chaque construction du site (« prebuild »).
- * Lit actus/keurfoot.json puis, pour chaque actu qui a un `slug`, son article articles/keurfoot/<id>.json,
- * et range le tout dans .veille/articles.json (fichier de travail, non suivi par git).
+ * Lit l'index articles/keurfoot/index.json (TOUS les articles écrits, jamais supprimés, même quand l'actu
+ * sort des 60 plus récentes) puis chaque article articles/keurfoot/<id>.json, et range le tout dans
+ * .veille/articles.json (fichier de travail, non suivi par git). Ainsi une page /actus/<slug> indexée
+ * par Google ne disparaît jamais. Si l'index manque, repli sur les actus de actus/keurfoot.json qui ont un `slug`.
  * Les pages /actus/<slug> sont construites à partir de ce fichier (src/lib/articles.ts).
  *
  * Si la veille ne répond pas, ou si un fichier est abîmé, le build ne casse jamais : 0 page article (ou moins).
@@ -10,7 +12,7 @@
  */
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { BASE_VEILLE, lireArticle, lireFlux, type ArticleActu } from "../src/lib/veille";
+import { BASE_VEILLE, lireArticle, lireFlux, lireIndex, type ArticleActu, type ImageActu } from "../src/lib/veille";
 
 const racine = join(import.meta.dirname, "..");
 const DELAI_MS = 15000;
@@ -37,29 +39,38 @@ function ecrire(articles: ArticleActu[], genereLe: string) {
 }
 
 try {
-  const flux = lireFlux(await lireJson(`${BASE_VEILLE}/actus/keurfoot.json`));
-  if (!flux) {
+  const [index, flux] = await Promise.all([
+    lireJson(`${BASE_VEILLE}/articles/keurfoot/index.json`).then(lireIndex),
+    lireJson(`${BASE_VEILLE}/actus/keurfoot.json`).then(lireFlux),
+  ]);
+  // Liste à construire : l'index complet ; sinon (index absent) les actus récentes qui ont un article.
+  const aConstruire = index ?? (flux?.actus ?? []).filter((a) => a.slug).map((a) => ({ id: a.id, slug: a.slug as string }));
+  if (!index && !flux) {
     console.warn("Articles des actus : la veille ne répond pas, aucune page article construite.");
     ecrire([], "");
   } else {
-    const avecArticle = flux.actus.filter((a) => a.slug);
+    // Image de l'actu quand elle est encore dans le fichier des actus (c'est la même ; sinon celle de l'article).
+    const images = new Map<string, ImageActu>((flux?.actus ?? []).map((a) => [a.id, a.image]));
     const articles: ArticleActu[] = [];
     // Par paquets de 8 pour ne pas surcharger GitHub Pages.
-    for (let i = 0; i < avecArticle.length; i += 8) {
+    for (let i = 0; i < aConstruire.length; i += 8) {
       const lot = await Promise.all(
-        avecArticle.slice(i, i + 8).map(async (a) => {
-          const article = lireArticle(await lireJson(`${BASE_VEILLE}/articles/keurfoot/${a.id}.json`));
-          // L'article doit correspondre à l'actu (même id, même adresse) et garder son image.
-          return article && article.id === a.id && article.slug === a.slug ? { ...article, image: a.image } : null;
+        aConstruire.slice(i, i + 8).map(async (e) => {
+          const article = lireArticle(await lireJson(`${BASE_VEILLE}/articles/keurfoot/${e.id}.json`));
+          // L'article doit correspondre à l'entrée (même id, même adresse).
+          return article && article.id === e.id && article.slug === e.slug ? { ...article, image: images.get(e.id) ?? article.image } : null;
         }),
       );
       articles.push(...lot.filter((x): x is ArticleActu => x !== null));
     }
     // Une adresse ne sert qu'une fois (la plus récente gagne).
+    articles.sort((a, b) => b.publie_le.localeCompare(a.publie_le));
     const vus = new Set<string>();
     const uniques = articles.filter((a) => (vus.has(a.slug) ? false : (vus.add(a.slug), true)));
-    ecrire(uniques, flux.genere_le);
-    console.log(`Articles des actus : ${uniques.length} page(s) à construire sur ${flux.actus.length} actus (${avecArticle.length} avec article).`);
+    ecrire(uniques, flux?.genere_le ?? "");
+    console.log(
+      `Articles des actus : ${uniques.length} page(s) à construire sur ${aConstruire.length} article(s) ${index ? "de l'index" : "des actus récentes (index absent)"}.`,
+    );
   }
 } catch (e) {
   console.warn("Articles des actus : erreur inattendue, aucune page article construite.", e);
