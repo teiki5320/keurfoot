@@ -7,7 +7,8 @@
  * Les pages /actus/<slug> sont construites à partir de ce fichier (src/lib/articles.ts).
  *
  * Pour chaque article, une image de partage JPG 1200 × 630 est rangée dans public/og/actus/<id>.jpg
- * (dossier non suivi par git) : les cartes SVG de la veille ne s'affichent ni sur WhatsApp, ni sur Facebook, ni dans Google.
+ * (dossier non suivi par git), et pour les photos des versions réduites en 480 et 800 px dans
+ * public/reduites/actus/ (la page de l'article les propose au navigateur) : les cartes SVG de la veille ne s'affichent ni sur WhatsApp, ni sur Facebook, ni dans Google.
  *
  * Le fichier des actus récentes est aussi gardé dans .veille/actus.json : les blocs d'actus sont écrits dans
  * le HTML des pages (Google les voit), puis rafraîchis dans le navigateur.
@@ -20,7 +21,8 @@ import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { Resvg } from "@resvg/resvg-js";
 import sharp from "sharp";
-import { BASE_VEILLE, cheminPartageActu, lireArticle, lireFlux, lireIndex, type ArticleActu, type ImageActu } from "../src/lib/veille";
+import { LARGEURS_REDUITES } from "../src/lib/images";
+import { BASE_VEILLE, cheminPartageActu, cheminReduitActu, lireArticle, lireFlux, lireIndex, type ArticleActu, type ImageActu } from "../src/lib/veille";
 
 const racine = join(import.meta.dirname, "..");
 const DELAI_MS = 15000;
@@ -55,18 +57,26 @@ async function lireOctets(url: string): Promise<Buffer | null> {
   }
 }
 
-/** Image de partage JPG 1200 × 630 (recadrée au centre) ; false si l'image de l'actu est absente ou illisible. */
+/**
+ * Image de partage JPG 1200 × 630 (recadrée au centre) et, pour une photo, ses versions réduites ;
+ * false si l'image de l'actu est absente ou illisible.
+ */
 async function imagePartage(article: ArticleActu): Promise<boolean> {
   const chemin = cheminPartageActu(article.id);
   if (!chemin) return false;
   const cible = join(racine, "public", chemin);
-  if (existsSync(cible)) return true;
+  const photo = !article.image.url.endsWith(".svg");
+  const reduites = photo
+    ? LARGEURS_REDUITES.filter((l) => l < (article.image.largeur || 0)).map((l) => ({ l, fichier: join(racine, "public", cheminReduitActu(article.id, l)!) }))
+    : [];
+  if (existsSync(cible) && reduites.every((r) => existsSync(r.fichier))) return true;
   // Une seconde chance : GitHub Pages répond parfois lentement.
   const octets = (await lireOctets(article.image.url)) ?? (await lireOctets(article.image.url));
   if (!octets) return false;
   try {
     const source = article.image.url.endsWith(".svg") ? new Resvg(octets, { fitTo: { mode: "width", value: 1200 } }).render().asPng() : octets;
     await sharp(source).resize(1200, 630, { fit: "cover" }).jpeg({ quality: 80, mozjpeg: true }).toFile(cible);
+    for (const r of reduites) await sharp(octets).resize({ width: r.l }).webp({ quality: 72 }).toFile(r.fichier);
     return true;
   } catch {
     return false;
@@ -111,6 +121,7 @@ try {
     const uniques = articles.filter((a) => (vus.has(a.slug) ? false : (vus.add(a.slug), true)));
     ecrire(uniques, flux?.genere_le ?? "");
     mkdirSync(join(racine, "public", "og", "actus"), { recursive: true });
+    mkdirSync(join(racine, "public", "reduites", "actus"), { recursive: true });
     let partages = 0;
     for (let i = 0; i < uniques.length; i += 8) {
       partages += (await Promise.all(uniques.slice(i, i + 8).map(imagePartage))).filter(Boolean).length;

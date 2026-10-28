@@ -102,6 +102,11 @@ export function cheminPartageActu(id: string): string | null {
   return idValide(id) ? `/og/actus/${id}.jpg` : null;
 }
 
+/** Photo d'un article en largeur réduite (480 ou 800 px), servie par keurfoot.com : fabriquée avant le build. */
+export function cheminReduitActu(id: string, largeur: number): string | null {
+  return idValide(id) ? `/reduites/actus/${id}-${largeur}.webp` : null;
+}
+
 /** Identifiant demandé dans l'adresse de la page de secours (« ?id=… ») ; chaîne vide s'il est absent ou mal formé. */
 export function idDemande(recherche: string): string {
   const id = new URLSearchParams(recherche).get("id") ?? "";

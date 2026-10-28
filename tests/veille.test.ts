@@ -12,6 +12,7 @@ import {
   chargerActus,
   chargerArticle,
   cheminPartageActu,
+  cheminReduitActu,
   dateArticle,
   dateMiseAJour,
   filtrerActus,
@@ -294,5 +295,17 @@ describe("Articles des actus : image de partage", () => {
 
   it("refuse un identifiant mal formé", () => {
     assert.equal(cheminPartageActu("../../etc"), null);
+  });
+});
+
+describe("Articles des actus : photo en tailles réduites", () => {
+  const id = "9190255f85fea072930d4cfa7a71a10e61b46ab3";
+
+  it("rangée sous /reduites/actus/ avec la largeur dans le nom", () => {
+    assert.equal(cheminReduitActu(id, 800), `/reduites/actus/${id}-800.webp`);
+  });
+
+  it("refuse un identifiant mal formé", () => {
+    assert.equal(cheminReduitActu("../x", 480), null);
   });
 });

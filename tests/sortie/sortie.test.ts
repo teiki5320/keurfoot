@@ -128,6 +128,12 @@ describe("Site construit", () => {
       assert.ok(existsSync(join(out, "og", "actus", `${a.id}.jpg`)), a.id);
     }
   });
+  it("les photos des articles d'actus ont des versions réduites servies par le site", { skip: articles.length === 0 }, () => {
+    const avecPhoto = articles.filter((a) => existsSync(join(out, "reduites", "actus", `${a.id}-480.webp`)));
+    assert.ok(avecPhoto.length > 0, "aucune photo réduite");
+    const html = readFileSync(join(out, "actus", `${avecPhoto[0].slug}.html`), "utf8");
+    assert.match(html, new RegExp(`srcSet="/keurfoot/reduites/actus/${avecPhoto[0].id}-480\\.webp 480w`));
+  });
   it("une épingle Pinterest par Top 10", () => {
     for (const p of PAGES.filter((x) => x.startsWith("top-10/"))) {
       assert.ok(existsSync(join(out, "epingles", `${p.split("/")[1]}.png`)), p);

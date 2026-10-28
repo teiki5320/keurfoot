@@ -101,7 +101,8 @@ uniquement des noms de variables et de consoles.
   construit une page `/actus/<adresse>` par article, visible par Google (sitemap, données
   NewsArticle). Chaque article a une image de partage JPG 1200 × 630 (`public/og/actus/<id>.jpg`,
   fabriquée par le même script, non suivie par git) : les cartes SVG de la veille ne s'affichent ni sur
-  WhatsApp, ni sur Facebook, ni dans Google. Le site est reconstruit à 12 h 50 et 19 h 50 (heure d'hiver) par `deploy.yml`, sans
+  WhatsApp, ni sur Facebook, ni dans Google. Les photos des articles ont aussi des versions de 480 et
+  800 px servies par keurfoot.com (`public/reduites/actus/`), proposées au navigateur (srcset). Le site est reconstruit à 12 h 50 et 19 h 50 (heure d'hiver) par `deploy.yml`, sans
   clé ni secret de plus. Un article arrivé entre deux constructions s'ouvre sur la page de secours
   `/actus/article?id=<id>` (lue dans le navigateur, `noindex`, hors sitemap). Toute la carte d'une
   actu ouvre son article ; sans article, elle ouvre la source. Si la veille ne répond pas au build,

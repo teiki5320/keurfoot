@@ -5,11 +5,21 @@ import { notFound } from "next/navigation";
 import { ArticleVue, type AutreActu } from "@/components/actus/ArticleVue";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { articlesConstruits, fichesParTag, getArticle, slugsConstruits } from "@/lib/articles";
-import { siteConfig } from "@/lib/config";
+import { siteConfig, withBase } from "@/lib/config";
 import { getMaintenance } from "@/lib/data/settings";
 import { jsonLd } from "@/lib/json-ld";
 import { clip, pageMetadata } from "@/lib/metadata";
-import { cheminPartageActu, lienActu, liensFiches, type ArticleActu } from "@/lib/veille";
+import { LARGEURS_REDUITES } from "@/lib/images";
+import { cheminPartageActu, cheminReduitActu, lienActu, liensFiches, type ArticleActu } from "@/lib/veille";
+
+/** Versions réduites de la photo (fabriquées avant le build) puis l'original ; undefined s'il n'y en a pas. */
+function srcsetPhoto(article: ArticleActu): string | undefined {
+  const reduites = LARGEURS_REDUITES.map((l) => ({ l, chemin: cheminReduitActu(article.id, l) })).filter(
+    (r) => r.chemin && r.l < article.image.largeur && existsSync(join(process.cwd(), "public", r.chemin)),
+  );
+  if (reduites.length === 0) return undefined;
+  return [...reduites.map((r) => `${withBase(r.chemin!)} ${r.l}w`), `${article.image.url} ${article.image.largeur}w`].join(", ");
+}
 
 /** Image de partage JPG de l'article (fabriquée avant le build) ; sinon l'image de l'actu. */
 function imagePartage(article: ArticleActu): string {
@@ -78,7 +88,7 @@ export default async function ArticleActuPage({ params }: PageProps<"/actus/[slu
           { name: article.titre, href: `/actus/${article.slug}` },
         ]}
       />
-      <ArticleVue article={article} fiches={liensFiches(article.tags, fichesParTag())} autres={autres} />
+      <ArticleVue article={article} fiches={liensFiches(article.tags, fichesParTag())} autres={autres} srcSet={srcsetPhoto(article)} />
     </>
   );
 }

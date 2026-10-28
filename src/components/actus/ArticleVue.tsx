@@ -21,7 +21,18 @@ const lienExterne = "font-semibold text-[#3ccf7c] underline-offset-2 hover:text-
  * Article complet d'une actu, dans le style des conseils : utilisé par la page construite (/actus/<slug>)
  * et par la page de secours (/actus/article?id=…). Jamais de lien Amazon ici.
  */
-export function ArticleVue({ article, fiches, autres }: { article: ArticleActu; fiches: LienFiche[]; autres: AutreActu[] }) {
+export function ArticleVue({
+  article,
+  fiches,
+  autres,
+  srcSet,
+}: {
+  article: ArticleActu;
+  fiches: LienFiche[];
+  autres: AutreActu[];
+  /** Versions réduites de la photo (page construite seulement). */
+  srcSet?: string;
+}) {
   const date = dateArticle(article.publie_le);
   return (
     <>
@@ -39,6 +50,8 @@ export function ArticleVue({ article, fiches, autres }: { article: ArticleActu; 
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={article.image.url}
+            srcSet={srcSet}
+            sizes={srcSet ? "(min-width: 776px) 744px, 100vw" : undefined}
             alt={article.image.alt}
             width={article.image.largeur || 1600}
             height={article.image.hauteur || 900}

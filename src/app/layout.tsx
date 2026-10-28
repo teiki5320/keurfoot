@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Barlow, Barlow_Condensed } from "next/font/google";
+import { preconnect } from "react-dom";
 import { ADSENSE_CLIENT, NOINDEX, siteConfig } from "@/lib/config";
 import { DEFAULT_SHARE_IMAGES } from "@/lib/metadata";
+import { BASE_VEILLE } from "@/lib/veille";
 import "./globals.css";
 
 const barlow = Barlow({ variable: "--font-barlow", subsets: ["latin"], weight: ["400", "500", "600"], display: "swap" });
@@ -40,6 +42,9 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
+  // Connexions ouvertes d'avance : images des actus (veille) et, avec AdSense, son script.
+  preconnect(new URL(BASE_VEILLE).origin);
+  if (ADSENSE_CLIENT) preconnect("https://pagead2.googlesyndication.com");
   return (
     <html lang="fr" className={`${barlow.variable} ${barlowCondensed.variable} antialiased`} suppressHydrationWarning>
       {ADSENSE_CLIENT && (
