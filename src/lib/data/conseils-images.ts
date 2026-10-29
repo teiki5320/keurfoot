@@ -8,14 +8,6 @@ import type { ConseilImageCredit } from "@/lib/conseils/article";
  * Un conseil absent de cette liste garde son illustration originale.
  */
 export const CONSEIL_IMAGES: Record<string, ConseilImageCredit> = {
-  "a-quel-age-un-enfant-peut-il-jouer-au-foot-en-club": {
-    type: "photo",
-    source: "wikimedia",
-    auteur: "Werner100359",
-    licence: "CC BY-SA 4.0",
-    page: "https://commons.wikimedia.org/wiki/File:West_African_Football_Academy_gegen_Red_Bull_Brasil_(Finale)_12.jpg",
-    alt: "Jeunes joueurs d'une académie de football ouest-africaine alignés en maillot rouge avant un match",
-  },
   "combien-de-temps-dure-un-match-de-foot": {
     type: "photo",
     source: "openverse",
@@ -49,14 +41,6 @@ export const CONSEIL_IMAGES: Record<string, ConseilImageCredit> = {
     alt: "Deux paires de gants de gardien de but posées sur une pelouse à côté d'un plot orange",
   },
   "comment-choisir-ses-protege-tibias": { type: "carte", alt: "Illustration Keur Foot : un ballon sur fond vert et la mention « Protège-tibias »" },
-  "comment-choisir-un-ballon-de-futsal": {
-    type: "photo",
-    source: "wikimedia",
-    auteur: "Petty Officer 2nd Class Nancy Dibenedetto",
-    licence: "Domaine public",
-    page: "https://commons.wikimedia.org/wiki/File:Control_of_the_ball_DVIDS194540.jpg",
-    alt: "Joueurs qui se disputent le ballon lors d'un match de futsal en salle",
-  },
   "comment-choisir-un-bon-ballon-de-foot": {
     type: "photo",
     source: "wikimedia",
@@ -65,39 +49,7 @@ export const CONSEIL_IMAGES: Record<string, ConseilImageCredit> = {
     page: "https://commons.wikimedia.org/wiki/File:Soccer_Ball_(27181880724).jpg",
     alt: "Ballon de football noir et blanc posé sur la ligne blanche d'un terrain",
   },
-  "comment-choisir-une-echarpe-de-supporter": {
-    type: "photo",
-    source: "wikimedia",
-    auteur: "Andy Witchger",
-    licence: "CC BY 2.0",
-    page: "https://commons.wikimedia.org/wiki/File:MNUFC_-_Minnesota_United_v_Chicago_Fire_TCF_Bank_Stadium_(27018264768).jpg",
-    alt: "Tribune de supporters qui brandissent leurs écharpes au-dessus de leur tête",
-  },
   "comment-encadrer-un-maillot-de-foot": { type: "carte", alt: "Illustration Keur Foot : un ballon sur fond vert et la mention « Encadrer un maillot »" },
-  "comment-entretenir-ses-crampons-de-foot": {
-    type: "photo",
-    source: "wikimedia",
-    auteur: "Laslovarga",
-    licence: "CC BY-SA 4.0",
-    page: "https://commons.wikimedia.org/wiki/File:Football_boots_ARTEX_Budapest_Laslovarga_(2).jpg",
-    alt: "Semelle en cuir d'une ancienne chaussure de football à crampons, posée dans l'herbe",
-  },
-  "comment-floquer-un-maillot-de-foot": {
-    type: "photo",
-    source: "wikimedia",
-    auteur: "Dr Salvus",
-    licence: "CC BY-SA 4.0",
-    page: "https://commons.wikimedia.org/wiki/File:Terza_Categoria_club_Amo_Gela_Dorica_shirt_(retro,_number_96).jpg",
-    alt: "Dos d'un maillot de football noir floqué du numéro 96 en blanc",
-  },
-  "comment-fonctionnent-les-eliminatoires-de-la-can-2027": {
-    type: "photo",
-    source: "openverse",
-    auteur: "Jeff Attaway",
-    licence: "CC BY 2.0",
-    page: "https://www.flickr.com/photos/33398364@N08/5562333854",
-    alt: "Vue aérienne du stade Léopold-Sédar-Senghor de Dakar plein pour le match Sénégal - Cameroun",
-  },
   "comment-habiller-un-enfant-pour-le-foot-en-hiver": {
     type: "photo",
     source: "wikimedia",
@@ -115,14 +67,6 @@ export const CONSEIL_IMAGES: Record<string, ConseilImageCredit> = {
     alt: "Enfants qui jouent au football pieds nus ou en baskets sur un terrain en terre",
   },
   "comment-laver-un-maillot-de-foot": { type: "carte", alt: "Illustration Keur Foot : un ballon sur fond vert et la mention « Laver un maillot »" },
-  "comment-organiser-un-anniversaire-foot-pour-un-enfant": {
-    type: "photo",
-    source: "wikimedia",
-    auteur: "Ardfern",
-    licence: "CC BY-SA 3.0",
-    page: "https://commons.wikimedia.org/wiki/File:Portadown_(115),_September_2009.JPG",
-    alt: "Gâteau d'anniversaire décoré d'un terrain de football et de figurines de joueurs",
-  },
   "comment-organiser-une-soiree-match-entre-amis": {
     type: "photo",
     source: "openverse",
@@ -130,14 +74,6 @@ export const CONSEIL_IMAGES: Record<string, ConseilImageCredit> = {
     licence: "CC BY 2.0",
     page: "https://www.flickr.com/photos/41000732@N04/4721660234",
     alt: "Habitants rassemblés devant un téléviseur pour regarder un match de Coupe du monde au Ghana",
-  },
-  "comment-reconnaitre-un-faux-maillot-de-foot": {
-    type: "photo",
-    source: "openverse",
-    auteur: "JohnSeb",
-    licence: "CC BY 2.0",
-    page: "https://www.flickr.com/photos/69875617@N00/24024700372",
-    alt: "Étal de marché couvert de maillots de football de toutes les couleurs",
   },
   "comment-se-deroule-la-phase-finale-de-la-can": {
     type: "photo",
@@ -163,14 +99,6 @@ export const CONSEIL_IMAGES: Record<string, ConseilImageCredit> = {
     page: "https://www.flickr.com/photos/75062596@N00/21396705938",
     alt: "Arbitre assistant au bord du terrain, son drapeau à la main",
   },
-  "que-prendre-pour-aller-voir-un-match-au-stade": {
-    type: "photo",
-    source: "openverse",
-    auteur: "Steenbergs",
-    licence: "CC BY 2.0",
-    page: "https://www.flickr.com/photos/50310535@N03/6112637114",
-    alt: "Supporters qui marchent vers le stade avant un match",
-  },
   "quel-cadeau-foot-offrir-a-un-enfant": { type: "carte", alt: "Illustration Keur Foot : un ballon sur fond vert et la mention « Un cadeau foot »" },
   "quel-drapeau-de-supporter-choisir": {
     type: "photo",
@@ -179,22 +107,5 @@ export const CONSEIL_IMAGES: Record<string, ConseilImageCredit> = {
     licence: "CC BY-SA 2.0",
     page: "https://commons.wikimedia.org/wiki/File:Rainbow_nation_flag.jpg",
     alt: "Grand drapeau de l'Afrique du Sud agité dans un stade éclairé la nuit",
-  },
-  "quelle-pression-pour-un-ballon-de-foot": { type: "carte", alt: "Illustration Keur Foot : un ballon sur fond vert et la mention « Gonfler son ballon »" },
-  "quels-jeux-de-foot-faire-avec-un-enfant-a-la-maison": {
-    type: "photo",
-    source: "wikimedia",
-    auteur: "Valenovale",
-    licence: "CC BY-SA 4.0",
-    page: "https://commons.wikimedia.org/wiki/File:BackyardFootball_BuenosAiresArgentina.jpg",
-    alt: "Enfants qui jouent au football dans un jardin",
-  },
-  "quels-sont-les-surnoms-des-selections-africaines": {
-    type: "photo",
-    source: "wikimedia",
-    auteur: "Danilo Borges / copa2014.gov.br",
-    licence: "CC BY 3.0",
-    page: "https://commons.wikimedia.org/wiki/File:Colombia_and_Ivory_Coast_match_at_the_FIFA_World_Cup_2014-06-19_(23).jpg",
-    alt: "Supporters de la Côte d'Ivoire en orange qui tendent leurs écharpes dans un stade",
   },
 };
