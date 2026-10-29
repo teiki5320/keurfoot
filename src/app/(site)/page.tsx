@@ -42,7 +42,7 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd([website, organization]) }} />
 
       <div className="flex flex-wrap items-end justify-between gap-6">
-        <h1 className="max-w-[760px] font-display text-[46px] leading-[0.9] tracking-[-0.01em] text-pretty uppercase sm:text-7xl lg:text-8xl">
+        <h1 className="max-w-[760px] font-display text-[34px] leading-[0.9] tracking-[-0.01em] text-pretty uppercase sm:text-5xl lg:text-6xl">
           Le football africain, <br className="hidden sm:block" />
           <span className="text-gold">de la CAN aux légendes</span>
         </h1>
@@ -66,6 +66,9 @@ export default function HomePage() {
         {last.disputed && <p className="mt-3 text-xs text-muted">* Le titre de la CAN {last.year}, attribué au Maroc par la CAF, est contesté devant le Tribunal arbitral du sport.</p>}
       </div>
 
+      {/* Actus (entre les deux penderies, demande de Jean du 29/10) : actus du foot africain, lues en direct depuis la veille (rien ne s'affiche si elles sont indisponibles). */}
+      <BlocActus titre="Actus" limite={4} lienTout prioritaire className="mt-14" />
+
       {/* Boutique : penderie des maillots, liens internes seulement (aucun bouton Amazon sur l'accueil). */}
       <section className="mt-14" aria-labelledby="accueil-boutique">
         <div className="flex items-end justify-between gap-4">
@@ -84,9 +87,6 @@ export default function HomePage() {
           <Link href="/boutique" className="tag">Écharpes, drapeaux, ballons →</Link>
         </div>
       </section>
-
-      {/* Actus du foot africain, lues en direct depuis la veille (rien ne s'affiche si elles sont indisponibles). */}
-      <BlocActus titre="Actus" limite={4} lienTout prioritaire className="mt-14" />
 
       {/* Tableau d'ardoise et CAN 2027 */}
       <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
