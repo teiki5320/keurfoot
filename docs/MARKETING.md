@@ -18,7 +18,7 @@ publications réelles, ou routine qui publie).
 - [en cours] **Examen AdSense** : demandé le 20 octobre ; « En préparation » dans la console AdSense, ni validé ni refusé (vérifié le 30 octobre 2026).
 - **Blocs d'annonces** : créer les blocs AdSense et renseigner leurs identifiants pour afficher les 7 emplacements prévus.
 - **Liens Amazon directs** : 3 maillots en fiche produit vérifiée depuis le 28 octobre 2026 (Maroc, Nigeria, Tunisie, vendus par Amazon) ; les autres grands pays n'ont pas de fiche fidèle vendue par Amazon, ils gardent la recherche.
-- **Codes de suivi par type de page** : la table est prête (`AMAZON_TAGS` dans `src/lib/amazon.ts`) ; tous les emplacements utilisent encore `keurfootfr-21` en attendant que Jean crée les codes dans la console.
+- **Codes de suivi par type de page** : codes par type de page pas encore créés, et Jean ne souhaite pas les créer (vérifié avec Jean le 30 octobre 2026) ; tous les emplacements gardent `keurfootfr-21` (table `AMAZON_TAGS` dans `src/lib/amazon.ts`).
 - **Partenariats** : équipementiers ou boutiques de supporters, une fois l'audience mesurée.
 
 ## Points forts
